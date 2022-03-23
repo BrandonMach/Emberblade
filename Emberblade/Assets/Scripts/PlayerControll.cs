@@ -9,6 +9,7 @@ public class PlayerControll : MonoBehaviour
     private Rigidbody2D player_Rb;
 
     public float jumpforce = 1;
+    private float originalJumpForce;
     private int jumpCounter = 0;
     public bool isOnGround = false;
     public GameObject jumpRingPrefab;
@@ -18,6 +19,7 @@ public class PlayerControll : MonoBehaviour
     void Start()
     {
         player_Rb = GetComponent<Rigidbody2D>();
+        originalJumpForce = jumpforce;
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class PlayerControll : MonoBehaviour
     {
         Move();
         Jump();
+       
     }
 
     void Move()
@@ -32,6 +35,17 @@ public class PlayerControll : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveBy = moveX * movementSpeed;
         player_Rb.velocity = new Vector2(moveBy, player_Rb.velocity.y);
+        //Flips the sprite
+        Vector3 characterScale = transform.localScale;
+        if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            characterScale.x = -2;
+        }
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            characterScale.x = 2;
+        }
+        transform.localScale = characterScale;
     }
 
     void Jump()
@@ -42,6 +56,10 @@ public class PlayerControll : MonoBehaviour
             jumpCounter++;
             isOnGround = false;
             StartCoroutine(JumpGraphic());
+            if(jumpCounter == 1)
+            {
+                jumpforce += 7;
+            }
         }
       
       
@@ -52,7 +70,9 @@ public class PlayerControll : MonoBehaviour
     {
         isOnGround = true;
         jumpCounter = 0;
+        jumpforce = originalJumpForce;
     }
+
 
     private void SpawnJumpRing()
     {
