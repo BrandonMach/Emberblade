@@ -22,10 +22,14 @@ public class Enemy : MonoBehaviour
     public float explosionCircleSize;
     public CircleCollider2D explosionCircle;
     public List<GameObject> explodableObjects;
+    [SerializeField] private float startShootTimer;
+    private float currentShootTimer;
 
-    void destroyObject() { Destroy(gameObject); }
+
+    void DestroyObject() { Destroy(gameObject); }
     void Update()
     {
+        Shooting();
         Move();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,7 +45,15 @@ public class Enemy : MonoBehaviour
         //here it should play an animation 
         // make it so that bullets shoots towards target. 
         //there should be an animation here
-        Instantiate(bullet);
+        if (currentShootTimer <= 0)
+        {
+            Instantiate(bullet, transform.position, transform.rotation);
+            currentShootTimer = startShootTimer;
+        }
+        else
+        {
+            currentShootTimer -= Time.deltaTime;
+        }
     }
     public void Explode()
     {
@@ -51,7 +63,7 @@ public class Enemy : MonoBehaviour
             //TODO: make objects near this die or something like that, it depends
         }
         // there should be an animation here
-        destroyObject();
+        DestroyObject();
     }
     public void Move()
     {

@@ -212,11 +212,12 @@ MonoBehaviour:
   moveTowardsTarget: 0
   target: {fileID: 1670004838}
   activiationRange: 20
-  bullet: {fileID: 0}
+  bullet: {fileID: 6893412476636503123, guid: 6ed0597c1deb8d644acee6614e74f6b9, type: 3}
   enemyType: 0
   explosionCircleSize: 0
   explosionCircle: {fileID: 0}
   explodableObjects: []
+  startShootTimer: 1
 --- !u!4 &723247767
 Transform:
   m_ObjectHideFlags: 0
