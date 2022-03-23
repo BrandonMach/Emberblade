@@ -36,15 +36,12 @@ public class PlayerControll : MonoBehaviour
 
     void Jump()
     {
-        
         if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2 )
         {
-           
             player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);
             jumpCounter++;
             isOnGround = false;
             StartCoroutine(JumpGraphic());
-
         }
       
       
@@ -65,7 +62,7 @@ public class PlayerControll : MonoBehaviour
 
     IEnumerator JumpGraphic()
     {
-        if(!isOnGround && jumpCounter == 1)
+        if(!isOnGround && jumpCounter < 1)
         {
             yield return new WaitForSeconds(jRingSpawnTime);
 
@@ -75,3 +72,4 @@ public class PlayerControll : MonoBehaviour
         
     }
 }
+
