@@ -15,11 +15,20 @@ public class PlayerControll : MonoBehaviour
     public GameObject jumpRingPrefab;
     public float jRingSpawnTime = 0.1f;
 
+    //Dash
+    public float dashForce;
+    public float startDashTimer;
+    private float currentDashTime;
+    private float dashDirection;
+
+    private bool isDashing;
+
 
     void Start()
     {
         player_Rb = GetComponent<Rigidbody2D>();
         originalJumpForce = jumpforce;
+        
     }
 
     // Update is called once per frame
@@ -27,13 +36,15 @@ public class PlayerControll : MonoBehaviour
     {
         Move();
         Jump();
-       
+
+      
+
     }
 
     void Move()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
-        float moveBy = moveX * movementSpeed;
+        float moveBy = moveX * movementSpeed; //Variabel borde byta namn
         player_Rb.velocity = new Vector2(moveBy, player_Rb.velocity.y);
         //Flips the sprite
         Vector3 characterScale = transform.localScale;
@@ -46,6 +57,27 @@ public class PlayerControll : MonoBehaviour
             characterScale.x = 2;
         }
         transform.localScale = characterScale;
+
+        if (Input.GetKeyDown(KeyCode.RightShift) && moveX != 0)
+        {
+            isDashing = true;
+            currentDashTime = startDashTimer;
+            player_Rb.velocity = Vector2.zero;
+            dashDirection = (int)moveX;
+        }
+        if (isDashing)
+        {
+            player_Rb.velocity = transform.right * dashDirection * dashForce;
+            currentDashTime  -= Time.deltaTime;
+
+            if(currentDashTime <= 0)
+            {
+                isDashing = false;
+            }
+
+        }
+
+
     }
 
     void Jump()
