@@ -14,6 +14,8 @@ public class PlayerControll : MonoBehaviour
     public bool isOnGround = false;
     public GameObject jumpRingPrefab;
     public float jRingSpawnTime = 0.1f;
+    public GameObject dashEffectPrefab;
+    public float dESpawnTime = 0.1f;
 
     //Dash
     public float dashForce;
@@ -58,25 +60,25 @@ public class PlayerControll : MonoBehaviour
         }
         transform.localScale = characterScale;
 
-        if (Input.GetKeyDown(KeyCode.RightShift) && moveX != 0)
+        //Dash
+        if (Input.GetKeyDown(KeyCode.RightShift) && moveX != 0) //Kan bara dasha om man input en direction
         {
             isDashing = true;
             currentDashTime = startDashTimer;
             player_Rb.velocity = Vector2.zero;
             dashDirection = (int)moveX;
+            StartCoroutine(DashGraphic());
         }
         if (isDashing)
         {
             player_Rb.velocity = transform.right * dashDirection * dashForce;
-            currentDashTime  -= Time.deltaTime;
+            currentDashTime -= Time.deltaTime;
 
             if(currentDashTime <= 0)
             {
                 isDashing = false;
             }
-
         }
-
 
     }
 
@@ -108,8 +110,14 @@ public class PlayerControll : MonoBehaviour
 
     private void SpawnJumpRing()
     {
-        GameObject a = Instantiate(jumpRingPrefab) as GameObject;
-        a.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 2.5f);
+        GameObject jumpRing = Instantiate(jumpRingPrefab) as GameObject;
+        jumpRing.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 2.5f);
+    }
+    
+    private void SpawnDashEffect()
+    {
+        GameObject dashEffect = Instantiate(dashEffectPrefab) as GameObject;
+        dashEffect.transform.position = new Vector2(this.transform.position.x, this.transform.position.x - 5f);
     }
 
     IEnumerator JumpGraphic()
@@ -117,11 +125,17 @@ public class PlayerControll : MonoBehaviour
         if(!isOnGround && jumpCounter < 1)
         {
             yield return new WaitForSeconds(jRingSpawnTime);
-
-            SpawnJumpRing(); 
-            
+            SpawnJumpRing();           
         }
-        
+    }
+
+    IEnumerator DashGraphic()
+    {
+        if (!isDashing)
+        {
+            yield return new WaitForSeconds(dESpawnTime);
+            SpawnDashEffect();
+        }
     }
 }
 
