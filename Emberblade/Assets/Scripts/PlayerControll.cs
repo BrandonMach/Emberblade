@@ -38,16 +38,16 @@ public class PlayerControll : MonoBehaviour
     {
         Move();
         Jump();
-<<<<<<< Updated upstream
+
         Debug.Log(jumpCounter);
       
-=======
+
 
         //if (!isDashing)
         //{
         //    StartCoroutine(DashGraphic());
         //}
->>>>>>> Stashed changes
+
 
     }
 
