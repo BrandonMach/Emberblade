@@ -38,7 +38,7 @@ public class PlayerControll : MonoBehaviour
     {
         Move();
         Jump();
-
+        Debug.Log(jumpCounter);
       
 
     }
@@ -102,9 +102,16 @@ public class PlayerControll : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isOnGround = true;
-        jumpCounter = 0;
-        jumpforce = originalJumpForce;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+            jumpCounter = 0;
+            jumpforce = originalJumpForce;
+        }
+        else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Roof"))
+        {
+            isOnGround = false;
+        }
     }
 
 
