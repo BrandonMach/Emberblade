@@ -60,11 +60,11 @@ public class PlayerControll : MonoBehaviour
         Vector3 characterScale = transform.localScale;
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            characterScale.x = -2;
+            characterScale.x = -1.45f;
         }
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            characterScale.x = 2;
+            characterScale.x = 1.45f;
         }
         transform.localScale = characterScale;
 
