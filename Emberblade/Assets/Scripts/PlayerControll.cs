@@ -15,7 +15,7 @@ public class PlayerControll : MonoBehaviour
     public GameObject jumpRingPrefab;
     public float jRingSpawnTime = 0.1f;
     public GameObject dashEffectPrefab;
-    public float dESpawnTime = 0.1f;
+    public float dESpawnTime = 0;
 
     //Dash
     public float dashForce;
@@ -38,8 +38,16 @@ public class PlayerControll : MonoBehaviour
     {
         Move();
         Jump();
+<<<<<<< Updated upstream
         Debug.Log(jumpCounter);
       
+=======
+
+        //if (!isDashing)
+        //{
+        //    StartCoroutine(DashGraphic());
+        //}
+>>>>>>> Stashed changes
 
     }
 
@@ -67,7 +75,7 @@ public class PlayerControll : MonoBehaviour
             currentDashTime = startDashTimer;
             player_Rb.velocity = Vector2.zero;
             dashDirection = (int)moveX;
-            StartCoroutine(DashGraphic());
+            
         }
         if (isDashing)
         {
@@ -89,15 +97,12 @@ public class PlayerControll : MonoBehaviour
             player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);
             jumpCounter++;
             isOnGround = false;
-            StartCoroutine(JumpGraphic());
+            //StartCoroutine(JumpGraphic()); //Funkar inte
             if(jumpCounter == 1)
             {
                 jumpforce += 7;
             }
-        }
-      
-      
-        
+        }    
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -115,34 +120,34 @@ public class PlayerControll : MonoBehaviour
     }
 
 
-    private void SpawnJumpRing()
-    {
-        GameObject jumpRing = Instantiate(jumpRingPrefab) as GameObject;
-        jumpRing.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 2.5f);
-    }
+    //private void SpawnJumpRing()
+    //{
+    //    GameObject jumpRing = Instantiate(jumpRingPrefab) as GameObject;
+    //    jumpRing.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 2.5f);
+    //}
     
-    private void SpawnDashEffect()
-    {
-        GameObject dashEffect = Instantiate(dashEffectPrefab) as GameObject;
-        dashEffect.transform.position = new Vector2(this.transform.position.x, this.transform.position.x - 5f);
-    }
+    //private void SpawnDashEffect() // Funkar inte
+    //{
+    //    GameObject dashEffect = Instantiate(dashEffectPrefab) as GameObject;
+    //    dashEffect.transform.position = new Vector2(this.transform.position.x, this.transform.position.x - 5f);
+    //}
 
-    IEnumerator JumpGraphic()
-    {
-        if(!isOnGround && jumpCounter < 1)
-        {
-            yield return new WaitForSeconds(jRingSpawnTime);
-            SpawnJumpRing();           
-        }
-    }
+    //IEnumerator JumpGraphic()
+    //{
+    //    if(!isOnGround && jumpCounter < 1)
+    //    {
+    //        yield return new WaitForSeconds(jRingSpawnTime);
+    //        SpawnJumpRing();           
+    //    }
+    //}
 
-    IEnumerator DashGraphic()
-    {
-        if (!isDashing)
-        {
-            yield return new WaitForSeconds(dESpawnTime);
-            SpawnDashEffect();
-        }
-    }
+    //IEnumerator DashGraphic()
+    //{
+    //    if(!isDashing)
+    //    {
+    //        yield return new WaitForSeconds(dESpawnTime);
+    //        SpawnDashEffect();
+    //    }
+    //}
 }
 
