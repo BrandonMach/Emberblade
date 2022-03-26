@@ -113,7 +113,13 @@ public class PlayerControll : MonoBehaviour
             jumpCounter = 0;
             jumpforce = originalJumpForce;
         }
-        else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Roof"))
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            isOnGround = false;
+            jumpCounter = 1;
+
+        }
+        else if (collision.gameObject.CompareTag("Roof"))
         {
             isOnGround = false;
         }
