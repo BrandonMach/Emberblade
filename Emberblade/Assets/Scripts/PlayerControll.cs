@@ -90,6 +90,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetKey(KeyCode.C))
         {
             animator.SetBool("Sit", true);
+
         }
         else
         {
