@@ -202,13 +202,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 723247764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 711ff93e1c08b02448bc0fbdc16e14f1, type: 3}
+  m_Script: {fileID: 11500000, guid: c4b486e0af992094c8970cff66fa9694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Points:
   - {x: 2, y: 2}
   - {x: -1, y: -1}
   speed: 1
+  rotationSpeed: 2
   moveTowardsTarget: 0
   target: {fileID: 1670004838}
   activiationRange: 20
@@ -216,7 +217,7 @@ MonoBehaviour:
   enemyType: 0
   explosionCircleSize: 0
   explosionCircle: {fileID: 0}
-  explodableObjects: []
+  nearbyExplodableObjects: []
   startShootTimer: 1
 --- !u!4 &723247767
 Transform:
@@ -249,7 +250,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
