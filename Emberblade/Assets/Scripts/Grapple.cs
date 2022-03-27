@@ -46,7 +46,7 @@ public class Grapple : MonoBehaviour
             isGrappling = false;
             
         }
-        else if (Input.GetMouseButtonDown(0))
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
             distanceJoint.enabled = false;
             isGrappling = true;

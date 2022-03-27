@@ -2766,12 +2766,12 @@ GameObject:
   - component: {fileID: 1042027241}
   - component: {fileID: 1042027240}
   - component: {fileID: 1042027242}
-  - component: {fileID: 1042027243}
   - component: {fileID: 1042027245}
   - component: {fileID: 1042027244}
   - component: {fileID: 1042027246}
   - component: {fileID: 1042027247}
   - component: {fileID: 1042027248}
+  - component: {fileID: 1042027249}
   m_Layer: 0
   m_Name: FrogMainCharacterV1
   m_TagString: Untagged
@@ -2914,26 +2914,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.3949943, y: 3.7}
   m_EdgeRadius: 0
---- !u!231 &1042027243
-SpringJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042027237}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 0.7206445
-  m_DampingRatio: 1
-  m_Frequency: 1
 --- !u!120 &1042027244
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2941,7 +2921,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042027237}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2953,7 +2933,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: b3824be26efff4147a515e94d0b88eba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3039,12 +3019,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042027237}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 585de7b3164cf5345a3aee24714feb63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  camera: {fileID: 519420031}
 --- !u!114 &1042027246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3095,6 +3075,25 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   healthBar: {fileID: 1328388348}
+--- !u!232 &1042027249
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042027237}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 1
+  m_Distance: 0.7206445
+  m_MaxDistanceOnly: 0
 --- !u!1 &1328388346
 GameObject:
   m_ObjectHideFlags: 0
@@ -4322,7 +4321,7 @@ GameObject:
   - component: {fileID: 2057313668}
   m_Layer: 0
   m_Name: CM vcam1
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
