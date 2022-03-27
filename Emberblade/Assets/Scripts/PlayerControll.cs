@@ -25,7 +25,7 @@ public class PlayerControll : MonoBehaviour
 
     private bool isDashing;
 
-
+    public Animator animator;
     void Start()
     {
         player_Rb = GetComponent<Rigidbody2D>();
@@ -86,6 +86,14 @@ public class PlayerControll : MonoBehaviour
             {
                 isDashing = false;
             }
+        }
+        if (Input.GetKey(KeyCode.C))
+        {
+            animator.SetBool("Sit", true);
+        }
+        else
+        {
+            animator.SetBool("Sit", false);
         }
 
     }
