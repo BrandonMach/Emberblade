@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class CurrencyPickup : MonoBehaviour
 {
+<<<<<<< Updated upstream
 
     public int worth = 100;
     public Currency currency;
 
+=======
+    public int worth = 100;
+    public Currency currency;
+>>>>>>> Stashed changes
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -16,4 +21,8 @@ public class CurrencyPickup : MonoBehaviour
             currency.IncreaseCurrency(worth);
         }
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
