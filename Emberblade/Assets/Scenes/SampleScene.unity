@@ -2123,7 +2123,11 @@ GameObject:
   - component: {fileID: 691532262}
   - component: {fileID: 691532266}
   - component: {fileID: 691532265}
+<<<<<<< Updated upstream
   m_Layer: 7
+=======
+  m_Layer: 3
+>>>>>>> Stashed changes
   m_Name: TilemapWalls
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3410,7 +3414,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042027237}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3508,7 +3512,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042027237}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 585de7b3164cf5345a3aee24714feb63, type: 3}
   m_Name: 
@@ -3516,7 +3520,11 @@ MonoBehaviour:
   camera: {fileID: 519420031}
   grappleMask:
     serializedVersion: 2
-    m_Bits: 128
+<<<<<<< Updated upstream
+    m_Bits: 136
+=======
+    m_Bits: 8
+>>>>>>> Stashed changes
 --- !u!114 &1042027246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3577,7 +3585,7 @@ DistanceJoint2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042027237}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 0}
