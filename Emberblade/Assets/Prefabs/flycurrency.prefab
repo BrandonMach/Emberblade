@@ -95,3 +95,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4183ae04f03232d419046f3650381808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worth: 100
+  currency: {fileID: 0}
