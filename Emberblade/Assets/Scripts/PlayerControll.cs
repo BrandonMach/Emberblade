@@ -16,6 +16,11 @@ public class PlayerControll : MonoBehaviour
     public float jRingSpawnTime = 0.1f;
     public GameObject dashEffectPrefab;
     public float dESpawnTime = 0;
+    public CapsuleCollider2D collider;
+
+    Vector2 oGOffset;
+    Vector2 oGSize;
+    Vector3 oGpos;
 
     //Dash
     public float dashForce;
@@ -30,7 +35,10 @@ public class PlayerControll : MonoBehaviour
     {
         player_Rb = GetComponent<Rigidbody2D>();
         originalJumpForce = jumpforce;
-        
+
+
+        oGSize = collider.size;
+        oGOffset = collider.offset;
     }
 
     // Update is called once per frame
@@ -53,6 +61,7 @@ public class PlayerControll : MonoBehaviour
 
     void Move()
     {
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveBy = moveX * movementSpeed; //Variabel borde byta namn
         player_Rb.velocity = new Vector2(moveBy, player_Rb.velocity.y);
@@ -87,14 +96,19 @@ public class PlayerControll : MonoBehaviour
                 isDashing = false;
             }
         }
+        
+
         if (Input.GetKey(KeyCode.C))
         {
             animator.SetBool("Sit", true);
-
+            collider.size = new Vector2(4.577552f, 4.577552f);
+            collider.offset = new Vector2(-0.01422455f, 0.07496669f);
         }
         else
         {
             animator.SetBool("Sit", false);
+            collider.size = oGSize;
+            collider.offset = oGOffset;
         }
 
     }

@@ -3138,6 +3138,7 @@ MonoBehaviour:
   jRingSpawnTime: 0.5
   dashEffectPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   dESpawnTime: 0.1
+  collider: {fileID: 1042027247}
   dashForce: 100
   startDashTimer: 0.25
   animator: {fileID: 1042027243}
@@ -3307,7 +3308,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042027237}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8486d32306191de44bbe164da658194e, type: 3}
   m_Name: 
@@ -3332,8 +3333,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.088663585, y: 0.031252235}
-  m_Size: {x: 2.7910123, y: 7.047623}
+  m_Offset: {x: -0.037208095, y: 0.046524175}
+  m_Size: {x: 2.938087, y: 7.0881023}
   m_Direction: 0
 --- !u!114 &1042027248
 MonoBehaviour:
