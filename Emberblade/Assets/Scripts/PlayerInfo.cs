@@ -7,7 +7,10 @@ public class PlayerInfo : MonoBehaviour
 
     public int maxHealth;
     public int currentHealth;
+    public int maxEnergy;
+    public int currentEnergy; 
     public HealthBar healthBar;
+    public EnergyBar energyBar;
 
     // Start is called before the first frame update
     void Start()
@@ -16,11 +19,17 @@ public class PlayerInfo : MonoBehaviour
 
         healthBar.SetMaxHealth(maxHealth);
         healthBar.currentHealth(currentHealth);
+        energyBar.SetMaxEnergy(maxEnergy);
+        energyBar.currentEnergy(currentEnergy);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            UseEnergy(10);
+        }
 
         if (Input.GetKeyUp(KeyCode.K))
         {
@@ -32,5 +41,11 @@ public class PlayerInfo : MonoBehaviour
     {
         currentHealth -= damage;    
         healthBar.SetHealth(currentHealth);
+    }
+
+    void UseEnergy(int useEnergy)
+    {
+        currentEnergy -= useEnergy;
+        energyBar.SetEnergy(currentEnergy);
     }
 }
