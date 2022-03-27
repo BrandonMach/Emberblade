@@ -18,6 +18,10 @@ public class Grapple : MonoBehaviour
 
     private Vector3 temporaryPos;
 
+    //Grappling layer
+
+    public LayerMask grappleMask;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +41,9 @@ public class Grapple : MonoBehaviour
     {
         GetMousePos();
 
-        if(Input.GetMouseButtonDown(0) && isGrappling)
+        RaycastHit2D hit2D = Physics2D.Raycast(camera.transform.position, mousePos, Mathf.Infinity, grappleMask);
+
+        if(Input.GetMouseButtonDown(0) && isGrappling && hit2D)
         {
             distanceJoint.enabled = true;
             distanceJoint.connectedAnchor = mousePos;
