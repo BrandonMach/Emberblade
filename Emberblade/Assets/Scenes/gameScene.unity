@@ -2123,11 +2123,7 @@ GameObject:
   - component: {fileID: 691532262}
   - component: {fileID: 691532266}
   - component: {fileID: 691532265}
-<<<<<<< Updated upstream
   m_Layer: 7
-=======
-  m_Layer: 3
->>>>>>> Stashed changes
   m_Name: TilemapWalls
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3520,11 +3516,7 @@ MonoBehaviour:
   camera: {fileID: 519420031}
   grappleMask:
     serializedVersion: 2
-<<<<<<< Updated upstream
     m_Bits: 136
-=======
-    m_Bits: 8
->>>>>>> Stashed changes
 --- !u!114 &1042027246
 MonoBehaviour:
   m_ObjectHideFlags: 0
