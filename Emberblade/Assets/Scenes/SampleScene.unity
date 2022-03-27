@@ -3140,7 +3140,7 @@ MonoBehaviour:
   dESpawnTime: 0.1
   dashForce: 100
   startDashTimer: 0.25
-  animator: {fileID: 0}
+  animator: {fileID: 1042027243}
 --- !u!61 &1042027242
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3177,7 +3177,7 @@ Animator:
   m_GameObject: {fileID: 1042027237}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8d89c232b140f2e4b9fadedd6516ea50, type: 2}
+  m_Controller: {fileID: 9100000, guid: 564af9a409e2000488bc11aeb745a6a7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
