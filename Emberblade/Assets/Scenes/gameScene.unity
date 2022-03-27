@@ -770,6 +770,10 @@ PrefabInstance:
       propertyPath: currency
       value: 
       objectReference: {fileID: 1042027250}
+    - target: {fileID: 5753086649144150863, guid: 02d43d42b5a11c7428b6b9082f9be286, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 5753086649144150864, guid: 02d43d42b5a11c7428b6b9082f9be286, type: 3}
       propertyPath: m_RootOrder
       value: 3
