@@ -12,7 +12,7 @@ public class EnemyBullet : MonoBehaviour
     }
     void Update()
     {
-        rbody.AddForce(Vector3.forward * speed, ForceMode2D.Impulse);
+        rbody.AddForce(transform.right * speed, ForceMode2D.Impulse);
         if (lifespan <= 0)
             Destroy(gameObject);
         else

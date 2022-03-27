@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public Vector2[] Points;
     int currentMove = 0;
     public float speed = 0.03f;//do not go above 0.1, it will be too fast
+    public float rotationSpeed = 2;
     public bool moveTowardsTarget = false;
     public Transform target;
     public float activiationRange = 20;
@@ -21,7 +22,7 @@ public class Enemy : MonoBehaviour
     public EnemyType enemyType = EnemyType.walkTowards;
     public float explosionCircleSize;
     public CircleCollider2D explosionCircle;
-    public List<GameObject> explodableObjects;
+    public List<GameObject> nearbyExplodableObjects;
     [SerializeField] private float startShootTimer;
     private float currentShootTimer;
 
@@ -34,31 +35,39 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        explodableObjects.Add(collision.gameObject);
+        nearbyExplodableObjects.Add(collision.gameObject);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        explodableObjects.Remove(collision.gameObject);
+        nearbyExplodableObjects.Remove(collision.gameObject);
     }
     public void Shooting()
     {
         //here it should play an animation 
-        // make it so that bullets shoots towards target. 
         //there should be an animation here
-        if (currentShootTimer <= 0)
+
+        Vector2 direction = target.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+
+        if (activiationRange >= Vector3.Distance(transform.position, target.position))
         {
-            Instantiate(bullet, transform.position, transform.rotation);
-            currentShootTimer = startShootTimer;
-        }
-        else
-        {
-            currentShootTimer -= Time.deltaTime;
+            if (currentShootTimer <= 0)
+            {
+                Instantiate(bullet, transform.position, gameObject.transform.rotation);
+                currentShootTimer = startShootTimer;
+            }
+            else
+            {
+                currentShootTimer -= Time.deltaTime;
+            }
         }
     }
     public void Explode()
     {
         //this activates when the enemy is near a the target;
-        foreach (GameObject gameObject in explodableObjects)
+        foreach (GameObject gameObject in nearbyExplodableObjects)
         {
             //TODO: make objects near this die or something like that, it depends
         }
