@@ -2123,11 +2123,7 @@ GameObject:
   - component: {fileID: 691532262}
   - component: {fileID: 691532266}
   - component: {fileID: 691532265}
-<<<<<<< Updated upstream
   m_Layer: 7
-=======
-  m_Layer: 3
->>>>>>> Stashed changes
   m_Name: TilemapWalls
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3731,6 +3727,7 @@ MonoBehaviour:
   camera: {fileID: 519420031}
   grappleMask:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     m_Bits: 136
@@ -3740,6 +3737,9 @@ MonoBehaviour:
 =======
     m_Bits: 0
 >>>>>>> Stashed changes
+=======
+    m_Bits: 136
+>>>>>>> parent of 4afd0e7 (Update SampleScene.unity)
 --- !u!114 &1042027246
 MonoBehaviour:
   m_ObjectHideFlags: 0
