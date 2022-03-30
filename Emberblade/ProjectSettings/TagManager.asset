@@ -3,21 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - Wall
-  - Roof
-  - FillGround
-  - Currency
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Wall
+  - 
   - Water
   - UI
-  - Enemy
-  - Grapple
+  - 
+  - 
   - 
   - 
   - 

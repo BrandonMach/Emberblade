@@ -17,14 +17,16 @@ public class Enemy : MonoBehaviour
     public float rotationSpeed = 2;
     public bool moveTowardsTarget = false;
     public Transform target;
-    public float activiationRange = 20;
+    public float aggroRange = 20;
     public GameObject bullet;
     public EnemyType enemyType = EnemyType.walkTowards;
+    public float explodeDistance;
     public float explosionCircleSize;
     public CircleCollider2D explosionCircle;
     public List<GameObject> nearbyExplodableObjects;
     [SerializeField] private float startShootTimer;
     private float currentShootTimer;
+    public LayerMask explodableObjects;
 
 
     void Update()
@@ -32,13 +34,15 @@ public class Enemy : MonoBehaviour
         Shooting();
         Move();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D trigger)
     {
-        nearbyExplodableObjects.Add(collision.gameObject);
+        Debug.Log("activated");
+        if (trigger.gameObject.layer == explodableObjects)
+            nearbyExplodableObjects.Add(trigger.gameObject);
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D trigger)
     {
-        nearbyExplodableObjects.Remove(collision.gameObject);
+        nearbyExplodableObjects.Remove(trigger.gameObject);
     }
     public void Shooting()
     {
@@ -50,7 +54,7 @@ public class Enemy : MonoBehaviour
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
 
-        if (activiationRange >= Vector3.Distance(transform.position, target.position))
+        if (aggroRange >= Vector3.Distance(transform.position, target.position))
         {
             if (currentShootTimer <= 0)
             {
@@ -66,12 +70,15 @@ public class Enemy : MonoBehaviour
     public void Explode()
     {
         //this activates when the enemy is near a the target;
-        foreach (GameObject gameObject in nearbyExplodableObjects)
+        if (Vector2.Distance(target.position, gameObject.transform.position) <= explodeDistance)
         {
-            //TODO: make objects near this die or something like that, it depends
+            foreach (GameObject gameObject in nearbyExplodableObjects)
+            {
+                //TODO: make objects near this die or something like that, it depends on the health system
+            }
+            // there should be an animation here
+            Destroy(gameObject);
         }
-        // there should be an animation here
-        Destroy(gameObject);
     }
     public void Move()
     {
