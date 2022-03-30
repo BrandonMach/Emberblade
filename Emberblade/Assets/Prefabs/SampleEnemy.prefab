@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5897827000689298828}
   - component: {fileID: 5897827000689298831}
   - component: {fileID: 5897827000689298818}
-  - component: {fileID: 1294944867181881310}
+  - component: {fileID: 666048857697691790}
+  - component: {fileID: 7427709680612098043}
   m_Layer: 6
   m_Name: SampleEnemy
   m_TagString: Untagged
@@ -47,21 +48,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Points: []
-  speed: 0.1
+  rbody: {fileID: 7427709680612098043}
+  speed: 0.5
   rotationSpeed: 2
   moveTowardsTarget: 0
   target: {fileID: 0}
   aggroRange: 20
   bullet: {fileID: 6893412476636503123, guid: 6ed0597c1deb8d644acee6614e74f6b9, type: 3}
   enemyType: 0
-  explodeDistance: 0
+  explodeDistance: 5
   explosionCircleSize: 0
-  explosionCircle: {fileID: 1294944867181881310}
+  explosionCircle: {fileID: 666048857697691790}
   nearbyExplodableObjects: []
   startShootTimer: 1
   explodableObjects:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  explosionObject: {fileID: 1276609687645629596, guid: d80f3e056cfe9e741b109653dcf924ec, type: 3}
 --- !u!212 &5897827000689298831
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -139,7 +142,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!58 &1294944867181881310
+--- !u!58 &666048857697691790
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,3 +158,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 10
+--- !u!50 &7427709680612098043
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5897827000689298830}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

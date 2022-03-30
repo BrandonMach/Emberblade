@@ -12,6 +12,7 @@ public enum EnemyType
 public class Enemy : MonoBehaviour
 {
     public Vector2[] Points;
+    public Rigidbody2D rbody;
     int currentMove = 0;
     public float speed = 0.03f;//do not go above 0.1, it will be too fast
     public float rotationSpeed = 2;
@@ -27,33 +28,40 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float startShootTimer;
     private float currentShootTimer;
     public LayerMask explodableObjects;
+    public GameObject explosionObject;
 
 
     void Update()
     {
-        Shooting();
-        Move();
+        ShootingBehaviour();
+        MoveBehaviours();
+        ExplodeBehaviour();
     }
-    private void OnTriggerEnter2D(Collider2D trigger)
+    private void OnTriggerEnter2D(Collider2D nearbyObject)
     {
-        Debug.Log("activated");
-        if (trigger.gameObject.layer == explodableObjects)
-            nearbyExplodableObjects.Add(trigger.gameObject);
+        if (nearbyObject.tag == "Player") //TODO: make is so that this is multi choice
+        {
+            Debug.Log("activated");
+            nearbyExplodableObjects.Add(nearbyObject.gameObject);
+        }
     }
-    private void OnTriggerExit2D(Collider2D trigger)
+    private void OnTriggerExit2D(Collider2D nearbyObject)
     {
-        nearbyExplodableObjects.Remove(trigger.gameObject);
+        Debug.Log("deactivated");
+        nearbyExplodableObjects.Remove(nearbyObject.gameObject);
     }
-    public void Shooting()
+    public void ShootingBehaviour()
     {
         //here it should play an animation 
-        //there should be an animation here
 
+        // rotates the player towards a chosen target
         Vector2 direction = target.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
 
+        // controls the range the enemy reacts to Player behaviour
+        //also this just makes bullets
         if (aggroRange >= Vector3.Distance(transform.position, target.position))
         {
             if (currentShootTimer <= 0)
@@ -67,7 +75,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    public void Explode()
+    public void ExplodeBehaviour()
     {
         //this activates when the enemy is near a the target;
         if (Vector2.Distance(target.position, gameObject.transform.position) <= explodeDistance)
@@ -80,10 +88,10 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void Move()
+    public void MoveBehaviours()
     {
-        // here it should also play an animation
-        if (moveTowardsTarget == false)
+        // here it should also play an animation for moving
+        if (moveTowardsTarget == false && Points.Length > 0)
         {
             if (new Vector2(transform.position.x, transform.position.y) == Points[currentMove])
             {
@@ -91,13 +99,13 @@ public class Enemy : MonoBehaviour
             }
             if (currentMove >= Points.Length)
                 currentMove = 0;
-            transform.position = Vector2.MoveTowards(transform.position, Points[currentMove], speed);
+            rbody.MovePosition(Vector2.MoveTowards(transform.position, Points[currentMove], speed));
         }
         else if (moveTowardsTarget == true)
         {
             // add a trigger range that makes the enemy move towards the player
             // TODO: add a way for enemies to move around walls and other objects
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed);
+            rbody.MovePosition(Vector2.MoveTowards(transform.position, target.position, speed));
         }
     }
 }
