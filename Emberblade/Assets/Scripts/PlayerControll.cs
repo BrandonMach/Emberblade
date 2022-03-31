@@ -103,13 +103,17 @@ public class PlayerControll : MonoBehaviour
         {
             animator.SetBool("Sit", true);
             collider.size = new Vector2(4.577552f, 4.577552f);
-            collider.offset = new Vector2(-0.01422455f, 0.07496669f);
+            collider.offset = new Vector2(-0.01422455f, -1f);
+            movementSpeed = 13;
+            jumpforce = 20;
         }
         else
         {
             animator.SetBool("Sit", false);
             collider.size = oGSize;
             collider.offset = oGOffset;
+            movementSpeed = 25;
+            jumpforce = 32;
         }
 
     }
