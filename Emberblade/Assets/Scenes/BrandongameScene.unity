@@ -1248,7 +1248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6457, y: 1.98, z: -10}
+  m_LocalPosition: {x: -0.16, y: 1.98, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5332,7 +5332,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5346,7 +5346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042027237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6457, y: 1.98, z: 0}
+  m_LocalPosition: {x: -0.16, y: 1.98, z: 0}
   m_LocalScale: {x: 1.45, y: 1.45, z: 1}
   m_Children:
   - {fileID: 939939622}
@@ -5395,7 +5395,6 @@ MonoBehaviour:
   jRingSpawnTime: 0.5
   dashEffectPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   dESpawnTime: 0.1
-  collider: {fileID: 1042027247}
   dashForce: 100
   startDashTimer: 0.25
   animator: {fileID: 1042027243}
@@ -5417,7 +5416,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 8, y: 8}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -5659,7 +5658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1042027243}
   attackpoint: {fileID: 1474769605}
-  attackRange: 3
+  attackRange: 3.2
   hittableLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -10737,7 +10736,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057313667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6457, y: 1.98, z: -10}
+  m_LocalPosition: {x: -0.16, y: 1.98, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1886333781}
