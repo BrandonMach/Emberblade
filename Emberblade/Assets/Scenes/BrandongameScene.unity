@@ -5395,7 +5395,6 @@ MonoBehaviour:
   jRingSpawnTime: 0.5
   dashEffectPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   dESpawnTime: 0.1
-  collider: {fileID: 1042027247}
   dashForce: 100
   startDashTimer: 0.25
   animator: {fileID: 1042027243}
@@ -5659,7 +5658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1042027243}
   attackpoint: {fileID: 1474769605}
-  attackRange: 3
+  attackRange: 3.2
   hittableLayers:
     serializedVersion: 2
     m_Bits: 64
