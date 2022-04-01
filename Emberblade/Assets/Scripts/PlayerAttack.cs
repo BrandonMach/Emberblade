@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
     public LayerMask whatIsEnemies;
     public int damage;
+    public Animator animator;
 
     void Start()
     {
@@ -28,10 +29,13 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.U))
             {
+                animator.SetBool("IsAttacking", true);
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 foreach (Collider2D enemy in enemiesToDamage)
                 {
+                    timeBetweenAttack += Time.deltaTime;
                     Debug.Log("We hit" + enemy.name);
+                    animator.SetBool("IsAttacking", false);
                 }
             }
             timeBetweenAttack = startTimeBetweenAttack;
@@ -39,6 +43,7 @@ public class PlayerAttack : MonoBehaviour
         else
         {
             timeBetweenAttack -= Time.deltaTime;
+           
         }
     }
 

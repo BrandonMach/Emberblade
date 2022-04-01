@@ -3,29 +3,29 @@ guid: 0c6e7f5388b4f5d40b003b316931f22f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3475065509530744922
-    second: FrogIdle 1_0
+      213: -2568212192572625928
+    second: FrogIdle_0
   - first:
-      213: -8251329820297050527
-    second: FrogIdle 1_1
+      213: 7351838228016042390
+    second: FrogIdle_1
   - first:
-      213: 7324848460398423620
-    second: FrogIdle 1_2
+      213: -4300553751643984844
+    second: FrogIdle_2
   - first:
-      213: 209429742618238482
-    second: FrogIdle 1_3
+      213: 3746843534900328216
+    second: FrogIdle_3
   - first:
-      213: -7705537804622628908
-    second: FrogIdle 1_4
+      213: -3703259325921826624
+    second: FrogIdle_4
   - first:
-      213: -2358179071218785385
-    second: FrogIdle 1_5
+      213: -6726494467061921150
+    second: FrogIdle_5
   - first:
-      213: -768567136322298770
-    second: FrogIdle 1_6
+      213: -7268035813492620269
+    second: FrogIdle_6
   - first:
-      213: -1655529320183897231
-    second: FrogIdle 1_7
+      213: 5455084971445680498
+    second: FrogIdle_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,23 +111,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FrogIdle 1_0
+      name: FrogIdle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,14 +129,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a7453da45616cfc0800000000000000
-      internalID: -3475065509530744922
+      spriteID: 8fba1e92e90eb5cd0800000000000000
+      internalID: -2568212192572625928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FrogIdle 1_1
+      name: FrogIdle_1
       rect:
         serializedVersion: 2
         x: 64
@@ -162,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1664b90fe336d7d80800000000000000
-      internalID: -8251329820297050527
+      spriteID: 691980baae9f60660800000000000000
+      internalID: 7351838228016042390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FrogIdle 1_2
+      name: FrogIdle_2
       rect:
         serializedVersion: 2
         x: 128
@@ -183,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44e6d93bdd617a560800000000000000
-      internalID: 7324848460398423620
+      spriteID: 43c69cfe52d5154c0800000000000000
+      internalID: -4300553751643984844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FrogIdle 1_3
+      name: FrogIdle_3
       rect:
         serializedVersion: 2
         x: 0
@@ -204,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21e5926cd3b08e200800000000000000
-      internalID: 209429742618238482
+      spriteID: 817f3b6e7567ff330800000000000000
+      internalID: 3746843534900328216
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FrogIdle 1_4
+      name: FrogIdle_4
       rect:
         serializedVersion: 2
         x: 64
@@ -225,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d7ff10413e601590800000000000000
-      internalID: -7705537804622628908
+      spriteID: 0c8e64783416b9cc0800000000000000
+      internalID: -3703259325921826624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FrogIdle 1_5
+      name: FrogIdle_5
       rect:
         serializedVersion: 2
         x: 128
@@ -246,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7936e3ff0a0164fd0800000000000000
-      internalID: -2358179071218785385
+      spriteID: 28ac423bbe0b6a2a0800000000000000
+      internalID: -6726494467061921150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FrogIdle 1_6
+      name: FrogIdle_6
       rect:
         serializedVersion: 2
         x: 0
@@ -267,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6c5875f2408555f0800000000000000
-      internalID: -768567136322298770
+      spriteID: 31484f17fefb22b90800000000000000
+      internalID: -7268035813492620269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FrogIdle 1_7
+      name: FrogIdle_7
       rect:
         serializedVersion: 2
         x: 64
@@ -288,8 +276,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 173e13bcad06609e0800000000000000
-      internalID: -1655529320183897231
+      spriteID: 279779611ea54bb40800000000000000
+      internalID: 5455084971445680498
       vertices: []
       indices: 
       edges: []

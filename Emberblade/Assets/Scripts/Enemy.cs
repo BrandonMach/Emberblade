@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
     private float currentShootTimer;
 
 
-    void DestroyObject() { Destroy(gameObject); }
     void Update()
     {
         Shooting();
@@ -72,7 +71,7 @@ public class Enemy : MonoBehaviour
             //TODO: make objects near this die or something like that, it depends
         }
         // there should be an animation here
-        DestroyObject();
+        Destroy(gameObject);
     }
     public void Move()
     {
