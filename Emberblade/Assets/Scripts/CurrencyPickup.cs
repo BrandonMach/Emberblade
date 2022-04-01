@@ -8,6 +8,7 @@ public class CurrencyPickup : MonoBehaviour
 
     public int worth = 100;
     public Currency currency;
+    public PlayerInfo pInfo;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,6 +16,7 @@ public class CurrencyPickup : MonoBehaviour
         {
             Destroy(gameObject);
             currency.IncreaseCurrency(worth);
+            pInfo.TakeDamage(50);
         }
     }
 
