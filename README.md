@@ -11,6 +11,6 @@ Kör spelet i gamescene i main branch.
 Spel Instruktioner:
 -Rör spelaren med WASD
 -Hoppa med Space 
--Dash med Shift 
+-Dash med RShift 
 -Crouch med C
 -Slå med BackSpace
