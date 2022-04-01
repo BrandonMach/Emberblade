@@ -35,12 +35,23 @@ public class PlayerInfo : MonoBehaviour
         {
             TakeDamage(20);
         }
+
+        if (currentHealth <= 0)
+        {
+            Death();
+        }
     }
     
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;    
         healthBar.SetHealth(currentHealth);
+    }
+
+    public void Death()
+    {
+        Debug.Log("works");
+        Destroy(this.gameObject);
     }
 
     void UseEnergy(int useEnergy)

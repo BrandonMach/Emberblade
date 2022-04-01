@@ -9,6 +9,7 @@ TagManager:
   - Roof
   - FillGround
   - Currency
+  - Spike
   layers:
   - Default
   - TransparentFX
