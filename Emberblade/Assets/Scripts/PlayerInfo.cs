@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerInfo : MonoBehaviour
 {
 
-    public int maxHealth;
+    int maxHealth;
     public int currentHealth;
-    public int maxEnergy;
+    int maxEnergy;
     public int currentEnergy; 
     public HealthBar healthBar;
     public EnergyBar energyBar;
@@ -15,8 +15,6 @@ public class PlayerInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //currentHealth = maxHealth;
-
         healthBar.SetMaxHealth(maxHealth);
         healthBar.currentHealth(currentHealth);
         energyBar.SetMaxEnergy(maxEnergy);
@@ -36,25 +34,25 @@ public class PlayerInfo : MonoBehaviour
             TakeDamage(20);
         }
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0)//Om man får 0 eller mindre health så kör den metoden Death() som man dör av.
         {
             Death();
         }
     }
     
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
     {
         currentHealth -= damage;    
         healthBar.SetHealth(currentHealth);
     }
 
-    public void Death()
+    public void Death() //Gör så man kan dö.
     {
         Debug.Log("works");
         Destroy(this.gameObject);
     }
 
-    void UseEnergy(int useEnergy)
+    void UseEnergy(int useEnergy)//Gör så man kan förlora energy.
     {
         currentEnergy -= useEnergy;
         energyBar.SetEnergy(currentEnergy);

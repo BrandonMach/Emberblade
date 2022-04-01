@@ -12,7 +12,7 @@ public class TrapScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            playerDamage.TakeDamage(damageAmount);
+            playerDamage.TakeDamage(99999);
         }
     }
 }
