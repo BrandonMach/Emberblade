@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask whatIsEnemies;
     public int damage;
     public Animator animator;
+ 
 
     void Start()
     {
@@ -36,6 +37,8 @@ public class PlayerAttack : MonoBehaviour
                     timeBetweenAttack += Time.deltaTime;
                     Debug.Log("We hit" + enemy.name);
                     animator.SetBool("IsAttacking", false);
+                   
+                    
                 }
             }
             timeBetweenAttack = startTimeBetweenAttack;

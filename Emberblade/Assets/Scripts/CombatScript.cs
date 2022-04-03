@@ -12,13 +12,13 @@ public class CombatScript : MonoBehaviour
 
     public LayerMask hittableLayers;
 
-    private float timeBetweenAttack;
+    private float timeBetweenAttack = 0.01f;
     public float startTimeBetweenAttack;
-
     
-   
 
-    
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -33,8 +33,9 @@ public class CombatScript : MonoBehaviour
 
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    //enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(damage);
+                    enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage();
                     Debug.Log("We Hit ");
+                    
                 }
             }
 
