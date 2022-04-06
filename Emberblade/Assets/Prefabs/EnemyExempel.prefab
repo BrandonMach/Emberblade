@@ -181,6 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIsNear: 0
+  attackPlayer: 0
   radiusArea: 0
   playerDetectionX: 55.7
   playerDetectionY: 5.5
+  playerInRangeX: 9.4
+  playerInRangeY: 5.19
