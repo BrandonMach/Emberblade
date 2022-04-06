@@ -148,7 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   canTakeDamage: 0
-  animator: {fileID: -5455274540838978737}
 --- !u!95 &-5455274540838978737
 Animator:
   serializedVersion: 3
@@ -187,3 +186,4 @@ MonoBehaviour:
   playerDetectionY: 5.5
   playerInRangeX: 9.4
   playerInRangeY: 5.19
+  animator: {fileID: -5455274540838978737}

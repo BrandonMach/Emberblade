@@ -14,9 +14,14 @@ public class EnemyAttack : MonoBehaviour
     public float playerInRangeX;
     public float playerInRangeY;
 
+    private PlayerInfo playerInfoController;
+    public Animator animator;
+
+    private float startTimeAttackTimer;
+    private float attackDelay = 1.2f;
     void Start()
     {
-        
+        playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
     }
 
     // Update is called once per frame
@@ -32,6 +37,10 @@ public class EnemyAttack : MonoBehaviour
         {
             Debug.Log("Attack Player");
         }
+        if (!attackPlayer)
+        {
+            animator.SetBool("Attacking", false);
+        }
 
        
     }
@@ -46,14 +55,14 @@ public class EnemyAttack : MonoBehaviour
         {
             if (colliderHit.gameObject.CompareTag("Player"))
             {
-                playerIsNear = true;
+                playerIsNear = true;             
             }
         }
     }
     void AttackPlayer()
     {
         attackPlayer = false;
-
+        
         Collider2D[] attackRange = Physics2D.OverlapBoxAll(transform.position + new Vector3(-5, -1, 0), new Vector2(playerInRangeX, playerInRangeY), 0);
 
         foreach (var colliderHit in attackRange)
@@ -61,7 +70,18 @@ public class EnemyAttack : MonoBehaviour
             if (colliderHit.gameObject.CompareTag("Player"))
             {
                 attackPlayer = true;
+                
+                animator.SetBool("Attacking", true);
+                startTimeAttackTimer += Time.deltaTime;
+
+                if(startTimeAttackTimer >= attackDelay)
+                {
+                    playerInfoController.TakeDamage(5);
+                    startTimeAttackTimer = 0;
+                }
+                
             }
+           
         }
     }
 

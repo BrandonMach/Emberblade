@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     public bool canTakeDamage = true;
     private float startTimeDamageTimer;
     private float damageDelay = 0.5f;
-    public Animator animator;
+    
     void Start()
     {
         health = 3;
@@ -23,10 +23,7 @@ public class EnemyHealth : MonoBehaviour
     {
         DamageWindow();
         EnemyDies();
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            animator.SetBool("Attacking", true);
-        }
+        
        
     }
 
