@@ -52,7 +52,7 @@ public class PlayerControll : MonoBehaviour
 
         Debug.Log(jumpCounter);
       
-
+        
 
         //if (!isDashing)
         //{
@@ -69,15 +69,24 @@ public class PlayerControll : MonoBehaviour
         float moveBy = moveX * movementSpeed; //Variabel borde byta namn
         player_Rb.velocity = new Vector2(moveBy, player_Rb.velocity.y);
         //Flips the sprite
+
+        Debug.Log("aaaah"+ Mathf.Abs(moveBy));
         Vector3 characterScale = transform.localScale;
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
             characterScale.x = -1.45f;
+            animator.SetFloat("Speed", 2);
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0.0f);
         }
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             characterScale.x = 1.45f;
+            animator.SetFloat("Speed", 2);
         }
+      
         transform.localScale = characterScale;
 
         //Dash
