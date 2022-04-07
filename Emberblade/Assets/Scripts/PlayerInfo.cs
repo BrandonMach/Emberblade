@@ -44,6 +44,11 @@ public class PlayerInfo : MonoBehaviour
             else { currentEnergy = maxEnergy; }
         }
 
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Heal(30);
+        }
+
         if (currentHealth <= 0)//Om man får 0 eller mindre health så kör den metoden Death() som man dör av.
         {
             Death();
@@ -57,9 +62,19 @@ public class PlayerInfo : MonoBehaviour
         if (currentHealth <= 0) { currentHealth = 0; }
     }
 
-    public void Heal(int health)
+    public void Heal(int health) //Metod som gör att man kan få tillbaka health.
     {
-
+        if (currentEnergy >= health && currentHealth < maxHealth)
+        {
+            currentHealth += health;
+            currentEnergy -= health;
+            healthBar.SetHealth(currentHealth);
+            energyBar.SetEnergy(currentEnergy);
+            if (currentHealth >= maxHealth) 
+            { 
+                currentHealth = maxHealth; 
+            }
+        }
     }
 
     public void Death() //Gör så man kan dö.
