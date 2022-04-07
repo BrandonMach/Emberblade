@@ -78,4 +78,10 @@ public class PlayerInfo : MonoBehaviour
         Debug.Log("works");
         Destroy(this.gameObject);
     }
+
+    public void UseEnergy(int energy)
+    {
+        currentEnergy -= energy;
+        energyBar.SetEnergy(currentEnergy);
+    }
 }
