@@ -48,6 +48,7 @@ public class PlayerInfo : MonoBehaviour
         {
             Death();
         }
+
     }
     
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
