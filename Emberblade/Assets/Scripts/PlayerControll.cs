@@ -134,14 +134,17 @@ public class PlayerControll : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2 )
         {
+            animator.SetBool("Jumping", true);
+            isOnGround = false;
             player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);
             jumpCounter++;
-            isOnGround = false;
+            
             //StartCoroutine(JumpGraphic()); //Funkar inte
-            if(jumpCounter == 1)
+            if (jumpCounter == 1)
             {
                 jumpforce += 7;
             }
+  
         }    
     }
 
@@ -152,6 +155,7 @@ public class PlayerControll : MonoBehaviour
             isOnGround = true;
             jumpCounter = 0;
             jumpforce = originalJumpForce;
+            animator.SetBool("Jumping", false);
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
