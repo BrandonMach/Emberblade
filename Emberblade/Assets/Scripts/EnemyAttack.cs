@@ -54,7 +54,7 @@ public class EnemyAttack : MonoBehaviour
         Debug.Log("Yo" +startTimeAttackTimer);
 
 
-
+        EnemyFacingPlayer();
       
 
 
