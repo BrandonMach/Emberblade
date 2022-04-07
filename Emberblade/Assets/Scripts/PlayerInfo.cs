@@ -24,11 +24,6 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            UseEnergy(30);
-        }
-
         if (Input.GetKeyDown(KeyCode.K))
         {
             TakeDamage(20);
@@ -53,6 +48,7 @@ public class PlayerInfo : MonoBehaviour
         {
             Death();
         }
+
     }
     
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
@@ -81,12 +77,5 @@ public class PlayerInfo : MonoBehaviour
     {
         Debug.Log("works");
         Destroy(this.gameObject);
-    }
-
-    public void UseEnergy(int useEnergy)//Gör så man kan förlora energy.
-    {
-        currentEnergy -= useEnergy;
-        energyBar.SetEnergy(currentEnergy);
-        if (currentEnergy <= 0) { currentEnergy = 0; }
     }
 }
