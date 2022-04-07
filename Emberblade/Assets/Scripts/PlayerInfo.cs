@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerInfo : MonoBehaviour
 {
 
-    int maxHealth;
+    public int maxHealth;
     public int currentHealth;
-    int maxEnergy;
+    public int maxEnergy;
     public int currentEnergy; 
     public HealthBar healthBar;
     public EnergyBar energyBar;
@@ -26,12 +26,22 @@ public class PlayerInfo : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            UseEnergy(10);
+            UseEnergy(30);
         }
 
-        if (Input.GetKeyUp(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             TakeDamage(20);
+        }
+
+        if (Input.GetKey(KeyCode.H))
+        {
+            if (currentEnergy < maxEnergy)
+            {
+                currentEnergy++;
+                energyBar.SetEnergy(currentEnergy);
+            }
+            else { currentEnergy = maxEnergy; }
         }
 
         if (currentHealth <= 0)//Om man får 0 eller mindre health så kör den metoden Death() som man dör av.
@@ -44,6 +54,7 @@ public class PlayerInfo : MonoBehaviour
     {
         currentHealth -= damage;    
         healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0) { currentHealth = 0; }
     }
 
     public void Death() //Gör så man kan dö.
@@ -56,5 +67,6 @@ public class PlayerInfo : MonoBehaviour
     {
         currentEnergy -= useEnergy;
         energyBar.SetEnergy(currentEnergy);
+        if (currentEnergy <= 0) { currentEnergy = 0; }
     }
 }

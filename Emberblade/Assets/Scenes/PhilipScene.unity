@@ -8784,10 +8784,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d770cf12e78bed4081f8cc994c1c9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 500
   currentHealth: 130
-  maxEnergy: 150
-  currentEnergy: 70
+  maxEnergy: 500
+  currentEnergy: 500
   healthBar: {fileID: 1916859008}
   energyBar: {fileID: 498915549}
 --- !u!70 &1575824273
