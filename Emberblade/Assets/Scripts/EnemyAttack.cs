@@ -40,9 +40,10 @@ public class EnemyAttack : MonoBehaviour
         if (!attackPlayer)
         {
             animator.SetBool("Attacking", false);
+            startTimeAttackTimer = 0;
         }
-
-       
+        
+        Debug.Log("Yo" +startTimeAttackTimer);
     }
 
     void DetectPlayer()
@@ -69,18 +70,21 @@ public class EnemyAttack : MonoBehaviour
         {
             if (colliderHit.gameObject.CompareTag("Player"))
             {
+                
                 attackPlayer = true;
                 
                 animator.SetBool("Attacking", true);
                 startTimeAttackTimer += Time.deltaTime;
 
-                if(startTimeAttackTimer >= attackDelay)
+                if(startTimeAttackTimer >= attackDelay && colliderHit.gameObject.CompareTag("Player"))
                 {
-                    playerInfoController.TakeDamage(5);
+                    playerInfoController.TakeDamage(20);
                     startTimeAttackTimer = 0;
                 }
                 
             }
+           
+           
            
         }
     }
