@@ -57,6 +57,11 @@ public class PlayerInfo : MonoBehaviour
         if (currentHealth <= 0) { currentHealth = 0; }
     }
 
+    public void Heal(int health)
+    {
+
+    }
+
     public void Death() //Gör så man kan dö.
     {
         Debug.Log("works");
