@@ -8787,7 +8787,7 @@ MonoBehaviour:
   maxHealth: 500
   currentHealth: 130
   maxEnergy: 500
-  currentEnergy: 500
+  currentEnergy: 70
   healthBar: {fileID: 1916859008}
   energyBar: {fileID: 498915549}
 --- !u!70 &1575824273
