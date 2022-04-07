@@ -13,15 +13,23 @@ public class EnemyAttack : MonoBehaviour
     public float playerDetectionY;
     public float playerInRangeX;
     public float playerInRangeY;
+    private float moveSpeed;
 
     private PlayerInfo playerInfoController;
     public Animator animator;
 
     private float startTimeAttackTimer;
     private float attackDelay = 1.2f;
+
+    private float flipHitbox = 1;
+    private bool facingLeft;
+
+    
     void Start()
     {
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        moveSpeed = 0.05f;
+        facingLeft = true;
     }
 
     // Update is called once per frame
@@ -40,13 +48,21 @@ public class EnemyAttack : MonoBehaviour
         if (!attackPlayer)
         {
             animator.SetBool("Attacking", false);
+            startTimeAttackTimer = 0;
         }
+        
+        Debug.Log("Yo" +startTimeAttackTimer);
 
-       
+
+
+      
+
+
     }
 
     void DetectPlayer()
     {
+ 
         playerIsNear = false;
 
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(playerDetectionX, playerDetectionY), 0);
@@ -55,33 +71,57 @@ public class EnemyAttack : MonoBehaviour
         {
             if (colliderHit.gameObject.CompareTag("Player"))
             {
-                playerIsNear = true;             
-            }
+                playerIsNear = true;
+
+                if (playerIsNear)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position, moveSpeed);               
+                }
+            } 
         }
     }
     void AttackPlayer()
     {
         attackPlayer = false;
         
-        Collider2D[] attackRange = Physics2D.OverlapBoxAll(transform.position + new Vector3(-5, -1, 0), new Vector2(playerInRangeX, playerInRangeY), 0);
+        Collider2D[] attackRange = Physics2D.OverlapBoxAll(transform.position + new Vector3(-5 * flipHitbox, -1, 0), new Vector2(playerInRangeX, playerInRangeY), 0);
 
         foreach (var colliderHit in attackRange)
         {
             if (colliderHit.gameObject.CompareTag("Player"))
             {
+                
                 attackPlayer = true;
                 
                 animator.SetBool("Attacking", true);
                 startTimeAttackTimer += Time.deltaTime;
 
-                if(startTimeAttackTimer >= attackDelay)
+                if(startTimeAttackTimer >= attackDelay && colliderHit.gameObject.CompareTag("Player"))
                 {
-                    playerInfoController.TakeDamage(5);
+                    playerInfoController.TakeDamage(20);
                     startTimeAttackTimer = 0;
-                }
-                
-            }
-           
+                }          
+            }     
+        }
+    }
+
+    void EnemyFacingPlayer()
+    {
+        Vector3 charecterScale = transform.localScale;
+
+        if (playerInfoController.transform.position.x > this.transform.position.x && facingLeft)
+        {
+            flipHitbox *= -1;
+            charecterScale.x *= -1;
+            transform.localScale = charecterScale;
+            facingLeft = false;
+        }
+        if (playerInfoController.transform.position.x < this.transform.position.x && !facingLeft) // Om player transform är större än enemy vänd på enemy
+        {
+            flipHitbox *= -1;
+            charecterScale.x *= -1;
+            transform.localScale = charecterScale;
+            facingLeft = true;
         }
     }
 
@@ -90,6 +130,6 @@ public class EnemyAttack : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, new Vector3(playerDetectionX, playerDetectionY, 1));
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position + new Vector3(-5, -1, 0), new Vector3(playerInRangeX, playerInRangeY, 1));
+        Gizmos.DrawWireCube(transform.position + new Vector3(-5 * flipHitbox, -1, 0), new Vector3(playerInRangeX, playerInRangeY, 1));
     }
 }
