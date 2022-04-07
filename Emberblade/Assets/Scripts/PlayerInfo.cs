@@ -68,7 +68,7 @@ public class PlayerInfo : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    void UseEnergy(int useEnergy)//Gör så man kan förlora energy.
+    public void UseEnergy(int useEnergy)//Gör så man kan förlora energy.
     {
         currentEnergy -= useEnergy;
         energyBar.SetEnergy(currentEnergy);

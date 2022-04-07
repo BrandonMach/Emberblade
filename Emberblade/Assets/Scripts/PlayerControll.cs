@@ -29,12 +29,14 @@ public class PlayerControll : MonoBehaviour
     private float dashDirection;
 
     private bool isDashing;
+    private PlayerInfo playerInfoScript;
 
     public Animator animator;
     void Start()
     {
         player_Rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<CapsuleCollider2D>();
+        playerInfoScript = GetComponent<PlayerInfo>();
         originalJumpForce = jumpforce;
 
 
@@ -85,6 +87,7 @@ public class PlayerControll : MonoBehaviour
             currentDashTime = startDashTimer;
             player_Rb.velocity = Vector2.zero;
             dashDirection = (int)moveX;
+            playerInfoScript.UseEnergy(20);
             
         }
         if (isDashing)
