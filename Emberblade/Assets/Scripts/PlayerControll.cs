@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerControll : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class PlayerControll : MonoBehaviour
     Vector2 oGSize;
     Vector3 oGpos;
 
+    //Jump
+    private float jumpTimer = 0;
+    private float jumpStallTime = 0;
+
     //Dash
     public float dashForce;
     public float startDashTimer;
@@ -30,6 +35,9 @@ public class PlayerControll : MonoBehaviour
 
     private bool isDashing;
     private PlayerInfo playerInfoScript;
+
+    UnityEvent landing = new UnityEvent();
+    
 
     public Animator animator;
     void Start()
@@ -42,6 +50,8 @@ public class PlayerControll : MonoBehaviour
 
         oGSize = collider.size;
         oGOffset = collider.offset;
+
+        landing.AddListener(OnLanding);
     }
 
     // Update is called once per frame
@@ -51,8 +61,11 @@ public class PlayerControll : MonoBehaviour
         Jump();
 
         Debug.Log(jumpCounter);
-      
-        
+
+        if (isOnGround)
+        {
+            landing.Invoke();
+        }
 
         //if (!isDashing)
         //{
@@ -90,7 +103,7 @@ public class PlayerControll : MonoBehaviour
         transform.localScale = characterScale;
 
         //Dash
-        if (Input.GetKeyDown(KeyCode.RightShift) && moveX != 0) //Kan bara dasha om man input en direction
+        if (Input.GetKeyDown(KeyCode.RightShift) && moveX != 0 && playerInfoScript.currentEnergy >=20) //Kan bara dasha om man input en direction
         {
             isDashing = true;
             currentDashTime = startDashTimer;
@@ -134,20 +147,36 @@ public class PlayerControll : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2 )
         {
+            jumpTimer = 0;
             animator.SetBool("Jumping", true);
+            animator.SetBool("IsOnGround", false);
             isOnGround = false;
-            player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);
             jumpCounter++;
+            //vänte tid för animation att hinna spela upp
+            jumpTimer += Time.deltaTime;
+            if(jumpTimer >= jumpStallTime)
+            {
+                player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);         
+            }
+           
+            
             
             //StartCoroutine(JumpGraphic()); //Funkar inte
             if (jumpCounter == 1)
             {
                 jumpforce += 7;
             }
-  
-        }    
+
+
+        }       
     }
 
+    public void OnLanding()
+    {
+        animator.SetBool("Jumping", false);
+        animator.SetBool("IsOnGround", false);
+        Debug.Log("Has Landed");
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -155,7 +184,7 @@ public class PlayerControll : MonoBehaviour
             isOnGround = true;
             jumpCounter = 0;
             jumpforce = originalJumpForce;
-            animator.SetBool("Jumping", false);
+           
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {

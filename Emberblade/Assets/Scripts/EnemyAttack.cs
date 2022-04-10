@@ -19,10 +19,11 @@ public class EnemyAttack : MonoBehaviour
     public Animator animator;
 
     private float startTimeAttackTimer;
-    private float attackDelay = 1.2f;
+    private float attackDelay = 2f;
 
     private float flipHitbox = 1;
     private bool facingLeft;
+    private Vector3 playerTransformOffest;
 
     
     void Start()
@@ -30,6 +31,7 @@ public class EnemyAttack : MonoBehaviour
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
         moveSpeed = 0.05f;
         facingLeft = true;
+        playerTransformOffest = new Vector3(0, 3.03f, 0);
     }
 
     // Update is called once per frame
@@ -75,7 +77,7 @@ public class EnemyAttack : MonoBehaviour
 
                 if (playerIsNear)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position, moveSpeed);               
+                    transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position - playerTransformOffest, moveSpeed);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.            
                 }
             } 
         }
@@ -96,10 +98,11 @@ public class EnemyAttack : MonoBehaviour
                 animator.SetBool("Attacking", true);
                 startTimeAttackTimer += Time.deltaTime;
 
-                if(startTimeAttackTimer >= attackDelay && colliderHit.gameObject.CompareTag("Player"))
+                if(startTimeAttackTimer >= attackDelay && attackPlayer)
                 {
-                    playerInfoController.TakeDamage(20);
+                    playerInfoController.TakeDamage(5);
                     startTimeAttackTimer = 0;
+                    attackPlayer = false;
                 }          
             }     
         }

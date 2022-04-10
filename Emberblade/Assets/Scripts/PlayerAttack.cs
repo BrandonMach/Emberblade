@@ -30,13 +30,13 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.U))
             {
-                animator.SetBool("IsAttacking", true);
+               
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 foreach (Collider2D enemy in enemiesToDamage)
                 {
                     timeBetweenAttack += Time.deltaTime;
                     Debug.Log("We hit" + enemy.name);
-                    animator.SetBool("IsAttacking", false);
+                   
                    
                     
                 }
