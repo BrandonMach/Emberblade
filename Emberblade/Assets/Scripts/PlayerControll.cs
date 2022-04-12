@@ -66,6 +66,7 @@ public class PlayerControll : MonoBehaviour
         {
             landing.Invoke();
         }
+        
 
         //if (!isDashing)
         //{
@@ -153,6 +154,13 @@ public class PlayerControll : MonoBehaviour
             jumpCounter++;
             //vänte tid för animation att hinna spela upp
             player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);
+
+            if(player_Rb.velocity.y == jumpforce)
+            {
+                player_Rb.gravityScale = 7;
+                Debug.Log("max jump height");
+            }
+            
             //jumpTimer += Time.deltaTime;
             //if(jumpTimer >= jumpStallTime)
             //{
@@ -184,7 +192,8 @@ public class PlayerControll : MonoBehaviour
             isOnGround = true;
             jumpCounter = 0;
             jumpforce = originalJumpForce;
-           
+            player_Rb.gravityScale = 3;
+
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
