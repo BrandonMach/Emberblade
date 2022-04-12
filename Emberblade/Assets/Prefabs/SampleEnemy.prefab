@@ -47,24 +47,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b486e0af992094c8970cff66fa9694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Points: []
   rbody: {fileID: 7427709680612098043}
-  speed: 0.5
+  speed: 2
   rotationSpeed: 2
   moveTowardsTarget: 0
   target: {fileID: 0}
   aggroRange: 20
-  bullet: {fileID: 6893412476636503123, guid: 6ed0597c1deb8d644acee6614e74f6b9, type: 3}
   enemyType: 0
-  explodeDistance: 5
-  explosionCircleSize: 0
-  explosionCircle: {fileID: 666048857697691790}
-  nearbyExplodableObjects: []
+  box: {fileID: 5897827000689298818}
+  moveOutOfWay: 0
   startShootTimer: 1
-  explodableObjects:
-    serializedVersion: 2
-    m_Bits: 64
-  explosionObject: {fileID: 1276609687645629596, guid: d80f3e056cfe9e741b109653dcf924ec, type: 3}
+  currentWaypoint: {x: 0, y: 0}
 --- !u!212 &5897827000689298831
 SpriteRenderer:
   m_ObjectHideFlags: 0
