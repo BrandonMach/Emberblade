@@ -147,17 +147,17 @@ public class PlayerControll : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2 )
         {
-            jumpTimer = 0;
             animator.SetBool("Jumping", true);
-            animator.SetBool("IsOnGround", false);
+            jumpTimer = 0;        
             isOnGround = false;
             jumpCounter++;
             //vänte tid för animation att hinna spela upp
-            jumpTimer += Time.deltaTime;
-            if(jumpTimer >= jumpStallTime)
-            {
-                player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);         
-            }
+            player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);
+            //jumpTimer += Time.deltaTime;
+            //if(jumpTimer >= jumpStallTime)
+            //{
+                     
+            //}
            
             
             
