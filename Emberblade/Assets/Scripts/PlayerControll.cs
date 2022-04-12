@@ -67,10 +67,7 @@ public class PlayerControll : MonoBehaviour
             landing.Invoke();
         }
 
-        if (player_Rb.velocity.y == 7)
-        {
-            animator.SetBool("Falling", true);
-        }
+      
         //if (!isDashing)
         //{
         //    StartCoroutine(DashGraphic());
