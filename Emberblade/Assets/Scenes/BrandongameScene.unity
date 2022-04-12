@@ -7838,8 +7838,16 @@ PrefabInstance:
       value: EnemyExempel Top
       objectReference: {fileID: 0}
     - target: {fileID: 3971480240492181156, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971480240492181156, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971480240492181156, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
       propertyPath: m_GravityScale
-      value: 3
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3971480240492181158, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
       propertyPath: m_RootOrder
@@ -9903,6 +9911,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyExempel Entrance
       objectReference: {fileID: 0}
+    - target: {fileID: 3971480240492181156, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971480240492181156, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3971480240492181158, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -10755,6 +10771,8 @@ MonoBehaviour:
   jRingSpawnTime: 0.5
   dashEffectPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   dESpawnTime: 0.1
+  falling: 0
+  maxJumpHeight: 0
   dashForce: 100
   startDashTimer: 0.25
   animator: {fileID: 1042027243}

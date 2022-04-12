@@ -26,6 +26,8 @@ public class PlayerControll : MonoBehaviour
     //Jump
     private float jumpTimer = 0;
     private float jumpStallTime = 0;
+    public bool falling;
+    public float maxJumpHeight;
 
     //Dash
     public float dashForce;
@@ -66,7 +68,7 @@ public class PlayerControll : MonoBehaviour
         {
             landing.Invoke();
         }
-
+        Debug.Log("Jump height " + transform.position.y);
       
         //if (!isDashing)
         //{
@@ -145,7 +147,7 @@ public class PlayerControll : MonoBehaviour
             collider.size = oGSize;
             collider.offset = oGOffset;
             movementSpeed = 25;
-            jumpforce = 32;
+            jumpforce = 36;
         }
 
     }
@@ -168,10 +170,10 @@ public class PlayerControll : MonoBehaviour
             if(player_Rb.velocity.y == jumpforce)
             {
                 player_Rb.gravityScale = 7;
-                Debug.Log("max jump height"); 
+                Debug.Log("max jump height");
+                
+                
             }
-               
-            
             //StartCoroutine(JumpGraphic()); //Funkar inte
             if (jumpCounter == 1)
             {
@@ -196,6 +198,7 @@ public class PlayerControll : MonoBehaviour
             jumpCounter = 0;
             jumpforce = originalJumpForce;
             player_Rb.gravityScale = 3;
+            
 
         }
         else if (collision.gameObject.CompareTag("Wall"))

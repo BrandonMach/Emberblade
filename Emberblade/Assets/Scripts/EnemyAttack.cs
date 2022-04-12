@@ -6,7 +6,7 @@ public class EnemyAttack : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public bool playerIsNear;
+    public bool playerInRange;
     public bool attackPlayer;
     public float radiusArea;
     public float playerDetectionX;
@@ -25,7 +25,10 @@ public class EnemyAttack : MonoBehaviour
     private bool facingLeft;
     private Vector3 playerTransformOffest;
 
-    
+    public bool isOnGround;
+
+
+
     void Start()
     {
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
@@ -39,7 +42,7 @@ public class EnemyAttack : MonoBehaviour
     {
         DetectPlayer();
         AttackPlayer();
-        if (playerIsNear)
+        if (playerInRange)
         {
             Debug.Log("Player is in range");
         }
@@ -65,7 +68,7 @@ public class EnemyAttack : MonoBehaviour
     void DetectPlayer()
     {
  
-        playerIsNear = false;
+        playerInRange = false;
 
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(playerDetectionX, playerDetectionY), 0);
 
@@ -73,9 +76,9 @@ public class EnemyAttack : MonoBehaviour
         {
             if (colliderHit.gameObject.CompareTag("Player"))
             {
-                playerIsNear = true;
+                playerInRange = true;
 
-                if (playerIsNear)
+                if (playerInRange && isOnGround) // kan bara jaga när dem är på Ground
                 {
                     transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position - playerTransformOffest, moveSpeed);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.            
                 }
@@ -127,6 +130,17 @@ public class EnemyAttack : MonoBehaviour
             facingLeft = true;
         }
     }
+    // Enemy flyger typ
+    //private void OnCollisionEnter2D(Collision2D collision) 
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        isOnGround = true;
+
+
+    //    }
+        
+    //}
 
     private void OnDrawGizmosSelected()
     {
