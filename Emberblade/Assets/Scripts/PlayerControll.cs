@@ -66,8 +66,11 @@ public class PlayerControll : MonoBehaviour
         {
             landing.Invoke();
         }
-        
 
+        if (player_Rb.velocity.y == 7)
+        {
+            animator.SetBool("Falling", true);
+        }
         //if (!isDashing)
         //{
         //    StartCoroutine(DashGraphic());
@@ -89,7 +92,10 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
             characterScale.x = -1.45f;
-            animator.SetFloat("Speed", 2);
+            if (isOnGround)
+            {
+                PlayRunAnimation();
+            }
         }
         else
         {
@@ -98,7 +104,10 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             characterScale.x = 1.45f;
-            animator.SetFloat("Speed", 2);
+            if (isOnGround)
+            {
+                PlayRunAnimation();
+            }
         }
       
         transform.localScale = characterScale;
@@ -143,6 +152,10 @@ public class PlayerControll : MonoBehaviour
         }
 
     }
+    void PlayRunAnimation()
+    {
+        animator.SetFloat("Speed", 2);
+    }
 
     void Jump()
     {
@@ -158,16 +171,9 @@ public class PlayerControll : MonoBehaviour
             if(player_Rb.velocity.y == jumpforce)
             {
                 player_Rb.gravityScale = 7;
-                Debug.Log("max jump height");
+                Debug.Log("max jump height"); 
             }
-            
-            //jumpTimer += Time.deltaTime;
-            //if(jumpTimer >= jumpStallTime)
-            //{
-                     
-            //}
-           
-            
+               
             
             //StartCoroutine(JumpGraphic()); //Funkar inte
             if (jumpCounter == 1)
