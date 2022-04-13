@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 71ce76a19925106409f7243c622fb06e
+guid: e0117bf8e94fbb045a681fc27fa489b8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1527850176834368851
-    second: LightFrogJump_1_0
+      213: -6644092858588963315
+    second: FrogJumpAnimation_0
   - first:
-      213: 8464103613599224291
-    second: LightFrogJump_1_1
+      213: 5824230828077072963
+    second: FrogJumpAnimation_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LightFrogJump_1_0
+      name: FrogJumpAnimation_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 355fa3414a3043510800000000000000
-      internalID: 1527850176834368851
+      spriteID: d0e581d3fb07bc3a0800000000000000
+      internalID: -6644092858588963315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LightFrogJump_1_1
+      name: FrogJumpAnimation_1
       rect:
         serializedVersion: 2
         x: 0
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e19eae4469867570800000000000000
-      internalID: 8464103613599224291
+      spriteID: 342c96d7413d3d050800000000000000
+      internalID: 5824230828077072963
       vertices: []
       indices: 
       edges: []
