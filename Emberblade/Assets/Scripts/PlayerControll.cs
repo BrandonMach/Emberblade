@@ -90,7 +90,7 @@ public class PlayerControll : MonoBehaviour
         Move();
        
 
-        Debug.Log(jumpCounter);
+     
 
         Debug.Log("Jump height " + transform.position.y);
 
@@ -203,10 +203,11 @@ public class PlayerControll : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") &&  jumpCounter <1  )
+        if (Input.GetButtonDown("Jump") &&  jumpCounter <2  )
         {
             animator.SetBool("Jumping", true);
             jumpCounter++;
+            Debug.Log(jumpCounter);
             Jumping();
 
         }       
