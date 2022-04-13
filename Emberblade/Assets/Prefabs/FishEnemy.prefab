@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5481366729883614835}
   - component: {fileID: 1569470414}
   - component: {fileID: 1569470413}
-  m_Layer: 0
+  - component: {fileID: 1623364198}
+  m_Layer: 6
   m_Name: FishEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +102,10 @@ MonoBehaviour:
   dectetionRange: 30.41
   underWater: 0
   jumpWaitTimer: 0
+  rend: {fileID: 5095828345176224178}
+  startPos: {x: 0, y: 0}
+  maxHeight: {x: 0, y: 0}
+  jumpheight: 50
 --- !u!50 &1569470414
 Rigidbody2D:
   serializedVersion: 4
@@ -121,7 +126,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &1569470413
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,3 +153,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.25, y: 6.5}
   m_EdgeRadius: 0
+--- !u!114 &1623364198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515391334299471233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  canTakeDamage: 1
