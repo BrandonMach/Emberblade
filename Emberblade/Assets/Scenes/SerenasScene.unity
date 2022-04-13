@@ -138,6 +138,14 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5897827000689298818, guid: 72cb9122898dc5d4999f0b74d1ca1b8e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897827000689298828, guid: 72cb9122898dc5d4999f0b74d1ca1b8e, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5897827000689298828, guid: 72cb9122898dc5d4999f0b74d1ca1b8e, type: 3}
       propertyPath: target
       value: 
@@ -164,11 +172,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5897827000689298829, guid: 72cb9122898dc5d4999f0b74d1ca1b8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.02
+      value: 2.22
       objectReference: {fileID: 0}
     - target: {fileID: 5897827000689298829, guid: 72cb9122898dc5d4999f0b74d1ca1b8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.28
+      value: 9.02
       objectReference: {fileID: 0}
     - target: {fileID: 5897827000689298829, guid: 72cb9122898dc5d4999f0b74d1ca1b8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -235,7 +243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092941486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.4, y: -8.1, z: 0}
+  m_LocalPosition: {x: 29.27, y: 1, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -442,7 +450,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832030876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 0, z: 0}
+  m_LocalPosition: {x: 8.04, y: 2.08, z: 0}
   m_LocalScale: {x: 4, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -585,6 +593,14 @@ PrefabInstance:
     - target: {fileID: 1297032330982933628, guid: 6ed603b39943ca94aa6d97f6f2c6b4fb, type: 3}
       propertyPath: m_Name
       value: PathFindingMaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297032330982933631, guid: 6ed603b39943ca94aa6d97f6f2c6b4fb, type: 3}
+      propertyPath: nodeRadius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297032330982933631, guid: 6ed603b39943ca94aa6d97f6f2c6b4fb, type: 3}
+      propertyPath: displayGridGizmos
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ed603b39943ca94aa6d97f6f2c6b4fb, type: 3}

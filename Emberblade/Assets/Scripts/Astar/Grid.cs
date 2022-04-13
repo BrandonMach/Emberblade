@@ -42,7 +42,7 @@ public class Grid : MonoBehaviour
 			for (int y = 0; y < gridSizeY; y++)
 			{
 				Vector2 worldPoint = worldBottomLeft + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.up * (y * nodeDiameter + nodeRadius);
-				bool walkable = (Physics2D.OverlapBox(worldPoint, new Vector2(nodeRadius + 0.5f,nodeRadius + 0.5f),90, unwalkableMask) == false); // if no collider2D is returned by overlap circle, then this node is walkable
+				bool walkable = (Physics2D.OverlapBox(worldPoint, new Vector2(nodeRadius,nodeRadius),90, unwalkableMask) == false); // if no collider2D is returned by overlap circle, then this node is walkable
 
 				grid[x, y] = new Node(walkable, worldPoint, x, y);
 			}
