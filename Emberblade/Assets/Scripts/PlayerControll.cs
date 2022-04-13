@@ -46,6 +46,26 @@ public class PlayerControll : MonoBehaviour
     
 
     public Animator animator;
+
+    //---------------------------------
+    [Header ("New Ground detection")]
+    public LayerMask groundLayer;
+    public bool rayCastGround;
+    public float groundLenght;
+    public Vector3 colliderOffset;
+
+    [Header("New Jump")]
+    public float jumpSpeed = 15;
+    public float jumpDelay = 0.25f;
+    private float lumpTimer = 0;
+
+    [Header("Physics")]
+    public float gravity = 1;
+    public float fallMultiplier = 5f;
+    public float liniearDrag = 4f;
+
+
+
     void Start()
     {
         player_Rb = GetComponent<Rigidbody2D>();
@@ -77,12 +97,40 @@ public class PlayerControll : MonoBehaviour
             landing.Invoke();
         }
         Debug.Log("Jump height " + transform.position.y);
-      
+
         //if (!isDashing)
         //{
         //    StartCoroutine(DashGraphic());
         //}
 
+        rayCastGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
+
+
+
+        //if(jumpTimer > Time.deltaTime && rayCastGround) // Jump dalay window
+        //{
+        //    JumpTest();
+        //}
+
+
+        if (rayCastGround)
+        {
+            player_Rb.gravityScale = 0;
+            jumpCounter = 0;
+        }
+        else
+        {
+            player_Rb.gravityScale = gravity;
+            player_Rb.drag = liniearDrag * 0.15f;
+            if(player_Rb.velocity.y < 0)
+            {
+                player_Rb.gravityScale = gravity * fallMultiplier;
+            } 
+            else if(player_Rb.velocity.y > 0 && !Input.GetButton("Jump")) //Hold jump
+            {
+                player_Rb.gravityScale = gravity * (fallMultiplier / 2);
+            }
+        }
 
     }
 
@@ -157,7 +205,7 @@ public class PlayerControll : MonoBehaviour
             collider.size = oGSize;
             collider.offset = oGOffset;
             movementSpeed = 25;
-            jumpforce = 36;
+            jumpforce = 40;
             boxCollider.offset = standingBoxOffset;
             boxCollider.size = stadningBoxSize;
         }
@@ -170,28 +218,29 @@ public class PlayerControll : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2 )
+        if (Input.GetButtonDown("Jump") && jumpCounter < 1)
         {
-            animator.SetBool("Jumping", true);
-            jumpTimer = 0;        
-            isOnGround = false;
+            //animator.SetBool("Jumping", true);
+            //jumpTimer = 0;        
+            //isOnGround = false;
             jumpCounter++;
-            //vänte tid för animation att hinna spela upp
-            player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);
+            //player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);
 
-            if(player_Rb.velocity.y == jumpforce)
-            {
-                player_Rb.gravityScale = 7;
-                Debug.Log("max jump height");
-                
-                
-            }
-            //StartCoroutine(JumpGraphic()); //Funkar inte
+            //if(player_Rb.velocity.y == jumpforce)
+            //{
+            //    player_Rb.gravityScale = 9; // Funkar inte exakt som jag vill
+            //    Debug.Log("max jump height");
+
+
+            //}
+            ////StartCoroutine(JumpGraphic()); //Funkar inte
             if (jumpCounter == 1)
             {
-                jumpforce += 7;
+               
             }
 
+            jumpTimer = Time.deltaTime + jumpDelay;
+            JumpTest();
 
         }       
     }
@@ -224,6 +273,21 @@ public class PlayerControll : MonoBehaviour
             isOnGround = false;
         }
     }
+    //--------------------------------------------------
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(transform.position + colliderOffset, transform.position + colliderOffset + Vector3.down * groundLenght);  
+        Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLenght);  
+    
+    }
+
+    void JumpTest()
+    {
+        player_Rb.velocity = new Vector2(player_Rb.velocity.x, 0);
+        player_Rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+        jumpTimer = 0;
+    }
 
 
     //private void SpawnJumpRing()
@@ -231,7 +295,7 @@ public class PlayerControll : MonoBehaviour
     //    GameObject jumpRing = Instantiate(jumpRingPrefab) as GameObject;
     //    jumpRing.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 2.5f);
     //}
-    
+
     //private void SpawnDashEffect() // Funkar inte
     //{
     //    GameObject dashEffect = Instantiate(dashEffectPrefab) as GameObject;

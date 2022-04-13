@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 51219952361129453}
   m_Layer: 0
   m_Name: 3xStone_Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.49, y: 0.08}
+    oldSize: {x: 3.0625, y: 0.5}
     newSize: {x: 0.49, y: 0.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
