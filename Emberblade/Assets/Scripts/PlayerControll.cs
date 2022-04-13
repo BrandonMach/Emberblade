@@ -18,10 +18,14 @@ public class PlayerControll : MonoBehaviour
     public GameObject dashEffectPrefab;
     public float dESpawnTime = 0;
     private CapsuleCollider2D collider;
+    private BoxCollider2D boxCollider;
 
     Vector2 oGOffset;
     Vector2 oGSize;
     Vector3 oGpos;
+
+    Vector2 standingBoxOffset;
+    Vector2 stadningBoxSize;
 
     //Jump
     private float jumpTimer = 0;
@@ -46,12 +50,16 @@ public class PlayerControll : MonoBehaviour
     {
         player_Rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<CapsuleCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         playerInfoScript = GetComponent<PlayerInfo>();
         originalJumpForce = jumpforce;
 
 
         oGSize = collider.size;
         oGOffset = collider.offset;
+
+        standingBoxOffset = boxCollider.offset;
+        stadningBoxSize = boxCollider.size;
 
         landing.AddListener(OnLanding);
     }
@@ -140,6 +148,8 @@ public class PlayerControll : MonoBehaviour
             collider.offset = new Vector2(-0.01422455f, -1f);
             movementSpeed = 13;
             jumpforce = 20;
+            boxCollider.offset = new Vector2(-0.05918601f, -2.19f);
+            boxCollider.size = new Vector2(3.4216f, 5);
         }
         else
         {
@@ -148,6 +158,8 @@ public class PlayerControll : MonoBehaviour
             collider.offset = oGOffset;
             movementSpeed = 25;
             jumpforce = 36;
+            boxCollider.offset = standingBoxOffset;
+            boxCollider.size = stadningBoxSize;
         }
 
     }

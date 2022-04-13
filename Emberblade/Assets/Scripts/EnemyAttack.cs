@@ -78,7 +78,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 playerInRange = true;
 
-                if (playerInRange && isOnGround) // kan bara jaga när dem är på Ground
+                if (playerInRange /*&& isOnGround*/) // kan bara jaga när dem är på Ground
                 {
                     transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position - playerTransformOffest, moveSpeed);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.            
                 }

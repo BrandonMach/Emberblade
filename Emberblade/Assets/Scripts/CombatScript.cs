@@ -14,9 +14,15 @@ public class CombatScript : MonoBehaviour
 
     private float timeBetweenAttack = 0.01f;
     public float startTimeBetweenAttack;
-    
+    private BoxCollider2D boxCollider;
+    private Vector2 idleBoxColliderOffset;
 
 
+    private void Start()
+    {
+        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider.offset = idleBoxColliderOffset;
+    }
 
 
 
@@ -29,13 +35,12 @@ public class CombatScript : MonoBehaviour
             if (Input.GetKey(KeyCode.Backspace))
             {
                 animator.SetTrigger("Attack");
+                
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
-
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage();
-                    Debug.Log("We Hit ");
-                    
+                    Debug.Log("We Hit ");                 
                 }
             }
 
