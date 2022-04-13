@@ -12,7 +12,6 @@ public class PlayerControll : MonoBehaviour
     public float jumpforce = 1;
     private float originalJumpForce;
     private int jumpCounter = 0;
-    public bool isOnGround = false;
     public GameObject jumpRingPrefab;
     public float jRingSpawnTime = 0.1f;
     public GameObject dashEffectPrefab;
@@ -50,7 +49,7 @@ public class PlayerControll : MonoBehaviour
     //---------------------------------
     [Header ("New Ground detection")]
     public LayerMask groundLayer;
-    public bool rayCastGround;
+    public bool isOnGround;
     public float groundLenght;
     public Vector3 colliderOffset;
 
@@ -87,36 +86,21 @@ public class PlayerControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
         Move();
-        Jump();
+       
 
         Debug.Log(jumpCounter);
 
-        if (isOnGround)
-        {
-            landing.Invoke();
-        }
         Debug.Log("Jump height " + transform.position.y);
 
-        //if (!isDashing)
-        //{
-        //    StartCoroutine(DashGraphic());
-        //}
 
-        rayCastGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
-
-
-
-        //if(jumpTimer > Time.deltaTime && rayCastGround) // Jump dalay window
-        //{
-        //    JumpTest();
-        //}
-
-
-        if (rayCastGround)
+        if (isOnGround)
         {
             player_Rb.gravityScale = 0;
             jumpCounter = 0;
+            landing.Invoke();
+            //animator.SetBool("Jumping", false);
         }
         else
         {
@@ -126,11 +110,12 @@ public class PlayerControll : MonoBehaviour
             {
                 player_Rb.gravityScale = gravity * fallMultiplier;
             } 
-            else if(player_Rb.velocity.y > 0 && !Input.GetButton("Jump")) //Hold jump
+            else if(player_Rb.velocity.y > 0 && !Input.GetButton("Jump")) //Not holding the jump button
             {
                 player_Rb.gravityScale = gravity * (fallMultiplier / 2);
             }
         }
+        Jump();
 
     }
 
@@ -218,29 +203,11 @@ public class PlayerControll : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && jumpCounter < 1)
+        if (Input.GetButtonDown("Jump") &&  jumpCounter <1  )
         {
-            //animator.SetBool("Jumping", true);
-            //jumpTimer = 0;        
-            //isOnGround = false;
+            animator.SetBool("Jumping", true);
             jumpCounter++;
-            //player_Rb.velocity = new Vector2(player_Rb.velocity.x, jumpforce);
-
-            //if(player_Rb.velocity.y == jumpforce)
-            //{
-            //    player_Rb.gravityScale = 9; // Funkar inte exakt som jag vill
-            //    Debug.Log("max jump height");
-
-
-            //}
-            ////StartCoroutine(JumpGraphic()); //Funkar inte
-            if (jumpCounter == 1)
-            {
-               
-            }
-
-            jumpTimer = Time.deltaTime + jumpDelay;
-            JumpTest();
+            Jumping();
 
         }       
     }
@@ -253,16 +220,16 @@ public class PlayerControll : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isOnGround = true;
-            jumpCounter = 0;
-            jumpforce = originalJumpForce;
-            player_Rb.gravityScale = 3;
+        //if (collision.gameObject.CompareTag("Ground"))
+        //{
+        //    isOnGround = true;
+        //    jumpCounter = 0;
+        //    jumpforce = originalJumpForce;
+        //    player_Rb.gravityScale = 3;
             
 
-        }
-        else if (collision.gameObject.CompareTag("Wall"))
+        //}
+         if (collision.gameObject.CompareTag("Wall"))
         {
             isOnGround = false;
             jumpCounter = 1;
@@ -278,12 +245,12 @@ public class PlayerControll : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawLine(transform.position + colliderOffset, transform.position + colliderOffset + Vector3.down * groundLenght);  
-        Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLenght);  
-    
+        Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLenght);    
     }
 
-    void JumpTest()
+    void Jumping()
     {
+        
         player_Rb.velocity = new Vector2(player_Rb.velocity.x, 0);
         player_Rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         jumpTimer = 0;
