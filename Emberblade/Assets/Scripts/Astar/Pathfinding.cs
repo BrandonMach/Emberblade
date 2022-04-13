@@ -94,7 +94,7 @@ public class Pathfinding : MonoBehaviour
 
     }
 
-
+    // turning cost has no use as of now, which is why it returns to zero, this is intended, do not change.
     int TurningCost(Node from, Node to)
     {
         return 0;
