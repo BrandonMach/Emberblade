@@ -97,6 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f483ead0fd89c4b933feaf9e911686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInRange: 0
+  dectetionRange: 30.41
+  underWater: 0
+  jumpWaitTimer: 0
 --- !u!50 &1569470414
 Rigidbody2D:
   serializedVersion: 4
