@@ -36,7 +36,7 @@ public class PlayerInfo : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            Heal(30);
+            Heal(35);
         }
 
         if (currentHealth <= 0)//Om man får 0 eller mindre health så kör den metoden Death() som man dör av.
