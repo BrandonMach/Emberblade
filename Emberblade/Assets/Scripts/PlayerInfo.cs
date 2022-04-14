@@ -11,6 +11,9 @@ public class PlayerInfo : MonoBehaviour
     public int currentEnergy; 
     public HealthBar healthBar;
     public EnergyBar energyBar;
+    public bool canTakeDamage;
+    private float startTimeDamageTimer;
+    private float damageDelay = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -48,14 +51,19 @@ public class PlayerInfo : MonoBehaviour
         {
             Death();
         }
+        DamageWindow();
 
     }
     
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
     {
-        currentHealth -= damage;    
+        currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
-        if (currentHealth <= 0) { currentHealth = 0; }
+        canTakeDamage = false;
+        if (currentHealth <= 0) 
+        {
+            currentHealth = 0; 
+        }
     }
 
     public void Heal(int health) //Metod som gör att man kan få tillbaka health.
@@ -83,5 +91,18 @@ public class PlayerInfo : MonoBehaviour
     {
         currentEnergy -= energy;
         energyBar.SetEnergy(currentEnergy);
+    }
+
+    public void DamageWindow()
+    {
+        if (!canTakeDamage)
+        {
+            startTimeDamageTimer += Time.deltaTime;
+        }
+        if (startTimeDamageTimer >= 1)
+        {
+            canTakeDamage = true;
+            startTimeDamageTimer = 0;
+        }
     }
 }

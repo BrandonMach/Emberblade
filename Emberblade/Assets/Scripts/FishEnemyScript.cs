@@ -9,13 +9,14 @@ public class FishEnemyScript : MonoBehaviour
     private Rigidbody2D fish_Rb;
     public bool playerInRange;
     public float dectetionRange;
-    public bool underWater;
+    public bool isUnderWater;
     public float jumpWaitTimer = 0;
     private float waitTime = 1f;
     public Renderer rend;
     private Vector2 startPos;
     private Vector2 maxHeight;
     private PlayerInfo playerInfoController;
+    public BoxCollider2D boxCollider;
 
     public int jumpheight = 0;
 
@@ -23,7 +24,7 @@ public class FishEnemyScript : MonoBehaviour
     {
         fish_Rb = GetComponent<Rigidbody2D>();
         rend = GetComponent<Renderer>();
-        playerInfoController = GetComponent<PlayerInfo>();
+        playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
         startPos = transform.position;
         maxHeight.y = startPos.y + 40f;
     }
@@ -33,16 +34,17 @@ public class FishEnemyScript : MonoBehaviour
     {
         DetectPlayer();
         DamagePalyer();
-        if (underWater)
+        if (isUnderWater)
         {
             jumpWaitTimer += Time.deltaTime;
             rend.enabled = false;
             transform.localScale = new Vector3(1, 1, 1);
+           
         }
-        if (!underWater)
+        if (!isUnderWater)
         {
             jumpWaitTimer = 0;
-            rend.enabled = true;
+            rend.enabled = true; 
         }
         Debug.Log("Fish start" + startPos);
         Debug.Log("max jump" + maxHeight);
@@ -51,7 +53,6 @@ public class FishEnemyScript : MonoBehaviour
             transform.localScale = new Vector3(-1,1,1);
             Debug.Log("Flip flip");
         }
-        
       
     }
     void DetectPlayer()
@@ -63,10 +64,10 @@ public class FishEnemyScript : MonoBehaviour
 
         foreach (var colliderHit in hitColliders)
         {
-            if (colliderHit.gameObject.CompareTag("Player") && underWater && jumpWaitTimer > waitTime )
+            if (colliderHit.gameObject.CompareTag("Player") && isUnderWater && jumpWaitTimer > waitTime )
             {
                 playerInRange = true;
-                underWater = false;
+                isUnderWater = false;
 
                 fish_Rb.velocity = new Vector2(fish_Rb.velocity.x, jumpheight);
             }
@@ -74,14 +75,13 @@ public class FishEnemyScript : MonoBehaviour
     }
     void DamagePalyer()
     {
-        //Fish do damage ???
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 7);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 4);
 
         foreach (var colliderHit in hitColliders)
         {
-            if (colliderHit.gameObject.CompareTag("Player"))
+            if (colliderHit.gameObject.CompareTag("Player") && playerInfoController.canTakeDamage)
             {
-                playerInfoController.TakeDamage(30);
+                playerInfoController.TakeDamage(5);
                 Debug.Log("aasadasd");
             }
         }
@@ -91,17 +91,16 @@ public class FishEnemyScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            underWater = true;
+            isUnderWater = true;
 
-        }
-       
+        }      
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, dectetionRange);
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, 4);
     }
 }

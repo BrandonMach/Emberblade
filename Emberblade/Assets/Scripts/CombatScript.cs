@@ -24,8 +24,6 @@ public class CombatScript : MonoBehaviour
         boxCollider.offset = idleBoxColliderOffset;
     }
 
-
-
     // Update is called once per frame
     void Update()
     {
