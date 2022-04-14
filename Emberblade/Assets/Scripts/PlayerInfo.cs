@@ -31,12 +31,7 @@ public class PlayerInfo : MonoBehaviour
 
         if (Input.GetKey(KeyCode.H))
         {
-            if (currentEnergy < maxEnergy)
-            {
-                currentEnergy++;
-                energyBar.SetEnergy(currentEnergy);
-            }
-            else { currentEnergy = maxEnergy; }
+            RechargeEnergy();
         }
 
         if (Input.GetKeyDown(KeyCode.V))
@@ -56,6 +51,16 @@ public class PlayerInfo : MonoBehaviour
         currentHealth -= damage;    
         healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0) { currentHealth = 0; }
+    }
+
+    public void RechargeEnergy()
+    {
+        if (currentEnergy < maxEnergy)
+        {
+            currentEnergy++;
+            energyBar.SetEnergy(currentEnergy);
+        }
+        else { currentEnergy = maxEnergy; }
     }
 
     public void Heal(int health) //Metod som gör att man kan få tillbaka health.
