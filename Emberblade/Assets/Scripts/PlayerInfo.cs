@@ -14,6 +14,7 @@ public class PlayerInfo : MonoBehaviour
     public bool canTakeDamage;
     private float startTimeDamageTimer;
     private float damageDelay = 2f;
+    private PlayerControll playerControllScript;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class PlayerInfo : MonoBehaviour
         healthBar.currentHealth(currentHealth);
         energyBar.SetMaxEnergy(maxEnergy);
         energyBar.currentEnergy(currentEnergy);
+        playerControllScript = GetComponent<PlayerControll>();
     }
 
     // Update is called once per frame
@@ -57,13 +59,21 @@ public class PlayerInfo : MonoBehaviour
     
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-        canTakeDamage = false;
-        if (currentHealth <= 0) 
+        if (!playerControllScript.isParrying)
         {
-            currentHealth = 0; 
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+            canTakeDamage = false;
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+            }
         }
+        else
+        {
+            Debug.Log("Parry Succes");
+        }
+       
     }
 
     public void Heal(int health) //Metod som gör att man kan få tillbaka health.
