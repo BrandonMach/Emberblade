@@ -11,7 +11,6 @@ public class PlayerControll : MonoBehaviour
 
     public float jumpforce = 1;
     private float originalJumpForce;
-    private int jumpCounter = 0;
     public GameObject jumpRingPrefab;
     public float jRingSpawnTime = 0.1f;
     public GameObject dashEffectPrefab;
@@ -57,6 +56,7 @@ public class PlayerControll : MonoBehaviour
     public float jumpSpeed = 15;
     public float jumpDelay = 0.25f;
     private float lumpTimer = 0;
+    public int jumpCounter = 0;
 
     [Header("Physics")]
     public float gravity = 1;
@@ -88,7 +88,7 @@ public class PlayerControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
+       
         Move();
        
 
@@ -118,8 +118,9 @@ public class PlayerControll : MonoBehaviour
             }
         }
         Jump();
+        isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
 
-      
+
     }
 
     void Move()
@@ -206,7 +207,7 @@ public class PlayerControll : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") &&  jumpCounter <2  )
+        if (Input.GetButtonDown("Jump") &&  jumpCounter <1  )
         {
             animator.SetBool("Jumping", true);
             jumpCounter++;
@@ -224,19 +225,10 @@ public class PlayerControll : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.gameObject.CompareTag("Ground"))
-        //{
-        //    isOnGround = true;
-        //    jumpCounter = 0;
-        //    jumpforce = originalJumpForce;
-        //    player_Rb.gravityScale = 3;
-            
-
-        //}
          if (collision.gameObject.CompareTag("Wall"))
          {
             isOnGround = false;
-            jumpCounter = 1;
+            jumpCounter = 0;
 
          }
         else if (collision.gameObject.CompareTag("Roof"))

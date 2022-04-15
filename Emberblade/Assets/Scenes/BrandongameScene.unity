@@ -11558,9 +11558,10 @@ MonoBehaviour:
   isOnGround: 0
   groundLenght: 7.2
   colliderOffset: {x: 2.1, y: 0, z: 0}
-  jumpSpeed: 25
+  jumpSpeed: 30
   jumpDelay: 5
-  gravity: 2
+  jumpCounter: 0
+  gravity: 3
   fallMultiplier: 4.5
   liniearDrag: 3
 --- !u!61 &1042027242
