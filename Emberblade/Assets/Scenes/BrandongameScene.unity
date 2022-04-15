@@ -11776,6 +11776,7 @@ MonoBehaviour:
   currentEnergy: 70
   healthBar: {fileID: 1328388348}
   energyBar: {fileID: 33775932}
+  canTakeDamage: 0
 --- !u!232 &1042027249
 DistanceJoint2D:
   m_ObjectHideFlags: 0

@@ -63,6 +63,8 @@ public class PlayerControll : MonoBehaviour
     public float fallMultiplier = 5f;
     public float liniearDrag = 4f;
 
+   
+
 
 
     void Start()
@@ -117,6 +119,7 @@ public class PlayerControll : MonoBehaviour
         }
         Jump();
 
+      
     }
 
     void Move()
@@ -231,11 +234,11 @@ public class PlayerControll : MonoBehaviour
 
         //}
          if (collision.gameObject.CompareTag("Wall"))
-        {
+         {
             isOnGround = false;
             jumpCounter = 1;
 
-        }
+         }
         else if (collision.gameObject.CompareTag("Roof"))
         {
             isOnGround = false;
