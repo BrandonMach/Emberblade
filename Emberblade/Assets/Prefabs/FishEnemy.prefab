@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1569470414}
   - component: {fileID: 1569470413}
   - component: {fileID: 1623364198}
+  - component: {fileID: 653063777}
   m_Layer: 6
   m_Name: FishEnemy
   m_TagString: Untagged
@@ -100,11 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   dectetionRange: 30.41
-  underWater: 0
+  isUnderWater: 0
   jumpWaitTimer: 0
   rend: {fileID: 5095828345176224178}
-  startPos: {x: 0, y: 0}
-  maxHeight: {x: 0, y: 0}
+  boxCollider: {fileID: 1569470413}
   jumpheight: 50
 --- !u!50 &1569470414
 Rigidbody2D:
@@ -167,3 +167,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   canTakeDamage: 1
+--- !u!95 &653063777
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515391334299471233}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80f2be430b84de841adddd2d6aea270c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
