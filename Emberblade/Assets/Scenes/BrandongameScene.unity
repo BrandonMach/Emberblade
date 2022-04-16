@@ -12827,11 +12827,6 @@ Transform:
   m_Father: {fileID: 586815649}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1086623355 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1569470413, guid: 8499b6c653f566345a9dd3ac1c368784, type: 3}
-  m_PrefabInstance: {fileID: 587674202641493600}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1098822206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16672,7 +16667,7 @@ Animator:
   m_GameObject: {fileID: 1936597664}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e8b5083eb666500439590b15734b0ca3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -17350,14 +17345,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1569470413, guid: 8499b6c653f566345a9dd3ac1c368784, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1569470413, guid: 8499b6c653f566345a9dd3ac1c368784, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 157379074238029784, guid: 8499b6c653f566345a9dd3ac1c368784, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -17406,10 +17393,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fish_Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 5481366729883614835, guid: 8499b6c653f566345a9dd3ac1c368784, type: 3}
-      propertyPath: boxCollider
-      value: 
-      objectReference: {fileID: 1086623355}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8499b6c653f566345a9dd3ac1c368784, type: 3}
 --- !u!1001 &1628920827635280490
@@ -17476,6 +17459,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1537793033}
     m_Modifications:
+    - target: {fileID: 1936597669, guid: 4b68c031e67cd1b41b266f0485615bce, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1936597665}
     - target: {fileID: 1936597669, guid: 4b68c031e67cd1b41b266f0485615bce, type: 3}
       propertyPath: radiusArea
       value: 0
