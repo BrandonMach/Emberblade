@@ -56,7 +56,9 @@ public class PlayerControll : MonoBehaviour
     public float jumpSpeed = 15;
     public float jumpDelay = 0.25f;
     private float lumpTimer = 0;
-    public int jumpCounter = 0;
+    //public int jumpCounter = 0;
+    public bool canDoubleJump = false;
+    public bool hasUnlockedDJ = false;
 
     [Header("Physics")]
     public float gravity = 1;
@@ -100,13 +102,30 @@ public class PlayerControll : MonoBehaviour
         Debug.Log("Jump height " + transform.position.y);
 
 
-      
+        if (!hasUnlockedDJ)
+        {
+            canDoubleJump = false;
+        }
+
         JumpInput();
         isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
+       
+
+        if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround)
+        {
+            canDoubleJump = false;
+
+        }
+        Parry();
+
+    }
+
+    void Parry()
+    {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             parryStart = 0;
-            isParrying = true; 
+            isParrying = true;
         }
         if (isParrying)
         {
@@ -122,14 +141,14 @@ public class PlayerControll : MonoBehaviour
         {
             animator.SetBool("Parry", false);
         }
-
     }
     void Falling()
     {
         if (isOnGround)
         {
             player_Rb.gravityScale = 0;
-            jumpCounter = 0;
+            //jumpCounter = 0;
+            canDoubleJump = true;
             landing.Invoke();
             //animator.SetBool("Jumping", false);
         }
@@ -232,18 +251,24 @@ public class PlayerControll : MonoBehaviour
 
     void JumpInput()
     {
-        if (Input.GetButtonDown("Jump") &&  jumpCounter <1  )
+       
+
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump)
         {
             animator.SetBool("Jumping", true);
-            jumpCounter++;
-            Debug.Log(jumpCounter);
-            Jumping();
+                Jumping();
+                //jumpCounter ++;
+            
+                //Debug.Log("dsdsa" + jumpCounter);
+           
+            
+            
+
 
         }       
     }
     void Jumping()
     {
-
         player_Rb.velocity = new Vector2(player_Rb.velocity.x, 0);
         player_Rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         jumpTimer = 0;
@@ -260,7 +285,7 @@ public class PlayerControll : MonoBehaviour
          if (collision.gameObject.CompareTag("Wall"))
          {
             isOnGround = false;
-            jumpCounter = 0;
+           // jumpCounter = 0;
 
          }
         else if (collision.gameObject.CompareTag("Roof"))
@@ -276,10 +301,6 @@ public class PlayerControll : MonoBehaviour
         Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLenght);    
     }
 
-    void PlayerParry()
-    {
-
-    }
    
 
 
