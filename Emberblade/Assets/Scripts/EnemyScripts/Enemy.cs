@@ -2,88 +2,76 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
-public enum EnemyType
-{
-    walkTowards,
-    suicideEnemy,
-    controlledWalk,
-}
+
 public class Enemy : MonoBehaviour
 {
-    Vector2[] path;
     public Rigidbody2D rbody;
-    public float speed = 0.03f;
+    public float speed = 200;
     public float rotationSpeed = 2;
+    public float nextWaypointDistance = 3f;
+    public float targetDistanceStop = 5;
     public Transform target;
+    Path path;
+    public GameObject gfxObj;
+    int currentWaypoint = 0;
+    public bool reachedEndPath = false;
+    Seeker seeker;
     public float aggroRange = 20;
-    public EnemyType enemyType = EnemyType.walkTowards;
-    public BoxCollider2D box;
-    [SerializeField] private bool moveOutOfWay;
-
-
-    [SerializeField] private float startShootTimer;
-    private float currentShootTimer;
-
-    int targetIndex;
 
     private void Start()
     {
-        StartFollow();
-    }
-    void StartFollow()
-    {
-        path = Pathfinding.RequestPath(transform.position, target.position);
-        StopCoroutine("FollowPath");
-        StartCoroutine("FollowPath");
-    }
+        seeker = GetComponent<Seeker>();
+        rbody.GetComponent<Rigidbody2D>();
+        if (target == null)
+            target = FindObjectOfType<TargetEmpty>().transform;
 
-    void LateUpdate()
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
+
+    }
+    void UpdatePath()
     {
-        if (Vector2.Distance(target.position, gameObject.transform.position) <= aggroRange)
-            StartFollow();
+        if (seeker.IsDone() && Vector2.Distance(rbody.position, target.position) > targetDistanceStop)
+            seeker.StartPath(rbody.position, target.position, OnPathComplete);
+    }
+    void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (path == null)
+        {
+            return;
+        }
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEndPath = true;
+            return;
+        }
         else
-            StopCoroutine("FollowPath");
-    }
-    [SerializeField] Vector2 currentWaypoint;
-    IEnumerator FollowPath()
-    {
-        currentWaypoint = path[0];
-
-        while (true)
         {
-            if ((Vector2)transform.position == currentWaypoint)
-            {
-                targetIndex++;
-                if (targetIndex >= path.Length)
-                {
-                    yield break;
-                }
-                currentWaypoint = path[targetIndex];
-            }
-            transform.position = Vector2.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
-            yield return null;
+            reachedEndPath = false;
         }
-    }
-    public void OnDrawGizmos()
-    {
-        if (path != null)
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rbody.position).normalized;
+
+        Vector2 force = direction * speed * Time.deltaTime;
+        rbody.AddForce(force);
+
+        float distance = Vector2.Distance(rbody.position, path.vectorPath[currentWaypoint]);
+
+        if (distance < nextWaypointDistance)
         {
-            for (int i = targetIndex; i < path.Length; i++)
-            {
-                Gizmos.color = Color.black;
-                //Gizmos.DrawCube((Vector3)path[i], Vector3.one *.5f);
-
-                if (i == targetIndex)
-                {
-                    Gizmos.DrawLine(transform.position, path[i]);
-                }
-                else
-                {
-                    Gizmos.DrawLine(path[i - 1], path[i]);
-                }
-            }
+            currentWaypoint++;
         }
+        if (force.x > 0.01f)
+            gfxObj.transform.localScale = new Vector3(-1f, 1f, 1f);
+        else
+            gfxObj.transform.localScale = new Vector3(1f, 1f, 1f);
     }
-
 }
