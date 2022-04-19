@@ -260,11 +260,6 @@ public class PlayerControll : MonoBehaviour
                 //jumpCounter ++;
             
                 //Debug.Log("dsdsa" + jumpCounter);
-           
-            
-            
-
-
         }       
     }
     void Jumping()
@@ -292,6 +287,11 @@ public class PlayerControll : MonoBehaviour
         {
             isOnGround = false;
         }
+
+        else if (collision.gameObject.CompareTag("GiveNewAbility"))
+        {
+            hasUnlockedDJ = true;
+        }
     }
     //--------------------------------------------------
     private void OnDrawGizmos()
@@ -300,6 +300,7 @@ public class PlayerControll : MonoBehaviour
         Gizmos.DrawLine(transform.position + colliderOffset, transform.position + colliderOffset + Vector3.down * groundLenght);  
         Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLenght);    
     }
+
 
    
 
