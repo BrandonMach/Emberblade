@@ -11,12 +11,13 @@ public class EnemyHealth : MonoBehaviour
     private float startTimeDamageTimer;
     private float damageDelay = 0.5f;
     public GameObject abilityItem;
+    Currency player;
     
     void Start()
     {
         //health = 3;
         canTakeDamage = true;
-
+        player = GameObject.Find("Player").GetComponent<Currency>();
     }
 
     // Update is called once per frame
@@ -57,6 +58,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(this.gameObject);
             abilityItem.SetActive(true);
+            player.IncreaseCurrency(300);
 
         }
 
