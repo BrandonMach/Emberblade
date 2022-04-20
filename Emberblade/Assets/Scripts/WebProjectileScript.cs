@@ -5,7 +5,7 @@ using UnityEngine;
 public class WebProjectileScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    float moveSpeed = 12f;
+    float moveSpeed = 20f;
     Rigidbody2D rb;
     GameObject player;
     PlayerInfo playerInforScript;

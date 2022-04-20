@@ -8,7 +8,7 @@ public class FishEnemyScript : MonoBehaviour
 
     private Rigidbody2D fish_Rb;
     public bool playerInRange;
-    public float dectetionRange;
+    public float detectionRange;
     public bool isUnderWater;
     public float jumpWaitTimer = 0;
     private float waitTime = 1f;
@@ -60,7 +60,7 @@ public class FishEnemyScript : MonoBehaviour
 
         playerInRange = false;
 
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, dectetionRange);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, detectionRange);
 
         foreach (var colliderHit in hitColliders)
         {
@@ -99,7 +99,7 @@ public class FishEnemyScript : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, dectetionRange);
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, 4);
     }
