@@ -13,7 +13,7 @@ public class EnemyHealth : MonoBehaviour
     
     void Start()
     {
-        health = 3;
+        //health = 3;
         canTakeDamage = true;
 
     }
