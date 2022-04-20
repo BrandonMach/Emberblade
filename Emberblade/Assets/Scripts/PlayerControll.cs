@@ -288,9 +288,10 @@ public class PlayerControll : MonoBehaviour
             isOnGround = false;
         }
 
-        else if (collision.gameObject.CompareTag("GiveNewAbility"))
+        else if (collision.gameObject.CompareTag("UnlockDJ"))
         {
             hasUnlockedDJ = true;
+            Destroy(collision.gameObject);
         }
     }
     //--------------------------------------------------

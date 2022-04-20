@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     public bool canTakeDamage = true;
     private float startTimeDamageTimer;
     private float damageDelay = 0.5f;
+    public GameObject abilityItem;
     
     void Start()
     {
@@ -52,7 +53,14 @@ public class EnemyHealth : MonoBehaviour
 
     void EnemyDies()
     {
-        if (health <= 0 && startTimeDamageTimer == 0)
+        if (health <= 0 && startTimeDamageTimer == 0 && this.gameObject.CompareTag("Boss")) // if a Boss is killed reveal ne ability pickup
+        {
+            Destroy(this.gameObject);
+            abilityItem.SetActive(true);
+
+        }
+
+        else if (health <= 0 && startTimeDamageTimer == 0)
         {
             Destroy(this.gameObject);
         }

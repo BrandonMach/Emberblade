@@ -11,6 +11,8 @@ TagManager:
   - Currency
   - Spike
   - GiveNewAbility
+  - UnlockDJ
+  - Boss
   layers:
   - Default
   - TransparentFX
