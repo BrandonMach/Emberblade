@@ -21,14 +21,7 @@ public class WebHookScript : MonoBehaviour
 
         lineRenderer.SetPosition(0, webHitpoint.position);
         lineRenderer.SetPosition(1, transform.position + new Vector3(0,70,0));
-        //if (Input.GetKey(KeyCode.B))
-        //{
-        //    lineRenderer.enabled = true;
-        //}
-        //else
-        //{
-        //    lineRenderer.enabled = false;
-        //}
+       
     }
     public void ShootHookWeb()
     {

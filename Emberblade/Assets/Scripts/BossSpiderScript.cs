@@ -7,8 +7,6 @@ public class BossSpiderScript : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     GameObject bulletWeb;
-    [SerializeField]
-    GameObject hookWeb;
 
     WebHookScript webHookScript;
 
