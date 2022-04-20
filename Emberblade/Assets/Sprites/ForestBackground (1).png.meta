@@ -47,6 +47,15 @@ TextureImporter:
   - first:
       213: 8946266920011642624
     second: ForestBackground (1)_14
+  - first:
+      213: 8937501553890805782
+    second: ForestBackground (1)_15
+  - first:
+      213: 5623572276795607831
+    second: ForestBackground (1)_16
+  - first:
+      213: -6461484864633395311
+    second: ForestBackground (1)_17
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -91,7 +100,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 4
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -140,9 +149,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 614.4
+        y: 640
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,9 +170,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 614.4
+        y: 640
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,9 +191,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 614.4
+        y: 640
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,9 +212,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 461.4
+        y: 512
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,12 +233,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 461.4
+        y: 512
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 51, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -245,12 +254,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 461.4
+        y: 512
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 50, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -266,9 +275,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 308.4
+        y: 384
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,9 +298,9 @@ TextureImporter:
         x: 256
         y: 385
         width: 256
-        height: 77
-      alignment: 9
-      pivot: {x: 0.5, y: 0.41794062}
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -308,9 +317,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 308.4
+        y: 384
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -329,9 +338,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 155.4
+        y: 256
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -350,9 +359,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 155.4
+        y: 256
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -371,9 +380,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 155.4
+        y: 256
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -392,9 +401,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2.399994
+        y: 128
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -413,9 +422,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 2.399994
+        y: 128
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -434,9 +443,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 2.399994
+        y: 128
         width: 256
-        height: 153.6
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -446,6 +455,69 @@ TextureImporter:
       bones: []
       spriteID: 0073f194d56872c70800000000000000
       internalID: 8946266920011642624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestBackground (1)_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618c9237f42680c70800000000000000
+      internalID: 8937501553890805782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestBackground (1)_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71b0327d031fa0e40800000000000000
+      internalID: 5623572276795607831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestBackground (1)_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 197a6f100c13456a0800000000000000
+      internalID: -6461484864633395311
       vertices: []
       indices: 
       edges: []
