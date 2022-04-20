@@ -11,6 +11,7 @@ public class WebProjectileScript : MonoBehaviour
     PlayerInfo playerInforScript;
     Vector2 moveDiraction;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
