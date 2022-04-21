@@ -21603,29 +21603,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 25
-  jumpforce: 32
+  jumpforce: 40
   jumpRingPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   jRingSpawnTime: 0.5
   dashEffectPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   dESpawnTime: 0.1
   falling: 0
-  maxJumpHeight: 0
+  maxJumpHeight: 35
   dashForce: 100
   startDashTimer: 0.25
   animator: {fileID: 1042027243}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   isOnGround: 0
-  groundLenght: 0
-  colliderOffset: {x: 0, y: 0, z: 0}
-  jumpSpeed: 15
+  groundLenght: 7.78
+  colliderOffset: {x: 2.03, y: 0, z: 0}
+  jumpSpeed: 30
   jumpDelay: 0.25
   canDoubleJump: 0
   hasUnlockedDJ: 0
-  gravity: 1
-  fallMultiplier: 5
-  liniearDrag: 4
+  gravity: 2
+  fallMultiplier: 6
+  liniearDrag: 7
   isParrying: 0
 --- !u!61 &1042027242
 BoxCollider2D:
