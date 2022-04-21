@@ -14,3 +14,6 @@ Spel Instruktioner:
 -Dash med RShift 
 -Crouch med C
 -Slå med BackSpace
+-Lås upp double jump efter att ha dödat spindel Bossen
+-För att hitta spindel bossen hoppa ner i hållet och gå mot vänster
+-För att testa Parry tryck på ner-pilen (inte färdig än) 
