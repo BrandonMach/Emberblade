@@ -4,18 +4,26 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Ground
+  - Wall
+  - Roof
+  - FillGround
   - Currency
+  - Spike
+  - GiveNewAbility
+  - UnlockDJ
+  - Boss
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wall
   - Water
   - UI
-  - ExplodableObject
-  - Immovable
-  - 
-  - 
+  - Enemy
+  - Grapple
+  - Ground
+  - BackgroundFill
   - 
   - 
   - 
