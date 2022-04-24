@@ -117,3 +117,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   range: 30
+  playerDetectionX: 90.49
+  playerDetectionY: 82.06

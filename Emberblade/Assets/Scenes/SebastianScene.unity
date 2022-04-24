@@ -20199,18 +20199,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1537793033}
     m_Modifications:
-    - target: {fileID: 80357459, guid: c44dd5b986bc5f94dba42d8c9a531a89, type: 3}
-      propertyPath: playerInRangeX
-      value: 8.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 80357459, guid: c44dd5b986bc5f94dba42d8c9a531a89, type: 3}
-      propertyPath: playerDetectionX
-      value: 90.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 80357459, guid: c44dd5b986bc5f94dba42d8c9a531a89, type: 3}
-      propertyPath: playerDetectionY
-      value: 82.06
-      objectReference: {fileID: 0}
     - target: {fileID: 5349993033819804478, guid: c44dd5b986bc5f94dba42d8c9a531a89, type: 3}
       propertyPath: m_RootOrder
       value: 2
