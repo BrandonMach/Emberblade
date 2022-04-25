@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCStoreScript : MonoBehaviour
 {
-    private GameObject Player, playerMovement;
+    private GameObject player, playerMovement;
     private bool triggering, storeIsOpen, isTalking, nextSentence;
     public GameObject text, npcChatTextOb;
     public TMPro.TMP_Text npcText, npcChatText;
@@ -68,11 +68,11 @@ public class NPCStoreScript : MonoBehaviour
             }
             if (storeIsOpen)
             {
-                Player.GetComponent<PlayerControll>().enabled = false;
+                player.GetComponent<PlayerControll>().enabled = false;
             }
             else
             {
-                Player.GetComponent<PlayerControll>().enabled = true;
+                player.GetComponent<PlayerControll>().enabled = true;
             }
         }
         else
@@ -88,7 +88,7 @@ public class NPCStoreScript : MonoBehaviour
         if (other.tag == "Player")
         {
             triggering = true;
-            Player = other.gameObject;
+            player = other.gameObject;
         }
     }
 
