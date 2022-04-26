@@ -20814,7 +20814,7 @@ MonoBehaviour:
   dashEffectPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   dESpawnTime: 0.1
   falling: 0
-  maxJumpHeight: 35
+  maxJumpHeight: 40
   dashForce: 100
   startDashTimer: 0.25
   animator: {fileID: 1042027243}
@@ -20824,7 +20824,7 @@ MonoBehaviour:
   isOnGround: 0
   groundLenght: 7.78
   colliderOffset: {x: 2.03, y: 0, z: 0}
-  jumpSpeed: 30
+  jumpSpeed: 33
   jumpDelay: 0.25
   canDoubleJump: 0
   hasUnlockedDJ: 0
