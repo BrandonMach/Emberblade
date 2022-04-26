@@ -10,7 +10,10 @@ public class NPCInteraction : MonoBehaviour
     public TMP_Text npcText, npcChatText;
     public string[] sentences;
     private int wordIndex;
+    private GameObject player;
     public float dialogueSpeed;
+    public Animator dialogueAnimator;
+    private bool startDialogue = true;
 
 
     private void Start()
@@ -38,21 +41,24 @@ public class NPCInteraction : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
-              
-                text.SetActive(false);
-                npcChatTextOb.SetActive(true);
-                isTalking = true;
-                
-                if (nextSentence == true)
+                player.GetComponent<PlayerControll>().enabled = false;
+                if (startDialogue)
                 {
-                    nextSentence = false;
-                    npcChatText.text = "";
-                    StartCoroutine(WriteSentence());
+                    dialogueAnimator.SetTrigger("Enter");
+                    startDialogue = false;
+                    text.SetActive(false);
+                    isTalking = true;
+                    npcChatTextOb.SetActive(true);
+                    NextSentence();
                 }
-                
-                
-                
-
+                else
+                {
+                    if (nextSentence == true)
+                    {
+                        nextSentence = false;
+                        NextSentence();
+                    }
+                }
             }
         }
         else
@@ -68,6 +74,7 @@ public class NPCInteraction : MonoBehaviour
         if (other.tag == "Player")
         {
             triggering = true;
+            player = other.gameObject;
         }
     }
 
@@ -81,12 +88,27 @@ public class NPCInteraction : MonoBehaviour
     }
 
 
-    IEnumerator WriteSentence()
+    void NextSentence()
     {
+        if (wordIndex <= sentences.Length - 1)
+        {
+            npcChatText.text = "";
+            StartCoroutine(WriteSentence());
+        }
         if (wordIndex > sentences.Length - 1)
         {
+            nextSentence = false;
+            npcChatText.text = "";
+            dialogueAnimator.SetTrigger("Exit");
             wordIndex = 2;
+            startDialogue = true;
+            player.GetComponent<PlayerControll>().enabled = true;
         }
+    }
+
+    IEnumerator WriteSentence()
+    {
+        
         foreach (char character in sentences[wordIndex].ToCharArray())
         {
             npcChatText.text += character;
