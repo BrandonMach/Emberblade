@@ -28111,12 +28111,10 @@ GameObject:
   - component: {fileID: 1042027241}
   - component: {fileID: 1042027240}
   - component: {fileID: 1042027242}
-  - component: {fileID: 1042027245}
   - component: {fileID: 1042027244}
   - component: {fileID: 1042027246}
   - component: {fileID: 1042027247}
   - component: {fileID: 1042027248}
-  - component: {fileID: 1042027249}
   - component: {fileID: 1042027243}
   - component: {fileID: 1042027250}
   - component: {fileID: 1042027251}
@@ -28344,13 +28342,13 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0111579895
-        value: 0.106508255
+        time: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -28362,15 +28360,15 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0, b: 0.018630981, a: 1}
+      key1: {r: 0.9652143, g: 1, b: 0.10849059, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
+      ctime0: 65535
       ctime1: 65535
       ctime2: 0
       ctime3: 0
@@ -28386,7 +28384,7 @@ LineRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
+      m_Mode: 1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -28397,22 +28395,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &1042027245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042027237}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 585de7b3164cf5345a3aee24714feb63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  grappleMask:
-    serializedVersion: 2
-    m_Bits: 136
 --- !u!114 &1042027246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28468,25 +28450,6 @@ MonoBehaviour:
   healthBar: {fileID: 1328388348}
   energyBar: {fileID: 33775932}
   canTakeDamage: 0
---- !u!232 &1042027249
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042027237}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 2.0826254
-  m_MaxDistanceOnly: 0
 --- !u!114 &1042027250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28535,11 +28498,11 @@ MonoBehaviour:
   grappleLayer:
     serializedVersion: 2
     m_Bits: 128
-  maxDistance: 10
-  grappleSpeed: 10
+  maxDistance: 100
+  grappleSpeed: 20
   grappleShootSpeed: 20
   retracting: 0
-  hookTransform: {fileID: 0}
+  hookTransform: {fileID: 1483137072}
   direction: {x: 0, y: 0}
 --- !u!1 &1048073515
 GameObject:
@@ -34242,7 +34205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483137071}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.81, y: 0.86, z: 0}
+  m_LocalPosition: {x: 1.11, y: 3.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1042027239}
@@ -41337,7 +41300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132520404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.45, y: -0.68, z: 0}
+  m_LocalPosition: {x: 43.45, y: 5.5, z: 0}
   m_LocalScale: {x: 13.5804, y: 6.3372, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
