@@ -12,6 +12,7 @@ public class IceicleScript : MonoBehaviour
     public LayerMask playerLayer;
     Vector3 originalPos;
     bool falling;
+    public int gravityScaling;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,7 @@ public class IceicleScript : MonoBehaviour
         if (playerDetectionLaser.collider.gameObject.CompareTag("Player")&& !falling)
         {
             Debug.Log("Icicle fall");
-            rb.gravityScale = 2;
+            rb.gravityScale = gravityScaling;
             boxColllider.enabled = true; // sätter på BoxCollider för att kunna detectera marken elelr spelaren
             falling = true;          
         }
