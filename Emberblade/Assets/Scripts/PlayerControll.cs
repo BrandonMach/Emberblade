@@ -70,7 +70,8 @@ public class PlayerControll : MonoBehaviour
     private float parryStart = 0;
     private float parryWindow = 0.5f;
 
-
+    [Header("Hook")]
+    public GrappleHookScript ghScript;
 
     void Start()
     {
@@ -177,25 +178,27 @@ public class PlayerControll : MonoBehaviour
 
         Debug.Log("aaaah"+ Mathf.Abs(moveBy));
         Vector3 characterScale = transform.localScale;
-        if (Input.GetAxisRaw("Horizontal") < 0)
+        if (Input.GetAxisRaw("Horizontal") < 0) //Left
         {
             characterScale.x = -1.45f;
             if (isOnGround)
             {
                 PlayRunAnimation();
             }
+          
         }
         else
         {
             animator.SetFloat("Speed", 0.0f);
         }
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        if (Input.GetAxisRaw("Horizontal") > 0) //Right
         {
             characterScale.x = 1.45f;
             if (isOnGround)
             {
                 PlayRunAnimation();
             }
+           
         }
       
         transform.localScale = characterScale;
