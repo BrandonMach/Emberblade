@@ -11,10 +11,14 @@ public class Enemy : MonoBehaviour
     public float speed = 200;
     public float rotationSpeed = 2;
     public float nextWaypointDistance = 3f;
-    public float targetDistanceStop = 5;
+    public float targetDistanceStop = 0.5f;
     public Transform target;
+    // this one is used when the enemy walks between two objects or hunts the target
+    public bool willHunt = false;
+    public Vector2[] PositionsToWalkBetween;
+    [SerializeField] int currentWalkBetween;
     Path path;
-    public GameObject gfxObj;
+    public GameObject gfxObj; // this is for the graphics as a child to the object
     int currentWaypoint = 0;
     public bool reachedEndPath = false;
     Seeker seeker;
@@ -26,14 +30,28 @@ public class Enemy : MonoBehaviour
         rbody.GetComponent<Rigidbody2D>();
         if (target == null)
             target = FindObjectOfType<TargetEmpty>().transform;
-
         InvokeRepeating("UpdatePath", 0f, 0.5f);
-
     }
     void UpdatePath()
     {
-        if (seeker.IsDone() && Vector2.Distance(rbody.position, target.position) > targetDistanceStop)
-            seeker.StartPath(rbody.position, target.position, OnPathComplete);
+        if (willHunt == true)
+        {
+            if (seeker.IsDone() && Vector2.Distance(rbody.position, target.position) > targetDistanceStop)
+            {
+                seeker.StartPath(rbody.position, target.position, OnPathComplete);
+            }
+        }
+        else if (willHunt == false)
+        {
+            if (seeker.IsDone() && Vector2.Distance(rbody.position, PositionsToWalkBetween[currentWalkBetween]) <= targetDistanceStop)
+            {
+                if (currentWalkBetween == PositionsToWalkBetween.Length - 1)
+                    currentWalkBetween = 0;
+                else
+                    currentWalkBetween++;
+                seeker.StartPath(rbody.position, PositionsToWalkBetween[currentWalkBetween], OnPathComplete);
+            }
+        }
     }
     void OnPathComplete(Path p)
     {
@@ -70,8 +88,8 @@ public class Enemy : MonoBehaviour
             currentWaypoint++;
         }
         if (force.x > 0.01f)
-            gfxObj.transform.localScale = new Vector3(-1f, 1f, 1f);
-        else
             gfxObj.transform.localScale = new Vector3(1f, 1f, 1f);
+        else
+            gfxObj.transform.localScale = new Vector3(-1f, 1f, 1f);
     }
 }

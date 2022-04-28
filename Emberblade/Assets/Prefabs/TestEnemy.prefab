@@ -51,8 +51,11 @@ MonoBehaviour:
   speed: 200
   rotationSpeed: 1
   nextWaypointDistance: 1
-  targetDistanceStop: 0
+  targetDistanceStop: 0.5
   target: {fileID: 0}
+  willHunt: 0
+  PositionsToWalkBetween: []
+  currentWalkBetween: 0
   gfxObj: {fileID: 4482732963248404372}
   reachedEndPath: 0
   aggroRange: 20
