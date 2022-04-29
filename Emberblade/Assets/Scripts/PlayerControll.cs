@@ -77,6 +77,12 @@ public class PlayerControll : MonoBehaviour
     bool wallCling;
     public float wallClimbSpeed;
 
+    [Header("Wall Jump")]
+    bool wallJumping;
+    public float xWallForce;
+    public float yWallForce;
+    public float wallJumpTime;
+
     void Start()
     {
         player_Rb = GetComponent<Rigidbody2D>();
@@ -262,7 +268,15 @@ public class PlayerControll : MonoBehaviour
         if (wallCling)
         {
            
-            if (Input.GetKey(KeyCode.W))
+           
+            //Wall jump
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                wallJumping = true;
+                Invoke("SetWallJumpingFalse", wallJumpTime); // Bättre timer än att loopa aka sätter på Metoden SetWallJumpingFalse efter wallJumpTime
+
+            }
+            else if (Input.GetKey(KeyCode.W))
             {
                 player_Rb.velocity = new Vector2(player_Rb.velocity.x, 10);
             }
@@ -270,9 +284,20 @@ public class PlayerControll : MonoBehaviour
             {
                 player_Rb.velocity = new Vector2(player_Rb.velocity.x, Mathf.Clamp(player_Rb.velocity.y, -wallClimbSpeed, float.MaxValue));
             }
+
+            if (wallJumping)
+            {
+                player_Rb.velocity = new Vector2(xWallForce * -moveX, yWallForce);  //Reverse input för att hoppa motsatt från väggen
+            }
+
         }
 
 
+
+    }
+    void SetWallJumpingFalse()
+    {
+        wallJumping = false;
     }
     void PlayRunAnimation()
     {
