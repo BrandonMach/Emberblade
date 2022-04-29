@@ -72,6 +72,7 @@ public class PlayerControll : MonoBehaviour
 
     [Header("Hook")]
     public GrappleHookScript ghScript;
+    public LayerMask grapplelayer;
 
     void Start()
     {
@@ -296,6 +297,7 @@ public class PlayerControll : MonoBehaviour
             hasUnlockedDJ = true;
             Destroy(collision.gameObject);
         }
+        Physics2D.IgnoreLayerCollision(0,7);
     }
     //--------------------------------------------------
     private void OnDrawGizmos()
