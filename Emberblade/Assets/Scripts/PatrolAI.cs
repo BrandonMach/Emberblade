@@ -41,6 +41,21 @@ public class PatrolAI : MonoBehaviour
     public void Attack()
     {
 
+
+    }
+    void DetectPlayer()
+    {
+        playerIsNear = false;
+
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(playerDetectionX, playerDetectionY), 0);
+
+        foreach (var colliderHit in hitColliders)
+        {
+            if (colliderHit.gameObject.CompareTag("Player"))
+            {
+                playerIsNear = true;
+            }
+        }
     }
 
     public void Idle()
