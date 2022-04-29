@@ -10,9 +10,9 @@ public class TrapScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player")&& !playerDamage.canTakeDamage)
         {
-            playerDamage.TakeDamage(99999);
+            playerDamage.TakeDamage(damageAmount);
         }
     }
 }
