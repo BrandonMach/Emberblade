@@ -18,18 +18,14 @@ public class TongueScript : MonoBehaviour
         tongue_Rb = GetComponent<Rigidbody2D>();
           
 
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.M))
-        {
-            testInt += 1;
+       
             tongue_Rb.AddForce(Vector2.right,  ForceMode2D.Impulse);
-        }
+        
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
