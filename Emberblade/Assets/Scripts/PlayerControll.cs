@@ -25,11 +25,7 @@ public class PlayerControll : MonoBehaviour
     Vector2 standingBoxOffset;
     Vector2 stadningBoxSize;
 
-    //Jump
-    private float jumpTimer = 0;
-    private float jumpStallTime = 0;
-    public bool falling;
-    public float maxJumpHeight;
+   
 
     //Dash
     public float dashForce;
@@ -46,17 +42,17 @@ public class PlayerControll : MonoBehaviour
     public Animator animator;
 
     //---------------------------------
-    [Header ("New Ground detection")]
+    [Header ("Ground detection")]
     public LayerMask groundLayer;
     public bool isOnGround;
     public float groundLenght;
     public Vector3 colliderOffset;
 
-    [Header("New Jump")]
+    [Header("Jump")]
     public float jumpSpeed = 15;
     public float jumpDelay = 0.25f;
-    private float lumpTimer = 0;
-    //public int jumpCounter = 0;
+    private float jumpTimer = 0;
+
     public bool canDoubleJump = false;
     public bool hasUnlockedDJ = false;
 
@@ -73,6 +69,13 @@ public class PlayerControll : MonoBehaviour
     [Header("Hook")]
     public GrappleHookScript ghScript;
     public LayerMask grapplelayer;
+
+    [Header("WallClimb")]
+    public LayerMask wallLayer;
+    bool isTouchingFront;
+    public Transform frontCheck;
+    bool wallCling;
+    public float wallClimbSpeed;
 
     void Start()
     {
@@ -111,14 +114,14 @@ public class PlayerControll : MonoBehaviour
 
         JumpInput();
         isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
-       
-
         if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround)
         {
             canDoubleJump = false;
 
         }
         Parry();
+
+
 
     }
 
@@ -224,8 +227,7 @@ public class PlayerControll : MonoBehaviour
                 isDashing = false;
             }
         }
-        
-
+        //Crouch
         if (Input.GetKey(KeyCode.C))
         {
             animator.SetBool("Sit", true);
@@ -246,6 +248,30 @@ public class PlayerControll : MonoBehaviour
             boxCollider.offset = standingBoxOffset;
             boxCollider.size = stadningBoxSize;
         }
+
+        //WallClimb
+        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 5, wallLayer);
+        if(isTouchingFront && !isOnGround && moveX != 0)
+        {
+            wallCling = true;
+        }
+        else
+        {
+            wallCling = false;
+        }
+        if (wallCling)
+        {
+           
+            if (Input.GetKey(KeyCode.W))
+            {
+                player_Rb.velocity = new Vector2(player_Rb.velocity.x, 10);
+            }
+            else
+            {
+                player_Rb.velocity = new Vector2(player_Rb.velocity.x, Mathf.Clamp(player_Rb.velocity.y, -wallClimbSpeed, float.MaxValue));
+            }
+        }
+
 
     }
     void PlayRunAnimation()
@@ -287,7 +313,7 @@ public class PlayerControll : MonoBehaviour
            // jumpCounter = 0;
 
          }
-        else if (collision.gameObject.CompareTag("Roof"))
+        if (collision.gameObject.CompareTag("Roof"))
         {
             isOnGround = false;
         }

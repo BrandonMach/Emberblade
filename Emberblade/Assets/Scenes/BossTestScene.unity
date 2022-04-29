@@ -1341,7 +1341,7 @@ GameObject:
   - component: {fileID: 125841407}
   - component: {fileID: 125841406}
   - component: {fileID: 125841405}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: TilemapWalls
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -20242,7 +20242,6 @@ GameObject:
   - component: {fileID: 961559467}
   - component: {fileID: 961559466}
   - component: {fileID: 961559465}
-  - component: {fileID: 961559462}
   - component: {fileID: 961559461}
   - component: {fileID: 961559455}
   - component: {fileID: 961559459}
@@ -20458,26 +20457,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.05918601, y: 0.020344831}
   m_Size: {x: 3.4216003, y: 9.250328}
   m_Direction: 0
---- !u!114 &961559462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961559454}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8486d32306191de44bbe164da658194e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBetweenAttack: 1
-  attackPos: {fileID: 210929892}
-  attackRange: 2.68
-  whatIsEnemies:
-    serializedVersion: 2
-    m_Bits: 128
-  damage: 0
-  animator: {fileID: 0}
 --- !u!114 &961559464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20584,6 +20563,9 @@ MonoBehaviour:
   liniearDrag: 3
   isParrying: 0
   ghScript: {fileID: 0}
+  grapplelayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!212 &961559468
 SpriteRenderer:
   m_ObjectHideFlags: 0
