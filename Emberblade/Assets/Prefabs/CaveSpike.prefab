@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7323366483836377612
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7323366483836377613}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7323366483836377613
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7323366483836377612}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.049987793, y: -10.8029175, z: -456.2375}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7323366484087648497}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7323366484087648508
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,8 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 558.06, y: -160.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7323366483836377613}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,11 +98,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1499dfbffef40f846b3eaa71931cfbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxColllider: {fileID: 7323366484087648502}
-  hitPos: {fileID: 7323366483836377613}
   playerLayer:
     serializedVersion: 2
     m_Bits: 1
+  falling: 0
+  gravityScaling: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  detectPlayer: 0
+  groundLenght: 0
+  colliderOffset: {x: 0, y: 0, z: 0}
 --- !u!120 &7323366484087648498
 LineRenderer:
   m_ObjectHideFlags: 0
