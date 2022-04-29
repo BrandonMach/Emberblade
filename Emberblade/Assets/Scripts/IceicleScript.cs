@@ -21,7 +21,8 @@ public class IceicleScript : MonoBehaviour
         boxColllider = GetComponent<BoxCollider2D>();
         originalPos = transform.position;
         lineRenderer.useWorldSpace = true;
-        lineRenderer.enabled = true; boxColllider.enabled = false;
+        lineRenderer.enabled = true;
+        boxColllider.enabled = false;
     }
 
     // Update is called once per frame
@@ -33,25 +34,29 @@ public class IceicleScript : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position); // Laserns starposition 0 
         lineRenderer.SetPosition(1, hitPos.position); // laserns slutposition 1
            
-        if (playerDetectionLaser.collider.gameObject.CompareTag("Player")&& !falling)
+        if (playerDetectionLaser.collider.gameObject.CompareTag("Player")/*&& !falling*/)
         {
             Debug.Log("Icicle fall");
             rb.gravityScale = gravityScaling;
-            boxColllider.enabled = true; // sätter på BoxCollider för att kunna detectera marken elelr spelaren
+           
             falling = true;          
+        }
+        if (falling)
+        {
+            boxColllider.enabled = true; // sätter på BoxCollider för att kunna detectera marken eller spelaren
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground")&& falling)
+        if (collision.gameObject.CompareTag("Ground"))
         {
             rb.gravityScale = 0;
             transform.position = originalPos;
             boxColllider.enabled = false;
             falling = false;
         }
-        if (collision.gameObject.CompareTag("Player") && falling)
+        if (collision.gameObject.CompareTag("Player"))
         {
             rb.gravityScale = 0;
             transform.position = originalPos;
