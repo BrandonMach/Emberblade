@@ -76,6 +76,7 @@ public class PlayerControll : MonoBehaviour
     public Transform frontCheck;
     bool wallCling;
     public float wallClimbSpeed;
+    public bool CanWallClimb;
 
     [Header("Wall Jump")]
     bool wallJumping;
@@ -256,47 +257,47 @@ public class PlayerControll : MonoBehaviour
         }
 
         //WallClimb
-        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 5, wallLayer);
-        if(isTouchingFront && !isOnGround && moveX != 0)
-        {
-            wallCling = true;
-        }
-        else
-        {
-            wallCling = false;
-        }
-        if (wallCling)
-        {
-           
-           
-            //Wall jump
-            if (Input.GetKeyDown(KeyCode.Space))
-            {              
-                wallJumping = true;
-                Invoke("SetWallJumpingFalse", wallJumpTime); // Bättre timer än att loopa aka sätter på Metoden SetWallJumpingFalse efter wallJumpTime
-            }
-            else if (Input.GetKey(KeyCode.W))
+        if (CanWallClimb) {
+            isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 5, wallLayer);
+            if (isTouchingFront && !isOnGround && moveX != 0)
             {
-                player_Rb.velocity = new Vector2(player_Rb.velocity.x, 10);
-                PlayClimbAnimation();
+                wallCling = true;
             }
             else
             {
-                player_Rb.velocity = new Vector2(player_Rb.velocity.x, Mathf.Clamp(player_Rb.velocity.y, -wallClimbSpeed, float.MaxValue));
-                PlayClimbAnimation();
+                wallCling = false;
             }
-
-            if (wallJumping)
+            if (wallCling)
             {
-                player_Rb.velocity = new Vector2(xWallForce * -moveX, yWallForce);  //Reverse input för att hoppa motsatt från väggen
+
+
+                //Wall jump
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    wallJumping = true;
+                    Invoke("SetWallJumpingFalse", wallJumpTime); // Bättre timer än att loopa aka sätter på Metoden SetWallJumpingFalse efter wallJumpTime
+                }
+                else if (Input.GetKey(KeyCode.W))
+                {
+                    player_Rb.velocity = new Vector2(player_Rb.velocity.x, 10);
+                    PlayClimbAnimation();
+                }
+                else
+                {
+                    player_Rb.velocity = new Vector2(player_Rb.velocity.x, Mathf.Clamp(player_Rb.velocity.y, -wallClimbSpeed, float.MaxValue));
+                    PlayClimbAnimation();
+                }
+
+                if (wallJumping)
+                {
+                    player_Rb.velocity = new Vector2(xWallForce * -moveX, yWallForce);  //Reverse input för att hoppa motsatt från väggen
+                }
+            }
+            else
+            {
+                animator.SetFloat("Climb", 0);
             }
         }
-        else
-        {
-            animator.SetFloat("Climb", 0);
-        }
-
-
 
     }
     void SetWallJumpingFalse()
