@@ -6,12 +6,18 @@ public class EnemyShootScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject bulletPrefab;
+    EnemyBulletScript bulletScript;
     public bool playerInRange;
     public Vector2 playerDetection;
     PlayerInfo playerInfoController;
+    float startShot;
+    float shootSpeed;
     void Start()
     {
-        
+        playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        bulletScript = bulletPrefab.GetComponent<EnemyBulletScript>();
+        startShot = 0;
+        shootSpeed = 1;
     }
 
     // Update is called once per frame
@@ -32,15 +38,20 @@ public class EnemyShootScript : MonoBehaviour
             {
                 playerInRange = true;
 
-                if (playerInRange /*&& isOnGround*/) // kan bara jaga när dem är på Ground
+                if (playerInRange /*&& isOnGround*/)
                 {
                     // transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position - playerTransformOffest, moveSpeed);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.
-                  
-                        ShootPrefab();
-                    
-                   
 
-                   
+                  if(this.transform.position.x > playerInfoController.transform.position.x)
+                  {
+                        
+                        ShootPrefab(-1);
+
+                  }
+                  if (this.transform.position.x < playerInfoController.transform.position.x)
+                  {
+                        ShootPrefab(1);
+                  }
 
                 }
             }
@@ -49,10 +60,18 @@ public class EnemyShootScript : MonoBehaviour
 
    
 
-    void ShootPrefab()
+    void ShootPrefab(int direction)
     {
-        Vector2 spawnPos = new Vector2(transform.position.x + 10, transform.position.y);
-        Instantiate(bulletPrefab, spawnPos, bulletPrefab.transform.rotation);
+        startShot += Time.deltaTime;
+        if (startShot > shootSpeed)
+        {
+            Vector2 spawnPos = new Vector2(transform.position.x + direction, transform.position.y);
+            bulletScript.direction = direction;
+            Instantiate(bulletPrefab, spawnPos, bulletPrefab.transform.rotation);
+            startShot = 0;
+        }
+
+    
     }
 
     private void OnDrawGizmosSelected()

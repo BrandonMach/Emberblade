@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TongueScript : MonoBehaviour
+public class EnemyBulletScript : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject[] tonguePrefab;
-    public GameObject player;
-    public Vector3 mouthOffset;
-    Vector3 playerMounthPos;
-    int testInt;
+   [HideInInspector] public float direction;
     private Rigidbody2D tongue_Rb;
-
+    float lifespan;
     void Start()
     {
         tongue_Rb = GetComponent<Rigidbody2D>();
@@ -22,15 +18,22 @@ public class TongueScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-       
-            tongue_Rb.AddForce(Vector2.right,  ForceMode2D.Impulse);
-        
-
+    {      
+            tongue_Rb.AddForce(new Vector2(direction,0), ForceMode2D.Impulse);
+        //if (lifespan <= 0)
+        //    Destroy(gameObject);
+        //else
+        //    lifespan -= Time.deltaTime;
     }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+            
+        }
+       if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
             
