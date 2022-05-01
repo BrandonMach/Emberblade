@@ -14184,7 +14184,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 18
+      m_TileSpriteIndex: 20
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -16247,12 +16247,12 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 81768fbef7f967a4490bfc0e910474e8, type: 3}
   - m_RefCount: 10
     m_Data: {fileID: 21300000, guid: 9e3ed099d9d4f1c43a1759e64587c5b6, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 7996196285138121615, guid: 4b0d861a3953eac4ea770d09327e0770, type: 3}
-  - m_RefCount: 2
-    m_Data: {fileID: 21300000, guid: 9b89dc49da326e84ca7e4390ff7f3803, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 21300000, guid: 9b89dc49da326e84ca7e4390ff7f3803, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 7996196285138121615, guid: 4b0d861a3953eac4ea770d09327e0770, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 21300000, guid: b8a24cc56a52c0d4bbeec4ae6323c478, type: 3}
   - m_RefCount: 5
@@ -26920,7 +26920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4305903511568849978, guid: 3440140d48f0e5c4b8a061e915bd0a12, type: 3}
   playerInRange: 0
-  playerDetection: {x: 38.38, y: 1.62}
+  playerDetection: {x: 53.13, y: 0.7}
 --- !u!1001 &685044908
 PrefabInstance:
   m_ObjectHideFlags: 0
