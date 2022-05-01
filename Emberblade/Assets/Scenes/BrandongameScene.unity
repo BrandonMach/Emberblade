@@ -27641,6 +27641,7 @@ GameObject:
   - component: {fileID: 871340002}
   - component: {fileID: 871340007}
   - component: {fileID: 871340006}
+  - component: {fileID: 871340008}
   m_Layer: 0
   m_Name: Armadillo
   m_TagString: Untagged
@@ -27770,7 +27771,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -27792,8 +27793,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  playerDetection: {x: 50, y: 0.92}
+  playerDetection: {x: 70, y: 0.92}
   isOnGround: 0
+  animator: {fileID: 871340002}
+--- !u!58 &871340008
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871340001}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.39, y: -0.39}
+  serializedVersion: 2
+  m_Radius: 1.927886
 --- !u!1 &877038981
 GameObject:
   m_ObjectHideFlags: 0

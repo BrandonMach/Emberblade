@@ -15,7 +15,7 @@ public class PlayerControll : MonoBehaviour
     public float jRingSpawnTime = 0.1f;
     public GameObject dashEffectPrefab;
     public float dESpawnTime = 0;
-    private CapsuleCollider2D collider;
+    private CapsuleCollider2D capsuleCollider;
     private BoxCollider2D boxCollider;
 
     Vector2 oGOffset;
@@ -87,14 +87,14 @@ public class PlayerControll : MonoBehaviour
     void Start()
     {
         player_Rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<CapsuleCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerInfoScript = GetComponent<PlayerInfo>();
         originalJumpForce = jumpforce;
 
 
-        oGSize = collider.size;
-        oGOffset = collider.offset;
+        oGSize = capsuleCollider.size;
+        oGOffset = capsuleCollider.offset;
 
         standingBoxOffset = boxCollider.offset;
         stadningBoxSize = boxCollider.size;
@@ -238,8 +238,8 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetKey(KeyCode.C))
         {
             animator.SetBool("Sit", true);
-            collider.size = new Vector2(4.577552f, 4.577552f);
-            collider.offset = new Vector2(-0.01422455f, -1f);
+            capsuleCollider.size = new Vector2(4.577552f, 4.577552f);
+            capsuleCollider.offset = new Vector2(-0.01422455f, -1f);
             movementSpeed = 13;
             jumpforce = 20;
             boxCollider.offset = new Vector2(-0.05918601f, -2.19f);
@@ -248,8 +248,8 @@ public class PlayerControll : MonoBehaviour
         else
         {
             animator.SetBool("Sit", false);
-            collider.size = oGSize;
-            collider.offset = oGOffset;
+            capsuleCollider.size = oGSize;
+            capsuleCollider.offset = oGOffset;
             movementSpeed = 25;
             jumpforce = 40;
             boxCollider.offset = standingBoxOffset;
@@ -339,6 +339,12 @@ public class PlayerControll : MonoBehaviour
         animator.SetBool("IsOnGround", false);
         Debug.Log("Has Landed");
     }
+
+    public void Knockback()
+    {
+        
+        player_Rb.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
          if (collision.gameObject.CompareTag("Wall"))
@@ -358,6 +364,7 @@ public class PlayerControll : MonoBehaviour
             Destroy(collision.gameObject);
         }
         Physics2D.IgnoreLayerCollision(0,7);
+       
     }
     //--------------------------------------------------
     private void OnDrawGizmos()
