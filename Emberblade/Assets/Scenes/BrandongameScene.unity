@@ -27771,10 +27771,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 50
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -27796,6 +27796,7 @@ MonoBehaviour:
   playerDetection: {x: 70, y: 0.92}
   isOnGround: 0
   animator: {fileID: 871340002}
+  originalRotationValue: {x: 0, y: 0, z: 0, w: 0}
 --- !u!58 &871340008
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -48,15 +48,19 @@ public class armadilloScript : MonoBehaviour
         if (attacking)
         {
             animator.SetBool("ArmadilloAttack", true);
+            animator.SetBool("Attack", true);
             Invoke("StartAttack", attackStartUpTime);
             boxCollider.enabled = false;
             circleCollider.enabled = true;
         }
         if (!canAttack)
         {
-            this.transform.rotation = originalRotationValue;
+            this.transform.rotation = originalRotationValue; // reset rotation
             boxCollider.enabled = true;
             circleCollider.enabled = false;
+            animator.SetBool("Attack", false);
+
+            
         }
 
     }
@@ -118,7 +122,9 @@ public class armadilloScript : MonoBehaviour
             playerControllScript.Knockback();
             canAttack = false;
             rb.AddForce(new Vector2(3, 0), ForceMode2D.Impulse);
-            animator.SetBool("Rolling", false);
+            attacking = false;
+           
+
         }
     }
 
