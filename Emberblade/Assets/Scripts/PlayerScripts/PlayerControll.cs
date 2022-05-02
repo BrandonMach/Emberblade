@@ -130,8 +130,6 @@ public class PlayerControll : MonoBehaviour
 
         hasToCrouch = Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat, groundLayer)|| Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat,roofLayer);
 
-
-
     }
 
     void Parry()

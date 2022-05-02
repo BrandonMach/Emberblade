@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PlayerInfo : MonoBehaviour
     private float damageDelay = 2f;
     private PlayerControll playerControllScript;
 
+    private GameMaster gm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,9 @@ public class PlayerInfo : MonoBehaviour
         energyBar.SetMaxEnergy(maxEnergy);
         energyBar.currentEnergy(currentEnergy);
         playerControllScript = GetComponent<PlayerControll>();
+
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        transform.position = gm.lastCheckPointPos;
     }
 
     // Update is called once per frame
@@ -94,7 +100,8 @@ public class PlayerInfo : MonoBehaviour
     public void Death() //Gör så man kan dö.
     {
         Debug.Log("works");
-        Destroy(this.gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+       // Destroy(this.gameObject);
     }
 
     public void UseEnergy(int energy)
