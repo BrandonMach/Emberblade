@@ -101,7 +101,7 @@ public class PlayerInfo : MonoBehaviour
     {
         Debug.Log("works");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-       // Destroy(this.gameObject);
+        currentHealth = maxHealth;
     }
 
     public void UseEnergy(int energy)
