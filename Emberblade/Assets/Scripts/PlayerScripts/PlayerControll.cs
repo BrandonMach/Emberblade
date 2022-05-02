@@ -52,7 +52,7 @@ public class PlayerControll : MonoBehaviour
     private float jumpTimer = 0;
 
     public bool canDoubleJump = false;
-    public bool hasUnlockedDJ = false;
+    public static bool hasUnlockedDJ = false; // Static gör att boolen värde sparas när man dör
 
     [Header("Physics")]
     public float gravity = 1;
@@ -379,37 +379,5 @@ public class PlayerControll : MonoBehaviour
     }
 
 
-   
-
-
-    //private void SpawnJumpRing()
-    //{
-    //    GameObject jumpRing = Instantiate(jumpRingPrefab) as GameObject;
-    //    jumpRing.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 2.5f);
-    //}
-
-    //private void SpawnDashEffect() // Funkar inte
-    //{
-    //    GameObject dashEffect = Instantiate(dashEffectPrefab) as GameObject;
-    //    dashEffect.transform.position = new Vector2(this.transform.position.x, this.transform.position.x - 5f);
-    //}
-
-    //IEnumerator JumpGraphic()
-    //{
-    //    if(!isOnGround && jumpCounter < 1)
-    //    {
-    //        yield return new WaitForSeconds(jRingSpawnTime);
-    //        SpawnJumpRing();           
-    //    }
-    //}
-
-    //IEnumerator DashGraphic()
-    //{
-    //    if(!isDashing)
-    //    {
-    //        yield return new WaitForSeconds(dESpawnTime);
-    //        SpawnDashEffect();
-    //    }
-    //}
 }
 
