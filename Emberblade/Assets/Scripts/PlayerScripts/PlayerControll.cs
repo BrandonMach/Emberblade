@@ -340,10 +340,10 @@ public class PlayerControll : MonoBehaviour
         Debug.Log("Has Landed");
     }
 
-    public void Knockback()
+    public void Knockback(int xValue)
     {
-        
-        player_Rb.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
+        Debug.Log("Knockback");
+        player_Rb.AddForce(new Vector2(xValue, 3), ForceMode2D.Impulse);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

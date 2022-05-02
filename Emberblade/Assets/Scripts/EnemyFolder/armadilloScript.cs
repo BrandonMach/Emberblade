@@ -10,7 +10,7 @@ public class armadilloScript : MonoBehaviour
     public Vector2 playerDetection;
     PlayerInfo playerInfoController;
     public bool isOnGround;
-    bool facingLeft;
+    public bool facingLeft;
     public Animator animator;
 
     float attackTimer;
@@ -23,6 +23,7 @@ public class armadilloScript : MonoBehaviour
     CircleCollider2D circleCollider;
     PlayerControll playerControllScript;
     public Quaternion originalRotationValue;
+    int knockBackValue;
 
 
     void Start()
@@ -43,7 +44,14 @@ public class armadilloScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (facingLeft)
+        {
+            knockBackValue = 5;
+        }
+        else
+        {
+            knockBackValue = -5;
+        }
         DetectPlayer();
         if (attacking)
         {
@@ -59,9 +67,15 @@ public class armadilloScript : MonoBehaviour
             boxCollider.enabled = true;
             circleCollider.enabled = false;
             animator.SetBool("Attack", false);
-
-            
+            attackTimer += Time.deltaTime;
+            if (attackTimer >= attackStartUpTime)
+            {
+                canAttack = true;
+                attackTimer = 0;
+            }
         }
+
+       
 
     }
 
@@ -86,31 +100,38 @@ public class armadilloScript : MonoBehaviour
                         characterScale.x *= -1;
                         facingLeft = true;
                         this.transform.localScale = characterScale;
-                        Debug.Log("Armadillo look left");
-                        
+                        Debug.Log("Armadillo look left");        
                     }
                     if (this.transform.position.x < playerInfoController.transform.position.x && facingLeft) // Armadillo på vänster sida av spelaren
                     {
                         characterScale.x *= -1;
                         facingLeft = false;
-                        this.transform.localScale = characterScale;
+                        this.transform.localScale = characterScale;      
                     }
-
-                   
-                 
-                }
-               
+                }              
             }
         }
     }
 
+    void ChangeCanAttackTrue()
+    {
+        canAttack = true;
+    }
     void StartAttack()
     {
-        if (canAttack)
+        if (canAttack && attacking)
         {
-            rb.AddForce(new Vector2(-1, 0), ForceMode2D.Impulse);
             animator.SetBool("Rolling", true);
-            transform.Rotate(new Vector3(0, 0, 5));
+            if (facingLeft)
+            {
+                rb.AddForce(new Vector2(-1, 0), ForceMode2D.Impulse);
+                transform.Rotate(new Vector3(0, 0, 5));
+            }
+            else
+            {
+                rb.AddForce(new Vector2(1, 0), ForceMode2D.Impulse);
+                transform.Rotate(new Vector3(0, 0, -5));
+            }    
         }
     }
 
@@ -119,12 +140,17 @@ public class armadilloScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {     
             Debug.Log("Rolled Player");
-            playerControllScript.Knockback();
+            playerControllScript.Knockback(knockBackValue);   
             canAttack = false;
-            rb.AddForce(new Vector2(3, 0), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
             attacking = false;
-           
-
+            Invoke("ChangeCanAttackTrue", 5);
+            
+        }
+        if (collision.gameObject.CompareTag("Wall"))
+        {                      
+            rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
+            Invoke("ChangeCanAttackTrue", 5);
         }
     }
 
