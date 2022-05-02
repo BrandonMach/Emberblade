@@ -54,8 +54,7 @@ public class armadilloScript : MonoBehaviour
         }
         DetectPlayer();
         if (attacking)
-        {
-            animator.SetBool("ArmadilloAttack", true);
+        {          
             animator.SetBool("Attack", true);
             Invoke("StartAttack", attackStartUpTime);
             boxCollider.enabled = false;
@@ -66,9 +65,9 @@ public class armadilloScript : MonoBehaviour
             this.transform.rotation = originalRotationValue; // reset rotation
             boxCollider.enabled = true;
             circleCollider.enabled = false;
-            animator.SetBool("Attack", false);
+            
             attackTimer += Time.deltaTime;
-            if (attackTimer >= attackStartUpTime)
+            if (attackTimer >= 2)
             {
                 canAttack = true;
                 attackTimer = 0;
@@ -112,23 +111,20 @@ public class armadilloScript : MonoBehaviour
             }
         }
     }
-
-    void ChangeCanAttackTrue()
-    {
-        canAttack = true;
-    }
     void StartAttack()
     {
         if (canAttack && attacking)
         {
-            animator.SetBool("Rolling", true);
+           
             if (facingLeft)
             {
+                animator.SetBool("Roll", true);
                 rb.AddForce(new Vector2(-1, 0), ForceMode2D.Impulse);
                 transform.Rotate(new Vector3(0, 0, 5));
             }
             else
             {
+                animator.SetBool("Roll", true);
                 rb.AddForce(new Vector2(1, 0), ForceMode2D.Impulse);
                 transform.Rotate(new Vector3(0, 0, -5));
             }    
@@ -138,19 +134,21 @@ public class armadilloScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {     
+        {
+           
+            animator.SetBool("Roll", false);           
             Debug.Log("Rolled Player");
             playerControllScript.Knockback(knockBackValue);   
             canAttack = false;
             rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
             attacking = false;
-            Invoke("ChangeCanAttackTrue", 5);
-            
         }
         if (collision.gameObject.CompareTag("Wall"))
-        {                      
+        {
+            animator.SetBool("Roll", false);
             rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
-            Invoke("ChangeCanAttackTrue", 5);
+            attacking = false;
+            canAttack = false;
         }
     }
 
