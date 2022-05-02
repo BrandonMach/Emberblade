@@ -18,9 +18,7 @@ public class PlayerControll : MonoBehaviour
     private CapsuleCollider2D capsuleCollider;
     private BoxCollider2D boxCollider;
 
-    Vector2 oGOffset;
-    Vector2 oGSize;
-    Vector3 oGpos;
+   
 
     Vector2 standingBoxOffset;
     Vector2 stadningBoxSize;
@@ -84,6 +82,16 @@ public class PlayerControll : MonoBehaviour
     public float yWallForce;
     public float wallJumpTime;
 
+    [Header ("Crouch")]
+    public bool hasToCrouch;
+    public LayerMask roofLayer;
+    public float headFloat;
+    public Vector3 headOffset;
+    Vector2 oGOffset;
+    Vector2 oGSize;
+    Vector3 oGpos;
+
+
     void Start()
     {
         player_Rb = GetComponent<Rigidbody2D>();
@@ -107,26 +115,20 @@ public class PlayerControll : MonoBehaviour
     {
        
         Move();
-
-
-
         Falling();
-        Debug.Log("Jump height " + transform.position.y);
-
-
         if (!hasUnlockedDJ)
         {
             canDoubleJump = false;
         }
-
         JumpInput();
         isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
         if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround)
         {
             canDoubleJump = false;
-
         }
         Parry();
+
+        hasToCrouch = Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat, groundLayer)|| Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat,roofLayer);
 
 
 
@@ -235,7 +237,7 @@ public class PlayerControll : MonoBehaviour
             }
         }
         //Crouch
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.C)|| hasToCrouch && isOnGround)
         {
             animator.SetBool("Sit", true);
             capsuleCollider.size = new Vector2(4.577552f, 4.577552f);
@@ -257,7 +259,8 @@ public class PlayerControll : MonoBehaviour
         }
 
         //WallClimb
-        if (CanWallClimb) {
+        if (CanWallClimb) 
+        {
             isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 5, wallLayer);
             if (isTouchingFront && !isOnGround && moveX != 0)
             {
@@ -371,7 +374,10 @@ public class PlayerControll : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawLine(transform.position + colliderOffset, transform.position + colliderOffset + Vector3.down * groundLenght);  
-        Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLenght);    
+        Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLenght);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position + headOffset, transform.position + headOffset + Vector3.up * headFloat);
     }
 
 
