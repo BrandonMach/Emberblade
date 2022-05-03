@@ -15,21 +15,15 @@ public class PlayerControll : MonoBehaviour
     public float jRingSpawnTime = 0.1f;
     public GameObject dashEffectPrefab;
     public float dESpawnTime = 0;
-    private CapsuleCollider2D collider;
+    private CapsuleCollider2D capsuleCollider;
     private BoxCollider2D boxCollider;
 
-    Vector2 oGOffset;
-    Vector2 oGSize;
-    Vector3 oGpos;
+   
 
     Vector2 standingBoxOffset;
     Vector2 stadningBoxSize;
 
-    //Jump
-    private float jumpTimer = 0;
-    private float jumpStallTime = 0;
-    public bool falling;
-    public float maxJumpHeight;
+   
 
     //Dash
     public float dashForce;
@@ -46,19 +40,19 @@ public class PlayerControll : MonoBehaviour
     public Animator animator;
 
     //---------------------------------
-    [Header ("New Ground detection")]
+    [Header ("Ground detection")]
     public LayerMask groundLayer;
     public bool isOnGround;
     public float groundLenght;
     public Vector3 colliderOffset;
 
-    [Header("New Jump")]
+    [Header("Jump")]
     public float jumpSpeed = 15;
     public float jumpDelay = 0.25f;
-    private float lumpTimer = 0;
-    //public int jumpCounter = 0;
+    private float jumpTimer = 0;
+
     public bool canDoubleJump = false;
-    public bool hasUnlockedDJ = false;
+    public static bool hasUnlockedDJ = false; // Static gör att boolen värde sparas när man dör
 
     [Header("Physics")]
     public float gravity = 1;
@@ -70,19 +64,45 @@ public class PlayerControll : MonoBehaviour
     private float parryStart = 0;
     private float parryWindow = 0.5f;
 
+    [Header("Hook")]
+    public GrappleHookScript ghScript;
+    public LayerMask grapplelayer;
+
+    [Header("WallClimb")]
+    public LayerMask wallLayer;
+    bool isTouchingFront;
+    public Transform frontCheck;
+    bool wallCling;
+    public float wallClimbSpeed;
+    public bool CanWallClimb;
+
+    [Header("Wall Jump")]
+    bool wallJumping;
+    public float xWallForce;
+    public float yWallForce;
+    public float wallJumpTime;
+
+    [Header ("Crouch")]
+    public bool hasToCrouch;
+    public LayerMask roofLayer;
+    public float headFloat;
+    public Vector3 headOffset;
+    Vector2 oGOffset;
+    Vector2 oGSize;
+    Vector3 oGpos;
 
 
     void Start()
     {
         player_Rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<CapsuleCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerInfoScript = GetComponent<PlayerInfo>();
         originalJumpForce = jumpforce;
 
 
-        oGSize = collider.size;
-        oGOffset = collider.offset;
+        oGSize = capsuleCollider.size;
+        oGOffset = capsuleCollider.offset;
 
         standingBoxOffset = boxCollider.offset;
         stadningBoxSize = boxCollider.size;
@@ -95,28 +115,20 @@ public class PlayerControll : MonoBehaviour
     {
        
         Move();
-
-
-
         Falling();
-        Debug.Log("Jump height " + transform.position.y);
-
-
         if (!hasUnlockedDJ)
         {
             canDoubleJump = false;
         }
-
         JumpInput();
         isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
-       
-
         if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround)
         {
             canDoubleJump = false;
-
         }
         Parry();
+
+        hasToCrouch = Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat, groundLayer)|| Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat,roofLayer);
 
     }
 
@@ -177,25 +189,27 @@ public class PlayerControll : MonoBehaviour
 
         Debug.Log("aaaah"+ Mathf.Abs(moveBy));
         Vector3 characterScale = transform.localScale;
-        if (Input.GetAxisRaw("Horizontal") < 0)
+        if (Input.GetAxisRaw("Horizontal") < 0) //Left
         {
             characterScale.x = -1.45f;
             if (isOnGround)
             {
                 PlayRunAnimation();
             }
+          
         }
         else
         {
             animator.SetFloat("Speed", 0.0f);
         }
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        if (Input.GetAxisRaw("Horizontal") > 0) //Right
         {
             characterScale.x = 1.45f;
             if (isOnGround)
             {
                 PlayRunAnimation();
             }
+           
         }
       
         transform.localScale = characterScale;
@@ -220,13 +234,12 @@ public class PlayerControll : MonoBehaviour
                 isDashing = false;
             }
         }
-        
-
-        if (Input.GetKey(KeyCode.C))
+        //Crouch
+        if (Input.GetKey(KeyCode.C)|| hasToCrouch && isOnGround)
         {
             animator.SetBool("Sit", true);
-            collider.size = new Vector2(4.577552f, 4.577552f);
-            collider.offset = new Vector2(-0.01422455f, -1f);
+            capsuleCollider.size = new Vector2(4.577552f, 4.577552f);
+            capsuleCollider.offset = new Vector2(-0.01422455f, -1f);
             movementSpeed = 13;
             jumpforce = 20;
             boxCollider.offset = new Vector2(-0.05918601f, -2.19f);
@@ -235,18 +248,70 @@ public class PlayerControll : MonoBehaviour
         else
         {
             animator.SetBool("Sit", false);
-            collider.size = oGSize;
-            collider.offset = oGOffset;
+            capsuleCollider.size = oGSize;
+            capsuleCollider.offset = oGOffset;
             movementSpeed = 25;
             jumpforce = 40;
             boxCollider.offset = standingBoxOffset;
             boxCollider.size = stadningBoxSize;
         }
 
+        //WallClimb
+        if (CanWallClimb) 
+        {
+            isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 5, wallLayer);
+            if (isTouchingFront && !isOnGround && moveX != 0)
+            {
+                wallCling = true;
+            }
+            else
+            {
+                wallCling = false;
+            }
+            if (wallCling)
+            {
+
+
+                //Wall jump
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    wallJumping = true;
+                    Invoke("SetWallJumpingFalse", wallJumpTime); // Bättre timer än att loopa aka sätter på Metoden SetWallJumpingFalse efter wallJumpTime
+                }
+                else if (Input.GetKey(KeyCode.W))
+                {
+                    player_Rb.velocity = new Vector2(player_Rb.velocity.x, 10);
+                    PlayClimbAnimation();
+                }
+                else
+                {
+                    player_Rb.velocity = new Vector2(player_Rb.velocity.x, Mathf.Clamp(player_Rb.velocity.y, -wallClimbSpeed, float.MaxValue));
+                    PlayClimbAnimation();
+                }
+
+                if (wallJumping)
+                {
+                    player_Rb.velocity = new Vector2(xWallForce * -moveX, yWallForce);  //Reverse input för att hoppa motsatt från väggen
+                }
+            }
+            else
+            {
+                animator.SetFloat("Climb", 0);
+            }
+        }
+
+    }
+    void SetWallJumpingFalse()
+    {
+        wallJumping = false;
     }
     void PlayRunAnimation()
     {
         animator.SetFloat("Speed", 2);
+    }
+    void PlayClimbAnimation()
+    {
+        animator.SetFloat("Climb", 2);     
     }
 
     void JumpInput()
@@ -275,6 +340,12 @@ public class PlayerControll : MonoBehaviour
         animator.SetBool("IsOnGround", false);
         Debug.Log("Has Landed");
     }
+
+    public void Knockback(int xValue)
+    {
+        Debug.Log("Knockback");
+        player_Rb.AddForce(new Vector2(xValue, 3), ForceMode2D.Impulse);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
          if (collision.gameObject.CompareTag("Wall"))
@@ -283,7 +354,7 @@ public class PlayerControll : MonoBehaviour
            // jumpCounter = 0;
 
          }
-        else if (collision.gameObject.CompareTag("Roof"))
+        if (collision.gameObject.CompareTag("Roof"))
         {
             isOnGround = false;
         }
@@ -293,47 +364,20 @@ public class PlayerControll : MonoBehaviour
             hasUnlockedDJ = true;
             Destroy(collision.gameObject);
         }
+        Physics2D.IgnoreLayerCollision(0,7);
+       
     }
     //--------------------------------------------------
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawLine(transform.position + colliderOffset, transform.position + colliderOffset + Vector3.down * groundLenght);  
-        Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLenght);    
+        Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLenght);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position + headOffset, transform.position + headOffset + Vector3.up * headFloat);
     }
 
 
-   
-
-
-    //private void SpawnJumpRing()
-    //{
-    //    GameObject jumpRing = Instantiate(jumpRingPrefab) as GameObject;
-    //    jumpRing.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 2.5f);
-    //}
-
-    //private void SpawnDashEffect() // Funkar inte
-    //{
-    //    GameObject dashEffect = Instantiate(dashEffectPrefab) as GameObject;
-    //    dashEffect.transform.position = new Vector2(this.transform.position.x, this.transform.position.x - 5f);
-    //}
-
-    //IEnumerator JumpGraphic()
-    //{
-    //    if(!isOnGround && jumpCounter < 1)
-    //    {
-    //        yield return new WaitForSeconds(jRingSpawnTime);
-    //        SpawnJumpRing();           
-    //    }
-    //}
-
-    //IEnumerator DashGraphic()
-    //{
-    //    if(!isDashing)
-    //    {
-    //        yield return new WaitForSeconds(dESpawnTime);
-    //        SpawnDashEffect();
-    //    }
-    //}
 }
 

@@ -8,11 +8,12 @@ public class TrapScript : MonoBehaviour
     public int damageAmount = 20;
     public PlayerInfo playerDamage;
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && playerDamage.canTakeDamage)
         {
-            playerDamage.TakeDamage(99999);
+            playerDamage.TakeDamage(damageAmount);
+            Debug.Log("Spikes");
         }
     }
 }

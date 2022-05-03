@@ -56,6 +56,9 @@ TextureImporter:
   - first:
       213: 6630152649821149973
     second: DirtTileSet_17
+  - first:
+      213: 2103501917533822328
+    second: DirtTileSet_18
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -100,7 +103,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -152,8 +155,8 @@ TextureImporter:
         y: 256
         width: 64
         height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,8 +176,8 @@ TextureImporter:
         y: 256
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,8 +197,8 @@ TextureImporter:
         y: 256
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -215,8 +218,8 @@ TextureImporter:
         y: 256
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -236,8 +239,8 @@ TextureImporter:
         y: 192
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -257,8 +260,8 @@ TextureImporter:
         y: 192
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -299,8 +302,8 @@ TextureImporter:
         y: 192
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -320,8 +323,8 @@ TextureImporter:
         y: 128
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -341,8 +344,8 @@ TextureImporter:
         y: 128
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -362,8 +365,8 @@ TextureImporter:
         y: 128
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -383,8 +386,8 @@ TextureImporter:
         y: 128
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -404,8 +407,8 @@ TextureImporter:
         y: 64
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -425,8 +428,8 @@ TextureImporter:
         y: 64
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -446,8 +449,8 @@ TextureImporter:
         y: 64
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -467,8 +470,8 @@ TextureImporter:
         y: 64
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -488,8 +491,8 @@ TextureImporter:
         y: 0
         width: 64
         height: 64
-      alignment: 3
-      pivot: {x: 1, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -505,7 +508,7 @@ TextureImporter:
       name: DirtTileSet_17
       rect:
         serializedVersion: 2
-        x: 64
+        x: 65
         y: 0
         width: 64
         height: 64
@@ -518,6 +521,27 @@ TextureImporter:
       bones: []
       spriteID: 51b543bf4b8030c50800000000000000
       internalID: 6630152649821149973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTileSet_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87dd4f269d3213d10800000000000000
+      internalID: 2103501917533822328
       vertices: []
       indices: 
       edges: []

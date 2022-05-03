@@ -75,25 +75,23 @@ public class FishEnemyScript : MonoBehaviour
     }
     void DamagePalyer()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 4);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 4); //Fish attack hitbox
 
         foreach (var colliderHit in hitColliders)
         {
             if (colliderHit.gameObject.CompareTag("Player") && playerInfoController.canTakeDamage)
             {
-                playerInfoController.TakeDamage(5);
-                Debug.Log("aasadasd");
+                playerInfoController.TakeDamage(15);
+                boxCollider.isTrigger = true;
+                
+            }
+            if (colliderHit.gameObject.CompareTag("Ground"))
+            {
+                boxCollider.isTrigger = false;
+                isUnderWater = true;
+
             }
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isUnderWater = true;
-
-        }      
     }
 
     private void OnDrawGizmosSelected()
