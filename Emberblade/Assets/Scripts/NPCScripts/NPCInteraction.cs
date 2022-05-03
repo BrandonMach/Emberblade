@@ -6,8 +6,8 @@ using TMPro;
 public class NPCInteraction : MonoBehaviour
 {
     private bool triggering, isTalking, nextSentence;
-    public GameObject text, npcChatTextOb;
-    public TMP_Text npcText, npcChatText;
+    public GameObject text;
+    public TMP_Text npcText, npcChatText, npcName;
     public string[] sentences;
     private int wordIndex;
     private GameObject player;
@@ -34,6 +34,7 @@ public class NPCInteraction : MonoBehaviour
             if (isTalking == true)
             {
                 text.SetActive(false);
+                npcName.text = gameObject.name;
             }
             else
             {
@@ -48,7 +49,6 @@ public class NPCInteraction : MonoBehaviour
                     startDialogue = false;
                     text.SetActive(false);
                     isTalking = true;
-                    npcChatTextOb.SetActive(true);
                     NextSentence();
                 }
                 else
@@ -64,7 +64,6 @@ public class NPCInteraction : MonoBehaviour
         else
         {
             text.SetActive(false);
-            npcChatTextOb.SetActive(false);
         }
     }
 
