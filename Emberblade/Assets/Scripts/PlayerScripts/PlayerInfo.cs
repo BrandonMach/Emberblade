@@ -42,17 +42,12 @@ public class PlayerInfo : MonoBehaviour
 
         if (Input.GetKey(KeyCode.H))
         {
-            if (currentEnergy < maxEnergy)
-            {
-                currentEnergy++;
-                energyBar.SetEnergy(currentEnergy);
-            }
-            else { currentEnergy = maxEnergy; }
+            RechargeEnergy();
         }
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            Heal(30);
+            Heal(35);
         }
 
         if (currentHealth <= 0)//Om man får 0 eller mindre health så kör den metoden Death() som man dör av.
@@ -80,6 +75,16 @@ public class PlayerInfo : MonoBehaviour
             Debug.Log("Parry Succes");
         }
        
+    }
+
+    public void RechargeEnergy()
+    {
+        if (currentEnergy < maxEnergy)
+        {
+            currentEnergy++;
+            energyBar.SetEnergy(currentEnergy);
+        }
+        else { currentEnergy = maxEnergy; }
     }
 
     public void Heal(int health) //Metod som gör att man kan få tillbaka health.
