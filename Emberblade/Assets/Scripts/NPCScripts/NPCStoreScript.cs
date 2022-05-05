@@ -13,6 +13,7 @@ public class NPCStoreScript : MonoBehaviour
     private int wordIndex;
     public float dialogueSpeed;
     public Animator dialogueAnimator;
+    public Animator animator;
     private bool startDialogue = true;
 
 
@@ -24,11 +25,11 @@ public class NPCStoreScript : MonoBehaviour
 
     private void Update()
     {
-        if (!isTalking)
-        {
-            npcText.text = "Press \"E\" to talk!";
-
-        }
+        //if (!isTalking)
+        //{
+        //    npcText.text = "Press \"E\" to talk!";
+        //    animator.SetBool("Money", false);
+        //}
 
         if (triggering)
         {
@@ -36,6 +37,7 @@ public class NPCStoreScript : MonoBehaviour
             {
                 text.SetActive(false);
                 npcName.text = gameObject.name;
+                animator.SetBool("Money", true);
             }
             else
             {
@@ -44,6 +46,8 @@ public class NPCStoreScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 player.GetComponent<PlayerControll>().enabled = false;
+                player.transform.position = transform.position + new Vector3(15, -2, 0);
+               
                 if (startDialogue)
                 {
                     dialogueAnimator.SetTrigger("Enter");
@@ -72,21 +76,25 @@ public class NPCStoreScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag( "Player"))
         {
             triggering = true;
             player = other.gameObject;
+            isTalking = false;
+            Debug.Log("Store in range");
+            npcText.text = "Press \"E\" to talk!";
+            animator.SetBool("Money", false);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            triggering = false;
-            isTalking = false;
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        triggering = false;
+    //        isTalking = false;
+    //    }
+    //}
 
     void NextSentence()
     {
