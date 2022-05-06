@@ -51,6 +51,14 @@ public class SnakeScript : MonoBehaviour
             if (startTimer >= startAttackTimer)
             {
 
+                if (facingLeft)
+                {
+                    rb.AddForce(new Vector2(1.005f, 0), ForceMode2D.Impulse);
+                }
+                else
+                {
+                    rb.AddForce(new Vector2(-1.005f, 0), ForceMode2D.Impulse);
+                }
                 canAttack = true;
                 startTimer = 0;
             }
