@@ -80,18 +80,18 @@ public class NPCStoreScript : MonoBehaviour
         {
             dialogueSpeed = 0.05f;
         }
-        if (storeIsOpen)
-        {
-            storePanel.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                storeIsOpen = false;
-                storePanel.SetActive(false);
-                wordIndex = 0;
-                startDialogue = true;
-                player.GetComponent<PlayerControll>().enabled = true;
-            }
-        }
+        //if (storeIsOpen)
+        //{
+        //    storePanel.SetActive(true);
+        //    if (Input.GetKeyDown(KeyCode.Q))
+        //    {
+        //        storeIsOpen = false;
+        //        storePanel.SetActive(false);
+        //        wordIndex = 0;
+        //        startDialogue = true;
+        //        player.GetComponent<PlayerControll>().enabled = true;
+        //    }
+        //}
     }
 
 
@@ -125,9 +125,9 @@ public class NPCStoreScript : MonoBehaviour
             nextSentence = false;
             npcChatText.text = "";
             dialogueAnimator.SetTrigger("Exit");
-            //wordIndex = 0;
-            //startDialogue = true;
-            //player.GetComponent<PlayerControll>().enabled = true;
+            wordIndex = 0;
+            startDialogue = true;
+            player.GetComponent<PlayerControll>().enabled = true;
             storeIsOpen = true;
         }
     }
