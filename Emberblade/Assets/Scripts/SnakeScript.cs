@@ -17,20 +17,20 @@ public class SnakeScript : MonoBehaviour
     bool attacking;
     bool playAttackAnim;
     public Rigidbody2D rb;
-    float startTimeAttackTimer;
+    public float startAttackTimer;
     float attackDelay = 1;
 
     private float flipHitbox = 1f;
     float startTimer = 0;
-    float animationTime = 0.95f;
+    float animationTime = 2f;
 
 
-    public Transform attackpoint;
-    public float attackRange = 0.5f;
+
     public LayerMask playerLayer;
     Collider2D[] hitPlayer;
 
-    bool dash;
+    public bool canAttack = true;
+   
 
 
 
@@ -44,14 +44,17 @@ public class SnakeScript : MonoBehaviour
     void Update()
     {
         DetectPlayer();
-       
-        if (Input.GetKeyDown(KeyCode.Alpha7))
+
+        if (!canAttack)
         {
-            AttackPlayer();
-           
+            startTimer += Time.deltaTime;
+            if (startTimer >= startAttackTimer)
+            {
+
+                canAttack = true;
+                startTimer = 0;
+            }
         }
-
-
     }
 
     void DetectPlayer()
@@ -76,7 +79,7 @@ public class SnakeScript : MonoBehaviour
                         characterScale.x *= -1;
                         facingLeft = true;
                         this.transform.localScale = characterScale;
-                        Debug.Log("Armadillo look left");
+                        
                         flipHitbox *= -1;
                         
                     }
@@ -92,64 +95,42 @@ public class SnakeScript : MonoBehaviour
                     StartAttack();
                 }
             }
+            
         }
     }
 
-    void AttackPlayer()
-    {
-        animator.SetTrigger("ATrigger");
-
-
-        hitPlayer = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, playerLayer);
-        foreach (Collider2D player in hitPlayer)
-        {
-            playerInfoController.TakeDamage(10);
-        }
-
-
-       
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && canAttack)
         {
-            playerInRange = false;
-            playerControllScript.Knockback(-30);
+            animator.SetTrigger("ATrigger");
+            playerInfoController.TakeDamage(30);
+            playerControllScript.Knockback(flipHitbox*100,20);
+            canAttack = false;        
         }
     }
+    
 
     void StartAttack()
     {
-                
+        if (canAttack)
+        {
             if (facingLeft)
             {
-
                 rb.AddForce(new Vector2(-2, 0), ForceMode2D.Impulse);
-                //AttackPlayer();
             }
             else
             {
                 rb.AddForce(new Vector2(2, 0), ForceMode2D.Impulse);
-                //AttackPlayer();
             }
-        
-           
-        
+        }
     }
    
 
     private void OnDrawGizmosSelected()
-    {
-        
+    {        
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, playerDetection);
-
-        if(attackpoint == null)
-        {
-            return;
-        }
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(attackpoint.position, attackRange);
+        Gizmos.DrawWireCube(transform.position, playerDetection);      
     }
 }

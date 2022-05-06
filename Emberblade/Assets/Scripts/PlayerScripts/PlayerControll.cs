@@ -129,7 +129,7 @@ public class PlayerControll : MonoBehaviour
         Parry();
 
         hasToCrouch = Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat, groundLayer)|| Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat,roofLayer);
-
+        Crouch();
     }
 
     void Parry()
@@ -234,27 +234,7 @@ public class PlayerControll : MonoBehaviour
                 isDashing = false;
             }
         }
-        //Crouch
-        if (Input.GetKey(KeyCode.C)|| hasToCrouch && isOnGround)
-        {
-            animator.SetBool("Sit", true);
-            capsuleCollider.size = new Vector2(4.577552f, 4.577552f);
-            capsuleCollider.offset = new Vector2(-0.01422455f, -1f);
-            movementSpeed = 13;
-            jumpforce = 20;
-            boxCollider.offset = new Vector2(-0.05918601f, -2.19f);
-            boxCollider.size = new Vector2(3.4216f, 5);
-        }
-        else
-        {
-            animator.SetBool("Sit", false);
-            capsuleCollider.size = oGSize;
-            capsuleCollider.offset = oGOffset;
-            movementSpeed = 25;
-            jumpforce = 40;
-            boxCollider.offset = standingBoxOffset;
-            boxCollider.size = stadningBoxSize;
-        }
+      
 
         //WallClimb
         if (CanWallClimb) 
@@ -301,6 +281,31 @@ public class PlayerControll : MonoBehaviour
         }
 
     }
+
+    void Crouch()
+    {
+        //Crouch
+        if (Input.GetKey(KeyCode.C) || hasToCrouch && isOnGround)
+        {
+            animator.SetBool("Sit", true);
+            capsuleCollider.size = new Vector2(4.577552f, 4.577552f);
+            capsuleCollider.offset = new Vector2(-0.01422455f, -1f);
+            movementSpeed = 13;
+            jumpforce = 20;
+            boxCollider.offset = new Vector2(-0.05918601f, -2.19f);
+            boxCollider.size = new Vector2(3.4216f, 5);
+        }
+        else
+        {
+            animator.SetBool("Sit", false);
+            capsuleCollider.size = oGSize;
+            capsuleCollider.offset = oGOffset;
+            movementSpeed = 25;
+            jumpforce = 40;
+            boxCollider.offset = standingBoxOffset;
+            boxCollider.size = stadningBoxSize;
+        }
+    }
     void SetWallJumpingFalse()
     {
         wallJumping = false;
@@ -341,10 +346,10 @@ public class PlayerControll : MonoBehaviour
         Debug.Log("Has Landed");
     }
 
-    public void Knockback(int xValue)
+    public void Knockback(float xKnockback,float yKnockback)
     {
         Debug.Log("Knockback");
-        player_Rb.AddForce(new Vector2(xValue, 3), ForceMode2D.Impulse);
+        player_Rb.AddForce(new Vector2(xKnockback, yKnockback), ForceMode2D.Impulse);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
