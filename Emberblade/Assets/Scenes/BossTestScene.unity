@@ -29699,7 +29699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  playerDetection: {x: 128.89, y: 12.08}
+  playerDetection: {x: 128.89, y: 8.39}
   isOnGround: 0
   facingLeft: 0
   animator: {fileID: 1508506084}

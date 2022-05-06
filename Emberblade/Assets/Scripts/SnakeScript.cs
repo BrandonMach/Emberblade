@@ -8,6 +8,7 @@ public class SnakeScript : MonoBehaviour
     public bool playerInRange;
     public Vector2 playerDetection;
     PlayerInfo playerInfoController;
+    PlayerControll playerControllScript;
     public bool isOnGround;
     public bool facingLeft;
     public Animator animator;
@@ -29,29 +30,21 @@ public class SnakeScript : MonoBehaviour
     public LayerMask playerLayer;
     Collider2D[] hitPlayer;
 
+    bool dash;
 
 
 
     void Start()
     {
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
-       // rb = GetComponent<Rigidbody2D>();
+        playerControllScript = GameObject.Find("Player").GetComponent<PlayerControll>();
     }
 
     // Update is called once per frame
     void Update()
     {
         DetectPlayer();
-        if (attacking)
-        {
-            
-            playAttackAnim = true;
-            animator.SetBool("Attack", true);
-           
-           
-            Invoke("StopAttackAnim", 3);
-           
-        }
+       
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             AttackPlayer();
@@ -76,15 +69,16 @@ public class SnakeScript : MonoBehaviour
 
                 if (playerInRange)
                 {
-                   
+                    
                     if (this.transform.position.x > playerInfoController.transform.position.x && !facingLeft) // Armadillo på höger sida av spelare
                     {
+                        
                         characterScale.x *= -1;
                         facingLeft = true;
                         this.transform.localScale = characterScale;
                         Debug.Log("Armadillo look left");
                         flipHitbox *= -1;
-
+                        
                     }
                     if (this.transform.position.x < playerInfoController.transform.position.x && facingLeft) // Armadillo på vänster sida av spelaren
                     {
@@ -92,8 +86,8 @@ public class SnakeScript : MonoBehaviour
                         facingLeft = false;
                         this.transform.localScale = characterScale;
                         flipHitbox *= -1;
-
-                     
+                        
+                       
                     }
                     StartAttack();
                 }
@@ -118,33 +112,32 @@ public class SnakeScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //if (other.gameObject.CompareTag("Player"))
-        //{
-        //    AttackPlayer();
-        //}
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerInRange = false;
+            playerControllScript.Knockback(-30);
+        }
     }
 
     void StartAttack()
     {
-       
+                
             if (facingLeft)
             {
 
-                rb.AddForce(new Vector2(-8, 0), ForceMode2D.Impulse);
-                 //AttackPlayer();
+                rb.AddForce(new Vector2(-2, 0), ForceMode2D.Impulse);
+                //AttackPlayer();
             }
             else
             {
-                rb.AddForce(new Vector2(8, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(2, 0), ForceMode2D.Impulse);
                 //AttackPlayer();
             }
         
+           
+        
     }
-    void StopAttackAnim()
-    {
-        animator.SetBool("Attack", false);
-       
-    }
+   
 
     private void OnDrawGizmosSelected()
     {
