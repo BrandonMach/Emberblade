@@ -20,11 +20,16 @@ public class SnakeScript : MonoBehaviour
     float attackDelay = 1;
 
     private float flipHitbox = 1f;
-    public Vector2 biteSize;
-    public float biteOffsetX;
-    public float biteOffsetY;
+    float startTimer = 0;
+    float animationTime = 0.95f;
 
-    Collider2D[] attackRange;
+
+    public Transform attackpoint;
+    public float attackRange = 0.5f;
+    public LayerMask playerLayer;
+    Collider2D[] hitPlayer;
+
+
 
 
     void Start()
@@ -47,7 +52,11 @@ public class SnakeScript : MonoBehaviour
             Invoke("StopAttackAnim", 3);
            
         }
-        AttackPlayer();
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            AttackPlayer();
+           
+        }
 
 
     }
@@ -94,35 +103,25 @@ public class SnakeScript : MonoBehaviour
 
     void AttackPlayer()
     {
-         attackRange = Physics2D.OverlapBoxAll(transform.position + new Vector3(biteOffsetX * flipHitbox, biteOffsetY, 0), biteSize, 0);
+        animator.SetTrigger("ATrigger");
 
-        foreach (var colliderHit in attackRange)
+
+        hitPlayer = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, playerLayer);
+        foreach (Collider2D player in hitPlayer)
         {
-            if (colliderHit.gameObject.CompareTag("Player"))
-            {
-                animator.SetTrigger("ATrigger");
-                attacking = true;
-
-
-                if (playAttackAnim)
-                {
-                  
-                    startTimeAttackTimer += Time.deltaTime;
-                    if (startTimeAttackTimer >= attackDelay)
-                    {
-                        
-                        startTimeAttackTimer = 0;
-                        playerInfoController.TakeDamage(5);
-                        playAttackAnim = false;
-                    }
-                }
-            }
+            playerInfoController.TakeDamage(10);
         }
+
+
+       
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        
+        //if (other.gameObject.CompareTag("Player"))
+        //{
+        //    AttackPlayer();
+        //}
     }
 
     void StartAttack()
@@ -132,12 +131,12 @@ public class SnakeScript : MonoBehaviour
             {
 
                 rb.AddForce(new Vector2(-8, 0), ForceMode2D.Impulse);
-                
+                 //AttackPlayer();
             }
             else
             {
                 rb.AddForce(new Vector2(8, 0), ForceMode2D.Impulse);
-               
+                //AttackPlayer();
             }
         
     }
@@ -149,10 +148,15 @@ public class SnakeScript : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, playerDetection);
 
+        if(attackpoint == null)
+        {
+            return;
+        }
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position + new Vector3(biteOffsetX * flipHitbox, biteOffsetY, 0), biteSize);
+        Gizmos.DrawWireSphere(attackpoint.position, attackRange);
     }
 }
