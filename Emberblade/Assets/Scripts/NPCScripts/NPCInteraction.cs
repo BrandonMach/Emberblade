@@ -12,6 +12,7 @@ public class NPCInteraction : MonoBehaviour
     private int wordIndex;
     private GameObject player;
     public float dialogueSpeed;
+    private float speedUpTimer;
     public Animator dialogueAnimator;
     private bool startDialogue = true;
 
@@ -24,6 +25,7 @@ public class NPCInteraction : MonoBehaviour
 
     private void Update()
     {
+        speedUpTimer += (Time.deltaTime * 1000f);
         if (!isTalking)
         {
             npcText.text = "Press \"E\" to talk!";
@@ -46,9 +48,11 @@ public class NPCInteraction : MonoBehaviour
                 if (startDialogue)
                 {
                     dialogueAnimator.SetTrigger("Enter");
+                    nextSentence = false;
                     startDialogue = false;
                     text.SetActive(false);
                     isTalking = true;
+                    speedUpTimer = 0;
                     NextSentence();
                 }
                 else
@@ -57,6 +61,7 @@ public class NPCInteraction : MonoBehaviour
                     {
                         nextSentence = false;
                         NextSentence();
+                        speedUpTimer = 0;
                     }
                 }
             }
@@ -64,6 +69,14 @@ public class NPCInteraction : MonoBehaviour
         else
         {
             text.SetActive(false);
+        }
+        if (Input.GetKey(KeyCode.E) && !nextSentence && speedUpTimer > 300)
+        {
+            dialogueSpeed = 0.01f;
+        }
+        else
+        {
+            dialogueSpeed = 0.05f;
         }
     }
 
