@@ -30,7 +30,11 @@ public class SnakeScript : MonoBehaviour
     Collider2D[] hitPlayer;
 
     public bool canAttack = true;
-   
+
+    [Header("Second phase")]
+    EnemyHealth enemyHealthScripts;
+    int maxHealth; 
+    bool secondPhase = false;
 
 
 
@@ -38,6 +42,8 @@ public class SnakeScript : MonoBehaviour
     {
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
         playerControllScript = GameObject.Find("Player").GetComponent<PlayerControll>();
+        enemyHealthScripts = GetComponent<EnemyHealth>();
+        maxHealth = enemyHealthScripts.health;
     }
 
     // Update is called once per frame
@@ -50,7 +56,6 @@ public class SnakeScript : MonoBehaviour
             startTimer += Time.deltaTime;
             if (startTimer >= startAttackTimer)
             {
-
                 if (facingLeft)
                 {
                     rb.AddForce(new Vector2(1.005f, 0), ForceMode2D.Impulse);
@@ -62,6 +67,12 @@ public class SnakeScript : MonoBehaviour
                 canAttack = true;
                 startTimer = 0;
             }
+        }
+
+        if (enemyHealthScripts.health <= (maxHealth / 2) && !secondPhase)
+        {
+            secondPhase = true;
+            
         }
     }
 
@@ -81,25 +92,21 @@ public class SnakeScript : MonoBehaviour
                 if (playerInRange)
                 {
                     
-                    if (this.transform.position.x > playerInfoController.transform.position.x && !facingLeft) // Armadillo på höger sida av spelare
-                    {
-                        
+                    if (this.transform.position.x > playerInfoController.transform.position.x +10 && !facingLeft) // Armadillo på höger sida av spelare
+                    {       
                         characterScale.x *= -1;
                         facingLeft = true;
-                        this.transform.localScale = characterScale;
-                        
-                        flipHitbox *= -1;
-                        
+                        this.transform.localScale = characterScale;     
+                        flipHitbox *= -1;       
                     }
-                    if (this.transform.position.x < playerInfoController.transform.position.x && facingLeft) // Armadillo på vänster sida av spelaren
+                    if (this.transform.position.x < playerInfoController.transform.position.x -10&& facingLeft) // Armadillo på vänster sida av spelaren
                     {
                         characterScale.x *= -1;
                         facingLeft = false;
                         this.transform.localScale = characterScale;
-                        flipHitbox *= -1;
-                        
-                       
+                        flipHitbox *= -1;   
                     }
+                    
                     StartAttack();
                 }
             }
@@ -116,6 +123,10 @@ public class SnakeScript : MonoBehaviour
             playerInfoController.TakeDamage(30);
             playerControllScript.Knockback(flipHitbox*100,20);
             canAttack = false;        
+        }
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            canAttack = true;
         }
     }
     

@@ -41,8 +41,6 @@ public class BossSpiderScript : MonoBehaviour
         webHookScript = GetComponent<WebHookScript>();
         enemyHealthScripts = GetComponent<EnemyHealth>();
         maxHealth = enemyHealthScripts.health;
-       
-
     }
 
     // Update is called once per frame
@@ -84,9 +82,6 @@ public class BossSpiderScript : MonoBehaviour
     }
     void DetectPlayer()
     {
-
-     
-
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, detectionRange);
 
         foreach (var colliderHit in hitColliders)
