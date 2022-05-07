@@ -22,6 +22,8 @@ public class SnakeScript : MonoBehaviour
 
     private float flipHitbox = 1f;
     float startTimer = 0;
+    float hitWallTimer = 0;
+    float wallAttackTime = 2;
     float animationTime = 2f;
 
 
@@ -126,7 +128,14 @@ public class SnakeScript : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Wall"))
         {
-            canAttack = true;
+            canAttack = false;
+          
+            hitWallTimer += Time.deltaTime;
+            if (hitWallTimer >= wallAttackTime)
+            {
+               canAttack = true;
+
+            }
         }
     }
     

@@ -52,7 +52,7 @@ public class PlayerControll : MonoBehaviour
     private float jumpTimer = 0;
 
     public bool canDoubleJump = false;
-    public static bool hasUnlockedDJ = false; // Static gör att boolen värde sparas när man dör
+    public /*static*/ bool hasUnlockedDJ = false; // Static gör att boolen värde sparas när man dör. Ska vara static i the full game
 
     [Header("Physics")]
     public float gravity = 1;
