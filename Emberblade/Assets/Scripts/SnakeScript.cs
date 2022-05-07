@@ -37,6 +37,10 @@ public class SnakeScript : MonoBehaviour
     EnemyHealth enemyHealthScripts;
     int maxHealth; 
     bool secondPhase = false;
+    public ParticleSystem poisonRain;
+    public Animator camAnim;
+    public Transform startTransform;
+    Vector3 startPos;
 
 
 
@@ -46,6 +50,8 @@ public class SnakeScript : MonoBehaviour
         playerControllScript = GameObject.Find("Player").GetComponent<PlayerControll>();
         enemyHealthScripts = GetComponent<EnemyHealth>();
         maxHealth = enemyHealthScripts.health;
+        poisonRain.Stop();
+        startPos = startTransform.position;
     }
 
     // Update is called once per frame
@@ -73,8 +79,13 @@ public class SnakeScript : MonoBehaviour
 
         if (enemyHealthScripts.health <= (maxHealth / 2) && !secondPhase)
         {
+            playerControllScript.enabled = false;
+            animator.SetTrigger("SecondPhase");
+            transform.position = startPos;
             secondPhase = true;
-            
+            poisonRain.Play();
+            camAnim.SetBool("cutscene1", true);
+            Invoke("StopCutscene", 1f);
         }
     }
 
@@ -153,6 +164,12 @@ public class SnakeScript : MonoBehaviour
                 rb.AddForce(new Vector2(2, 0), ForceMode2D.Impulse);
             }
         }
+    }
+
+    void StopCutscene()
+    {
+        playerControllScript.enabled = true;
+        camAnim.SetBool("cutscene1", false);
     }
    
 

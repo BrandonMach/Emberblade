@@ -162,7 +162,8 @@ public class PlayerControll : MonoBehaviour
             //jumpCounter = 0;
             canDoubleJump = true;
             landing.Invoke();
-            //animator.SetBool("Jumping", false);
+            
+            
         }
         else
         {
@@ -371,15 +372,12 @@ public class PlayerControll : MonoBehaviour
         }
 
        
-        Physics2D.IgnoreLayerCollision(0,7); // Ignore Grapple layer
-
-
-
-       
+        Physics2D.IgnoreLayerCollision(0,7); // Ignore Grapple layer      
     }
 
 
-    
+
+
     //--------------------------------------------------
     private void OnDrawGizmos()
     {

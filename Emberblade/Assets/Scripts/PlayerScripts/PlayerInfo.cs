@@ -102,6 +102,12 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
+    private void OnParticleCollision(GameObject other) //Poison rain
+    {
+        Debug.Log("Poison");
+        TakeDamage(2);
+    }
+
     public void Death() //Gör så man kan dö.
     {
         Debug.Log("works");
