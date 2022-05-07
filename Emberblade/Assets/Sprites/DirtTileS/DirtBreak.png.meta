@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 83067001c7d01404b990342cfc826c03
+guid: e3bcfa6e5c75dff4f9030847d65ea57a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6280324790999230380
-    second: CactusSprite_0
+      213: -4581526471672375834
+    second: DirtBreak_0
   - first:
-      213: 7865234242077146655
-    second: CactusSprite_1
+      213: -6476013227366792679
+    second: DirtBreak_1
   - first:
-      213: 2939442240870070853
-    second: CactusSprite_2
-  - first:
-      213: -6474800814053857917
-    second: CactusSprite_3
+      213: 5000704523196902720
+    second: DirtBreak_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +55,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,85 +100,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CactusSprite_0
+      name: DirtBreak_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 420
-        width: 360
-        height: 360
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca7a6917f12382750800000000000000
-      internalID: 6280324790999230380
+      spriteID: 6e55beea2f52b60c0800000000000000
+      internalID: -4581526471672375834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CactusSprite_1
+      name: DirtBreak_1
       rect:
         serializedVersion: 2
-        x: 420
-        y: 420
-        width: 360
-        height: 360
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1e3f321fdce62d60800000000000000
-      internalID: 7865234242077146655
+      spriteID: 9124216f7449026a0800000000000000
+      internalID: -6476013227366792679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CactusSprite_2
+      name: DirtBreak_2
       rect:
         serializedVersion: 2
-        x: 22
-        y: 20
-        width: 360
-        height: 360
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54ab6dce42ffac820800000000000000
-      internalID: 2939442240870070853
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CactusSprite_3
-      rect:
-        serializedVersion: 2
-        x: 440
-        y: 7
-        width: 360
-        height: 360
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 385e8eee6f2e426a0800000000000000
-      internalID: -6474800814053857917
+      spriteID: 04d27dbd442166540800000000000000
+      internalID: 5000704523196902720
       vertices: []
       indices: 
       edges: []
