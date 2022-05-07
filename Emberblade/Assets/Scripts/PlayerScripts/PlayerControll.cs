@@ -25,17 +25,16 @@ public class PlayerControll : MonoBehaviour
 
    
 
-    //Dash
+    [Header ("Dash ability")]
     public float dashForce;
     public float startDashTimer;
     private float currentDashTime;
     private float dashDirection;
-
-    private bool isDashing;
-    private PlayerInfo playerInfoScript;
-
-    UnityEvent landing = new UnityEvent();
+    public bool isDashing { get; set; }
+    private PlayerInfo playerInfoScript; //Decrease mana
+    bool destroyBlock;
     
+   
 
     public Animator animator;
 
@@ -45,6 +44,7 @@ public class PlayerControll : MonoBehaviour
     public bool isOnGround;
     public float groundLenght;
     public Vector3 colliderOffset;
+    UnityEvent landing = new UnityEvent();
 
     [Header("Jump")]
     public float jumpSpeed = 15;
@@ -369,9 +369,17 @@ public class PlayerControll : MonoBehaviour
             hasUnlockedDJ = true;
             Destroy(collision.gameObject);
         }
-        Physics2D.IgnoreLayerCollision(0,7);
+
+       
+        Physics2D.IgnoreLayerCollision(0,7); // Ignore Grapple layer
+
+
+
        
     }
+
+
+    
     //--------------------------------------------------
     private void OnDrawGizmos()
     {
