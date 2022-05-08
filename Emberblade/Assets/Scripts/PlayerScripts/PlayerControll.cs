@@ -190,7 +190,7 @@ public class PlayerControll : MonoBehaviour
         player_Rb.velocity = new Vector2(moveBy, player_Rb.velocity.y);
         //Flips the sprite
 
-        Debug.Log("aaaah"+ Mathf.Abs(moveBy));
+       
         Vector3 characterScale = transform.localScale;
         if (Input.GetAxisRaw("Horizontal") < 0) //Left
         {
@@ -350,7 +350,7 @@ public class PlayerControll : MonoBehaviour
     {
         animator.SetBool("Jumping", false);
         animator.SetBool("IsOnGround", false);
-        Debug.Log("Has Landed");
+        //Debug.Log("Has Landed");
     }
 
     public void Knockback(float xKnockback,float yKnockback)

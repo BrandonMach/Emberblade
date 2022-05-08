@@ -46,8 +46,7 @@ public class FishEnemyScript : MonoBehaviour
             jumpWaitTimer = 0;
             rend.enabled = true; 
         }
-        Debug.Log("Fish start" + startPos);
-        Debug.Log("max jump" + maxHeight);
+       
         if(transform.position.y > maxHeight.y)
         {
             transform.localScale = new Vector3(-1,1,1);

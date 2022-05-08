@@ -56,7 +56,7 @@ public class ScorpionAttackScript : MonoBehaviour
             startTimeAttackTimer = 0;
         }
         
-        Debug.Log("Yo" +startTimeAttackTimer);
+       
 
 
         EnemyFacingPlayer();
@@ -114,7 +114,7 @@ public class ScorpionAttackScript : MonoBehaviour
     void EnemyFacingPlayer()
     {
         Vector3 charecterScale = transform.localScale;
-        Debug.Log("PlayerPos" +playerInfoController.transform.position);
+       // Debug.Log("PlayerPos" +playerInfoController.transform.position);
 
         if (playerInfoController.transform.position.x > this.transform.position.x && facingLeft)
         {
