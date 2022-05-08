@@ -86,6 +86,7 @@ public class PlayerControll : MonoBehaviour
 
     [Header ("Crouch")]
     public bool hasToCrouch;
+    public bool isCrouching;
     public LayerMask roofLayer;
     public float headFloat;
     public Vector3 headOffset;
@@ -301,9 +302,11 @@ public class PlayerControll : MonoBehaviour
             jumpforce = 20;
             boxCollider.offset = new Vector2(-0.05918601f, -2.19f);
             boxCollider.size = new Vector2(3.4216f, 5);
+            isCrouching = true;
         }
         else
         {
+            isCrouching = false;
             animator.SetBool("Sit", false);
             capsuleCollider.size = oGSize;
             capsuleCollider.offset = oGOffset;
@@ -341,9 +344,23 @@ public class PlayerControll : MonoBehaviour
     }
     void Jumping()
     {
-        player_Rb.velocity = new Vector2(player_Rb.velocity.x, 0);
-        player_Rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
-        jumpTimer = 0;
+
+        if (isCrouching)
+        {
+            player_Rb.velocity = new Vector2(player_Rb.velocity.x , 0);
+            player_Rb.AddForce(Vector2.up * jumpSpeed * 0.75f, ForceMode2D.Impulse);
+            jumpTimer = 0;
+        }
+        else
+        {
+            player_Rb.velocity = new Vector2(player_Rb.velocity.x, 0);
+            player_Rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            jumpTimer = 0;
+        }
+
+       
+
+       
     }
 
     public void OnLanding()
