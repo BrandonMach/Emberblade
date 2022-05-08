@@ -37,6 +37,7 @@ public class PlayerControll : MonoBehaviour
    
 
     public Animator animator;
+    public Animator camAnimator;
 
     //---------------------------------
     [Header ("Ground detection")]
@@ -369,6 +370,10 @@ public class PlayerControll : MonoBehaviour
         {
             hasUnlockedDJ = true;
             Destroy(collision.gameObject);
+            camAnimator.SetBool("NewAbility", true);
+            this.enabled = false;
+            Invoke("StopCutscene", 1);
+
         }
 
        
@@ -379,6 +384,12 @@ public class PlayerControll : MonoBehaviour
 
 
     //--------------------------------------------------
+
+    void StopCutscene()
+    {
+        this.enabled = true;
+        camAnimator.SetBool("NewAbility", false);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
