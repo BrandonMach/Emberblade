@@ -964,10 +964,10 @@ RectTransform:
   m_Father: {fileID: 655765807}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -310, y: 128}
-  m_SizeDelta: {x: 231.3325, y: 59.7239}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 159, y: -61}
+  m_SizeDelta: {x: 231.3325, y: 59.723907}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &290556500
 MonoBehaviour:
@@ -10363,7 +10363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: -0.0000076294}
+  m_AnchoredPosition: {x: -250, y: 0.0000076294}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2023663120
@@ -10409,7 +10409,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2023663121}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 655765810}
+        m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
+        m_MethodName: buyEnergy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2023663121
 MonoBehaviour:
   m_ObjectHideFlags: 0
