@@ -22282,8 +22282,8 @@ ParticleSystem:
     type: 1
     collisionMode: 1
     colliderForce: 0
-    multiplyColliderForceByParticleSize: 0
-    multiplyColliderForceByParticleSpeed: 1
+    multiplyColliderForceByParticleSize: 1
+    multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
     m_Planes: []
     m_Dampen:
@@ -23479,7 +23479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655593088}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 421.5, y: 27.9, z: 0}
+  m_LocalPosition: {x: 1119.2, y: 170.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -37009,12 +37009,12 @@ GameObject:
   - component: {fileID: 831404420}
   - component: {fileID: 831404419}
   m_Layer: 0
-  m_Name: Unlock_DoubleJump (1)
-  m_TagString: UnlockDJ
+  m_Name: Unlock_Dash
+  m_TagString: UnlockDash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &831404419
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37100,7 +37100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831404418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 140, y: -17.8, z: 0}
+  m_LocalPosition: {x: 1160.9, y: 87.5, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -37929,7 +37929,7 @@ GameObject:
   - component: {fileID: 1042027250}
   - component: {fileID: 1042027251}
   - component: {fileID: 1042027252}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -38047,6 +38047,7 @@ MonoBehaviour:
   dESpawnTime: 0.1
   dashForce: 100
   startDashTimer: 0.25
+  hasUnlockedDash: 0
   animator: {fileID: 1042027243}
   camAnimator: {fileID: 1297813471}
   groundLayer:
@@ -45362,7 +45363,6 @@ GameObject:
   - component: {fileID: 1504007148}
   - component: {fileID: 1504007147}
   - component: {fileID: 1504007146}
-  - component: {fileID: 1504007145}
   m_Layer: 6
   m_Name: 'Cobra '
   m_TagString: Boss
@@ -45370,32 +45370,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1504007145
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504007144}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -5.542938, y: -3.3209326}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.44, y: 0.18}
-    oldSize: {x: 32, y: 32}
-    newSize: {x: 4, y: 4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 8.938538, y: 4.0003247}
-  m_EdgeRadius: 0
 --- !u!114 &1504007146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45410,7 +45384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   canTakeDamage: 1
-  abilityItem: {fileID: 0}
+  abilityItem: {fileID: 831404418}
 --- !u!114 &1504007147
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -87,6 +87,10 @@ public class SnakeScript : MonoBehaviour
             camAnim.SetBool("cutscene1", true);
             Invoke("StopCutscene", 1f);
         }
+        if(enemyHealthScripts.health == 0)
+        {
+            poisonRain.Stop();
+        }
     }
 
     void DetectPlayer()

@@ -15,6 +15,7 @@ TagManager:
   - Boss
   - NPC
   - GM
+  - UnlockDash
   layers:
   - Default
   - TransparentFX

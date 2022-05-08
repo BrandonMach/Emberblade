@@ -30,6 +30,7 @@ public class PlayerControll : MonoBehaviour
     public float startDashTimer;
     private float currentDashTime;
     private float dashDirection;
+    public bool hasUnlockedDash;
     public bool isDashing { get; set; }
     private PlayerInfo playerInfoScript; //Decrease mana
     bool destroyBlock;
@@ -217,25 +218,29 @@ public class PlayerControll : MonoBehaviour
         transform.localScale = characterScale;
 
         //Dash
-        if (Input.GetKeyDown(KeyCode.RightShift) && moveX != 0 && playerInfoScript.currentEnergy >=20) //Kan bara dasha om man input en direction
+        if (hasUnlockedDash)
         {
-            isDashing = true;
-            currentDashTime = startDashTimer;
-            player_Rb.velocity = Vector2.zero;
-            dashDirection = (int)moveX;
-            playerInfoScript.UseEnergy(20);
-            
-        }
-        if (isDashing)
-        {
-            player_Rb.velocity = transform.right * dashDirection * dashForce;
-            currentDashTime -= Time.deltaTime;
-
-            if(currentDashTime <= 0)
+            if (Input.GetKeyDown(KeyCode.RightShift) && moveX != 0 && playerInfoScript.currentEnergy >= 20) //Kan bara dasha om man input en direction
             {
-                isDashing = false;
+                isDashing = true;
+                currentDashTime = startDashTimer;
+                player_Rb.velocity = Vector2.zero;
+                dashDirection = (int)moveX;
+                playerInfoScript.UseEnergy(20);
+
+            }
+            if (isDashing)
+            {
+                player_Rb.velocity = transform.right * dashDirection * dashForce;
+                currentDashTime -= Time.deltaTime;
+
+                if (currentDashTime <= 0)
+                {
+                    isDashing = false;
+                }
             }
         }
+       
       
 
         //WallClimb
@@ -370,17 +375,27 @@ public class PlayerControll : MonoBehaviour
         {
             hasUnlockedDJ = true;
             Destroy(collision.gameObject);
-            camAnimator.SetBool("NewAbility", true);
-            this.enabled = false;
-            Invoke("StopCutscene", 1);
+            PlayNewAbilityCutscene();
+
+        }
+        else if (collision.gameObject.CompareTag("UnlockDash"))
+        {
+            hasUnlockedDash = true;
+            Destroy(collision.gameObject);
+            PlayNewAbilityCutscene();
 
         }
 
-       
+
         Physics2D.IgnoreLayerCollision(0,7); // Ignore Grapple layer      
     }
 
-
+    void PlayNewAbilityCutscene()
+    {
+        camAnimator.SetBool("NewAbility", true);
+        this.enabled = false;
+        Invoke("StopCutscene", 1);
+    }
 
 
     //--------------------------------------------------
