@@ -38254,7 +38254,6 @@ MonoBehaviour:
   yWallForce: 40
   wallJumpTime: 0.05
   hasToCrouch: 0
-  isCrouching: 0
   roofLayer:
     serializedVersion: 2
     m_Bits: 1024
