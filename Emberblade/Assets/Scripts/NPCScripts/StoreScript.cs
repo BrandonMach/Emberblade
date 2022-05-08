@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StoreScript : MonoBehaviour
 {
     public bool boughtHealth, boughtEnergy;
     public GameObject healthButton, energyButton;
     private float middleOfScreenX, middleOfScreenY;
+    public TextMeshProUGUI currencyText;
 
     private void Start()
     {
@@ -26,6 +28,9 @@ public class StoreScript : MonoBehaviour
             energyButton.SetActive(false);
             healthButton.transform.position = new Vector2(middleOfScreenX,middleOfScreenY); 
         }
+
+        currencyText.text = GameObject.Find("FrogMainCharacterV1").GetComponent<Currency>().currency.ToString();
+
     }
 
     public void buyEnergy()
