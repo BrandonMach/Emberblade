@@ -15,15 +15,20 @@ public class PlayerInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthBar.SetMaxHealth(maxHealth);
-        healthBar.currentHealth(currentHealth);
-        energyBar.SetMaxEnergy(maxEnergy);
-        energyBar.currentEnergy(currentEnergy);
+        //healthBar.SetMaxHealth(maxHealth);
+        //healthBar.currentHealth(currentHealth);
+        //energyBar.SetMaxEnergy(maxEnergy);
+        //energyBar.currentEnergy(currentEnergy);
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.currentHealth(currentHealth);
+        energyBar.SetMaxEnergy(maxEnergy);
+        energyBar.currentEnergy(currentEnergy);
+
         if (Input.GetKeyDown(KeyCode.K))
         {
             TakeDamage(20);
