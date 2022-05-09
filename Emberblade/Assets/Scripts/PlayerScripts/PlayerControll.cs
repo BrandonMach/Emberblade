@@ -25,15 +25,7 @@ public class PlayerControll : MonoBehaviour
 
    
 
-    [Header ("Dash ability")]
-    public float dashForce;
-    public float startDashTimer;
-    private float currentDashTime;
-    private float dashDirection;
-    public bool hasUnlockedDash;
-    public bool isDashing { get; set; }
-    private PlayerInfo playerInfoScript; //Decrease mana
-    bool destroyBlock;
+   
     
    
 
@@ -48,6 +40,25 @@ public class PlayerControll : MonoBehaviour
     public Vector3 colliderOffset;
     UnityEvent landing = new UnityEvent();
 
+    [Header("Crouch")]
+    public bool hasToCrouch;
+    public LayerMask roofLayer;
+    public float headFloat;
+    public Vector3 headOffset;
+    Vector2 oGOffset;
+    Vector2 oGSize;
+    Vector3 oGpos;
+
+
+
+    [Header("Physics")]
+    public float gravity = 1;
+    public float fallMultiplier = 5f;
+    public float liniearDrag = 4f;
+
+    [Header("Abilities")]
+    NewAbilityTextScript newAbilityText;
+
     [Header("Jump")]
     public float jumpSpeed = 15;
     public float jumpDelay = 0.25f;
@@ -57,10 +68,17 @@ public class PlayerControll : MonoBehaviour
     public /*static*/ bool hasUnlockedDJ = false; // Static gör att boolen värde sparas när man dör. Ska vara static i the full game
     public bool isCrouching;
 
-    [Header("Physics")]
-    public float gravity = 1;
-    public float fallMultiplier = 5f;
-    public float liniearDrag = 4f;
+    [Header("Dash ability")]
+    public float dashForce;
+    public float startDashTimer;
+    private float currentDashTime;
+    private float dashDirection;
+    public bool hasUnlockedDash;
+    public bool isDashing { get; set; }
+    private PlayerInfo playerInfoScript; //Decrease mana
+    bool destroyBlock;
+
+   
 
     [Header("Parry")]
     public bool isParrying = false;
@@ -85,14 +103,7 @@ public class PlayerControll : MonoBehaviour
     public float yWallForce;
     public float wallJumpTime;
 
-    [Header ("Crouch")]
-    public bool hasToCrouch;
-    public LayerMask roofLayer;
-    public float headFloat;
-    public Vector3 headOffset;
-    Vector2 oGOffset;
-    Vector2 oGSize;
-    Vector3 oGpos;
+  
 
 
     void Start()
@@ -101,6 +112,7 @@ public class PlayerControll : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerInfoScript = GetComponent<PlayerInfo>();
+        newAbilityText = GameObject.Find("NewAbilityController").GetComponent<NewAbilityTextScript>();
         originalJumpForce = jumpforce;
 
 
@@ -390,6 +402,7 @@ public class PlayerControll : MonoBehaviour
             hasUnlockedDJ = true;
             Destroy(collision.gameObject);
             PlayNewAbilityCutscene();
+            newAbilityText.index = 0;
 
         }
         else if (collision.gameObject.CompareTag("UnlockDash"))
@@ -397,6 +410,7 @@ public class PlayerControll : MonoBehaviour
             hasUnlockedDash = true;
             Destroy(collision.gameObject);
             PlayNewAbilityCutscene();
+            newAbilityText.index = 1;
 
         }
 
@@ -406,6 +420,7 @@ public class PlayerControll : MonoBehaviour
 
     void PlayNewAbilityCutscene()
     {
+        newAbilityText.startText = true;
         camAnimator.SetBool("NewAbility", true);
         this.enabled = false;
         Invoke("StopCutscene", 1);
@@ -416,6 +431,7 @@ public class PlayerControll : MonoBehaviour
 
     void StopCutscene()
     {
+        newAbilityText.startText = false;
         this.enabled = true;
         camAnimator.SetBool("NewAbility", false);
     }
