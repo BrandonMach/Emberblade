@@ -8473,7 +8473,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.666667, y: 10.666667}
+    oldSize: {x: 8, y: 8}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9349,6 +9349,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1253114005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7264417621556465975, guid: c44dd5b986bc5f94dba42d8c9a531a89, type: 3}
+  m_PrefabInstance: {fileID: 294792301583070390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1253114008
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253114005}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1.5
+  m_AngularDrag: 0.4
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &1275093601
 GameObject:
   m_ObjectHideFlags: 0
@@ -20199,6 +20225,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1537793033}
     m_Modifications:
+    - target: {fileID: 80357459, guid: c44dd5b986bc5f94dba42d8c9a531a89, type: 3}
+      propertyPath: agroRangeX
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 80357459, guid: c44dd5b986bc5f94dba42d8c9a531a89, type: 3}
+      propertyPath: agroRangeY
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 5349993033819804478, guid: c44dd5b986bc5f94dba42d8c9a531a89, type: 3}
       propertyPath: m_RootOrder
       value: 2
