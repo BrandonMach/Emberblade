@@ -31,11 +31,19 @@ public class NewAbilityTextScript : MonoBehaviour
             textAnimator.SetTrigger("Enter");
             startText = false;
         }
-        //else 
-        //{
-        //    textAnimator.SetTrigger("Exit");
-        //}
+       
     }
+    public void ClosePopUP()
+    {
+        textAnimator.SetTrigger("Exit");
+        Invoke("ClearText", 1);
+    }
+    private void ClearText()
+    {
+        abilityText.text = "";
+    }
+
+    
 
     IEnumerator WriteSentence()
     {

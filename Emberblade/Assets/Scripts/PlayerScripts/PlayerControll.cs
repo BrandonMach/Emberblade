@@ -420,10 +420,11 @@ public class PlayerControll : MonoBehaviour
 
     void PlayNewAbilityCutscene()
     {
-        newAbilityText.startText = true;
+       
         camAnimator.SetBool("NewAbility", true);
         this.enabled = false;
         Invoke("StopCutscene", 1);
+        newAbilityText.startText = true;
     }
 
 
@@ -432,6 +433,7 @@ public class PlayerControll : MonoBehaviour
     void StopCutscene()
     {
         newAbilityText.startText = false;
+        newAbilityText.ClosePopUP();
         this.enabled = true;
         camAnimator.SetBool("NewAbility", false);
     }
