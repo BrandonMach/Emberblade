@@ -8,40 +8,57 @@ public class NewAbilityTextScript : MonoBehaviour
 
     public TextMeshProUGUI abilityText;
     public string[] sentences;
-    public int index = 0;
+    private int index = 0;
     public float textSpeed;
-    public Animator textAnimator;
-    public bool startText = false;
-    public TMP_Text playerName;
-    
+    public Animator testAnimator;
+    private bool startText = true;
     // Start is called before the first frame update
-    
-   
+
 
     // Update is called once per frame
     void Update()
-    {     
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
             if (startText)
             {
-                StartCoroutine(WriteSentence());
-                playerName.text = "Groodan";
-                textAnimator.SetTrigger("Enter");
+                testAnimator.SetTrigger("Enter");
                 startText = false;
+                
             }
             else
             {
-                textAnimator.SetTrigger("Exit");          
+                NextSentence();
             }
+           
+        }
     }
- 
+
+    void NextSentence()
+    {
+        if(index <= sentences.Length - 1)
+        {
+            abilityText.text = "";
+            StartCoroutine(WriteSentence());
+        }
+        else
+        {
+            abilityText.text = "";
+            testAnimator.SetTrigger("Exit");
+            index = 0;
+            startText = true;
+        }
+    }
 
     IEnumerator WriteSentence()
     {
-        abilityText.text = sentences[index];
-        yield return new WaitForSeconds(textSpeed);
-        Debug.Log("New ability");
-        
-        
+        foreach (char character in sentences[index].ToCharArray())
+        {
+            abilityText.text += character;
+            yield return new WaitForSeconds(textSpeed);
+        }
+
+        index++;
         
     }
 }

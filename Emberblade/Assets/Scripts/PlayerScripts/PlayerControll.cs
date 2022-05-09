@@ -48,18 +48,6 @@ public class PlayerControll : MonoBehaviour
     public Vector3 colliderOffset;
     UnityEvent landing = new UnityEvent();
 
-    [Header("Crouch")]
-    public bool hasToCrouch;
-    public LayerMask roofLayer;
-    public float headFloat;
-    public Vector3 headOffset;
-    Vector2 oGOffset;
-    Vector2 oGSize;
-    Vector3 oGpos;
-
-    [Header("Abilities")]
-    public NewAbilityTextScript newAbilityText;
-
     [Header("Jump")]
     public float jumpSpeed = 15;
     public float jumpDelay = 0.25f;
@@ -97,7 +85,14 @@ public class PlayerControll : MonoBehaviour
     public float yWallForce;
     public float wallJumpTime;
 
-   
+    [Header ("Crouch")]
+    public bool hasToCrouch;
+    public LayerMask roofLayer;
+    public float headFloat;
+    public Vector3 headOffset;
+    Vector2 oGOffset;
+    Vector2 oGSize;
+    Vector3 oGpos;
 
 
     void Start()
@@ -106,7 +101,6 @@ public class PlayerControll : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerInfoScript = GetComponent<PlayerInfo>();
-        newAbilityText = GameObject.Find("NewAbilityController").GetComponent<NewAbilityTextScript>();
         originalJumpForce = jumpforce;
 
 
@@ -343,7 +337,9 @@ public class PlayerControll : MonoBehaviour
         {
             animator.SetBool("Jumping", true);
                 Jumping();
-             
+                //jumpCounter ++;
+            
+                //Debug.Log("dsdsa" + jumpCounter);
         }       
     }
     void Jumping()
@@ -391,21 +387,17 @@ public class PlayerControll : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("UnlockDJ"))
         {
-          
             hasUnlockedDJ = true;
             Destroy(collision.gameObject);
             PlayNewAbilityCutscene();
-            newAbilityText.index = 0;
-            
 
         }
         else if (collision.gameObject.CompareTag("UnlockDash"))
         {
-            newAbilityText.index = 1 ;
             hasUnlockedDash = true;
             Destroy(collision.gameObject);
             PlayNewAbilityCutscene();
-           
+
         }
 
 
@@ -416,8 +408,7 @@ public class PlayerControll : MonoBehaviour
     {
         camAnimator.SetBool("NewAbility", true);
         this.enabled = false;
-        newAbilityText.startText = true;
-        Invoke("StopCutscene", 1.5f);
+        Invoke("StopCutscene", 1);
     }
 
 
@@ -427,8 +418,6 @@ public class PlayerControll : MonoBehaviour
     {
         this.enabled = true;
         camAnimator.SetBool("NewAbility", false);
-        newAbilityText.startText = false;
-      
     }
     private void OnDrawGizmos()
     {
