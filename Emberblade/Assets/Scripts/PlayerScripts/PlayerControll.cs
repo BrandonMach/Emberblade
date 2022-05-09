@@ -57,7 +57,7 @@ public class PlayerControll : MonoBehaviour
     public float liniearDrag = 4f;
 
     [Header("Abilities")]
-    NewAbilityTextScript newAbilityText;
+    public  NewAbilityTextScript newAbilityText;
 
     [Header("Jump")]
     public float jumpSpeed = 15;

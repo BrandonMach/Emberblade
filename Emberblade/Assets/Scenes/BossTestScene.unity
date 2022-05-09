@@ -31606,6 +31606,7 @@ MonoBehaviour:
   gravity: 3
   fallMultiplier: 4.5
   liniearDrag: 3
+  newAbilityText: {fileID: 1315639190}
   jumpSpeed: 45
   jumpDelay: 5
   canDoubleJump: 0
