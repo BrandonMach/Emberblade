@@ -7,13 +7,13 @@ public class NPCStoreScript : MonoBehaviour
 {
     private GameObject player, playerMovement;
     private bool triggering, storeIsOpen, isTalking, nextSentence;
-    public GameObject text;
+    public GameObject text, storePanel;
     public TMP_Text npcText, npcChatText, npcName;
     public string[] sentences;
     private int wordIndex;
     public float dialogueSpeed;
+    private float speedUpTimer;
     public Animator dialogueAnimator;
-    public Animator animator;
     private bool startDialogue = true;
 
 
@@ -25,11 +25,12 @@ public class NPCStoreScript : MonoBehaviour
 
     private void Update()
     {
-        //if (!isTalking)
-        //{
-        //    npcText.text = "Press \"E\" to talk!";
-        //    animator.SetBool("Money", false);
-        //}
+        speedUpTimer += (Time.deltaTime * 1000f);
+        if (!isTalking)
+        {
+            npcText.text = "Press \"E\" to talk!";
+
+        }
 
         if (triggering)
         {
@@ -37,7 +38,6 @@ public class NPCStoreScript : MonoBehaviour
             {
                 text.SetActive(false);
                 npcName.text = gameObject.name;
-                animator.SetBool("Money", true);
             }
             else
             {
@@ -46,14 +46,14 @@ public class NPCStoreScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 player.GetComponent<PlayerControll>().enabled = false;
-                player.transform.position = transform.position + new Vector3(15, -2, 0);
-               
                 if (startDialogue)
                 {
                     dialogueAnimator.SetTrigger("Enter");
+                    nextSentence = false;
                     startDialogue = false;
                     text.SetActive(false);
                     isTalking = true;
+                    speedUpTimer = 0;
                     NextSentence();
                 }
                 else
@@ -62,6 +62,7 @@ public class NPCStoreScript : MonoBehaviour
                     {
                         nextSentence = false;
                         NextSentence();
+                        speedUpTimer = 0;
                     }
                 }
 
@@ -71,30 +72,46 @@ public class NPCStoreScript : MonoBehaviour
         {
             text.SetActive(false);
         }
+        if (Input.GetKey(KeyCode.E) && !nextSentence && speedUpTimer > 300)
+        {
+            dialogueSpeed = 0.01f;
+        }
+        else
+        {
+            dialogueSpeed = 0.05f;
+        }
+        //if (storeIsOpen)
+        //{
+        //    storePanel.SetActive(true);
+        //    if (Input.GetKeyDown(KeyCode.Q))
+        //    {
+        //        storeIsOpen = false;
+        //        storePanel.SetActive(false);
+        //        wordIndex = 0;
+        //        startDialogue = true;
+        //        player.GetComponent<PlayerControll>().enabled = true;
+        //    }
+        //}
     }
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag( "Player"))
+        if (other.tag == "Player")
         {
             triggering = true;
             player = other.gameObject;
-            isTalking = false;
-            Debug.Log("Store in range");
-            npcText.text = "Press \"E\" to talk!";
-            animator.SetBool("Money", false);
         }
     }
 
-    //private void OnTriggerExit2D(Collider2D other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        triggering = false;
-    //        isTalking = false;
-    //    }
-    //}
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            triggering = false;
+            isTalking = false;
+        }
+    }
 
     void NextSentence()
     {
@@ -111,6 +128,7 @@ public class NPCStoreScript : MonoBehaviour
             wordIndex = 0;
             startDialogue = true;
             player.GetComponent<PlayerControll>().enabled = true;
+            storeIsOpen = true;
         }
     }
 
