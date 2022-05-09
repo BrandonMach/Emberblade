@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3626008484506564777}
   - component: {fileID: 5845426475345963504}
   - component: {fileID: 51219952361129453}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 3xStone_Platform
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -186,5 +186,6 @@ MonoBehaviour:
   playerDetectionY: 5.5
   playerInRangeX: 9.4
   playerInRangeY: 5.19
+  playerInfoController: {fileID: 0}
   animator: {fileID: -5455274540838978737}
   isOnGround: 0
