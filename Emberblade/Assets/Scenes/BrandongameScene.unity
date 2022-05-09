@@ -38660,6 +38660,7 @@ MonoBehaviour:
   jumpDelay: 0.25
   canDoubleJump: 0
   hasUnlockedDJ: 0
+  isCrouching: 0
   gravity: 2
   fallMultiplier: 6
   liniearDrag: 7

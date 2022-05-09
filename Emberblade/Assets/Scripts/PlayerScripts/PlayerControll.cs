@@ -55,6 +55,7 @@ public class PlayerControll : MonoBehaviour
 
     public bool canDoubleJump = false;
     public /*static*/ bool hasUnlockedDJ = false; // Static gör att boolen värde sparas när man dör. Ska vara static i the full game
+    public bool isCrouching;
 
     [Header("Physics")]
     public float gravity = 1;
@@ -301,10 +302,12 @@ public class PlayerControll : MonoBehaviour
             jumpforce = 20;
             boxCollider.offset = new Vector2(-0.05918601f, -2.19f);
             boxCollider.size = new Vector2(3.4216f, 5);
+            isCrouching = true;
         }
         else
         {
             animator.SetBool("Sit", false);
+            isCrouching = false;
             capsuleCollider.size = oGSize;
             capsuleCollider.offset = oGOffset;
             movementSpeed = 25;
@@ -341,9 +344,20 @@ public class PlayerControll : MonoBehaviour
     }
     void Jumping()
     {
-        player_Rb.velocity = new Vector2(player_Rb.velocity.x, 0);
-        player_Rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
-        jumpTimer = 0;
+
+        if (isCrouching)
+        {
+            player_Rb.velocity = new Vector2(player_Rb.velocity.x, 0);
+            player_Rb.AddForce(Vector2.up * jumpSpeed*0.75f, ForceMode2D.Impulse);
+            jumpTimer = 0;
+        }
+        else
+        {
+            player_Rb.velocity = new Vector2(player_Rb.velocity.x, 0);
+            player_Rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            jumpTimer = 0;
+        }
+       
     }
 
     public void OnLanding()
