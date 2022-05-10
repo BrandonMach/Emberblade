@@ -26,8 +26,6 @@ public class PlayerControll : MonoBehaviour
    
 
    
-    
-   
 
     public Animator animator;
     public Animator camAnimator;
@@ -235,22 +233,28 @@ public class PlayerControll : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.RightShift) && moveX != 0 && playerInfoScript.currentEnergy >= 20) //Kan bara dasha om man input en direction
             {
+                animator.SetTrigger("Dash");
                 isDashing = true;
                 currentDashTime = startDashTimer;
                 player_Rb.velocity = Vector2.zero;
                 dashDirection = (int)moveX;
                 playerInfoScript.UseEnergy(20);
+                
+               
 
             }
             if (isDashing)
             {
+                
                 player_Rb.velocity = transform.right * dashDirection * dashForce;
                 currentDashTime -= Time.deltaTime;
-
+                
                 if (currentDashTime <= 0)
                 {
+                    
                     isDashing = false;
                 }
+
             }
         }
        
@@ -343,8 +347,6 @@ public class PlayerControll : MonoBehaviour
 
     void JumpInput()
     {
-       
-
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump)
         {
             animator.SetBool("Jumping", true);
