@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BrandongameScene.unity
     guid: e87883b383158aa43b834a03e3a430e7
+  - enabled: 1
+    path: Assets/Scenes/Areas/SwampScene.unity
+    guid: db949cee8c9dc634cacd3cadb826f20d
   m_configObjects: {}
