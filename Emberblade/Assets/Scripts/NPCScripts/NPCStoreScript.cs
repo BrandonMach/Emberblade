@@ -121,6 +121,7 @@ public class NPCStoreScript : MonoBehaviour
             nextSentence = false;
             npcChatText.text = "";
             dialogueAnimator.SetTrigger("Exit");
+            storeIsOpen = true;
             //wordIndex = 0;
             //startDialogue = true;
             //player.GetComponent<PlayerControll>().enabled = true;
