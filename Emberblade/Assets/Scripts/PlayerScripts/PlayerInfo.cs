@@ -35,6 +35,10 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.currentHealth(currentHealth);
+        energyBar.SetMaxEnergy(maxEnergy);
+        energyBar.currentEnergy(currentEnergy);
         if (Input.GetKeyDown(KeyCode.K))
         {
             TakeDamage(20);

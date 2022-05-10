@@ -7,7 +7,7 @@ public class NPCStoreScript : MonoBehaviour
 {
     private GameObject player, playerMovement;
     private bool triggering, storeIsOpen, isTalking, nextSentence;
-    public GameObject text;
+    public GameObject text, storePanel;
     public TMP_Text npcText, npcChatText, npcName;
     public string[] sentences;
     private int wordIndex;
@@ -71,6 +71,19 @@ public class NPCStoreScript : MonoBehaviour
         {
             text.SetActive(false);
         }
+
+        if (storeIsOpen)
+        {
+            storePanel.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                storeIsOpen = false;
+                storePanel.gameObject.SetActive(false);
+                wordIndex = 0;
+                startDialogue = true;
+                player.GetComponent<PlayerControll>().enabled = true;
+            }
+        }
     }
 
 
@@ -108,9 +121,9 @@ public class NPCStoreScript : MonoBehaviour
             nextSentence = false;
             npcChatText.text = "";
             dialogueAnimator.SetTrigger("Exit");
-            wordIndex = 0;
-            startDialogue = true;
-            player.GetComponent<PlayerControll>().enabled = true;
+            //wordIndex = 0;
+            //startDialogue = true;
+            //player.GetComponent<PlayerControll>().enabled = true;
         }
     }
 
