@@ -37,4 +37,9 @@ public class Parallax : MonoBehaviour
 
         
     }
+
+    public void Yo()
+    {
+        Debug.Log("yo");
+    }
 }

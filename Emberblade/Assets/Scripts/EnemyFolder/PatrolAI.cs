@@ -30,7 +30,7 @@ public class PatrolAI : MonoBehaviour
     private Vector2 movetowardsPlayer;
     private PlayerInfo playerInfoController;
     public float agroRangeX = 70;
-    public float agroRangeY = 70;
+    public float agroRangeY = 30;
     
 
 
@@ -115,19 +115,20 @@ public class PatrolAI : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && attackTime)
+        {
+            playerInfoController.TakeDamage(40);
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Wall") && attackTime)
         {
             Destroy(gameObject);
         }
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Ground") && attackTime)
         {
             Destroy(gameObject);
         }
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            Destroy(gameObject);
-        }
-        if (other.gameObject.CompareTag("Roof"))
+        if (other.gameObject.CompareTag("Roof") && attackTime)
         {
             Destroy(gameObject);
         }
