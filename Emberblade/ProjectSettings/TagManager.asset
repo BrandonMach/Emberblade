@@ -9,6 +9,13 @@ TagManager:
   - Roof
   - FillGround
   - Currency
+  - Spike
+  - GiveNewAbility
+  - UnlockDJ
+  - Boss
+  - NPC
+  - GM
+  - UnlockDash
   layers:
   - Default
   - TransparentFX
@@ -18,10 +25,10 @@ TagManager:
   - UI
   - Enemy
   - Grapple
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - BackgroundFill
+  - Roof
+  - Player
   - 
   - 
   - 
