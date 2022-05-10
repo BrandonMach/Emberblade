@@ -999,7 +999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5671407103149671175, guid: 1cdeefa9facfbe845817ef3de0fb0874, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.780222
+      value: -10.88
       objectReference: {fileID: 0}
     - target: {fileID: 5671407103149671175, guid: 1cdeefa9facfbe845817ef3de0fb0874, type: 3}
       propertyPath: m_LocalPosition.z
@@ -48705,6 +48705,10 @@ MonoBehaviour:
     m_MinDuration: 0
   - m_FullHash: -2086422294
     m_VirtualCamera: {fileID: 2021115609}
+    m_ActivateAfter: 0
+    m_MinDuration: 0
+  - m_FullHash: -1849685403
+    m_VirtualCamera: {fileID: 164486575}
     m_ActivateAfter: 0
     m_MinDuration: 0
   m_DefaultBlend:
