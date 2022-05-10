@@ -32228,6 +32228,7 @@ GameObject:
   - component: {fileID: 1142111528}
   - component: {fileID: 1142111527}
   - component: {fileID: 1142111529}
+  - component: {fileID: 1142111530}
   m_Layer: 5
   m_Name: StorePanel
   m_TagString: Untagged
@@ -32244,7 +32245,7 @@ RectTransform:
   m_GameObject: {fileID: 1142111525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 450730958}
   - {fileID: 132285358}
@@ -32311,6 +32312,25 @@ MonoBehaviour:
   healthButton: {fileID: 450730957}
   energyButton: {fileID: 132285357}
   currencyText: {fileID: 44976509}
+--- !u!95 &1142111530
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142111525}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba160ec9ad2df4746ac24d6221680294, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1153585126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39527,8 +39547,10 @@ MonoBehaviour:
   sentences:
   - Hello!, would you like to see my wares?
   - There is no inventory screen yet, press Q to go back
+  wordIndex: 0
   dialogueSpeed: 0.05
   dialogueAnimator: {fileID: 0}
+  storeAnimator: {fileID: 0}
   animator: {fileID: 0}
 --- !u!61 &1381944354
 BoxCollider2D:
@@ -52678,14 +52700,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1900342457}
-  storePanel: {fileID: 0}
+  storePanel: {fileID: 1142111525}
   npcText: {fileID: 1900342459}
   npcChatText: {fileID: 2118938471}
   npcName: {fileID: 817296689}
   sentences:
   - Hello!, would you like to see my wares?
+  - Here we go then!
+  wordIndex: 0
   dialogueSpeed: 0.05
   dialogueAnimator: {fileID: 2091785408}
+  storeAnimator: {fileID: 1142111530}
   animator: {fileID: 1540923960}
 --- !u!61 &1540923962
 BoxCollider2D:
