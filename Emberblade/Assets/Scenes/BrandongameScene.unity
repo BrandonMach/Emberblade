@@ -37406,6 +37406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1335774790}
+  storePanel: {fileID: 0}
   npcText: {fileID: 1335774791}
   npcChatText: {fileID: 1140740940}
   npcName: {fileID: 785746219}
@@ -37414,7 +37415,6 @@ MonoBehaviour:
   - There is no inventory screen yet!
   dialogueSpeed: 0.05
   dialogueAnimator: {fileID: 2096612761}
-  animator: {fileID: 817522885}
 --- !u!61 &817522882
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -56666,6 +56666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1897805790}
+  storePanel: {fileID: 0}
   npcText: {fileID: 72154292}
   npcChatText: {fileID: 1615372438}
   npcName: {fileID: 0}
@@ -56674,7 +56675,6 @@ MonoBehaviour:
   - There is no inventory screen yet, press Q to go back
   dialogueSpeed: 0.05
   dialogueAnimator: {fileID: 0}
-  animator: {fileID: 0}
 --- !u!61 &1856041263
 BoxCollider2D:
   m_ObjectHideFlags: 0
