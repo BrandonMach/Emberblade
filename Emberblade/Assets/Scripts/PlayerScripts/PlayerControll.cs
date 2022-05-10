@@ -386,7 +386,8 @@ public class PlayerControll : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-         if (collision.gameObject.CompareTag("Wall"))
+        Physics2D.IgnoreLayerCollision(11, 7); // Player Layer Ignore Grapple layer 
+        if (collision.gameObject.CompareTag("Wall"))
          {
             isOnGround = false;
            // jumpCounter = 0;
@@ -415,7 +416,7 @@ public class PlayerControll : MonoBehaviour
         }
 
 
-        Physics2D.IgnoreLayerCollision(0,7); // Ignore Grapple layer      
+            
     }
 
     void PlayNewAbilityCutscene()
