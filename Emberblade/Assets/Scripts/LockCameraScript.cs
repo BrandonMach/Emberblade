@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LockCameraScript : MonoBehaviour
 {
@@ -8,20 +9,56 @@ public class LockCameraScript : MonoBehaviour
 
     public Animator camAnimator;
     public GameObject player;
+    
+    public string desertScene;
+    Scene scene;
+    private void Start()
+    {
+         scene = SceneManager.GetActiveScene();
+    }
+    private void Update()
+    {
+       
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Player")&& this.gameObject.name== "LockCamera")
+
+        if(scene.name == "SwampScene")
         {
-            Debug.Log("Lock camera");
-            camAnimator.SetBool("SwampCamera", true);
+            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "LockCamera")
+            {
+                Debug.Log("Lock camera");
+                camAnimator.SetBool("SwampCamera", true);
+            }
+            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockCamera")
+            {
+                Debug.Log("Unlock camera");
+                camAnimator.SetBool("SwampCamera", false);
+            }
         }
-        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockCamera")
+        if (scene.name == "DesertScene")
         {
-            Debug.Log("Unlock camera");
-            camAnimator.SetBool("SwampCamera", false);
+
+            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockCamera")
+            {
+                Debug.Log("Unlock camera");
+                camAnimator.SetBool("UnlockDesertCam", false);
+            }
+            else if(collision.gameObject.CompareTag("Player") && this.gameObject.name == "LockCamera")
+            {
+                camAnimator.SetBool("UnlockDesertCam", true);
+            }
+            else
+            {
+                camAnimator.SetBool("UnlockDesertCam", true);
+            }
         }
+      
+
+
+
 
     }
 }
