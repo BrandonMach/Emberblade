@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  detectionRange: 30
+  detectionRange: 45
   isUnderWater: 0
   jumpWaitTimer: 0
   rend: {fileID: 5095828345176224178}

@@ -26,7 +26,7 @@ public class FishEnemyScript : MonoBehaviour
         rend = GetComponent<Renderer>();
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
         startPos = transform.position;
-        maxHeight.y = startPos.y + 40f;
+        maxHeight.y = startPos.y + 50f;
     }
 
     // Update is called once per frame
