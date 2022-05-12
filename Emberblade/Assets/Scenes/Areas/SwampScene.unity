@@ -9601,7 +9601,7 @@ GameObject:
   - component: {fileID: 601654663}
   - component: {fileID: 601654662}
   m_Layer: 0
-  m_Name: SwitchScene
+  m_Name: GoToDesert
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45038,6 +45038,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastCheckPointPos: {x: -101.07, y: 3.32}
+  desertSpawn: {x: 626, y: -21.3}
+  player: {fileID: 333074794}
 --- !u!4 &1325440626
 Transform:
   m_ObjectHideFlags: 0
@@ -47300,7 +47302,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 333074784}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 8.1
@@ -47858,7 +47860,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 333074784}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 30
@@ -47927,7 +47929,7 @@ MonoBehaviour:
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
-  m_AnimatedTarget: {fileID: 0}
+  m_AnimatedTarget: {fileID: 42624775}
   m_LayerIndex: 0
   m_ShowDebugText: 0
   m_ChildCameras:
@@ -47967,7 +47969,17 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   m_CustomBlends: {fileID: 0}
-  m_ParentHash: []
+  m_ParentHash:
+  - m_Hash: 1839989770
+    m_ParentHash: 756556552
+  - m_Hash: -700903975
+    m_ParentHash: 756556552
+  - m_Hash: -2086422294
+    m_ParentHash: 756556552
+  - m_Hash: -1849685403
+    m_ParentHash: 756556552
+  - m_Hash: -1890018117
+    m_ParentHash: 756556552
 --- !u!4 &1757209422
 Transform:
   m_ObjectHideFlags: 0

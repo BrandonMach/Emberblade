@@ -18,6 +18,10 @@ public class LockCameraScript : MonoBehaviour
     }
     private void Update()
     {
+        //if(scene.name == "DesertScene")
+        //{
+        //    camAnimator.SetBool("UnlockDesertCam", true);
+        //}
        
     }
 
