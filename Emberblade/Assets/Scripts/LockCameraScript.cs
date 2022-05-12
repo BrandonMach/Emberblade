@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class LockCameraScript : MonoBehaviour
 {
     // Start is called before the first frame update
-
     public Animator camAnimator;
     public GameObject player;
     
     public string desertScene;
     Scene scene;
+    
     private void Start()
     {
          scene = SceneManager.GetActiveScene();
@@ -41,7 +41,7 @@ public class LockCameraScript : MonoBehaviour
         if (scene.name == "DesertScene")
         {
 
-            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockCamera")
+            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockCamera"|| Checkpoint.checkpointTaken)
             {
                 Debug.Log("Unlock camera");
                 camAnimator.SetBool("UnlockDesertCam", false);
@@ -54,11 +54,9 @@ public class LockCameraScript : MonoBehaviour
             {
                 camAnimator.SetBool("UnlockDesertCam", true);
             }
-        }
-      
-
-
-
-
+        }   
     }
+
+ 
+
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     private GameMaster gm;
+    public Animator animator;
+    public static  bool checkpointTaken;
 
     private void Start()
     {
@@ -16,6 +18,10 @@ public class Checkpoint : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             gm.lastCheckPointPos = transform.position;
+            animator.SetBool("FillUp", true);
+            checkpointTaken = true;
         }
     }
+
+   
 }
