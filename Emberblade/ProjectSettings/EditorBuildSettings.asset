@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Areas/SwampScene.unity
     guid: db949cee8c9dc634cacd3cadb826f20d
+  - enabled: 1
+    path: Assets/Scenes/Areas/DesertScene.unity
+    guid: fb287f55fbff73a45be213bc09d3e368
   m_configObjects: {}

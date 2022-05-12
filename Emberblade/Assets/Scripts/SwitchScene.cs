@@ -18,13 +18,21 @@ public class SwitchScene : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "GoToDesert")
         {
             SwitchToCave();
         }
-        
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp")
+        {
+            SwitchSwamp();
+        }
+
     }
 
+    public void SwitchSwamp()
+    {
+        SceneManager.LoadScene(2);
+    }
     public void SwitchToCave()
     {
         SceneManager.LoadScene(1);
