@@ -16,6 +16,7 @@ TagManager:
   - NPC
   - GM
   - UnlockDash
+  - HiddenCave1
   layers:
   - Default
   - TransparentFX

@@ -91,7 +91,7 @@ public class armadilloScript : MonoBehaviour
             {
                 playerInRange = true;
 
-                if (playerInRange)
+                if (playerInRange && !attacking && canAttack)
                 {
                     attacking = true;
                     if (this.transform.position.x > playerInfoController.transform.position.x && !facingLeft) // Armadillo på höger sida av spelare
