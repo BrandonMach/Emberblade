@@ -10,9 +10,9 @@ public class TrapScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && playerDamage.canTakeDamage)
+        if (collision.gameObject.CompareTag("Player")/* && playerDamage.canTakeDamage*/)
         {
-            playerDamage.TakeDamage(damageAmount);
+            playerDamage.TakeDamage(99999999);
             Debug.Log("Spikes");
         }
     }

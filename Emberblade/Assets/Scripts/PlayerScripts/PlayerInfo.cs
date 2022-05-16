@@ -59,7 +59,6 @@ public class PlayerInfo : MonoBehaviour
             Death();
         }
         DamageWindow();
-
     }
     
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
@@ -68,7 +67,7 @@ public class PlayerInfo : MonoBehaviour
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
-            canTakeDamage = false;
+            //canTakeDamage = false;
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
@@ -78,7 +77,13 @@ public class PlayerInfo : MonoBehaviour
         {
             Debug.Log("Parry Succes");
         }
-       
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        //canTakeDamage = false;
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+        }
     }
 
     public void RechargeEnergy()
@@ -115,8 +120,9 @@ public class PlayerInfo : MonoBehaviour
     public void Death() //Gör så man kan dö.
     {
         Debug.Log("works");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        currentHealth = maxHealth;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //    currentHealth = maxHealth;
+        Destroy(this.gameObject);
     }
 
     public void UseEnergy(int energy)
