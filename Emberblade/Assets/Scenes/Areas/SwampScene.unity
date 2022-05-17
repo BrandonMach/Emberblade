@@ -5419,7 +5419,7 @@ MonoBehaviour:
     m_Bits: 8
   frontCheck: {fileID: 92111808}
   wallClimbSpeed: 3
-  CanWallClimb: 0
+  CanWallClimb: 1
   xWallForce: 50
   yWallForce: 40
   wallJumpTime: 0.05

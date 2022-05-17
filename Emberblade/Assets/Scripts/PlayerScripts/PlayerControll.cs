@@ -274,8 +274,6 @@ public class PlayerControll : MonoBehaviour
             }
             if (wallCling)
             {
-
-
                 //Wall jump
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -415,10 +413,7 @@ public class PlayerControll : MonoBehaviour
             PlayNewAbilityCutscene();
             newAbilityText.index = 1;
 
-        }
-
-
-            
+        }         
     }
 
     void PlayNewAbilityCutscene()
