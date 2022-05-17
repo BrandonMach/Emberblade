@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Areas/DesertScene.unity
     guid: fb287f55fbff73a45be213bc09d3e368
+  - enabled: 1
+    path: Assets/Scenes/Areas/CaveScene.unity
+    guid: 77224e46a7b8b254abbe2a9210b50191
   m_configObjects: {}

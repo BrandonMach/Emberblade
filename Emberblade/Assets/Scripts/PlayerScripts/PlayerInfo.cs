@@ -29,7 +29,11 @@ public class PlayerInfo : MonoBehaviour
         playerControllScript = GetComponent<PlayerControll>();
 
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        transform.position = gm.lastCheckPointPos;
+        if (Checkpoint.checkpointTaken)
+        {
+            transform.position = gm.lastCheckPointPos;
+        }
+        
     }
 
     // Update is called once per frame
@@ -63,7 +67,7 @@ public class PlayerInfo : MonoBehaviour
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
-            //canTakeDamage = false;
+            canTakeDamage = false;
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
@@ -75,7 +79,7 @@ public class PlayerInfo : MonoBehaviour
         }
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
-        //canTakeDamage = false;
+        canTakeDamage = false;
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -116,8 +120,8 @@ public class PlayerInfo : MonoBehaviour
     public void Death() //Gör så man kan dö.
     {
         Debug.Log("works");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //    currentHealth = maxHealth;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        currentHealth = maxHealth;
         Destroy(this.gameObject);
     }
 

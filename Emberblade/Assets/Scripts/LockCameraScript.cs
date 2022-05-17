@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LockCameraScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    private static LockCameraScript instance;
     public Animator camAnimator;
     public GameObject player;
     
@@ -24,6 +25,7 @@ public class LockCameraScript : MonoBehaviour
         //}
        
     }
+   
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
