@@ -5,19 +5,22 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
 
-
+    public int maxHealth;
     public int health;
     public bool canTakeDamage = true;
     private float startTimeDamageTimer;
     private float damageDelay = 0.5f;
     public GameObject abilityItem;
     Currency player;
+    public EnemyHealthbar healthBar;
     
     void Start()
     {
         //health = 3;
         canTakeDamage = true;
         player = GameObject.Find("Player").GetComponent<Currency>();
+        health = maxHealth;
+        healthBar.SetHealth(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -25,8 +28,6 @@ public class EnemyHealth : MonoBehaviour
     {
         DamageWindow();
         EnemyDies();
-        
-       
     }
 
 
@@ -35,6 +36,7 @@ public class EnemyHealth : MonoBehaviour
         if (canTakeDamage)
         {
             health--;
+            healthBar.SetHealth(health, maxHealth);
             canTakeDamage = false;         
         }  
     }

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1936597666}
   m_Layer: 6
   m_Name: Porcupine Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,10 +150,12 @@ MonoBehaviour:
   attackPlayer: 0
   radiusArea: 0
   playerDetectionX: 59.8
-  playerDetectionY: 7.1
-  playerInRangeX: 25.25
-  playerInRangeY: 5.06
+  playerDetectionY: 2
+  playerInRangeX: 20
+  playerInRangeY: 2
+  moveSpeed: 5
   animator: {fileID: 1936597665}
+  attackDelay: 2
   isOnGround: 0
 --- !u!95 &1936597665
 Animator:
@@ -186,5 +188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 2
   health: 2
   canTakeDamage: 1
+  abilityItem: {fileID: 0}
+  healthBar: {fileID: 0}
