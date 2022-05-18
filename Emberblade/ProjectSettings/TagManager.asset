@@ -19,6 +19,7 @@ TagManager:
   - HiddenCave1
   - Breakable
   - Enemy
+  - Bat
   layers:
   - Default
   - TransparentFX
