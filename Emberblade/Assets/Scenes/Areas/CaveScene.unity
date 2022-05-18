@@ -9269,6 +9269,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1199087728}
     m_Modifications:
+    - target: {fileID: 2343176283690285349, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3086654436464087018, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
       propertyPath: m_Name
       value: Armadillo
@@ -9676,10 +9680,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1199087728}
     m_Modifications:
-    - target: {fileID: 1529161001277499893, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2343176283690285349, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9731,14 +9731,6 @@ PrefabInstance:
     - target: {fileID: 3086654436464087022, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822742759644401704, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
-      propertyPath: low.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822742759644401704, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
-      propertyPath: high.a
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}

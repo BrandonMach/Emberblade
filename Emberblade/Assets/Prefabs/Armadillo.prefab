@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 3086654436464087021}
   - component: {fileID: 3086654436464087011}
   - component: {fileID: 1651981440}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Armadillo
   m_TagString: Enemy
   m_Icon: {fileID: 0}
