@@ -17,6 +17,8 @@ TagManager:
   - GM
   - UnlockDash
   - HiddenCave1
+  - Breakable
+  - Enemy
   layers:
   - Default
   - TransparentFX

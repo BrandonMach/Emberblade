@@ -8,6 +8,7 @@ public class armadilloScript : MonoBehaviour
 
     public bool playerInRange;
     public Vector2 playerDetection;
+    private Vector2 detectionlocation;
     PlayerInfo playerInfoController;
     public bool isOnGround;
     public bool facingLeft;
@@ -17,6 +18,7 @@ public class armadilloScript : MonoBehaviour
     float attackStartUpTime;
     bool attacking;
     bool canAttack;
+    bool attackmode;
     Rigidbody2D rb;
 
     BoxCollider2D boxCollider;
@@ -44,6 +46,8 @@ public class armadilloScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        detectionlocation = new Vector2(transform.position.x, transform.position.y - 4);
+
         if (facingLeft)
         {
             knockBackValue = 5;
@@ -53,7 +57,7 @@ public class armadilloScript : MonoBehaviour
             knockBackValue = -5;
         }
         DetectPlayer();
-        if (attacking)
+        if (attacking && canAttack)
         {          
             animator.SetBool("Attack", true);
             Invoke("StartAttack", attackStartUpTime);
@@ -83,19 +87,21 @@ public class armadilloScript : MonoBehaviour
         Vector3 characterScale = transform.localScale;
         playerInRange = false;
 
-        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, playerDetection, 0);
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(detectionlocation, playerDetection, 0);
 
         foreach (var colliderHit in hitColliders)
         {
-            if (colliderHit.gameObject.CompareTag("Player"))
+            if (colliderHit.gameObject.CompareTag("Player") && !attackmode)
             {
                 playerInRange = true;
+                
 
-                if (playerInRange && !attacking && canAttack)
+                if (playerInRange && canAttack)
                 {
                     attacking = true;
                     if (this.transform.position.x > playerInfoController.transform.position.x && !facingLeft) // Armadillo på höger sida av spelare
                     {
+                        attackmode = true;
                         characterScale.x *= -1;
                         facingLeft = true;
                         this.transform.localScale = characterScale;
@@ -103,11 +109,16 @@ public class armadilloScript : MonoBehaviour
                     }
                     if (this.transform.position.x < playerInfoController.transform.position.x && facingLeft) // Armadillo på vänster sida av spelaren
                     {
+                        attackmode = true;
                         characterScale.x *= -1;
                         facingLeft = false;
                         this.transform.localScale = characterScale;      
                     }
                 }              
+            }
+            else
+            {
+
             }
         }
     }
@@ -119,14 +130,14 @@ public class armadilloScript : MonoBehaviour
             if (facingLeft)
             {
                 animator.SetBool("Roll", true);
-                rb.AddForce(new Vector2(-1, 0), ForceMode2D.Impulse);
-                transform.Rotate(new Vector3(0, 0, 5));
+                rb.AddForce(new Vector2(-1f, 0), ForceMode2D.Impulse);
+                //transform.Rotate(new Vector3(0, 0, 2f));
             }
             else
             {
                 animator.SetBool("Roll", true);
-                rb.AddForce(new Vector2(1, 0), ForceMode2D.Impulse);
-                transform.Rotate(new Vector3(0, 0, -5));
+                rb.AddForce(new Vector2(1f, 0), ForceMode2D.Impulse);
+                //transform.Rotate(new Vector3(0, 0, -2f));
             }    
         }
     }
@@ -137,25 +148,29 @@ public class armadilloScript : MonoBehaviour
         {
            
             animator.SetBool("Roll", false);           
+            animator.SetBool("Attack", false);           
             Debug.Log("Rolled Player");
             playerControllScript.Knockback(knockBackValue,3);   
             canAttack = false;
             rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
             attacking = false;
+            attackmode = false;
         }
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Breakable"))
         {
             animator.SetBool("Roll", false);
+            animator.SetBool("Attack", false);
             rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
             attacking = false;
             canAttack = false;
+            attackmode = false;
         }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, playerDetection);
+        Gizmos.DrawWireCube(detectionlocation, playerDetection);
     }
 
 }

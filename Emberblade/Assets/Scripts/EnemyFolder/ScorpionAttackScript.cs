@@ -13,13 +13,13 @@ public class ScorpionAttackScript : MonoBehaviour
     public float playerDetectionY;
     public float playerInRangeX;
     public float playerInRangeY;
-    private float moveSpeed;
+    public float moveSpeed = 10;
 
     private PlayerInfo playerInfoController;
     public Animator animator;
 
     private float startTimeAttackTimer;
-    private float attackDelay = 2f;
+    public float attackDelay = 2f;
 
     private float flipHitbox = 1;
     private bool facingLeft;
@@ -32,7 +32,6 @@ public class ScorpionAttackScript : MonoBehaviour
     void Start()
     {
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
-        moveSpeed = 0.05f;
         facingLeft = true;
         playerTransformOffest = new Vector3(0, 3.03f, 0);
     }
@@ -78,9 +77,9 @@ public class ScorpionAttackScript : MonoBehaviour
             {
                 playerInRange = true;
 
-                if (playerInRange /*&& isOnGround*/) // kan bara jaga när dem är på Ground
+                if (playerInRange && !attackPlayer)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position - playerTransformOffest, moveSpeed);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.            
+                    transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position - playerTransformOffest, moveSpeed * Time.deltaTime);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.            
                 }
             } 
         }
