@@ -4911,7 +4911,7 @@ MonoBehaviour:
   isCrouching: 0
   dashForce: 100
   startDashTimer: 0.25
-  hasUnlockedDash: 0
+  hasUnlockedDash: 1
   isParrying: 0
   ghScript: {fileID: 325585589}
   grapplelayer:

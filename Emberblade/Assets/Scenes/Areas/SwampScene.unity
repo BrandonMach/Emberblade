@@ -1954,7 +1954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastCheckPointPos: {x: -101.07, y: 3.32}
   swampFromCavePos: {x: 579.8, y: -20.5}
-  swampFromDesertPos: {x: 614.6, y: -20.5}
+  swampFromDesertPos: {x: 579.8, y: -20.5}
   swampFromWinterPos: {x: 0, y: 0}
   swampFromTreePos: {x: 0, y: 0}
 --- !u!4 &230028782
@@ -49603,14 +49603,6 @@ MonoBehaviour:
     m_MinDuration: 0
   - m_FullHash: -2086422294
     m_VirtualCamera: {fileID: 1671616118}
-    m_ActivateAfter: 0
-    m_MinDuration: 0
-  - m_FullHash: -1849685403
-    m_VirtualCamera: {fileID: 224355203}
-    m_ActivateAfter: 0
-    m_MinDuration: 0
-  - m_FullHash: -1890018117
-    m_VirtualCamera: {fileID: 105948626}
     m_ActivateAfter: 0
     m_MinDuration: 0
   m_DefaultBlend:
