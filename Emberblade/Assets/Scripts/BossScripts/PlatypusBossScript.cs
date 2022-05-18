@@ -3,17 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlatypusBossScript : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] float stopTime = 0.5f;
     [SerializeField] float dropForce;
     [SerializeField] float gravityScale;
+    public GameObject iciclePrefab;
+    public float spawnIcicleLeft;
+    public float spawnIcicleRight;
+    public float spawnIcicleTop;
 
     public bool isOnGround;
     public bool doGroundPound = false;
     public Animator animator;
     private Rigidbody2D rb;
+
+    
     
 
     void Start()
@@ -77,12 +84,19 @@ public class PlatypusBossScript : MonoBehaviour
         rb.angularVelocity = 0;
     }
 
+    void SpawnIcicle()
+    {
+        Vector3 spawnPos = new Vector3(UnityEngine.Random.Range(spawnIcicleLeft, spawnIcicleRight), spawnIcicleTop, 0); // Kan spawna på samma plats
+        Instantiate(iciclePrefab, spawnPos, iciclePrefab.transform.rotation);
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
             animator.SetBool("GroundPound", false);
+            InvokeRepeating("SpawnIcicle", 2, 4);
         }
 
         if( other.contacts[0].normal.y >= 0.5 && other.gameObject.CompareTag("Player"))
