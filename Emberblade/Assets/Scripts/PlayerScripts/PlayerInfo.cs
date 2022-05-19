@@ -33,6 +33,7 @@ public class PlayerInfo : MonoBehaviour
         {
             transform.position = gm.lastCheckPointPos;
         }
+        canTakeDamage = true;
         
     }
 
@@ -58,7 +59,7 @@ public class PlayerInfo : MonoBehaviour
         {
             Death();
         }
-        //DamageWindow();
+        DamageWindow();
     }
     
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.

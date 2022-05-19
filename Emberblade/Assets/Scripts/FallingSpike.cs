@@ -6,12 +6,15 @@ public class FallingSpike : MonoBehaviour
 {
     Rigidbody2D rb;
     BoxCollider2D collider;
+    PlayerInfo player;
     public float distance;
     bool isFalling = false;
+    bool isAlive = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
+        player = GameObject.Find("Player").GetComponent<PlayerInfo>();
     }
 
 
@@ -44,10 +47,19 @@ public class FallingSpike : MonoBehaviour
             Debug.Log("Spikes");
         }
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && isAlive)
         {
-            GameObject player = collision.gameObject;
-            player.GetComponent<PlayerInfo>().TakeDamage(75);
+            if (isAlive)
+            {
+                Debug.LogError("Ice");
+                Destroy(this.gameObject);
+                player.TakeDamage(1);
+                isAlive = false;
+            }
+           
+           
+            
+            
         }
     }
 

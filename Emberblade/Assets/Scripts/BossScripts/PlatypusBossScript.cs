@@ -96,7 +96,7 @@ public class PlatypusBossScript : MonoBehaviour
         {
             isOnGround = true;
             animator.SetBool("GroundPound", false);
-            InvokeRepeating("SpawnIcicle", 2, 4);
+            InvokeRepeating("SpawnIcicle",3,10);
         }
 
         if( other.contacts[0].normal.y >= 0.5 && other.gameObject.CompareTag("Player"))
