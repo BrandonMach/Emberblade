@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class PlatypusBossScript : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -15,22 +16,46 @@ public class PlatypusBossScript : MonoBehaviour
     public float spawnIcicleRight;
     public float spawnIcicleTop;
 
+    [Header("Ground Pound")]
+    public float jumpSpeed = 3;
     public bool isOnGround;
     public bool doGroundPound = false;
+    public bool startGPAttack;
     public Animator animator;
     private Rigidbody2D rb;
 
-    
-    
+    List<float> positionSpawned = new List<float>();
+
+
+    public GameObject findPlayerObject;
+    public PlayerInfo player;
+    float maxFindPosHeight;
+
+    [Header("Second phase")]
+    EnemyHealth enemyHealthScripts;
+    int maxHealth;
+    bool secondPhase = false;
+   
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
+        enemyHealthScripts = GetComponent<EnemyHealth>();
+        maxHealth = enemyHealthScripts.health;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        findPlayerObject.transform.position = player.transform.position + new Vector3(0, 72, 0);
+        if (findPlayerObject.transform.position.y > 73)
+        {
+            findPlayerObject.transform.position = new Vector3(player.transform.position.x, 75, player.transform.position.z); //Max höjd för ground pound
+        }
+        
+        
+        
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             if (!isOnGround)
@@ -42,8 +67,36 @@ public class PlatypusBossScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            rb.AddForce(Vector2.up * 20, ForceMode2D.Impulse);
+            startGPAttack = true;          
+        }
+        if (startGPAttack)
+        {
+
+            transform.position = Vector3.MoveTowards(transform.position, findPlayerObject.transform.position, 100 * Time.deltaTime);
             isOnGround = false;
+            if (transform.position.y >= 75)
+            {
+
+                startGPAttack = false;
+                if (!isOnGround)
+                {
+                    doGroundPound = true;
+                    animator.SetBool("GroundPound", true);
+                }
+
+            }
+        }
+
+        
+
+        if (enemyHealthScripts.health <= (maxHealth / 2) && !secondPhase)
+        {
+            
+            secondPhase = true;
+        }
+        if (enemyHealthScripts.health == 0)
+        {
+            
         }
     }
 
@@ -86,8 +139,13 @@ public class PlatypusBossScript : MonoBehaviour
 
     void SpawnIcicle()
     {
-        Vector3 spawnPos = new Vector3(UnityEngine.Random.Range(spawnIcicleLeft, spawnIcicleRight), spawnIcicleTop, 0); // Kan spawna på samma plats
+        float spawnPosX = UnityEngine.Random.Range(spawnIcicleLeft, spawnIcicleRight);
+        positionSpawned.Add(spawnPosX);
+
+       
+        Vector3 spawnPos = new Vector3(spawnPosX, spawnIcicleTop, 0); // Kan spawna på samma plats
         Instantiate(iciclePrefab, spawnPos, iciclePrefab.transform.rotation);
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -96,13 +154,18 @@ public class PlatypusBossScript : MonoBehaviour
         {
             isOnGround = true;
             animator.SetBool("GroundPound", false);
-            InvokeRepeating("SpawnIcicle",3,10);
+            if (secondPhase)
+            {
+                InvokeRepeating("SpawnIcicle", 1, 7);
+            }
+           
         }
 
         if( other.contacts[0].normal.y >= 0.5 && other.gameObject.CompareTag("Player"))
         {
             CompleteGroundPound();
             Debug.LogError("Hit Player with ass");
+            player.TakeDamage(10);
         }
     }
 

@@ -36,7 +36,6 @@ public class FallingSpike : MonoBehaviour
                 }
             }
         }
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -48,9 +47,7 @@ public class FallingSpike : MonoBehaviour
         }
 
         if (collision.gameObject.tag =="Player" && isAlive)
-        {
-            
-            
+        {    
                 Debug.LogError("Ice");
                 Destroy(this.gameObject);
                 player.TakeDamage(15);
