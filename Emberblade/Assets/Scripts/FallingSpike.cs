@@ -53,13 +53,8 @@ public class FallingSpike : MonoBehaviour
             
                 Debug.LogError("Ice");
                 Destroy(this.gameObject);
-                player.TakeDamage(1);
+                player.TakeDamage(15);
                 isAlive = false;
-            
-           
-           
-            
-            
         }
     }
 
