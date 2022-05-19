@@ -47,15 +47,15 @@ public class FallingSpike : MonoBehaviour
             Debug.Log("Spikes");
         }
 
-        if (collision.gameObject.CompareTag("Player") && isAlive)
+        if (collision.gameObject.tag =="Player" && isAlive)
         {
-            if (isAlive)
-            {
+            
+            
                 Debug.LogError("Ice");
                 Destroy(this.gameObject);
                 player.TakeDamage(1);
                 isAlive = false;
-            }
+            
            
            
             

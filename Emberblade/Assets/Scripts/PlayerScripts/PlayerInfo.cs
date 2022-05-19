@@ -78,9 +78,13 @@ public class PlayerInfo : MonoBehaviour
         {
             Debug.Log("Parry Succes");
         }
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-        canTakeDamage = false;
+        if (canTakeDamage)
+        {
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+            canTakeDamage = false;
+        }
+       
         if (currentHealth <= 0)
         {
             currentHealth = 0;
