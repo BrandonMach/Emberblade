@@ -109,19 +109,21 @@ public class SnakeScript : MonoBehaviour
                 if (playerInRange)
                 {
                     
-                    if (this.transform.position.x > playerInfoController.transform.position.x +10 && !facingLeft) // Armadillo på höger sida av spelare
+                    if (this.transform.position.x > playerInfoController.transform.position.x + 10 && !facingLeft) // Armadillo på höger sida av spelare
                     {       
                         characterScale.x *= -1;
                         facingLeft = true;
                         this.transform.localScale = characterScale;     
-                        flipHitbox *= -1;       
+                        flipHitbox *= -1;
+                        playerControllScript.knockFromRight = true;
                     }
-                    if (this.transform.position.x < playerInfoController.transform.position.x -10&& facingLeft) // Armadillo på vänster sida av spelaren
+                    if (this.transform.position.x < playerInfoController.transform.position.x - 10 && facingLeft) // Armadillo på vänster sida av spelaren
                     {
                         characterScale.x *= -1;
                         facingLeft = false;
                         this.transform.localScale = characterScale;
-                        flipHitbox *= -1;   
+                        flipHitbox *= -1;
+                        playerControllScript.knockFromRight = false;
                     }
                     
                     StartAttack();
@@ -138,7 +140,7 @@ public class SnakeScript : MonoBehaviour
         {
             animator.SetTrigger("ATrigger");
             playerInfoController.TakeDamage(30);
-            playerControllScript.Knockback(flipHitbox*100,20);
+            playerControllScript.Knockback();
             canAttack = false;        
         }
         if (other.gameObject.CompareTag("Wall"))

@@ -15,7 +15,8 @@ public class ScorpionAttackScript : MonoBehaviour
     public float playerInRangeY;
     public float moveSpeed = 10;
 
-    private PlayerInfo playerInfoController;
+    private PlayerInfo playerInfo;
+    private PlayerControll playerController;
     public Animator animator;
 
     private float startTimeAttackTimer;
@@ -26,12 +27,14 @@ public class ScorpionAttackScript : MonoBehaviour
     private Vector3 playerTransformOffest;
 
     public bool isOnGround;
+  
 
 
 
     void Start()
     {
-        playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerControll>();
         facingLeft = true;
         playerTransformOffest = new Vector3(0, 3.03f, 0);
     }
@@ -79,7 +82,7 @@ public class ScorpionAttackScript : MonoBehaviour
 
                 if (playerInRange && !attackPlayer)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position - playerTransformOffest, moveSpeed * Time.deltaTime);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.            
+                    transform.position = Vector3.MoveTowards(transform.position, playerInfo.transform.position - playerTransformOffest, moveSpeed * Time.deltaTime);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.            
                 }
             } 
         }
@@ -99,10 +102,20 @@ public class ScorpionAttackScript : MonoBehaviour
                 
                 animator.SetBool("Attacking", true);
                 startTimeAttackTimer += Time.deltaTime;
-
-                if(startTimeAttackTimer >= attackDelay && attackPlayer)
+                if(transform.position.x < colliderHit.transform.position.x)
                 {
-                    playerInfoController.TakeDamage(5);
+                    playerController.knockFromRight = false;
+                }
+                else
+                {
+                    playerController.knockFromRight = true;
+                }
+               
+                if (startTimeAttackTimer >= attackDelay && attackPlayer)
+                {
+                    playerController.Knockback();
+                    playerInfo.TakeDamage(5);
+                    
                     startTimeAttackTimer = 0;
                     attackPlayer = false;
                 }          
@@ -115,7 +128,7 @@ public class ScorpionAttackScript : MonoBehaviour
         Vector3 charecterScale = transform.localScale;
        // Debug.Log("PlayerPos" +playerInfoController.transform.position);
 
-        if (playerInfoController.transform.position.x > this.transform.position.x && facingLeft)
+        if (playerInfo.transform.position.x > this.transform.position.x && facingLeft)
         {
             flipHitbox *= -1;
             charecterScale.x *= -1;
@@ -123,7 +136,7 @@ public class ScorpionAttackScript : MonoBehaviour
             facingLeft = false;
             Debug.Log("Flip Sprite");
         }
-        if (playerInfoController.transform.position.x < this.transform.position.x && !facingLeft) // Om player transform är större än enemy vänd på enemy
+        if (playerInfo.transform.position.x < this.transform.position.x && !facingLeft) // Om player transform är större än enemy vänd på enemy
         {
             flipHitbox *= -1;
             charecterScale.x *= -1;

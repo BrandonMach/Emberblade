@@ -16,6 +16,7 @@ public class PlayerInfo : MonoBehaviour
     private float startTimeDamageTimer;
     private float damageDelay = 2f;
     private PlayerControll playerControllScript;
+    LayerMask enemyLayer;
 
     private GameMaster gm;
 
@@ -80,7 +81,11 @@ public class PlayerInfo : MonoBehaviour
         }
         if (canTakeDamage)
         {
+            //playerControllScript.knockbackCount = 10;
             currentHealth -= damage;
+           
+            
+
             healthBar.SetHealth(currentHealth);
             canTakeDamage = false;
         }
@@ -146,6 +151,19 @@ public class PlayerInfo : MonoBehaviour
         {
             canTakeDamage = true;
             startTimeDamageTimer = 0;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        
+        if (other.transform.position.x < transform.position.x) 
+        {
+            playerControllScript.knockFromRight = false;
+        }
+        else
+        {
+            playerControllScript.knockFromRight = true;
         }
     }
 }

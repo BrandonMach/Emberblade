@@ -11,10 +11,7 @@ public class PlatypusBossScript : MonoBehaviour
     [SerializeField] float stopTime = 0.5f;
     [SerializeField] float dropForce;
     [SerializeField] float gravityScale;
-    public GameObject iciclePrefab;
-    public float spawnIcicleLeft;
-    public float spawnIcicleRight;
-    public float spawnIcicleTop;
+   
 
     [Header("Ground Pound")]
     public float jumpSpeed = 3;
@@ -23,24 +20,26 @@ public class PlatypusBossScript : MonoBehaviour
     public bool startGPAttack;
     public Animator animator;
     private Rigidbody2D rb;
-
-    List<float> positionSpawned = new List<float>();
-
-
+    public GameObject icebergPrefab;
     public GameObject findPlayerObject;
     public PlayerInfo player;
-    float maxFindPosHeight;
+    private PlayerControll playerControllScript;
 
     [Header("Second phase")]
     EnemyHealth enemyHealthScripts;
     int maxHealth;
     bool secondPhase = false;
-   
+    public GameObject iciclePrefab;
+    public float spawnIcicleLeft;
+    public float spawnIcicleRight;
+    public float spawnIcicleTop;
+    List<float> positionSpawned = new List<float>();
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         enemyHealthScripts = GetComponent<EnemyHealth>();
+        playerControllScript = GameObject.Find("Player").GetComponent<PlayerControll>();
         maxHealth = enemyHealthScripts.health;
 
     }
@@ -87,6 +86,7 @@ public class PlatypusBossScript : MonoBehaviour
             }
         }
 
+
         
 
         if (enemyHealthScripts.health <= (maxHealth / 2) && !secondPhase)
@@ -113,9 +113,7 @@ public class PlatypusBossScript : MonoBehaviour
     private void GroundPoundAttack()
     {
         StopAndSpin();
-        StartCoroutine("DropAndSmash");
-
-        
+        StartCoroutine("DropAndSmash");       
     }
 
     private IEnumerator DropAndSmash()
@@ -135,6 +133,21 @@ public class PlatypusBossScript : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
+    }
+
+    void SpawnIceberg()
+    {
+        
+        Instantiate(icebergPrefab, new Vector3(transform.position.x + 10, transform.position.y -3, transform.position.z), icebergPrefab.transform.rotation);     
+        Instantiate(icebergPrefab, new Vector3(transform.position.x - 10, transform.position.y-3, transform.position.z), Quaternion.Euler(0f,180f,0));
+
+        if (secondPhase)
+        {
+            Instantiate(icebergPrefab, new Vector3(transform.position.x + 5, transform.position.y - 3, transform.position.z), icebergPrefab.transform.rotation);
+            Instantiate(icebergPrefab, new Vector3(transform.position.x - 5, transform.position.y - 3, transform.position.z), Quaternion.Euler(0f, 180f, 0));
+        }
+        
+
     }
 
     void SpawnIcicle()
@@ -160,12 +173,26 @@ public class PlatypusBossScript : MonoBehaviour
             }
            
         }
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            SpawnIceberg();
+        }
 
         if( other.contacts[0].normal.y >= 0.5 && other.gameObject.CompareTag("Player"))
         {
             CompleteGroundPound();
             Debug.LogError("Hit Player with ass");
+            if (transform.position.x < other.transform.position.x)
+            {
+                playerControllScript.knockFromRight = false;
+            }
+            else
+            {
+                playerControllScript.knockFromRight = true;
+            }
             player.TakeDamage(10);
+            playerControllScript.Knockback();
+            
         }
     }
 

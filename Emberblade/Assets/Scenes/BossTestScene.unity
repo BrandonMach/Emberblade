@@ -667,6 +667,10 @@ MonoBehaviour:
   xWallForce: 50
   yWallForce: 40
   wallJumpTime: 0.05
+  knockback: 10
+  knockbackLength: 0.2
+  knockbackCount: 0
+  knockFromRight: 0
 --- !u!212 &7159309
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30277,7 +30281,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 130
+  m_Mass: 70
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5
@@ -30393,17 +30397,18 @@ MonoBehaviour:
   stopTime: 0.5
   dropForce: 4500
   gravityScale: 5
-  iciclePrefab: {fileID: 2462110853568372877, guid: ff6c4aea72ce9e84993579208ccf0136, type: 3}
-  spawnIcicleLeft: -162.8
-  spawnIcicleRight: -36.4
-  spawnIcicleTop: 88.98569
   jumpSpeed: 3
   isOnGround: 0
   doGroundPound: 0
   startGPAttack: 0
   animator: {fileID: 748922215}
+  icebergPrefab: {fileID: 8808213746707442585, guid: 469c5604bce86de468aa9cea6c4f5396, type: 3}
   findPlayerObject: {fileID: 679530832}
   player: {fileID: 7159303}
+  iciclePrefab: {fileID: 2462110853568372877, guid: ff6c4aea72ce9e84993579208ccf0136, type: 3}
+  spawnIcicleLeft: -162.8
+  spawnIcicleRight: -36.4
+  spawnIcicleTop: 88.98569
 --- !u!95 &748922215
 Animator:
   serializedVersion: 3

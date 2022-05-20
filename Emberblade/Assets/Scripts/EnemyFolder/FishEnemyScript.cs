@@ -15,7 +15,8 @@ public class FishEnemyScript : MonoBehaviour
     public Renderer rend;
     private Vector2 startPos;
     private Vector2 maxHeight;
-    private PlayerInfo playerInfoController;
+    private PlayerInfo playerInfo;
+    PlayerControll playerController;
     public BoxCollider2D boxCollider;
 
     public int jumpheight = 0;
@@ -24,7 +25,8 @@ public class FishEnemyScript : MonoBehaviour
     {
         fish_Rb = GetComponent<Rigidbody2D>();
         rend = GetComponent<Renderer>();
-        playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerControll>();
         startPos = transform.position;
         maxHeight.y = startPos.y + 50f;
     }
@@ -78,9 +80,19 @@ public class FishEnemyScript : MonoBehaviour
 
         foreach (var colliderHit in hitColliders)
         {
-            if (colliderHit.gameObject.CompareTag("Player") && playerInfoController.canTakeDamage)
+            if (colliderHit.gameObject.CompareTag("Player") && playerInfo.canTakeDamage)
             {
-                playerInfoController.TakeDamage(15);
+
+                if (transform.position.x < colliderHit.transform.position.x)
+                {
+                    playerController.knockFromRight = false;
+                }
+                else
+                {
+                    playerController.knockFromRight = true;
+                }
+                playerController.Knockback();
+                playerInfo.TakeDamage(15);
                 boxCollider.isTrigger = true;
                 
             }

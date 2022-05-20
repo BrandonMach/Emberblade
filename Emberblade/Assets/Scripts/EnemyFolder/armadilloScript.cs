@@ -150,7 +150,7 @@ public class armadilloScript : MonoBehaviour
             animator.SetBool("Roll", false);           
             animator.SetBool("Attack", false);           
             Debug.Log("Rolled Player");
-            playerControllScript.Knockback(knockBackValue,3);   
+            playerControllScript.Knockback();   
             canAttack = false;
             rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
             attacking = false;

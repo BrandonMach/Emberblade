@@ -101,6 +101,12 @@ public class PlayerControll : MonoBehaviour
     public float yWallForce;
     public float wallJumpTime;
 
+    [Header("Knockback")]
+    public float knockback;
+    public float knockbackLength;
+    public float knockbackCount;
+    public bool knockFromRight;
+
   
 
 
@@ -126,8 +132,23 @@ public class PlayerControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        Move();
+
+        if (knockbackCount <= 0)
+        {
+            Move();
+        }
+        else
+        {
+            if (knockFromRight)
+            { //knock to left
+                player_Rb.velocity = new Vector2(-knockback, knockback);
+            }
+            if (!knockFromRight) {
+                player_Rb.velocity = new Vector2(knockback, knockback);
+            }
+            knockbackCount -= Time.deltaTime;
+        }
+        
         Falling();
         if (!hasUnlockedDJ)
         {
@@ -143,6 +164,8 @@ public class PlayerControll : MonoBehaviour
 
         hasToCrouch = Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat, groundLayer)|| Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat,roofLayer);
         Crouch();
+
+        
     }
 
     void Parry()
@@ -379,10 +402,11 @@ public class PlayerControll : MonoBehaviour
         //Debug.Log("Has Landed");
     }
 
-    public void Knockback(float xKnockback,float yKnockback)
+    public void Knockback()
     {
         Debug.Log("Knockback");
-        player_Rb.AddForce(new Vector2(xKnockback, yKnockback), ForceMode2D.Impulse);
+        //player_Rb.AddForce(new Vector2(xKnockback, yKnockback), ForceMode2D.Impulse);
+        knockbackCount = knockbackLength;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -412,13 +436,11 @@ public class PlayerControll : MonoBehaviour
             Destroy(collision.gameObject);
             PlayNewAbilityCutscene();
             newAbilityText.index = 1;
-
         }         
     }
 
     void PlayNewAbilityCutscene()
-    {
-       
+    {     
         camAnimator.SetBool("NewAbility", true);
         this.enabled = false;
         Invoke("StopCutscene", 1);
