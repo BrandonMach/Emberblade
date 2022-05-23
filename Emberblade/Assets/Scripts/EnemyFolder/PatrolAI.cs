@@ -31,8 +31,9 @@ public class PatrolAI : MonoBehaviour
     private PlayerInfo playerInfoController;
     public float agroRangeX = 70;
     public float agroRangeY = 30;
-    
 
+    int invokeCounter = 0;
+    float timer;
 
     void Start()
     {
@@ -79,15 +80,11 @@ public class PatrolAI : MonoBehaviour
             float angle = Mathf.Atan2(attackDir.x, attackDir.y) * Mathf.Rad2Deg;
             attackDir.Normalize();
             movetowardsPlayer = attackDir;
-            attackAcc += 2f;
 
-            rb2d.MovePosition((Vector2)transform.position + (attackDir * attackSpeed * attackAcc * Time.deltaTime));
-            if (getAattackPos)
-            {
-                attackDir = playerInfoController.transform.position - transform.position;
-                
-                getAattackPos = false;
-            }
+
+            Invoke("getDelayedPos", 0.1f);
+            rb2d.AddForce(attackDir * attackAcc, ForceMode2D.Impulse);
+
 
             if (transform.position.x < playerInfoController.transform.position.x)
             {
@@ -99,19 +96,32 @@ public class PatrolAI : MonoBehaviour
                 transform.localScale = new Vector2(1, 1);
                 fliped = true;
             }
-
-            if (fliped)
-            {
-                rb2d.rotation = -angle - 90;
-            }
-            else
-            {
-                rb2d.rotation = -angle + 90;
-            }
-
-
         }
     }
+
+
+    private void getDelayedPos()
+    {
+        if (invokeCounter <= 1)
+        {
+            attackDir = playerInfoController.transform.position - transform.position;
+        }
+
+        invokeCounter++;
+
+        if (invokeCounter > 1)
+        {
+            timer += Time.deltaTime;
+            if (timer > 0.05f)
+            {
+                attackDir = playerInfoController.transform.position - transform.position;
+                attackAcc += 1f;
+                timer = 0;
+                Debug.Log(timer);
+            }
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {
