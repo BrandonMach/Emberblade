@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  dectetionRange: 30.41
+  detectionRange: 45
   isUnderWater: 0
   jumpWaitTimer: 0
   rend: {fileID: 5095828345176224178}
@@ -165,8 +165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 3
   health: 1
   canTakeDamage: 1
+  abilityItem: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!95 &653063777
 Animator:
   serializedVersion: 3

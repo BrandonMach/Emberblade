@@ -13,6 +13,13 @@ TagManager:
   - GiveNewAbility
   - UnlockDJ
   - Boss
+  - NPC
+  - GM
+  - UnlockDash
+  - HiddenCave1
+  - Breakable
+  - Enemy
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -24,9 +31,9 @@ TagManager:
   - Grapple
   - Ground
   - BackgroundFill
-  - 
-  - 
-  - 
+  - Roof
+  - Player
+  - Breakable
   - 
   - 
   - 

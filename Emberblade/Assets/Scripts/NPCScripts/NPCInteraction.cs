@@ -6,11 +6,15 @@ using TMPro;
 public class NPCInteraction : MonoBehaviour
 {
     private bool triggering, isTalking, nextSentence;
-    public GameObject text, npcChatTextOb;
-    public TMP_Text npcText, npcChatText;
+    public GameObject text;
+    public TMP_Text npcText, npcChatText, npcName;
     public string[] sentences;
     private int wordIndex;
+    private GameObject player;
     public float dialogueSpeed;
+    private float speedUpTimer;
+    public Animator dialogueAnimator;
+    private bool startDialogue = true;
 
 
     private void Start()
@@ -21,6 +25,7 @@ public class NPCInteraction : MonoBehaviour
 
     private void Update()
     {
+        speedUpTimer += (Time.deltaTime * 1000f);
         if (!isTalking)
         {
             npcText.text = "Press \"E\" to talk!";
@@ -31,6 +36,7 @@ public class NPCInteraction : MonoBehaviour
             if (isTalking == true)
             {
                 text.SetActive(false);
+                npcName.text = gameObject.name;
             }
             else
             {
@@ -38,27 +44,39 @@ public class NPCInteraction : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
-              
-                text.SetActive(false);
-                npcChatTextOb.SetActive(true);
-                isTalking = true;
-                
-                if (nextSentence == true)
+                player.GetComponent<PlayerControll>().enabled = false;
+                if (startDialogue)
                 {
+                    dialogueAnimator.SetTrigger("Enter");
                     nextSentence = false;
-                    npcChatText.text = "";
-                    StartCoroutine(WriteSentence());
+                    startDialogue = false;
+                    text.SetActive(false);
+                    isTalking = true;
+                    speedUpTimer = 0;
+                    NextSentence();
                 }
-                
-                
-                
-
+                else
+                {
+                    if (nextSentence == true)
+                    {
+                        nextSentence = false;
+                        NextSentence();
+                        speedUpTimer = 0;
+                    }
+                }
             }
         }
         else
         {
             text.SetActive(false);
-            npcChatTextOb.SetActive(false);
+        }
+        if (Input.GetKey(KeyCode.E) && !nextSentence && speedUpTimer > 300)
+        {
+            dialogueSpeed = 0.01f;
+        }
+        else
+        {
+            dialogueSpeed = 0.05f;
         }
     }
 
@@ -68,6 +86,7 @@ public class NPCInteraction : MonoBehaviour
         if (other.tag == "Player")
         {
             triggering = true;
+            player = other.gameObject;
         }
     }
 
@@ -81,12 +100,27 @@ public class NPCInteraction : MonoBehaviour
     }
 
 
-    IEnumerator WriteSentence()
+    void NextSentence()
     {
+        if (wordIndex <= sentences.Length - 1)
+        {
+            npcChatText.text = "";
+            StartCoroutine(WriteSentence());
+        }
         if (wordIndex > sentences.Length - 1)
         {
+            nextSentence = false;
+            npcChatText.text = "";
+            dialogueAnimator.SetTrigger("Exit");
             wordIndex = 2;
+            startDialogue = true;
+            player.GetComponent<PlayerControll>().enabled = true;
         }
+    }
+
+    IEnumerator WriteSentence()
+    {
+        
         foreach (char character in sentences[wordIndex].ToCharArray())
         {
             npcChatText.text += character;
