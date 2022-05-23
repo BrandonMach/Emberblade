@@ -6,7 +6,7 @@ public class WindScript : MonoBehaviour
 {
     Rigidbody2D rb;
     bool affectedByWind = false;
-    float velocity;
+    float velocity = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,7 @@ public class WindScript : MonoBehaviour
         if (affectedByWind)
         {
             velocity += Time.deltaTime;
-            rb.AddForce(Vector2.right * velocity * 80);
+            rb.AddForce(Vector2.right * velocity * 100);
             Debug.Log("hehehehehehehehe");
             if (velocity >= 80)
             {
@@ -28,7 +28,7 @@ public class WindScript : MonoBehaviour
         }
         else
         {
-            velocity = 0;
+            velocity = 1;
         }
     }
 
