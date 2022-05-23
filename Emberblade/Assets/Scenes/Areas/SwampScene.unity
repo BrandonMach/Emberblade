@@ -720,9 +720,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 2
   canTakeDamage: 1
   abilityItem: {fileID: 300712886}
+  healthBar: {fileID: 0}
 --- !u!114 &68805968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4139,9 +4141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 10
   canTakeDamage: 1
   abilityItem: {fileID: 902560142}
+  healthBar: {fileID: 0}
 --- !u!61 &284096015
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5423,6 +5427,10 @@ MonoBehaviour:
   xWallForce: 50
   yWallForce: 40
   wallJumpTime: 0.05
+  knockback: 0
+  knockbackLength: 0
+  knockbackCount: 0
+  knockFromRight: 0
 --- !u!212 &333074795
 SpriteRenderer:
   m_ObjectHideFlags: 0
