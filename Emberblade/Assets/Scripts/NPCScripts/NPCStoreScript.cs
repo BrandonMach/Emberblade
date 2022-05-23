@@ -14,6 +14,7 @@ public class NPCStoreScript : MonoBehaviour
     public float dialogueSpeed;
     private float speedUpTimer;
     public Animator dialogueAnimator;
+    public Animator storeAnimator;
     private bool startDialogue = true;
 
 
@@ -80,18 +81,17 @@ public class NPCStoreScript : MonoBehaviour
         {
             dialogueSpeed = 0.05f;
         }
-        //if (storeIsOpen)
-        //{
-        //    storePanel.SetActive(true);
-        //    if (Input.GetKeyDown(KeyCode.Q))
-        //    {
-        //        storeIsOpen = false;
-        //        storePanel.SetActive(false);
-        //        wordIndex = 0;
-        //        startDialogue = true;
-        //        player.GetComponent<PlayerControll>().enabled = true;
-        //    }
-        //}
+        if (storeIsOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                storeIsOpen = false;
+                storeAnimator.SetTrigger("Exit");
+                wordIndex = 0;
+                startDialogue = true;
+                player.GetComponent<PlayerControll>().enabled = true;
+            }
+        }
     }
 
 
@@ -125,9 +125,10 @@ public class NPCStoreScript : MonoBehaviour
             nextSentence = false;
             npcChatText.text = "";
             dialogueAnimator.SetTrigger("Exit");
-            wordIndex = 0;
-            startDialogue = true;
-            player.GetComponent<PlayerControll>().enabled = true;
+            storeAnimator.SetTrigger("Enter");
+            //wordIndex = 0;
+            //startDialogue = true;
+            //player.GetComponent<PlayerControll>().enabled = true;
             storeIsOpen = true;
         }
     }
