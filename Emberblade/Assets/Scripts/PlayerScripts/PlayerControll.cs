@@ -132,7 +132,7 @@ public class PlayerControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Knockback
         if (knockbackCount <= 0)
         {
             Move();
