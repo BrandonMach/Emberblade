@@ -452,6 +452,7 @@ public class PlayerControll : MonoBehaviour
 
     void StopCutscene()
     {
+        Debug.Log("YO");
         newAbilityText.startText = false;
         newAbilityText.ClosePopUP();
         this.enabled = true;
