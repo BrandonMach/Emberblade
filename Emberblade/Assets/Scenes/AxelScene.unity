@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: playerInfoController
       value: 
       objectReference: {fileID: 691617906}
+    - target: {fileID: 1648721355, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3971480240492181154, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
       propertyPath: m_Name
       value: EnemyExempel Entrance
@@ -5602,6 +5606,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2343176283690285349, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3086654436464087011, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -6875,6 +6883,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1648721355, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3971480240492181154, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
       propertyPath: m_Name
       value: EnemyExempel
@@ -7869,6 +7881,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &378784797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 1472260300}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1472260301}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &384697015
 GameObject:
   m_ObjectHideFlags: 0
@@ -8374,6 +8402,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &410172745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 2045006465}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2045006466}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (3) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &414578436
 GameObject:
   m_ObjectHideFlags: 0
@@ -8557,6 +8601,10 @@ PrefabInstance:
     - target: {fileID: 1862626636652310370, guid: 4b68c031e67cd1b41b266f0485615bce, type: 3}
       propertyPath: m_Name
       value: Porcupine Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6209137336227104297, guid: 4b68c031e67cd1b41b266f0485615bce, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b68c031e67cd1b41b266f0485615bce, type: 3}
@@ -22919,9 +22967,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 10
   canTakeDamage: 1
   abilityItem: {fileID: 669857784}
+  healthBar: {fileID: 0}
 --- !u!61 &601586723
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23064,6 +23114,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastCheckPointPos: {x: -4.86, y: 3.03}
+  swampFromCavePos: {x: 0, y: 0}
+  swampFromDesertPos: {x: 0, y: 0}
+  swampFromWinterPos: {x: 0, y: 0}
+  swampFromTreePos: {x: 0, y: 0}
 --- !u!4 &606246617
 Transform:
   m_ObjectHideFlags: 0
@@ -24148,7 +24202,6 @@ MonoBehaviour:
   jumpSpeed: 33
   jumpDelay: 0.25
   canDoubleJump: 0
-  hasUnlockedDJ: 0
   isCrouching: 0
   dashForce: 100
   startDashTimer: 0.25
@@ -24167,6 +24220,10 @@ MonoBehaviour:
   xWallForce: 50
   yWallForce: 40
   wallJumpTime: 0.05
+  knockback: 0
+  knockbackLength: 0
+  knockbackCount: 0
+  knockFromRight: 0
 --- !u!212 &691617916
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24357,11 +24414,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
---- !u!4 &697684697 stripped
+--- !u!4 &697684697
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 697684696}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179783596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1267739552}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &701591778
 GameObject:
   m_ObjectHideFlags: 0
@@ -24772,9 +24838,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 2
   canTakeDamage: 1
   abilityItem: {fileID: 685281378}
+  healthBar: {fileID: 0}
 --- !u!114 &745662658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25325,6 +25393,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &841780421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 914313023}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 914313024}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (9) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &843017444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30799,11 +30883,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
---- !u!4 &914313024 stripped
+--- !u!4 &914313024
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 914313023}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841780421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1267739552}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &915340579
 GameObject:
   m_ObjectHideFlags: 0
@@ -30989,6 +31082,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &923427295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 1983075884}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983075885}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (2) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &933583924
 GameObject:
   m_ObjectHideFlags: 0
@@ -31846,6 +31955,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1036037975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 1736982007}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1736982008}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (4) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1054322464
 GameObject:
   m_ObjectHideFlags: 0
@@ -32173,6 +32298,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065786854}
   m_CullTransparentMesh: 1
+--- !u!1 &1089355134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 1860144925}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1860144926}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (8) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1120724407
 GameObject:
   m_ObjectHideFlags: 0
@@ -32443,6 +32584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destructableTileMap: {fileID: 1156411759}
+  tempFillTileMap: {fileID: 0}
+  rend: {fileID: 0}
 --- !u!19719996 &1156411757
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -33189,11 +33332,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
---- !u!4 &1166138880 stripped
+--- !u!4 &1166138880
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 1166138879}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264296820}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1267739552}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1166937956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33423,6 +33575,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1179783596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 697684696}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 697684697}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (1) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1195121425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33430,6 +33598,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2343176283690285349, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3086654436464087018, guid: 547ababb57074fb46896ecf4a9a1ec69, type: 3}
       propertyPath: m_Name
       value: Armadillo (1)
@@ -33570,11 +33742,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
---- !u!4 &1204227183 stripped
+--- !u!4 &1204227183
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 1204227182}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834535506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1267739552}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1215803559
 GameObject:
   m_ObjectHideFlags: 0
@@ -33848,6 +34029,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1622422187028617287, guid: 2823a41b89150bc468eee856f184fed9, type: 3}
   m_PrefabInstance: {fileID: 1258049683}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1264296820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 1166138879}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1166138880}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (6) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1267739551
 GameObject:
   m_ObjectHideFlags: 0
@@ -34609,6 +34806,22 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!1 &1356083362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 1649209936}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649209937}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (5) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1372976842
 GameObject:
   m_ObjectHideFlags: 0
@@ -39547,11 +39760,9 @@ MonoBehaviour:
   sentences:
   - Hello!, would you like to see my wares?
   - There is no inventory screen yet, press Q to go back
-  wordIndex: 0
   dialogueSpeed: 0.05
   dialogueAnimator: {fileID: 0}
   storeAnimator: {fileID: 0}
-  animator: {fileID: 0}
 --- !u!61 &1381944354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52258,11 +52469,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
---- !u!4 &1472260301 stripped
+--- !u!4 &1472260301
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 1472260300}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378784797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1267739552}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1474148151
 GameObject:
   m_ObjectHideFlags: 0
@@ -52707,11 +52927,9 @@ MonoBehaviour:
   sentences:
   - Hello!, would you like to see my wares?
   - Here we go then!
-  wordIndex: 0
   dialogueSpeed: 0.05
   dialogueAnimator: {fileID: 2091785408}
   storeAnimator: {fileID: 1142111530}
-  animator: {fileID: 1540923960}
 --- !u!61 &1540923962
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53922,11 +54140,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
---- !u!4 &1649209937 stripped
+--- !u!4 &1649209937
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 1649209936}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356083362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1267739552}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1649330430
 GameObject:
   m_ObjectHideFlags: 3
@@ -54961,11 +55188,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
---- !u!4 &1736982008 stripped
+--- !u!4 &1736982008
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 1736982007}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036037975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1267739552}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1740162960
 GameObject:
   m_ObjectHideFlags: 0
@@ -55813,6 +56049,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1834535506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 1204227182}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1204227183}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (7) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1839754718
 GameObject:
   m_ObjectHideFlags: 0
@@ -56013,11 +56265,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
---- !u!4 &1860144926 stripped
+--- !u!4 &1860144926
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 1860144925}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089355134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1267739552}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1881460552
 GameObject:
   m_ObjectHideFlags: 0
@@ -56431,6 +56692,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1921667528}
+    - target: {fileID: 1648721355, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3971480240492181154, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
       propertyPath: m_Name
       value: EnemyExempel Hole
@@ -56630,11 +56895,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
---- !u!4 &1983075885 stripped
+--- !u!4 &1983075885
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 1983075884}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923427295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1267739552}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1988260810
 GameObject:
   m_ObjectHideFlags: 0
@@ -56956,11 +57230,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
---- !u!4 &2045006466 stripped
+--- !u!4 &2045006466
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 2045006465}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410172745}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1267739552}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2052832171
 GameObject:
   m_ObjectHideFlags: 0
