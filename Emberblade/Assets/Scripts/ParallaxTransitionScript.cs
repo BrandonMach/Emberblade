@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ParallaxTransitionScript : MonoBehaviour
 {
-    public GameObject background;
-    public GameObject backgroundCave;
+    [SerializeField] GameObject background;
+    [SerializeField] GameObject backgroundCave;
 
-    public GameObject player;
+    [SerializeField] GameObject player;
 
     enum backgroundType
     {

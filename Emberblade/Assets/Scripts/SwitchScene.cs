@@ -19,10 +19,7 @@ public class SwitchScene : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "GoToDesert")
-        //{
-        //    SwitchToCave();
-        //}
+        
         if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "DesertScene")
         {
             GameMaster.wasDesert = true; // Bool för att GM ska veta attman varit i desert

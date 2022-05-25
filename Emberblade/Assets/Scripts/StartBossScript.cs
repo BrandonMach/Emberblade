@@ -5,17 +5,7 @@ using UnityEngine;
 public class StartBossScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject bossToWakeUp;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] GameObject bossToWakeUp;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

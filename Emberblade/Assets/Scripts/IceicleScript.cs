@@ -7,12 +7,12 @@ public class IceicleScript : MonoBehaviour
     private LineRenderer lineRenderer;
     private Rigidbody2D rb;
     BoxCollider2D boxColllider;
-    public Transform hitPos;
+    [SerializeField] Transform hitPos;
     bool playerDetected;
-    public LayerMask playerLayer;
+    [SerializeField] LayerMask playerLayer;
     Vector3 originalPos;
-    public bool falling;
-    public int gravityScaling;
+    [SerializeField] bool falling;
+    [SerializeField] int gravityScaling;
 
 
     bool test;
@@ -68,8 +68,6 @@ public class IceicleScript : MonoBehaviour
             rb.gravityScale = 0;
             transform.position = originalPos;
             boxColllider.enabled = false;
-            // falling = false;
-            //lineRenderer.enabled = true;
             test = false;
         }
         if (collision.gameObject.CompareTag("Player"))
@@ -77,9 +75,8 @@ public class IceicleScript : MonoBehaviour
             rb.gravityScale = 0;
             transform.position = originalPos;
             boxColllider.enabled = false;
-            //falling = false;
             test = false;
-            //lineRenderer.enabled = true;
+            
         }
     }
 }
