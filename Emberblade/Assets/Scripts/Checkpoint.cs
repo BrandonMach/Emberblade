@@ -5,7 +5,7 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     private GameMaster gm;
-    public Animator animator;
+    [SerializeField] Animator animator;
     public static  bool checkpointTaken;
 
     private void Start()

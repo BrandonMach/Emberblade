@@ -372,9 +372,6 @@ public class PlayerControll : MonoBehaviour
         {
             animator.SetBool("Jumping", true);
                 Jumping();
-                //jumpCounter ++;
-            
-                //Debug.Log("dsdsa" + jumpCounter);
         }       
     }
     void Jumping()
@@ -399,13 +396,11 @@ public class PlayerControll : MonoBehaviour
     {
         animator.SetBool("Jumping", false);
         animator.SetBool("IsOnGround", false);
-        //Debug.Log("Has Landed");
     }
 
     public void Knockback()
     {
         Debug.Log("Knockback");
-        //player_Rb.AddForce(new Vector2(xKnockback, yKnockback), ForceMode2D.Impulse);
         knockbackCount = knockbackLength;
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -414,8 +409,6 @@ public class PlayerControll : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
          {
             isOnGround = false;
-           // jumpCounter = 0;
-
          }
         if (collision.gameObject.CompareTag("Roof"))
         {

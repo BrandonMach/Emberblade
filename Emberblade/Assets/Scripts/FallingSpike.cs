@@ -7,7 +7,7 @@ public class FallingSpike : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D collider;
     PlayerInfo player;
-    public float distance;
+    [SerializeField] float distance;
     bool isFalling = false;
     bool isAlive = true;
     void Start()

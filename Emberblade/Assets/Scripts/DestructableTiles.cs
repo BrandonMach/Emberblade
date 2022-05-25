@@ -8,11 +8,11 @@ public class DestructableTiles : MonoBehaviour
     // Start is called before the first frame update
 
     
-    public Tilemap destructableTileMap;
+    [SerializeField] Tilemap destructableTileMap;
     PlayerControll playerControllScript;
 
-    public Tilemap tempFillTileMap;
-    public TilemapRenderer rend;
+    [SerializeField] Tilemap tempFillTileMap;
+    [SerializeField] TilemapRenderer rend;
 
 
     void Start()
@@ -43,10 +43,10 @@ public class DestructableTiles : MonoBehaviour
         
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
-    }
+    
+
+
+
 
     IEnumerator FadeOut()
     {

@@ -23,7 +23,7 @@ public class GrappleHookScript : MonoBehaviour
     void Start()
     {
         line = GetComponent<LineRenderer>();
-        //player = GameObject.FindGameObjectWithTag("Player");
+        
        
 
     }
