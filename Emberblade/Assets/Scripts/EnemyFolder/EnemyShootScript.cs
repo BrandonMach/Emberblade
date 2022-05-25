@@ -38,10 +38,8 @@ public class EnemyShootScript : MonoBehaviour
             {
                 playerInRange = true;
 
-                if (playerInRange /*&& isOnGround*/)
+                if (playerInRange)
                 {
-                    // transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position - playerTransformOffest, moveSpeed);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.
-
                   if(this.transform.position.x > playerInfoController.transform.position.x)
                   {
                         

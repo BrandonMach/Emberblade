@@ -6,15 +6,15 @@ using UnityEngine.Events;
 public class PlayerControll : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float movementSpeed = 1;
+    [SerializeField] float movementSpeed = 1;
     private Rigidbody2D player_Rb;
 
-    public float jumpforce = 1;
+    [SerializeField] float jumpforce = 1;
     private float originalJumpForce;
-    public GameObject jumpRingPrefab;
-    public float jRingSpawnTime = 0.1f;
-    public GameObject dashEffectPrefab;
-    public float dESpawnTime = 0;
+    [SerializeField] GameObject jumpRingPrefab;
+    [SerializeField] float jRingSpawnTime = 0.1f;
+    [SerializeField] GameObject dashEffectPrefab;
+    [SerializeField] float dESpawnTime = 0;
     private CapsuleCollider2D capsuleCollider;
     private BoxCollider2D boxCollider;
 
@@ -23,26 +23,27 @@ public class PlayerControll : MonoBehaviour
     Vector2 standingBoxOffset;
     Vector2 stadningBoxSize;
 
-   
 
-   
 
-    public Animator animator;
-    public Animator camAnimator;
+
+
+    [SerializeField] Animator animator;
+    [SerializeField] Animator camAnimator;
 
     //---------------------------------
     [Header ("Ground detection")]
-    public LayerMask groundLayer;
+    [SerializeField] LayerMask groundLayer;
     public bool isOnGround;
-    public float groundLenght;
-    public Vector3 colliderOffset;
+    [SerializeField] float groundLenght;
+    [SerializeField] Vector3 colliderOffset;
     UnityEvent landing = new UnityEvent();
 
     [Header("Crouch")]
-    public bool hasToCrouch;
-    public LayerMask roofLayer;
-    public float headFloat;
-    public Vector3 headOffset;
+    [SerializeField] bool isCrouching;
+    [SerializeField] bool hasToCrouch;
+    [SerializeField] LayerMask roofLayer;
+    [SerializeField] float headFloat;
+    [SerializeField] Vector3 headOffset;
     Vector2 oGOffset;
     Vector2 oGSize;
     Vector3 oGpos;
@@ -50,33 +51,32 @@ public class PlayerControll : MonoBehaviour
 
 
     [Header("Physics")]
-    public float gravity = 1;
-    public float fallMultiplier = 5f;
-    public float liniearDrag = 4f;
+    [SerializeField] float gravity = 1;
+    [SerializeField] float fallMultiplier = 5f;
+    [SerializeField] float liniearDrag = 4f;
 
     [Header("Abilities")]
     public  NewAbilityTextScript newAbilityText;
 
     [Header("Jump")]
-    public float jumpSpeed = 15;
-    public float jumpDelay = 0.25f;
+    [SerializeField] float jumpSpeed = 15;
+    [SerializeField] float jumpDelay = 0.25f;
     private float jumpTimer = 0;
 
-    public bool canDoubleJump = false;
-    public static bool hasUnlockedDJ; // Static gör att boolen värde sparas när man dör. Ska vara static i the full game
-    public bool isCrouching;
-
+    [SerializeField] bool canDoubleJump = false;
+    [SerializeField] static bool hasUnlockedDJ; // Static gör att boolen värde sparas när man dör. Ska vara static i the full game
+    
     [Header("Dash ability")]
-    public float dashForce;
-    public float startDashTimer;
+    [SerializeField] float dashForce;
+    [SerializeField] float startDashTimer;
     private float currentDashTime;
     private float dashDirection;
-    public bool hasUnlockedDash;
+    [SerializeField] bool hasUnlockedDash;
     public bool isDashing { get; set; }
     private PlayerInfo playerInfoScript; //Decrease mana
-    bool destroyBlock;
 
    
+
 
     [Header("Parry")]
     public bool isParrying = false;
@@ -84,22 +84,22 @@ public class PlayerControll : MonoBehaviour
     private float parryWindow = 0.5f;
 
     [Header("Hook")]
-    public GrappleHookScript ghScript;
-    public LayerMask grapplelayer;
+    [SerializeField] GrappleHookScript ghScript;
+    [SerializeField] LayerMask grapplelayer;
 
     [Header("WallClimb")]
-    public LayerMask wallLayer;
+    [SerializeField] LayerMask wallLayer;
     bool isTouchingFront;
-    public Transform frontCheck;
+    [SerializeField] Transform frontCheck;
     bool wallCling;
-    public float wallClimbSpeed;
-    public bool CanWallClimb;
+    [SerializeField] float wallClimbSpeed;
+    [SerializeField] bool CanWallClimb;
 
     [Header("Wall Jump")]
     bool wallJumping;
-    public float xWallForce;
-    public float yWallForce;
-    public float wallJumpTime;
+    [SerializeField] float xWallForce;
+    [SerializeField] float yWallForce;
+    [SerializeField] float wallJumpTime;
 
     [Header("Knockback")]
     public float knockback;
