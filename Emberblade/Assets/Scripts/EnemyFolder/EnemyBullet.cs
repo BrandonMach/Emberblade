@@ -6,7 +6,7 @@ public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rbody;
     [SerializeField] private float speed;
-    public float lifespan = 10;
+    [SerializeField] float lifespan = 10;
     public LayerMask layer;
     PlayerInfo player;
     bool damagePlayer = true;

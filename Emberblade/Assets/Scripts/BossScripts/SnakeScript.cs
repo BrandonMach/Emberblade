@@ -5,41 +5,35 @@ using UnityEngine;
 public class SnakeScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool playerInRange;
-    public Vector2 playerDetection;
+    [SerializeField] bool playerInRange;
+    [SerializeField] Vector2 playerDetection;
     PlayerInfo playerInfoController;
     PlayerControll playerControllScript;
-    public bool isOnGround;
-    public bool facingLeft;
-    public Animator animator;
+    [SerializeField] bool isOnGround;
+    [SerializeField] bool facingLeft;
+    [SerializeField] Animator animator;
 
 
-    bool attacking;
-    bool playAttackAnim;
-    public Rigidbody2D rb;
-    public float startAttackTimer;
-    float attackDelay = 1;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] float startAttackTimer;
+    
 
     private float flipHitbox = 1f;
     float startTimer = 0;
     float hitWallTimer = 0;
     float wallAttackTime = 2;
-    float animationTime = 2f;
 
+    [SerializeField] LayerMask playerLayer;
 
-
-    public LayerMask playerLayer;
-    Collider2D[] hitPlayer;
-
-    public bool canAttack = true;
+    [SerializeField] bool canAttack = true;
 
     [Header("Second phase")]
     EnemyHealth enemyHealthScripts;
     int maxHealth; 
     bool secondPhase = false;
-    public ParticleSystem poisonRain;
-    public Animator camAnim;
-    public Transform startTransform;
+    [SerializeField] ParticleSystem poisonRain;
+    [SerializeField] Animator camAnim;
+    [SerializeField] Transform startTransform;
     Vector3 startPos;
 
 

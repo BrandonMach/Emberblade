@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemyShootScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject bulletPrefab;
+    [SerializeField] GameObject bulletPrefab;
     EnemyBulletScript bulletScript;
-    public bool playerInRange;
-    public Vector2 playerDetection;
+    [SerializeField] bool playerInRange;
+    [SerializeField] Vector2 playerDetection;
     PlayerInfo playerInfoController;
     float startShot;
     float shootSpeed;

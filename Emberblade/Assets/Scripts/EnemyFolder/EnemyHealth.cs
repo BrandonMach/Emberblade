@@ -7,16 +7,15 @@ public class EnemyHealth : MonoBehaviour
 
     public int maxHealth;
     public int health;
-    public bool canTakeDamage = true;
+    [SerializeField] bool canTakeDamage = true;
     private float startTimeDamageTimer;
     private float damageDelay = 0.5f;
-    public GameObject abilityItem;
+    [SerializeField] GameObject abilityItem;
     Currency player;
-    public EnemyHealthbar healthBar;
+    [SerializeField] EnemyHealthbar healthBar;
     
     void Start()
     {
-        //health = 3;
         canTakeDamage = true;
         player = GameObject.Find("Player").GetComponent<Currency>();
         health = maxHealth;
