@@ -6,9 +6,6 @@ using TMPro;
 public class NewAbilityTextScript : MonoBehaviour
 {
 
-
-
-
     // Update is called once per frame
     public TextMeshProUGUI abilityText;
     public string[] sentences;

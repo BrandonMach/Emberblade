@@ -20,6 +20,7 @@ TagManager:
   - Breakable
   - Enemy
   - Platform
+  - Bat
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - Roof
   - Player
   - Breakable
-  - 
+  - Platfroms
   - 
   - 
   - 

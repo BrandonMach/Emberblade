@@ -634,11 +634,20 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: 0}
   m_SizeDelta: {x: -10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &45621809 stripped
+--- !u!4 &45621809
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 125782527}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909884689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 396304897}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &45934378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastCheckPointPos: {x: -4.86, y: 3.03}
+  swampFromCavePos: {x: 0, y: 0}
+  swampFromDesertPos: {x: 0, y: 0}
+  swampFromWinterPos: {x: 0, y: 0}
+  swampFromTreePos: {x: 0, y: 0}
 --- !u!4 &94162364
 Transform:
   m_ObjectHideFlags: 0
@@ -17748,11 +17761,20 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: -0.5}
   m_SizeDelta: {x: -30, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &424890074 stripped
+--- !u!4 &424890074
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 316941025}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963454687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 396304897}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &428210305
 GameObject:
   m_ObjectHideFlags: 0
@@ -18909,11 +18931,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498205376}
   m_CullTransparentMesh: 1
---- !u!4 &502790312 stripped
+--- !u!4 &502790312
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 2063674285}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334118273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 396304897}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &503881400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20521,6 +20552,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 64
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &628506348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 495754791}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1457599141}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (6) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &651828282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38064,6 +38111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destructableTileMap: {fileID: 684548962}
+  tempFillTileMap: {fileID: 0}
+  rend: {fileID: 0}
 --- !u!19719996 &684548960
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -39201,11 +39250,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &803485394 stripped
+--- !u!4 &803485394
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 171445528}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107299861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 396304897}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &817522879
 GameObject:
   m_ObjectHideFlags: 0
@@ -39606,6 +39664,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 63
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &834259733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 239416296}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1680167349}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (5) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &844315199
 GameObject:
   m_ObjectHideFlags: 0
@@ -40098,11 +40172,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &931724276 stripped
+--- !u!4 &931724276
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 155549857}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954305881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 396304897}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &935389316
 GameObject:
   m_ObjectHideFlags: 0
@@ -40768,6 +40851,10 @@ MonoBehaviour:
   xWallForce: 50
   yWallForce: 40
   wallJumpTime: 0.05
+  knockback: 0
+  knockbackLength: 0
+  knockbackCount: 0
+  knockFromRight: 0
 --- !u!61 &1042027242
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41434,6 +41521,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02d43d42b5a11c7428b6b9082f9be286, type: 3}
+--- !u!1 &1107299861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 171445528}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 803485394}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (3) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1129721295
 GameObject:
   m_ObjectHideFlags: 0
@@ -41728,6 +41831,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1141732881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 428925434}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642835880}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (8) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1145279332
 GameObject:
   m_ObjectHideFlags: 0
@@ -42801,6 +42920,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 61
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1334118273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 2063674285}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 502790312}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (9) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1335774790
 GameObject:
   m_ObjectHideFlags: 0
@@ -48037,6 +48172,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1394557114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 1051334878}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1574624547}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (4) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1398937167
 GameObject:
   m_ObjectHideFlags: 0
@@ -48507,11 +48658,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428489926}
   m_CullTransparentMesh: 1
---- !u!4 &1429933685 stripped
+--- !u!4 &1429933685
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 503881400}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874095761}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 396304897}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1446400290
 GameObject:
   m_ObjectHideFlags: 0
@@ -48635,11 +48795,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2823a41b89150bc468eee856f184fed9, type: 3}
---- !u!4 &1457599141 stripped
+--- !u!4 &1457599141
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 495754791}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628506348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 396304897}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1460446866
 GameObject:
   m_ObjectHideFlags: 0
@@ -48814,9 +48983,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 2
   canTakeDamage: 1
   abilityItem: {fileID: 831404418}
+  healthBar: {fileID: 0}
 --- !u!114 &1504007147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52443,11 +52614,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c99a91543a6b0db40a0565e1217da5fe, type: 3}
---- !u!4 &1574624547 stripped
+--- !u!4 &1574624547
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 1051334878}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394557114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 396304897}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1581365458
 GameObject:
   m_ObjectHideFlags: 0
@@ -52774,11 +52954,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac57b33b639ac5749a0a395beface1b0, type: 3}
---- !u!4 &1642835880 stripped
+--- !u!4 &1642835880
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 428925434}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141732881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 396304897}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1646029933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57938,11 +58127,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2823a41b89150bc468eee856f184fed9, type: 3}
---- !u!4 &1680167349 stripped
+--- !u!4 &1680167349
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
   m_PrefabInstance: {fileID: 239416296}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834259733}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 396304897}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1686261962
 GameObject:
   m_ObjectHideFlags: 0
@@ -59936,6 +60134,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865465149}
   m_CullTransparentMesh: 1
+--- !u!1 &1874095761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 503881400}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1429933685}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (2) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1876712746
 GameObject:
   m_ObjectHideFlags: 0
@@ -60346,6 +60560,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3971480240492181158, guid: 791170c2a9b50b34fbdc0eea0c7b786c, type: 3}
   m_PrefabInstance: {fileID: 570491683}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1909884689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 125782527}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 45621809}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (7) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1916984952
 GameObject:
   m_ObjectHideFlags: 0
@@ -60757,6 +60987,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1954305881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 155549857}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 931724276}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (1) (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1963454687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3663286770304029345, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
+  m_PrefabInstance: {fileID: 316941025}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424890074}
+  m_Layer: 0
+  m_Name: '3xStone_Platform (Missing Prefab with guid: d9e9baf9424689643af24a29c85c8236)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1994423725
 GameObject:
   m_ObjectHideFlags: 0
@@ -61383,9 +61645,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 10
   health: 10
   canTakeDamage: 1
   abilityItem: {fileID: 488446356}
+  healthBar: {fileID: 0}
 --- !u!61 &2071642354
 BoxCollider2D:
   m_ObjectHideFlags: 0
