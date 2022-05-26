@@ -10,6 +10,7 @@ public class GrappleHookScript : MonoBehaviour
     [SerializeField] float maxDistance = 10f; //Shoot lenght
     [SerializeField] float grappleSpeed = 10f;
     [SerializeField] float grappleShootSpeed = 20f;
+    [SerializeField] GameObject effect;
 
     bool isGrappling = false;
     [HideInInspector] public bool retracting = false;
@@ -42,6 +43,18 @@ public class GrappleHookScript : MonoBehaviour
             direction = new Vector2(100, 0);
 
         }
+        RaycastHit2D seek = Physics2D.Raycast(hookTransform.position, direction, maxDistance, grappleLayer);
+        if (seek.collider !=null)
+        {
+            
+            Debug.Log("Can grapple");
+            effect.SetActive(true);
+        }
+        else
+        {
+            effect.SetActive(false);
+        }
+       
         if (Input.GetKeyDown(KeyCode.G) && !isGrappling)
         {
             StartGrapple();
