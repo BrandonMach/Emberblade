@@ -7,7 +7,7 @@ public class PlayerControll : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] float movementSpeed = 1;
-    private Rigidbody2D player_Rb;
+    public Rigidbody2D player_Rb;
 
     [SerializeField] float jumpforce = 1;
     private float originalJumpForce;
