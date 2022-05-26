@@ -7,7 +7,7 @@ public class VerticalPlatform : MonoBehaviour
 {
     private PlatformEffector2D effector;
     private float waitTime;
-    PlayerControll player;
+    public PlayerControll player;
     private void Start()
     {
         effector = GetComponent<PlatformEffector2D>();
@@ -16,16 +16,13 @@ public class VerticalPlatform : MonoBehaviour
     private void Update()
     {
         waitTime += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
-            waitTime = 0f;
             effector.rotationalOffset = 180f;
+            player.player_Rb.gravityScale = 10;
+            waitTime = 0f;
         }
-        else if (waitTime >= 0.8f)
-        {
-            effector.rotationalOffset = 0f;
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
+        else if (waitTime >= 0.3f)
         {
             effector.rotationalOffset = 0f;
         }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,7 +5,7 @@ public class PlayerControll : MonoBehaviour
 {
     // Start is called before the first frame update
     public float movementSpeed = 1;
-    private Rigidbody2D player_Rb;
+    public Rigidbody2D player_Rb;
 
     public float jumpforce = 1;
     private float originalJumpForce;
@@ -37,6 +35,11 @@ public class PlayerControll : MonoBehaviour
     public float groundLenght;
     public Vector3 colliderOffset;
     UnityEvent landing = new UnityEvent();
+
+    [Header("Platform detection")]
+    public LayerMask platformLayer;
+    public bool isOnPlatform;
+    
 
     [Header("Crouch")]
     public bool hasToCrouch;
@@ -107,12 +110,9 @@ public class PlayerControll : MonoBehaviour
     public float knockbackCount;
     public bool knockFromRight;
 
-  
-
 
     void Start()
     {
-        player_Rb = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerInfoScript = GetComponent<PlayerInfo>();
@@ -132,6 +132,7 @@ public class PlayerControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //Knockback
         if (knockbackCount <= 0)
         {
@@ -156,7 +157,8 @@ public class PlayerControll : MonoBehaviour
         }
         JumpInput();
         isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
-        if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround)
+        isOnPlatform = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, platformLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, platformLayer);
+        if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround || !isOnPlatform)
         {
             canDoubleJump = false;
         }
@@ -198,8 +200,11 @@ public class PlayerControll : MonoBehaviour
             //jumpCounter = 0;
             canDoubleJump = true;
             landing.Invoke();
-            
-            
+        }
+        if (isOnPlatform)
+        {
+            //jumpCounter = 0;
+            canDoubleJump = true;
         }
         else
         {
@@ -229,11 +234,10 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") < 0) //Left
         {
             characterScale.x = -1.45f;
-            if (isOnGround)
+            if (isOnGround || isOnPlatform)
             {
                 PlayRunAnimation();
             }
-          
         }
         else
         {
@@ -242,7 +246,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0) //Right
         {
             characterScale.x = 1.45f;
-            if (isOnGround)
+            if (isOnGround || isOnPlatform)
             {
                 PlayRunAnimation();
             }
@@ -368,7 +372,7 @@ public class PlayerControll : MonoBehaviour
 
     void JumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump || Input.GetKeyDown(KeyCode.Space) && isOnPlatform)
         {
             animator.SetBool("Jumping", true);
                 Jumping();
@@ -402,6 +406,14 @@ public class PlayerControll : MonoBehaviour
         //Debug.Log("Has Landed");
     }
 
+    public void LandingPlatform()
+    {
+        animator.SetBool("Jumping", false);
+        animator.SetBool("IsOnPlatform", false);
+        //Debug.Log("Has Landed");
+    }
+
+
     public void Knockback()
     {
         Debug.Log("Knockback");
@@ -414,12 +426,14 @@ public class PlayerControll : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
          {
             isOnGround = false;
-           // jumpCounter = 0;
+            isOnPlatform = false;
+            // jumpCounter = 0;
 
-         }
+        }
         if (collision.gameObject.CompareTag("Roof"))
         {
             isOnGround = false;
+            isOnPlatform = false;
         }
 
         else if (collision.gameObject.CompareTag("UnlockDJ"))
@@ -436,7 +450,7 @@ public class PlayerControll : MonoBehaviour
             Destroy(collision.gameObject);
             PlayNewAbilityCutscene();
             newAbilityText.index = 1;
-        }         
+        }
     }
 
     void PlayNewAbilityCutscene()
