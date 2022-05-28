@@ -30,10 +30,6 @@ public class GameMaster : MonoBehaviour
 
     private ActiveScene activeScene;
 
-    private void Update()
-    {
-        Debug.Log("Yo" + wasDesert);
-    }
 
     private void Awake()
     {

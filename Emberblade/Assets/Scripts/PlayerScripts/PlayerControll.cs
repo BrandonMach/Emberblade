@@ -1,18 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerControll : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float movementSpeed = 1;
+    [SerializeField] float movementSpeed = 1;
     public Rigidbody2D player_Rb;
 
-    public float jumpforce = 1;
+    [SerializeField] float jumpforce = 1;
     private float originalJumpForce;
-    public GameObject jumpRingPrefab;
-    public float jRingSpawnTime = 0.1f;
-    public GameObject dashEffectPrefab;
-    public float dESpawnTime = 0;
+    [SerializeField] GameObject jumpRingPrefab;
+    [SerializeField] float jRingSpawnTime = 0.1f;
+    [SerializeField] GameObject dashEffectPrefab;
+    [SerializeField] float dESpawnTime = 0;
     private CapsuleCollider2D capsuleCollider;
     private BoxCollider2D boxCollider;
 
@@ -21,31 +23,27 @@ public class PlayerControll : MonoBehaviour
     Vector2 standingBoxOffset;
     Vector2 stadningBoxSize;
 
-   
 
-   
 
-    public Animator animator;
-    public Animator camAnimator;
+
+
+    [SerializeField] Animator animator;
+    [SerializeField] Animator camAnimator;
 
     //---------------------------------
     [Header ("Ground detection")]
-    public LayerMask groundLayer;
+    [SerializeField] LayerMask groundLayer;
     public bool isOnGround;
-    public float groundLenght;
-    public Vector3 colliderOffset;
+    [SerializeField] float groundLenght;
+    [SerializeField] Vector3 colliderOffset;
     UnityEvent landing = new UnityEvent();
 
-    [Header("Platform detection")]
-    public LayerMask platformLayer;
-    public bool isOnPlatform;
-    
-
     [Header("Crouch")]
-    public bool hasToCrouch;
-    public LayerMask roofLayer;
-    public float headFloat;
-    public Vector3 headOffset;
+    [SerializeField] bool isCrouching;
+    [SerializeField] bool hasToCrouch;
+    [SerializeField] LayerMask roofLayer;
+    [SerializeField] float headFloat;
+    [SerializeField] Vector3 headOffset;
     Vector2 oGOffset;
     Vector2 oGSize;
     Vector3 oGpos;
@@ -53,33 +51,32 @@ public class PlayerControll : MonoBehaviour
 
 
     [Header("Physics")]
-    public float gravity = 1;
-    public float fallMultiplier = 5f;
-    public float liniearDrag = 4f;
+    [SerializeField] float gravity = 1;
+    [SerializeField] float fallMultiplier = 5f;
+    [SerializeField] float liniearDrag = 4f;
 
     [Header("Abilities")]
     public  NewAbilityTextScript newAbilityText;
 
     [Header("Jump")]
-    public float jumpSpeed = 15;
-    public float jumpDelay = 0.25f;
+    [SerializeField] float jumpSpeed = 15;
+    [SerializeField] float jumpDelay = 0.25f;
     private float jumpTimer = 0;
 
-    public bool canDoubleJump = false;
-    public static bool hasUnlockedDJ; // Static gör att boolen värde sparas när man dör. Ska vara static i the full game
-    public bool isCrouching;
-
+    [SerializeField] bool canDoubleJump = false;
+    [SerializeField] static bool hasUnlockedDJ; // Static gör att boolen värde sparas när man dör. Ska vara static i the full game
+    
     [Header("Dash ability")]
-    public float dashForce;
-    public float startDashTimer;
+    [SerializeField] float dashForce;
+    [SerializeField] float startDashTimer;
     private float currentDashTime;
     private float dashDirection;
-    public bool hasUnlockedDash;
+    [SerializeField] bool hasUnlockedDash;
     public bool isDashing { get; set; }
     private PlayerInfo playerInfoScript; //Decrease mana
-    bool destroyBlock;
 
    
+
 
     [Header("Parry")]
     public bool isParrying = false;
@@ -87,22 +84,22 @@ public class PlayerControll : MonoBehaviour
     private float parryWindow = 0.5f;
 
     [Header("Hook")]
-    public GrappleHookScript ghScript;
-    public LayerMask grapplelayer;
+    [SerializeField] GrappleHookScript ghScript;
+    [SerializeField] LayerMask grapplelayer;
 
     [Header("WallClimb")]
-    public LayerMask wallLayer;
+    [SerializeField] LayerMask wallLayer;
     bool isTouchingFront;
-    public Transform frontCheck;
+    [SerializeField] Transform frontCheck;
     bool wallCling;
-    public float wallClimbSpeed;
-    public bool CanWallClimb;
+    [SerializeField] float wallClimbSpeed;
+    [SerializeField] bool CanWallClimb;
 
     [Header("Wall Jump")]
     bool wallJumping;
-    public float xWallForce;
-    public float yWallForce;
-    public float wallJumpTime;
+    [SerializeField] float xWallForce;
+    [SerializeField] float yWallForce;
+    [SerializeField] float wallJumpTime;
 
     [Header("Knockback")]
     public float knockback;
@@ -110,9 +107,12 @@ public class PlayerControll : MonoBehaviour
     public float knockbackCount;
     public bool knockFromRight;
 
+  
+
 
     void Start()
     {
+        player_Rb = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerInfoScript = GetComponent<PlayerInfo>();
@@ -132,7 +132,6 @@ public class PlayerControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //Knockback
         if (knockbackCount <= 0)
         {
@@ -157,8 +156,7 @@ public class PlayerControll : MonoBehaviour
         }
         JumpInput();
         isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
-        isOnPlatform = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, platformLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, platformLayer);
-        if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround || !isOnPlatform)
+        if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround)
         {
             canDoubleJump = false;
         }
@@ -200,11 +198,8 @@ public class PlayerControll : MonoBehaviour
             //jumpCounter = 0;
             canDoubleJump = true;
             landing.Invoke();
-        }
-        if (isOnPlatform)
-        {
-            //jumpCounter = 0;
-            canDoubleJump = true;
+            
+            
         }
         else
         {
@@ -234,10 +229,11 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") < 0) //Left
         {
             characterScale.x = -1.45f;
-            if (isOnGround || isOnPlatform)
+            if (isOnGround)
             {
                 PlayRunAnimation();
             }
+          
         }
         else
         {
@@ -246,7 +242,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0) //Right
         {
             characterScale.x = 1.45f;
-            if (isOnGround || isOnPlatform)
+            if (isOnGround)
             {
                 PlayRunAnimation();
             }
@@ -372,13 +368,10 @@ public class PlayerControll : MonoBehaviour
 
     void JumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump || Input.GetKeyDown(KeyCode.Space) && isOnPlatform)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump)
         {
             animator.SetBool("Jumping", true);
                 Jumping();
-                //jumpCounter ++;
-            
-                //Debug.Log("dsdsa" + jumpCounter);
         }       
     }
     void Jumping()
@@ -403,21 +396,11 @@ public class PlayerControll : MonoBehaviour
     {
         animator.SetBool("Jumping", false);
         animator.SetBool("IsOnGround", false);
-        //Debug.Log("Has Landed");
     }
-
-    public void LandingPlatform()
-    {
-        animator.SetBool("Jumping", false);
-        animator.SetBool("IsOnPlatform", false);
-        //Debug.Log("Has Landed");
-    }
-
 
     public void Knockback()
     {
         Debug.Log("Knockback");
-        //player_Rb.AddForce(new Vector2(xKnockback, yKnockback), ForceMode2D.Impulse);
         knockbackCount = knockbackLength;
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -426,14 +409,10 @@ public class PlayerControll : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
          {
             isOnGround = false;
-            isOnPlatform = false;
-            // jumpCounter = 0;
-
-        }
+         }
         if (collision.gameObject.CompareTag("Roof"))
         {
             isOnGround = false;
-            isOnPlatform = false;
         }
 
         else if (collision.gameObject.CompareTag("UnlockDJ"))
@@ -450,7 +429,7 @@ public class PlayerControll : MonoBehaviour
             Destroy(collision.gameObject);
             PlayNewAbilityCutscene();
             newAbilityText.index = 1;
-        }
+        }         
     }
 
     void PlayNewAbilityCutscene()

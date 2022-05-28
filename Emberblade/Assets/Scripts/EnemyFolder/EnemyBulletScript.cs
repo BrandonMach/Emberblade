@@ -20,10 +20,6 @@ public class EnemyBulletScript : MonoBehaviour
     void Update()
     {      
             tongue_Rb.AddForce(new Vector2(direction,0), ForceMode2D.Impulse);
-        //if (lifespan <= 0)
-        //    Destroy(gameObject);
-        //else
-        //    lifespan -= Time.deltaTime;
     }
     
     private void OnCollisionEnter2D(Collision2D collision)

@@ -7,10 +7,9 @@ public class LockCameraScript : MonoBehaviour
 {
     // Start is called before the first frame update
     private static LockCameraScript instance;
-    public Animator camAnimator;
-    public GameObject player;
-    
-    public string desertScene;
+    [SerializeField] Animator camAnimator;
+    [SerializeField] GameObject player;
+
     Scene scene;
     
     private void Start()
@@ -19,10 +18,6 @@ public class LockCameraScript : MonoBehaviour
     }
     private void Update()
     {
-        //if(scene.name == "DesertScene")
-        //{
-        //    camAnimator.SetBool("UnlockDesertCam", true);
-        //}
        
     }
    

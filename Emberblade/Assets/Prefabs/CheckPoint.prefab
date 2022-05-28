@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3334827818281550878}
   - component: {fileID: 5648453359388191946}
   - component: {fileID: 1264817369831749200}
+  - component: {fileID: 8271609777468260257}
   m_Layer: 0
   m_Name: CheckPoint
   m_TagString: Untagged
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594b05af1ec892d4c99b38381134ed36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1264817369831749200}
 --- !u!61 &5648453359388191946
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -121,7 +123,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.96, y: 12.24}
+  m_Size: {x: 15, y: 10}
   m_EdgeRadius: 0
 --- !u!95 &1264817369831749200
 Animator:
@@ -142,3 +144,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8271609777468260257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3334827818281550879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b16a5414109b9d64e86a720c4701ec12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggering: 0
+  animator: {fileID: 1264817369831749200}

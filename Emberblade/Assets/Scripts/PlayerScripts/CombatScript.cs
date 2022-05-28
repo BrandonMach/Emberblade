@@ -6,11 +6,11 @@ public class CombatScript : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public Animator animator;
-    public Transform attackpoint;
-    public float attackRange = 0.5f;
+    [SerializeField] Animator animator;
+    [SerializeField] Transform attackpoint;
+    [SerializeField] float attackRange = 0.5f;
 
-    public LayerMask hittableLayers;
+    [SerializeField] LayerMask hittableLayers;
 
     private float timeBetweenAttack = 0.01f;
     public float startTimeBetweenAttack;

@@ -5,32 +5,33 @@ using UnityEngine;
 public class PatrolAI : MonoBehaviour
 {
     // Denna Script används för enemies som bee som patrollar runt till spelaren är i range för att attackera
-    public float speed = 10f;
-    public float range = 50f;
-    public Animator animator;
+    [Header("Detection Range")]
+    [SerializeField] float speed = 10f;
+    [SerializeField] float range = 50f;
+    [SerializeField] Animator animator;
     float startingX;
     int dir = 1;
     bool idle;
     bool fliped;
     Rigidbody2D rb2d;
 
-    //Time to attack
+    [Header("Time To Attack")]//Time to attack 
     bool chargeTime;
     float currentTime = 0f;
     float startingTime = 0.7f;
 
-    //Attack
+    [Header("Attack")]//Attack
     bool getAattackPos;
     bool attackTime;
-    public float attackAcc = 2;
-    public float attackSpeed = 1;
+    [SerializeField] float attackAcc = 2;
+    [SerializeField] float attackSpeed = 1;
     Vector2 attackDir;
 
-    // Target
+    [Header("Target")]// Target
     private Vector2 movetowardsPlayer;
     private PlayerInfo playerInfoController;
-    public float agroRangeX = 70;
-    public float agroRangeY = 30;
+    [SerializeField] float agroRangeX = 70;
+    [SerializeField] float agroRangeY = 30;
 
     int invokeCounter = 0;
     float timer;

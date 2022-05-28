@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemyShootScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject bulletPrefab;
+    [SerializeField] GameObject bulletPrefab;
     EnemyBulletScript bulletScript;
-    public bool playerInRange;
-    public Vector2 playerDetection;
+    [SerializeField] bool playerInRange;
+    [SerializeField] Vector2 playerDetection;
     PlayerInfo playerInfoController;
     float startShot;
     float shootSpeed;
@@ -38,10 +38,8 @@ public class EnemyShootScript : MonoBehaviour
             {
                 playerInRange = true;
 
-                if (playerInRange /*&& isOnGround*/)
+                if (playerInRange)
                 {
-                    // transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position - playerTransformOffest, moveSpeed);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.
-
                   if(this.transform.position.x > playerInfoController.transform.position.x)
                   {
                         

@@ -13,16 +13,16 @@ public class Enemy : MonoBehaviour
 {
     public Vector2[] Points;
     int currentMove = 0;
-    public float speed = 0.03f;//do not go above 0.1, it will be too fast
-    public float rotationSpeed = 2;
-    public bool moveTowardsTarget = false;
-    public Transform target;
-    public float activiationRange = 20;
-    public GameObject bullet;
-    public EnemyType enemyType = EnemyType.walkTowards;
-    public float explosionCircleSize;
-    public CircleCollider2D explosionCircle;
-    public List<GameObject> nearbyExplodableObjects;
+    [SerializeField] float speed = 0.03f;//do not go above 0.1, it will be too fast
+    [SerializeField] float rotationSpeed = 2;
+    [SerializeField] bool moveTowardsTarget = false;
+    [SerializeField] Transform target;
+    [SerializeField] float activiationRange = 20;
+    [SerializeField] GameObject bullet;
+    [SerializeField] EnemyType enemyType = EnemyType.walkTowards;
+    [SerializeField] float explosionCircleSize;
+    [SerializeField] CircleCollider2D explosionCircle;
+    [SerializeField] List<GameObject> nearbyExplodableObjects;
     [SerializeField] private float startShootTimer;
     private float currentShootTimer;
 

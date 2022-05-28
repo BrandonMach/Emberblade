@@ -6,13 +6,13 @@ public class armadilloScript : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public bool playerInRange;
-    public Vector2 playerDetection;
+    [SerializeField] bool playerInRange;
+    [SerializeField] Vector2 playerDetection;
     private Vector2 detectionlocation;
     PlayerInfo playerInfoController;
-    public bool isOnGround;
-    public bool facingLeft;
-    public Animator animator;
+    [SerializeField] bool isOnGround;
+    [SerializeField] bool facingLeft;
+    [SerializeField] Animator animator;
 
     float attackTimer;
     float attackStartUpTime;
@@ -24,7 +24,7 @@ public class armadilloScript : MonoBehaviour
     BoxCollider2D boxCollider;
     CircleCollider2D circleCollider;
     PlayerControll playerControllScript;
-    public Quaternion originalRotationValue;
+    [SerializeField] Quaternion originalRotationValue;
     int knockBackValue;
 
 
@@ -115,10 +115,6 @@ public class armadilloScript : MonoBehaviour
                         this.transform.localScale = characterScale;      
                     }
                 }              
-            }
-            else
-            {
-
             }
         }
     }

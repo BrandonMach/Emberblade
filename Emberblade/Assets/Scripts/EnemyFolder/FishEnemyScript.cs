@@ -7,17 +7,17 @@ public class FishEnemyScript : MonoBehaviour
     // Start is called before the first frame update
 
     private Rigidbody2D fish_Rb;
-    public bool playerInRange;
-    public float detectionRange;
-    public bool isUnderWater;
-    public float jumpWaitTimer = 0;
+    [SerializeField] bool playerInRange;
+    [SerializeField] float detectionRange;
+    [SerializeField] bool isUnderWater;
+    [SerializeField] float jumpWaitTimer = 0;
     private float waitTime = 1f;
-    public Renderer rend;
+    [SerializeField] Renderer rend;
     private Vector2 startPos;
     private Vector2 maxHeight;
     private PlayerInfo playerInfo;
     PlayerControll playerController;
-    public BoxCollider2D boxCollider;
+    [SerializeField] BoxCollider2D boxCollider;
 
     public int jumpheight = 0;
 

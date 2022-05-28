@@ -5,8 +5,8 @@ using UnityEngine;
 public class CheckpointActivate : MonoBehaviour
 {
 
-    public bool triggering;
-    public Animator animator;
+    [SerializeField] bool triggering;
+    [SerializeField] Animator animator;
     private GameMaster gm;
     // Start is called before the first frame update
     void Start()

@@ -9,12 +9,11 @@ public class PlayerInfo : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public int maxEnergy;
-    public int currentEnergy; 
-    public HealthBar healthBar;
-    public EnergyBar energyBar;
+    public int currentEnergy;
+    [SerializeField] HealthBar healthBar;
+    [SerializeField] EnergyBar energyBar;
     public bool canTakeDamage;
     private float startTimeDamageTimer;
-    private float damageDelay = 2f;
     private PlayerControll playerControllScript;
     LayerMask enemyLayer;
 
