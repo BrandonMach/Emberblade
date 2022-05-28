@@ -30,7 +30,7 @@ public class CombatScript : MonoBehaviour
         if (timeBetweenAttack <= 0)// than you can attack
         {
             
-            if (Input.GetKey(KeyCode.Backspace))
+            if (Input.GetKey(KeyCode.J))
             {
                 animator.SetTrigger("Attack");
                 
