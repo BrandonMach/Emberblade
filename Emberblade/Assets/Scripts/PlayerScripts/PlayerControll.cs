@@ -170,7 +170,7 @@ public class PlayerControll : MonoBehaviour
 
     void Parry()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.H))
         {
             parryStart = 0;
             isParrying = true;
@@ -254,7 +254,7 @@ public class PlayerControll : MonoBehaviour
         //Dash
         if (hasUnlockedDash)
         {
-            if (Input.GetKeyDown(KeyCode.RightShift) && moveX != 0 && playerInfoScript.currentEnergy >= 20) //Kan bara dasha om man input en direction
+            if (Input.GetKeyDown(KeyCode.L) && moveX != 0 && playerInfoScript.currentEnergy >= 20) //Kan bara dasha om man input en direction
             {
                 animator.SetTrigger("Dash");
                 isDashing = true;
