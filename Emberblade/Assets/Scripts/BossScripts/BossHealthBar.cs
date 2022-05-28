@@ -10,12 +10,10 @@ public class BossHealthBar : MonoBehaviour
     public Color low;
     public Color high;
     public Vector3 offset;
-    public GameObject healthBarObject;
 
     public void SetHealth(float health, float maxHealth)
     {
         healthBar.gameObject.SetActive(true);
-        healthBarObject.SetActive(true);
         healthBar.value = health;
         healthBar.maxValue = maxHealth;
 
