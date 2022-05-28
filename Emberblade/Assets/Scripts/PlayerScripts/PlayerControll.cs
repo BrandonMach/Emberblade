@@ -11,7 +11,7 @@ public class PlayerControll : MonoBehaviour
 
     [SerializeField] float jumpforce = 1;
     private float originalJumpForce;
-    [SerializeField] GameObject jumpRingPrefab;
+    
     [SerializeField] float jRingSpawnTime = 0.1f;
     [SerializeField] GameObject dashEffectPrefab;
     [SerializeField] float dESpawnTime = 0;
@@ -60,12 +60,13 @@ public class PlayerControll : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] float jumpSpeed = 15;
-    [SerializeField] float jumpDelay = 0.25f;
+    [SerializeField] float jumpDelay = 0.15f;
     private float jumpTimer = 0;
-
+    [SerializeField] GameObject jumpRing;
     [SerializeField] bool canDoubleJump = false;
     [SerializeField] static bool hasUnlockedDJ; // Static gör att boolen värde sparas när man dör. Ska vara static i the full game
-    
+    private bool jumpRingActive;
+
     [Header("Dash ability")]
     [SerializeField] float dashForce;
     [SerializeField] float startDashTimer;
@@ -106,9 +107,7 @@ public class PlayerControll : MonoBehaviour
     public float knockbackLength;
     public float knockbackCount;
     public bool knockFromRight;
-
-  
-
+    
 
     void Start()
     {
@@ -153,19 +152,27 @@ public class PlayerControll : MonoBehaviour
         if (!hasUnlockedDJ)
         {
             canDoubleJump = false;
+            jumpTimer = 0;
         }
         JumpInput();
         isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
         if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround)
         {
             canDoubleJump = false;
+            SpawnJumpRing();
+            
         }
         Parry();
 
         hasToCrouch = Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat, groundLayer)|| Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat,roofLayer);
         Crouch();
+        jumpTimer += Time.deltaTime;
+        if (jumpTimer >= jumpDelay)
+        {
+            jumpRingActive = false;
+            jumpRing.SetActive(false);
+        }
 
-        
     }
 
     void Parry()
@@ -389,6 +396,12 @@ public class PlayerControll : MonoBehaviour
             player_Rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
             jumpTimer = 0;
         }
+       
+    }
+    void SpawnJumpRing()
+    {
+        jumpRing.SetActive(true);
+        jumpRingActive = true;
        
     }
 
