@@ -16,7 +16,7 @@ public class CombatScript : MonoBehaviour
     public float startTimeBetweenAttack;
     private BoxCollider2D boxCollider;
     private Vector2 idleBoxColliderOffset;
-
+    public bool isInBossBattle;
 
     private void Start()
     {
@@ -30,16 +30,37 @@ public class CombatScript : MonoBehaviour
         if (timeBetweenAttack <= 0)// than you can attack
         {
             
-            if (Input.GetKey(KeyCode.Backspace))
+            if (Input.GetKey(KeyCode.J))
             {
                 animator.SetTrigger("Attack");
                 
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
+                Collider2D[] BossToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
+                if (isInBossBattle)
                 {
-                    enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage();
-                    Debug.Log("We Hit ");                 
+                    for (int i = 0; i < BossToDamage.Length; i++)
+                    {
+                        BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage();
+                        Debug.Log("We Hit Boss");
+                    }
                 }
+                else
+                {
+                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    {
+                        enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage();
+                        Debug.Log("We Hit Enemy");
+                    }
+                }
+                    
+                //for (int i = 0; i < BossToDamage.Length; i++)
+                //{
+                //    BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage();
+                //    enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage();
+                //    Debug.Log("We Hit ");
+                //}
+
+
             }
 
             timeBetweenAttack = startTimeBetweenAttack; //default start value

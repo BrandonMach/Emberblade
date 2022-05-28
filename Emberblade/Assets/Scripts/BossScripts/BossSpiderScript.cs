@@ -7,7 +7,7 @@ public class BossSpiderScript : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     GameObject bulletWeb;
-    EnemyHealth enemyHealthScripts;
+    BossHealth enemyHealthScripts;
     int maxHealth;
  
 
@@ -39,7 +39,7 @@ public class BossSpiderScript : MonoBehaviour
         nextFire = Time.time;
         rb = GetComponent<Rigidbody2D>();
         webHookScript = GetComponent<WebHookScript>();
-        enemyHealthScripts = GetComponent<EnemyHealth>();
+        enemyHealthScripts = GetComponent<BossHealth>();
         maxHealth = enemyHealthScripts.health;
     }
 
