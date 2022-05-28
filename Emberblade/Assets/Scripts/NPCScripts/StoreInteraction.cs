@@ -9,6 +9,7 @@ public class StoreInteraction : MonoBehaviour
     public GameObject healthButton, energyButton;
     private float middleOfScreenX, middleOfScreenY;
     public TextMeshProUGUI currencyText;
+    string playerCurrency;
 
 
     // Start is called before the first frame update
@@ -32,7 +33,8 @@ public class StoreInteraction : MonoBehaviour
             energyButton.SetActive(false);
             healthButton.transform.position = new Vector2(middleOfScreenX, middleOfScreenY);
         }
-        currencyText.text = GameObject.Find("Player").GetComponent<Currency>().currency.ToString();
+        playerCurrency = GameObject.Find("Player").GetComponent<Currency>().currency.ToString();
+        currencyText.text = playerCurrency;
     }
 
     public void buyHealth()

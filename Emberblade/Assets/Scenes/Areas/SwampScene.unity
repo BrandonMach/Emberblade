@@ -2720,7 +2720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthButton: {fileID: 0}
   energyButton: {fileID: 0}
-  currencyText: {fileID: 0}
+  currencyText: {fileID: 248674727}
 --- !u!114 &248674727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5742,7 +5742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc7285715a56b24d93214914b2e4cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currency: 0
+  currency: 100
   currencyText: {fileID: 1878945134}
 --- !u!95 &333074789
 Animator:
