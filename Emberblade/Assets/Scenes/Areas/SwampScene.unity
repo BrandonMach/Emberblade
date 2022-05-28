@@ -5935,6 +5935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 25
+  player_Rb: {fileID: 333074793}
   jumpforce: 40
   jumpRingPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   jRingSpawnTime: 0.5
@@ -5948,6 +5949,10 @@ MonoBehaviour:
   isOnGround: 0
   groundLenght: 7.78
   colliderOffset: {x: 2.03, y: 0, z: 0}
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isOnPlatform: 0
   hasToCrouch: 0
   roofLayer:
     serializedVersion: 2
