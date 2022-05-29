@@ -5,10 +5,8 @@ using UnityEngine;
 public class ShootTowardsTarget : Enemy
 {
     GameObject bullet;
-    float aggroRange = 20;
     float currentShootTimer;
     float startShootTimer = 1;
-    float rotationSpeed = 2;
 
     public void ShootingBehaviour()
     {

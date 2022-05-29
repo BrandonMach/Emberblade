@@ -7,22 +7,23 @@ using Pathfinding;
 
 public class Enemy : MonoBehaviour
 {
-    public Rigidbody2D rbody;
-    public float speed = 200;
-    public float rotationSpeed = 2;
-    public float nextWaypointDistance = 3f;
-    public float targetDistanceStop = 0.5f;
-    public Transform target;
+    [SerializeField] protected Rigidbody2D rbody;
+    [SerializeField] protected float speed = 200;
+    [SerializeField] protected float rotationSpeed = 2;
+    [SerializeField] protected float nextWaypointDistance = 3f;
+    [SerializeField] protected float targetDistanceStop = 0.5f;
+    [SerializeField] protected Transform target;
+    [SerializeField] protected Vector2 vecTarget;
     // this one is used when the enemy walks between two objects or hunts the target
-    public bool willHunt = false;
-    public Vector2[] PositionsToWalkBetween;
-    [SerializeField] int currentWalkBetween;
-    Path path;
-    public GameObject gfxObj; // this is for the graphics as a child to the object
-    int currentWaypoint = 0;
-    public bool reachedEndPath = false;
-    Seeker seeker;
-    public float aggroRange = 20;
+    [SerializeField] protected bool willHunt = false;
+    [SerializeField] protected Vector2[] PositionsToWalkBetween;
+    [SerializeField] protected int currentWalkBetween;
+    protected Path path;
+    [SerializeField] protected GameObject gfxObj; // this is for the graphics as a child to the object
+    [SerializeField] protected int currentWaypoint = 0;
+    [SerializeField] protected bool reachedEndPath = false;
+    protected Seeker seeker;
+    [SerializeField] protected float aggroRange = 20;
 
     private void Start()
     {
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour
             target = FindObjectOfType<TargetEmpty>().transform;
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
-    void UpdatePath()
+    protected virtual void UpdatePath() // man kan tro att denna inte har några referenser, men det har den, unity ljuger
     {
         if (willHunt == true)
         {
@@ -53,7 +54,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    void OnPathComplete(Path p)
+    protected void OnPathComplete(Path p)
     {
         if (!p.error)
         {
@@ -61,7 +62,7 @@ public class Enemy : MonoBehaviour
             currentWaypoint = 0;
         }
     }
-    private void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         if (path == null)
         {

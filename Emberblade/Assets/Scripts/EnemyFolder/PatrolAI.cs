@@ -1,43 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PatrolAI : MonoBehaviour
 {
     // Denna Script används för enemies som bee som patrollar runt till spelaren är i range för att attackera
-    public float speed = 10f;
-    public float range = 50f;
-    public Animator animator;
+    [Header("general values")]
+    [SerializeField] float speed = 10f;
+    [SerializeField] float range = 50f;
+    [SerializeField] Animator animator;
     float startingX;
     int dir = 1;
     bool idle;
-    bool fliped;
+    bool flipped;
     Rigidbody2D rb2d;
 
-    //Time to attack
-    bool chargeTime;
-    float currentTime = 0f;
+    [Header("Attacktimers")]
+    [SerializeField] bool isCharging;
+    float chargeTime = 0f;
     float startingTime = 0.7f;
+    public float aggroTimer;
+    [SerializeField] float startAggroTimer = 3f;
 
-    //Attack
+    [Header("Attack")]
     bool getAattackPos;
-    bool attackTime;
-    public float attackAcc = 2;
-    public float attackSpeed = 1;
+    bool isCurrentlyAttacking;
+    [SerializeField] float attackAcc = 2;
+    [SerializeField] float attackSpeed = 1;
     Vector2 attackDir;
+    Vector2 endPositionForAttack;
 
-    // Target
+    [Header("target")]
     private Vector2 movetowardsPlayer;
     private PlayerInfo playerInfoController;
-    public float agroRangeX = 70;
-    public float agroRangeY = 30;
+    [SerializeField] float agroRangeX = 70;
+    [SerializeField] float agroRangeY = 30;
 
+    [Header("Misc Timers")]
     int invokeCounter = 0;
     float timer;
+    [SerializeField] float timeToGetDelayedPos = 0.4f;
+    [SerializeField] float dragEffect = 0.8f;
+    [SerializeField] float startDragTimer = 4;
+    float dragTimer;
+
+
 
     void Start()
     {
-        currentTime = startingTime;
+        chargeTime = startingTime;
         idle = true;
         startingX = transform.position.x;
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
@@ -47,55 +56,63 @@ public class PatrolAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         Idle();
         Charge();
         Attack();
     }
     public void Charge()
     {
-        if (chargeTime)
+        if (isCharging)
         {
             animator.SetBool("IsCharing", true);
-            currentTime -= 1 * Time.deltaTime;
-            Debug.Log(currentTime);
-            if (currentTime <= 0)
+            chargeTime -= 1 * Time.deltaTime;
+            Debug.Log(chargeTime);
+            if (chargeTime <= 0)
             {
-                chargeTime = false;
-                attackTime = true;
+                isCharging = false;
+                isCurrentlyAttacking = true;
                 getAattackPos = true;
+                aggroTimer = startAggroTimer;
+                dragTimer = startDragTimer;
             }
         }
-
+    }
+    public void applyDragDuringAttack()
+    {
+        if (dragTimer > 0)
+            dragTimer -= Time.deltaTime;
     }
 
     public void Attack()
     {
-        if (attackTime)
+        if (isCurrentlyAttacking)
         {
+            aggroTimer -= Time.deltaTime;
+            applyDragDuringAttack();
             animator.SetBool("IsCharing", false);
             animator.SetBool("IsAttacking", true);
 
-
-            float angle = Mathf.Atan2(attackDir.x, attackDir.y) * Mathf.Rad2Deg;
+            //float angle = Mathf.Atan2(attackDir.x, attackDir.y) * Mathf.Rad2Deg;
             attackDir.Normalize();
             movetowardsPlayer = attackDir;
 
-
-            Invoke("getDelayedPos", 0.1f);
-            rb2d.AddForce(attackDir * attackAcc, ForceMode2D.Impulse);
-
+            Invoke("getDelayedPos", timeToGetDelayedPos);
+            rb2d.AddForce((attackDir * attackAcc) * (dragTimer * dragEffect), ForceMode2D.Impulse);
 
             if (transform.position.x < playerInfoController.transform.position.x)
             {
                 transform.localScale = new Vector2(-1, 1);
-                fliped = false;
+                flipped = false;
             }
             else
             {
                 transform.localScale = new Vector2(1, 1);
-                fliped = true;
+                flipped = true;
             }
+        }
+        if(aggroTimer < 0)
+        {
+            isCurrentlyAttacking = false;
         }
     }
 
@@ -125,20 +142,20 @@ public class PatrolAI : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player") && attackTime)
+        if (other.gameObject.CompareTag("Player"))
         {
             playerInfoController.TakeDamage(40);
             Destroy(gameObject);
         }
-        if (other.gameObject.CompareTag("Wall") && attackTime)
+        if (other.gameObject.CompareTag("Wall") && isCurrentlyAttacking)
         {
             Destroy(gameObject);
         }
-        if (other.gameObject.CompareTag("Ground") && attackTime)
+        if (other.gameObject.CompareTag("Ground") && isCurrentlyAttacking)
         {
             Destroy(gameObject);
         }
-        if (other.gameObject.CompareTag("Roof") && attackTime)
+        if (other.gameObject.CompareTag("Roof") && isCurrentlyAttacking)
         {
             Destroy(gameObject);
         }
@@ -162,11 +179,11 @@ public class PatrolAI : MonoBehaviour
                 if (colliderHit.gameObject.CompareTag("Player"))
                 {
                     idle = false;
-                    chargeTime = true;
+                    isCharging = true;
                 }
             }
         }
-        
+
     }
 
     public void Flip()
@@ -175,11 +192,11 @@ public class PatrolAI : MonoBehaviour
 
         if (transform.localScale.x > 0)
         {
-            fliped = true;
+            flipped = true;
         }
         else if (transform.localScale.x < 0)
         {
-            fliped = false;
+            flipped = false;
         }
     }
 

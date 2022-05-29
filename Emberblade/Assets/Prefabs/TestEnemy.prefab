@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4482732962929480680}
-  - component: {fileID: 4482732962929480681}
+  - component: {fileID: 982321705786498909}
   - component: {fileID: 4482732962929480682}
   - component: {fileID: 4482732962929480683}
   - component: {fileID: 4482732962929480684}
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4482732962929480681
+--- !u!114 &982321705786498909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,21 +44,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 4482732962929480685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4b486e0af992094c8970cff66fa9694, type: 3}
+  m_Script: {fileID: 11500000, guid: c8a2aba61e4a012479a8b53fd14816be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 4482732962929480684}
   speed: 200
-  rotationSpeed: 1
-  nextWaypointDistance: 1
+  rotationSpeed: 2
+  nextWaypointDistance: 3
   targetDistanceStop: 0.5
   target: {fileID: 0}
   willHunt: 0
   PositionsToWalkBetween: []
   currentWalkBetween: 0
-  gfxObj: {fileID: 4482732963248404372}
+  gfxObj: {fileID: 0}
+  currentWaypoint: 0
   reachedEndPath: 0
   aggroRange: 20
+  startChargeTime: 0
+  currentChargeTime: 0
+  positionTargetWasLastSeen: {x: 0, y: 0}
+  startCalmDownTime: 0
+  calmDownTime: 0
+  chargeSpeed: 400
 --- !u!114 &4482732962929480682
 MonoBehaviour:
   m_ObjectHideFlags: 0

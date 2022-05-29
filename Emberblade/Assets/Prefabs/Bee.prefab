@@ -120,10 +120,16 @@ MonoBehaviour:
   speed: 10
   range: 30
   animator: {fileID: 80357457}
+  isCharging: 0
+  aggroTimer: 0
+  startAggroTimer: 4
   attackAcc: 2
   attackSpeed: 10
   agroRangeX: 75
   agroRangeY: 75
+  timeToGetDelayedPos: 0.4
+  dragEffect: 0.8
+  startDragTimer: 2
 --- !u!50 &1253114008
 Rigidbody2D:
   serializedVersion: 4
