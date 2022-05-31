@@ -45,11 +45,11 @@ public class SwitchScene : MonoBehaviour
 
     public void SwitchSwamp()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
     public void SwitchToCave()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(2);
     }
     public void SwitchToDesert()
     {

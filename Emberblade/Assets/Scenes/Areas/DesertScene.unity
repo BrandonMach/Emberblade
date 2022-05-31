@@ -15312,9 +15312,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 10
   canTakeDamage: 1
   abilityItem: {fileID: 411865371}
+  healthBar: {fileID: 0}
 --- !u!114 &392284986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16162,6 +16164,7 @@ MonoBehaviour:
   - There is no inventory screen yet, press Q to go back
   dialogueSpeed: 0.05
   dialogueAnimator: {fileID: 0}
+  storeAnimator: {fileID: 0}
 --- !u!61 &514615512
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22334,6 +22337,7 @@ MonoBehaviour:
   - There is no inventory screen yet!
   dialogueSpeed: 0.05
   dialogueAnimator: {fileID: 119946193}
+  storeAnimator: {fileID: 0}
 --- !u!61 &618487703
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24297,6 +24301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 25
+  player_Rb: {fileID: 0}
   jumpforce: 40
   jumpRingPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   jRingSpawnTime: 0.5
@@ -24310,6 +24315,10 @@ MonoBehaviour:
   isOnGround: 0
   groundLenght: 7.78
   colliderOffset: {x: 2.03, y: 0, z: 0}
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isOnPlatform: 0
   hasToCrouch: 0
   roofLayer:
     serializedVersion: 2
@@ -24341,6 +24350,10 @@ MonoBehaviour:
   xWallForce: 50
   yWallForce: 40
   wallJumpTime: 0.05
+  knockback: 0
+  knockbackLength: 0
+  knockbackCount: 0
+  knockFromRight: 0
 --- !u!212 &861824145
 SpriteRenderer:
   m_ObjectHideFlags: 0
