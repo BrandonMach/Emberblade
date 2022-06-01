@@ -129,7 +129,9 @@ public class PlayerInfo : MonoBehaviour
 
     public void Death() //Gör så man kan dö.
     {
+        
         Debug.Log("works");
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         currentHealth = maxHealth;
         Destroy(this.gameObject);
