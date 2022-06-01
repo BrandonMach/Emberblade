@@ -38,6 +38,10 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] Vector3 colliderOffset;
     UnityEvent landing = new UnityEvent();
 
+    [Header("Platform detection")]
+    public LayerMask platformLayer;
+    public bool isOnPlatform;
+
     [Header("Crouch")]
     [SerializeField] bool isCrouching;
     [SerializeField] bool hasToCrouch;
@@ -156,6 +160,7 @@ public class PlayerControll : MonoBehaviour
         }
         JumpInput();
         isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
+        isOnPlatform = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, platformLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, platformLayer);
         if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround)
         {
             canDoubleJump = false;
@@ -201,6 +206,10 @@ public class PlayerControll : MonoBehaviour
             
             
         }
+        if (isOnPlatform)
+        {
+            canDoubleJump = true;
+        }
         else
         {
             player_Rb.gravityScale = gravity;
@@ -229,7 +238,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") < 0) //Left
         {
             characterScale.x = -1.45f;
-            if (isOnGround)
+            if (isOnGround && isOnPlatform)
             {
                 PlayRunAnimation();
             }
@@ -242,7 +251,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0) //Right
         {
             characterScale.x = 1.45f;
-            if (isOnGround)
+            if (isOnGround && isOnPlatform)
             {
                 PlayRunAnimation();
             }
@@ -368,7 +377,7 @@ public class PlayerControll : MonoBehaviour
 
     void JumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump || Input.GetKeyDown(KeyCode.Space) && isOnPlatform)
         {
             animator.SetBool("Jumping", true);
                 Jumping();
@@ -409,10 +418,12 @@ public class PlayerControll : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
          {
             isOnGround = false;
+            isOnPlatform = false;
          }
         if (collision.gameObject.CompareTag("Roof"))
         {
             isOnGround = false;
+            isOnPlatform = false;
         }
 
         else if (collision.gameObject.CompareTag("UnlockDJ"))
