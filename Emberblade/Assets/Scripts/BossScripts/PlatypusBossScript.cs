@@ -24,6 +24,7 @@ public class PlatypusBossScript : MonoBehaviour
     public GameObject findPlayerObject;
     public PlayerInfo player;
     private PlayerControll playerControllScript;
+    [SerializeField] float detectionRange;
 
     [Header("Second phase")]
     EnemyHealth enemyHealthScripts;
@@ -52,22 +53,22 @@ public class PlatypusBossScript : MonoBehaviour
         {
             findPlayerObject.transform.position = new Vector3(player.transform.position.x, 75, player.transform.position.z); //Max höjd för ground pound
         }
-        
-        
-        
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            if (!isOnGround)
-            {
-                doGroundPound = true;
-                animator.SetBool("GroundPound", true);
-            }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            startGPAttack = true;          
-        }
+        DetectPlayer();
+
+        //if (Input.GetKeyDown(KeyCode.Alpha5))
+        //{
+        //    if (!isOnGround)
+        //    {
+        //        doGroundPound = true;
+        //        animator.SetBool("GroundPound", true);
+        //    }
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    startGPAttack = true;          
+        //}
         if (startGPAttack)
         {
 
@@ -97,6 +98,21 @@ public class PlatypusBossScript : MonoBehaviour
         if (enemyHealthScripts.health == 0)
         {
             
+        }
+    }
+
+    void DetectPlayer()
+    {
+
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, detectionRange);
+
+        foreach (var colliderHit in hitColliders)
+        {
+            if (colliderHit.gameObject.CompareTag("Player") )
+            {
+                Debug.Log("Atttack player");
+                startGPAttack = true;
+            }
         }
     }
 
@@ -199,5 +215,12 @@ public class PlatypusBossScript : MonoBehaviour
     private void CompleteGroundPound()
     {
         rb.gravityScale = gravityScale;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+      
     }
 }
