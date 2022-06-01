@@ -7,6 +7,7 @@ public class Currency : MonoBehaviour
 {
     public int currency;
     public TMPro.TMP_Text currencyText;
+    private PlayerInfo playerInfo;
 
     public void IncreaseCurrency(int amount)
     {
@@ -15,9 +16,25 @@ public class Currency : MonoBehaviour
         Debug.Log("+100");
     }
 
+    public void LoseCurrency(int amount)
+    {
+        currency -= amount;
+        currencyText.text = "" + currency;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
         currencyText.text = "" + currency;
+        if (playerInfo.currentHealth == 0)
+        {
+            LoseCurrency(currency);
+        }
     }
 }

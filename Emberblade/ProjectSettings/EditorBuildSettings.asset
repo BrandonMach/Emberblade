@@ -5,22 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: 64fe3aa784164ba4eabe970fa6975ebf
   - enabled: 1
-    path: Assets/Scenes/BrandongameScene.unity
-    guid: e87883b383158aa43b834a03e3a430e7
-  - enabled: 1
     path: Assets/Scenes/Areas/SwampScene.unity
     guid: db949cee8c9dc634cacd3cadb826f20d
+  - enabled: 1
+    path: Assets/Scenes/Areas/CaveScene.unity
+    guid: 77224e46a7b8b254abbe2a9210b50191
   - enabled: 1
     path: Assets/Scenes/Areas/DesertScene.unity
     guid: fb287f55fbff73a45be213bc09d3e368
   - enabled: 1
-    path: Assets/Scenes/Areas/CaveScene.unity
-    guid: 77224e46a7b8b254abbe2a9210b50191
+    path: Assets/Scenes/Areas/WinterScene.unity
+    guid: 54e35fb10cfbf7f4f978ecc114064e3f
   m_configObjects: {}

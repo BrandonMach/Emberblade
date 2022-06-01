@@ -40,17 +40,17 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             TakeDamage(20);
         }
 
-        if (Input.GetKey(KeyCode.H))
+        if (Input.GetKey(KeyCode.O))
         {
             RechargeEnergy();
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             Heal(35);
         }
@@ -128,7 +128,9 @@ public class PlayerInfo : MonoBehaviour
 
     public void Death() //Gör så man kan dö.
     {
+        
         Debug.Log("works");
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         currentHealth = maxHealth;
         Destroy(this.gameObject);
