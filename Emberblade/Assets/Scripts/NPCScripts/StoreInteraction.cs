@@ -37,7 +37,7 @@ public class StoreInteraction : MonoBehaviour
             energyButton.SetActive(false);
             healthButton.transform.position = new Vector2(middleOfScreenX, middleOfScreenY);
         }
-        currencyText.text = currency.currency.ToString();
+        //currencyText.text = currency.currency.ToString();
     }
 
     public void buyHealth()
