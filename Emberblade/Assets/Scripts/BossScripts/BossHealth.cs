@@ -14,6 +14,7 @@ public class BossHealth : MonoBehaviour
     public StartBossScript StartBoss;
     private Currency player;
     private CombatScript cBPlayer;
+    private bool bossStarted = true;
 
     void Start()
     {
@@ -21,8 +22,8 @@ public class BossHealth : MonoBehaviour
         canTakeDamage = true;
         player = GameObject.Find("Player").GetComponent<Currency>();
         health = maxHealth;
-        bossHealthBar.SetHealth(health, maxHealth);
         cBPlayer = GameObject.Find("Player").GetComponent<CombatScript>();
+        bossHealthBar.SetHealth(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -35,9 +36,11 @@ public class BossHealth : MonoBehaviour
 
     public void BossHealthBar()
     {
-        if (StartBoss.bossAwoke)
+        if (StartBoss.bossAwoke && bossStarted)
         {
             bossHealthBar.SetHealth(health, maxHealth);
+            bossHealthBar.gameObject.SetActive(true);
+            bossStarted = false;
         }
     }
 
@@ -69,10 +72,10 @@ public class BossHealth : MonoBehaviour
         if (health <= 0 && startTimeDamageTimer == 0) // if a Boss is killed reveal ne ability pickup
         {
             Destroy(this.gameObject);
-            bossHealthBar.gameObject.SetActive(false);
             cBPlayer.isInBossBattle = false;
             abilityItem.SetActive(true);
             player.IncreaseCurrency(300);
+            bossHealthBar.gameObject.SetActive(false);
         }
     }
 }

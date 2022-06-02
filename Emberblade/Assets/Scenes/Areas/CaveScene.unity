@@ -600,7 +600,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109872707}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0019073486, y: -7.1378784, z: 0}
+  m_LocalPosition: {x: 0.008102417, y: -30.375612, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1166555750}
@@ -5355,7 +5355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325585588}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.3, y: -22.84, z: 0}
+  m_LocalPosition: {x: -2.8, y: 0.4, z: 0}
   m_LocalScale: {x: 1.45, y: 1.45, z: 1}
   m_Children:
   - {fileID: 1211142593}
@@ -7536,7 +7536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421109031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -221.94997, y: -29.84, z: 282.92517}
+  m_LocalPosition: {x: -213.44997, y: -6.6, z: 282.92517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 109872708}
@@ -9526,7 +9526,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -9546,7 +9546,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1818794562}
   m_HandleRect: {fileID: 0}
@@ -11013,7 +11013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletWeb: {fileID: 2710610853347551435, guid: 8212387a558914d458f3ce2b417d5cc0, type: 3}
   onRoof: 0
-  detectionRange: 50.67
+  detectionRange: 63.63
   playerInfoScript: {fileID: 325585593}
   animator: {fileID: 731025266}
 --- !u!114 &731025270
@@ -112450,7 +112450,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478193721}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -221.94997, y: -26.471107, z: 282.92517}
+  m_LocalPosition: {x: -213.44997, y: -3.2311072, z: 282.92517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1066847537}
