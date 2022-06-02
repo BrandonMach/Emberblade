@@ -44,11 +44,11 @@ public class BossHealth : MonoBehaviour
         }
     }
 
-    public void BossTakeDamage()
+    public void BossTakeDamage(int damage)
     {
         if (canTakeDamage)
         {
-            health--;
+            health -= damage;
             bossHealthBar.SetHealth(health, maxHealth);
             canTakeDamage = false;
         }

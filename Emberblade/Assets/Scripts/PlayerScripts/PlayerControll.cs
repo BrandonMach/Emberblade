@@ -447,7 +447,7 @@ public class PlayerControll : MonoBehaviour
         }         
     }
 
-    void PlayNewAbilityCutscene()
+    public void PlayNewAbilityCutscene()
     {     
         camAnimator.SetBool("NewAbility", true);
         this.enabled = false;

@@ -40,8 +40,6 @@ public class NewAbilityTextScript : MonoBehaviour
         abilityText.text = "";
     }
 
-    
-
     IEnumerator WriteSentence()
     {
         abilityText.text = sentences[index];

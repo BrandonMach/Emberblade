@@ -22859,7 +22859,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861824133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -101.07, y: 6.2, z: 0}
+  m_LocalPosition: {x: 276.7, y: 94.1, z: 0}
   m_LocalScale: {x: 1.45, y: 1.45, z: 1}
   m_Children:
   - {fileID: 2081052462}
@@ -23150,6 +23150,10 @@ MonoBehaviour:
   isOnGround: 0
   groundLenght: 7.78
   colliderOffset: {x: 2.03, y: 0, z: 0}
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isOnPlatform: 0
   isCrouching: 0
   hasToCrouch: 0
   roofLayer:
@@ -23160,6 +23164,7 @@ MonoBehaviour:
   gravity: 2
   fallMultiplier: 6
   liniearDrag: 7
+  lookingRight: 1
   newAbilityText: {fileID: 1854275622}
   jumpSpeed: 33
   jumpDelay: 0.25
@@ -23682,7 +23687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924733236}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -311.71997, y: -56.13889, z: 282.92517}
+  m_LocalPosition: {x: 66.05005, y: 31.761108, z: 282.92517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 750525561}
@@ -26487,7 +26492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192259222}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -311.71997, y: -52.769997, z: 282.92517}
+  m_LocalPosition: {x: 66.05005, y: 35.129997, z: 282.92517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 100908979}

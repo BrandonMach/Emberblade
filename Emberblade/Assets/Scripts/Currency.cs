@@ -25,7 +25,7 @@ public class Currency : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerInfo = GetComponent<PlayerInfo>();
     }
 
     // Update is called once per frame

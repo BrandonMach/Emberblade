@@ -18,6 +18,7 @@ public class CombatScript : MonoBehaviour
     private Vector2 idleBoxColliderOffset;
     private PlayerControll player;
     public bool isInBossBattle;
+    public static int playerDamage = 1;
 
     private void Start()
     {
@@ -56,7 +57,7 @@ public class CombatScript : MonoBehaviour
                 {
                     for (int i = 0; i < BossToDamage.Length; i++)
                     {
-                        BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage();
+                        BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage(playerDamage);
                         Debug.Log("We Hit Boss");
                     }
                 }
@@ -64,7 +65,7 @@ public class CombatScript : MonoBehaviour
                 {
                     for (int i = 0; i < enemiesToDamage.Length; i++)
                     {
-                        enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage();
+                        enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(playerDamage);
                         Debug.Log("We Hit Enemy");
                     }
                 }
@@ -95,7 +96,7 @@ public class CombatScript : MonoBehaviour
                 {
                     for (int i = 0; i < BossToDamage.Length; i++)
                     {
-                        BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage();
+                        BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage(playerDamage);
                         Debug.Log("We Hit Boss");
                     }
                 }
@@ -103,7 +104,7 @@ public class CombatScript : MonoBehaviour
                 {
                     for (int i = 0; i < enemiesToDamage.Length; i++)
                     {
-                        enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage();
+                        enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(playerDamage);
                         Debug.Log("We Hit Enemy");
                     }
                 }

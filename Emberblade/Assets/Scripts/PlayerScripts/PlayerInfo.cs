@@ -10,6 +10,8 @@ public class PlayerInfo : MonoBehaviour
     public int currentHealth;
     public int maxEnergy;
     public int currentEnergy;
+    public static bool unlockedManaRegen;
+    private float timeManaRegen;
     [SerializeField] HealthBar healthBar;
     [SerializeField] EnergyBar energyBar;
     public bool canTakeDamage;
@@ -60,8 +62,16 @@ public class PlayerInfo : MonoBehaviour
             Death();
         }
         DamageWindow();
+
+        if (unlockedManaRegen)
+        {
+            RechargeEnergyOverTime();
+        }
+        
     }
     
+   
+
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
     {
         if (!playerControllScript.isParrying)
@@ -95,6 +105,21 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
+    public void RechargeEnergyOverTime()
+    {
+        if (currentEnergy < maxEnergy)
+        {
+            timeManaRegen += Time.deltaTime;
+            if (timeManaRegen >= 10)
+            {
+                currentEnergy += 10;
+                energyBar.SetEnergy(currentEnergy);
+                timeManaRegen = 0;
+            }
+        }
+        else { currentEnergy = maxEnergy; }
+    }
+
     public void RechargeEnergy()
     {
         if (currentEnergy < maxEnergy)
@@ -103,6 +128,8 @@ public class PlayerInfo : MonoBehaviour
             energyBar.SetEnergy(currentEnergy);
         }
         else { currentEnergy = maxEnergy; }
+
+
     }
 
     public void Heal(int health) //Metod som gör att man kan få tillbaka health.

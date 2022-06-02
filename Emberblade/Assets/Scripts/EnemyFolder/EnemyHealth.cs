@@ -32,11 +32,11 @@ public class EnemyHealth : MonoBehaviour
 
 
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
         if (canTakeDamage)
         {
-            health--;
+            health -= damage;
             healthBar.SetHealth(health, maxHealth);
             canTakeDamage = false;         
         }  
