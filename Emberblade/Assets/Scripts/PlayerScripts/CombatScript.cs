@@ -29,11 +29,38 @@ public class CombatScript : MonoBehaviour
     {
         if (timeBetweenAttack <= 0)// than you can attack
         {
-            
-            if (Input.GetKey(KeyCode.J))
+
+            if (Input.GetKey(KeyCode.J) && Input.GetKey(KeyCode.C))
+            {
+                animator.SetTrigger("SitAttack");
+
+                attackpoint.position = new Vector2(3.81f, -2.86f);
+
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
+                Collider2D[] BossToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
+                if (isInBossBattle)
+                {
+                    for (int i = 0; i < BossToDamage.Length; i++)
+                    {
+                        BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage();
+                        Debug.Log("We Hit Boss");
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    {
+                        enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage();
+                        Debug.Log("We Hit Enemy");
+                    }
+                }
+            }
+            else if (Input.GetKey(KeyCode.J))
             {
                 animator.SetTrigger("Attack");
-                
+
+                attackpoint.position = new Vector2(3.81f, 0.86f);
+
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
                 Collider2D[] BossToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
                 if (isInBossBattle)
@@ -81,6 +108,7 @@ public class CombatScript : MonoBehaviour
             return;
         }
         Gizmos.color = Color.blue;
+        
         Gizmos.DrawWireSphere(attackpoint.position, attackRange);
     }
 }

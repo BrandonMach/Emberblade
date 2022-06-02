@@ -238,7 +238,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") < 0) //Left
         {
             characterScale.x = -1.45f;
-            if (isOnGround && isOnPlatform)
+            if (isOnGround || isOnPlatform)
             {
                 PlayRunAnimation();
             }
@@ -251,7 +251,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0) //Right
         {
             characterScale.x = 1.45f;
-            if (isOnGround && isOnPlatform)
+            if (isOnGround || isOnPlatform)
             {
                 PlayRunAnimation();
             }
@@ -339,11 +339,11 @@ public class PlayerControll : MonoBehaviour
     void Crouch()
     {
         //Crouch
-        if (Input.GetKey(KeyCode.C) || hasToCrouch && isOnGround)
+        if (Input.GetKey(KeyCode.C) || hasToCrouch && isOnGround || hasToCrouch && isOnPlatform)
         {
             animator.SetBool("Sit", true);
             capsuleCollider.size = new Vector2(4.577552f, 4.577552f);
-            capsuleCollider.offset = new Vector2(-0.01422455f, -1f);
+            capsuleCollider.offset = new Vector2(-0.01422455f, -2.3f);
             movementSpeed = 13;
             jumpforce = 20;
             boxCollider.offset = new Vector2(-0.05918601f, -2.19f);
