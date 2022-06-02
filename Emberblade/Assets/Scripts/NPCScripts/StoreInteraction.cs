@@ -9,6 +9,8 @@ public class StoreInteraction : MonoBehaviour
     public GameObject healthButton, energyButton;
     private float middleOfScreenX, middleOfScreenY;
     public TextMeshProUGUI currencyText;
+    Currency currency;
+    PlayerInfo playerInfo;
 
 
     // Start is called before the first frame update
@@ -16,6 +18,9 @@ public class StoreInteraction : MonoBehaviour
     {
         middleOfScreenX = Screen.width / 2;
         middleOfScreenY = Screen.height / 2;
+
+        currency = GameObject.Find("Player").GetComponent<Currency>();
+        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
     }
 
     // Update is called once per frame
@@ -32,25 +37,25 @@ public class StoreInteraction : MonoBehaviour
             energyButton.SetActive(false);
             healthButton.transform.position = new Vector2(middleOfScreenX, middleOfScreenY);
         }
-        //currencyText.text = GameObject.Find("Player").GetComponent<Currency>().currency.ToString();
+        currencyText.text = currency.currency.ToString();
     }
 
     public void buyHealth()
     {
-        if (GameObject.Find("Player").GetComponent<Currency>().currency >= 50)
+        if (currency.currency >= 50)
         {
-            GameObject.Find("Player").GetComponent<Currency>().currency -= 50;
-            GameObject.Find("Player").GetComponent<PlayerInfo>().maxHealth = (GameObject.Find("Player").GetComponent<PlayerInfo>().maxHealth * 125) / 100;
+            currency.currency -= 50;
+            playerInfo.maxHealth = playerInfo.maxHealth += 25;
             boughtHealth = true;
         }
     }
 
     public void buyEnergy()
     {
-        if (GameObject.Find("Player").GetComponent<Currency>().currency >= 100)
+        if (currency.currency >= 100)
         {
-            GameObject.Find("Player").GetComponent<Currency>().currency -= 100;
-            GameObject.Find("Player").GetComponent<PlayerInfo>().maxEnergy = (GameObject.Find("Player").GetComponent<PlayerInfo>().maxEnergy * 125) / 100;
+            currency.currency -= 100;
+            playerInfo.maxEnergy = playerInfo.maxEnergy + 25;
             boughtEnergy = true;
         }
     }
