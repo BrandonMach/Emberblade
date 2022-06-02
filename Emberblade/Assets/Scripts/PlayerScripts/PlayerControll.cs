@@ -43,7 +43,7 @@ public class PlayerControll : MonoBehaviour
     public bool isOnPlatform;
 
     [Header("Crouch")]
-    [SerializeField] bool isCrouching;
+    public bool isCrouching;
     [SerializeField] bool hasToCrouch;
     [SerializeField] LayerMask roofLayer;
     [SerializeField] float headFloat;
@@ -58,6 +58,8 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] float gravity = 1;
     [SerializeField] float fallMultiplier = 5f;
     [SerializeField] float liniearDrag = 4f;
+    public bool lookingRight = true;
+
 
     [Header("Abilities")]
     public  NewAbilityTextScript newAbilityText;
@@ -238,6 +240,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") < 0) //Left
         {
             characterScale.x = -1.45f;
+            lookingRight = false;
             if (isOnGround || isOnPlatform)
             {
                 PlayRunAnimation();
@@ -251,6 +254,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0) //Right
         {
             characterScale.x = 1.45f;
+            lookingRight = true;
             if (isOnGround || isOnPlatform)
             {
                 PlayRunAnimation();
