@@ -148,12 +148,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
+  playerInRangeX: 20
+  playerInRangeY: 2
   attackPlayer: 0
   radiusArea: 0
   playerDetectionX: 59.8
   playerDetectionY: 2
-  playerInRangeX: 20
-  playerInRangeY: 2
   moveSpeed: 5
   animator: {fileID: 1936597665}
   attackDelay: 2
@@ -192,7 +192,7 @@ MonoBehaviour:
   maxHealth: 4
   health: 2
   canTakeDamage: 1
-  abilityItem: {fileID: 0}
+  currency: 0
   healthBar: {fileID: 9170163126061043671}
 --- !u!1 &3632547415173771513
 GameObject:
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 235974326361225902}
   - component: {fileID: 9170163126061043671}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: HealthProcupine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -585,4 +585,4 @@ MonoBehaviour:
   healthBar: {fileID: 3719140100924970298}
   low: {r: 1, g: 0, b: 0, a: 1}
   high: {r: 0, g: 1, b: 0.04445076, a: 1}
-  offset: {x: 0, y: 2, z: 0}
+  offset: {x: 0, y: 3, z: 0}

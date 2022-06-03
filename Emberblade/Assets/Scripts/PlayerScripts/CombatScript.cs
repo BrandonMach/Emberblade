@@ -16,10 +16,13 @@ public class CombatScript : MonoBehaviour
     public float startTimeBetweenAttack;
     private BoxCollider2D boxCollider;
     private Vector2 idleBoxColliderOffset;
+    private PlayerControll player;
     public bool isInBossBattle;
+    public static int playerDamage = 1;
 
     private void Start()
     {
+        player = GetComponent<PlayerControll>();
         boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.offset = idleBoxColliderOffset;
     }
@@ -29,18 +32,76 @@ public class CombatScript : MonoBehaviour
     {
         if (timeBetweenAttack <= 0)// than you can attack
         {
+            if (player.isCrouching)
+            {
+                if (Input.GetKeyDown(KeyCode.J))
+                {
+                    animator.SetTrigger("SitAttack");
+
+
+                    Vector3 attackScale = transform.localScale;
+
+
+                    if (player.lookingRight)
+                    {
+                        attackScale.x *= 1;
+                        attackpoint.position = new Vector2(this.transform.position.x + 5, this.transform.position.y - 2.86f);
+                    }
+                    else
+                    {
+                        attackScale.x *= -1;
+                        attackpoint.position = new Vector2(this.transform.position.x - 5, this.transform.position.y - 2.86f);
+                    }
+
+                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
+                    Collider2D[] BossToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
+                    if (isInBossBattle)
+                    {
+                        for (int i = 0; i < BossToDamage.Length; i++)
+                        {
+                            BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage(playerDamage);
+                            Debug.Log("We Hit Boss");
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < enemiesToDamage.Length; i++)
+                        {
+                            enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(playerDamage);
+                            Debug.Log("We Hit Enemy");
+                        }
+                    }
+                }
+            }
             
-            if (Input.GetKey(KeyCode.J))
+            else if (Input.GetKeyDown(KeyCode.J))
             {
                 animator.SetTrigger("Attack");
-                
+
+
+
+                Vector3 attackScale = transform.localScale;
+                //attackpoint.position = new Vector2(this.transform.position.x + 3.81f, this.transform.position.y + 0.86f); /*= new Vector2(3.81f, 0.86f);*/
+
+                if (player.lookingRight)
+                {
+                    attackScale.x *= 1;
+                    attackpoint.position = new Vector2(this.transform.position.x + 6, this.transform.position.y);
+                }
+                else
+                {
+                    attackScale.x *= -1;
+                    attackpoint.position = new Vector2(this.transform.position.x - 6, this.transform.position.y);
+                }
+               
+
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
                 Collider2D[] BossToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
                 if (isInBossBattle)
                 {
                     for (int i = 0; i < BossToDamage.Length; i++)
                     {
-                        BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage();
+                        BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage(playerDamage);
                         Debug.Log("We Hit Boss");
                     }
                 }
@@ -48,7 +109,7 @@ public class CombatScript : MonoBehaviour
                 {
                     for (int i = 0; i < enemiesToDamage.Length; i++)
                     {
-                        enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage();
+                        enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(playerDamage);
                         Debug.Log("We Hit Enemy");
                     }
                 }
@@ -80,7 +141,8 @@ public class CombatScript : MonoBehaviour
         {
             return;
         }
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.cyan;
+        
         Gizmos.DrawWireSphere(attackpoint.position, attackRange);
     }
 }

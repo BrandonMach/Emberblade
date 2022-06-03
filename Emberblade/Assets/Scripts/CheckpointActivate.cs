@@ -8,6 +8,8 @@ public class CheckpointActivate : MonoBehaviour
     [SerializeField] bool triggering;
     [SerializeField] Animator animator;
     private GameMaster gm;
+
+
     // Start is called before the first frame update
     void Start()
     {

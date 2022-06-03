@@ -41,7 +41,7 @@ public class EnemyBullet : MonoBehaviour
             {
                 playerControllScript.knockFromRight = true;
             }
-            playerControllScript.Knockback();
+            playerControllScript.Knockback(5, 5);
             Debug.LogError("Freeze");
             
         }

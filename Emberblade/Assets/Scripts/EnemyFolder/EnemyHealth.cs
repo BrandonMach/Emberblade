@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     private float startTimeDamageTimer;
     private float damageDelay = 0.5f;
     Currency player;
+    public int currency;
     public EnemyHealthbar healthBar;
     
     void Start()
@@ -31,11 +32,11 @@ public class EnemyHealth : MonoBehaviour
 
 
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
         if (canTakeDamage)
         {
-            health--;
+            health -= damage;
             healthBar.SetHealth(health, maxHealth);
             canTakeDamage = false;         
         }  
@@ -59,6 +60,7 @@ public class EnemyHealth : MonoBehaviour
         if (health <= 0 && startTimeDamageTimer == 0)
         {
             Destroy(this.gameObject);
+            player.IncreaseCurrency(currency);
         }
     }
 }

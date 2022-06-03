@@ -30,6 +30,7 @@ public class PatrolAI : MonoBehaviour
     [Header("Target")]// Target
     private Vector2 movetowardsPlayer;
     private PlayerInfo playerInfoController;
+    private PlayerControll playerControll;
     [SerializeField] float agroRangeX = 70;
     [SerializeField] float agroRangeY = 30;
 
@@ -42,6 +43,7 @@ public class PatrolAI : MonoBehaviour
         idle = true;
         startingX = transform.position.x;
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        playerControll = GameObject.Find("Player").GetComponent<PlayerControll>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -129,6 +131,9 @@ public class PatrolAI : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && attackTime)
         {
             playerInfoController.TakeDamage(40);
+            playerControll.Knockback(20, 20);
+
+
             Destroy(gameObject);
         }
         if (other.gameObject.CompareTag("Wall") && attackTime)
@@ -142,6 +147,11 @@ public class PatrolAI : MonoBehaviour
         if (other.gameObject.CompareTag("Roof") && attackTime)
         {
             Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Enemy") && attackTime)
+        {
+            Destroy(gameObject);
+            
         }
     }
 

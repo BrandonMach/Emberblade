@@ -21,6 +21,7 @@ TagManager:
   - Enemy
   - Platform
   - Bat
+  - CurrencyChest
   layers:
   - Default
   - TransparentFX

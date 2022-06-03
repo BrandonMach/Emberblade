@@ -6,7 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
     private GameMaster gm;
     [SerializeField] Animator animator;
-    public static  bool checkpointTaken;
+    public static bool checkpointTaken;
 
     private void Start()
     {

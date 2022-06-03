@@ -38,8 +38,12 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] Vector3 colliderOffset;
     UnityEvent landing = new UnityEvent();
 
+    [Header("Platform detection")]
+    public LayerMask platformLayer;
+    public bool isOnPlatform;
+
     [Header("Crouch")]
-    [SerializeField] bool isCrouching;
+    public bool isCrouching;
     [SerializeField] bool hasToCrouch;
     [SerializeField] LayerMask roofLayer;
     [SerializeField] float headFloat;
@@ -54,6 +58,8 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] float gravity = 1;
     [SerializeField] float fallMultiplier = 5f;
     [SerializeField] float liniearDrag = 4f;
+    public bool lookingRight = true;
+
 
     [Header("Abilities")]
     public  NewAbilityTextScript newAbilityText;
@@ -103,7 +109,8 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] float wallJumpTime;
 
     [Header("Knockback")]
-    public float knockback;
+    public float knockbackX;
+    public float knockbackY;
     public float knockbackLength;
     public float knockbackCount;
     public bool knockFromRight;
@@ -140,14 +147,15 @@ public class PlayerControll : MonoBehaviour
         {
             if (knockFromRight)
             { //knock to left
-                player_Rb.velocity = new Vector2(-knockback, knockback);
+                player_Rb.velocity = new Vector2(-knockbackX, knockbackY);
             }
-            if (!knockFromRight) {
-                player_Rb.velocity = new Vector2(knockback, knockback);
+            if (!knockFromRight)
+            {
+                player_Rb.velocity = new Vector2(knockbackX, knockbackY);
             }
             knockbackCount -= Time.deltaTime;
         }
-        
+
         Falling();
         if (!hasUnlockedDJ)
         {
@@ -156,6 +164,7 @@ public class PlayerControll : MonoBehaviour
         }
         JumpInput();
         isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
+        isOnPlatform = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, platformLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, platformLayer);
         if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround)
         {
             canDoubleJump = false;
@@ -208,6 +217,10 @@ public class PlayerControll : MonoBehaviour
             
             
         }
+        if (isOnPlatform)
+        {
+            canDoubleJump = true;
+        }
         else
         {
             player_Rb.gravityScale = gravity;
@@ -236,7 +249,8 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") < 0) //Left
         {
             characterScale.x = -1.45f;
-            if (isOnGround)
+            lookingRight = false;
+            if (isOnGround || isOnPlatform)
             {
                 PlayRunAnimation();
             }
@@ -249,7 +263,8 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0) //Right
         {
             characterScale.x = 1.45f;
-            if (isOnGround)
+            lookingRight = true;
+            if (isOnGround || isOnPlatform)
             {
                 PlayRunAnimation();
             }
@@ -337,11 +352,11 @@ public class PlayerControll : MonoBehaviour
     void Crouch()
     {
         //Crouch
-        if (Input.GetKey(KeyCode.C) || hasToCrouch && isOnGround)
+        if (Input.GetKey(KeyCode.C) || hasToCrouch && isOnGround || hasToCrouch && isOnPlatform)
         {
             animator.SetBool("Sit", true);
             capsuleCollider.size = new Vector2(4.577552f, 4.577552f);
-            capsuleCollider.offset = new Vector2(-0.01422455f, -1f);
+            capsuleCollider.offset = new Vector2(-0.01422455f, -2.3f);
             movementSpeed = 13;
             jumpforce = 20;
             boxCollider.offset = new Vector2(-0.05918601f, -2.19f);
@@ -375,7 +390,7 @@ public class PlayerControll : MonoBehaviour
 
     void JumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump || Input.GetKeyDown(KeyCode.Space) && isOnPlatform)
         {
             animator.SetBool("Jumping", true);
                 Jumping();
@@ -411,8 +426,10 @@ public class PlayerControll : MonoBehaviour
         animator.SetBool("IsOnGround", false);
     }
 
-    public void Knockback()
+    public void Knockback(float kbX, float kbY)
     {
+        knockbackX = kbX;
+        knockbackY = kbY;
         Debug.Log("Knockback");
         knockbackCount = knockbackLength;
     }
@@ -422,10 +439,12 @@ public class PlayerControll : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
          {
             isOnGround = false;
+            isOnPlatform = false;
          }
         if (collision.gameObject.CompareTag("Roof"))
         {
             isOnGround = false;
+            isOnPlatform = false;
         }
 
         else if (collision.gameObject.CompareTag("UnlockDJ"))
@@ -442,12 +461,19 @@ public class PlayerControll : MonoBehaviour
             Destroy(collision.gameObject);
             PlayNewAbilityCutscene();
             newAbilityText.index = 1;
-        }         
+        }
     }
 
-    void PlayNewAbilityCutscene()
+    public void PlayNewAbilityCutscene()
     {     
         camAnimator.SetBool("NewAbility", true);
+        this.enabled = false;
+        Invoke("StopCutscene", 1);
+        newAbilityText.startText = true;
+    }
+    public void OpenChestCutScene()
+    {
+        camAnimator.SetBool("OpenChest", true);
         this.enabled = false;
         Invoke("StopCutscene", 1);
         newAbilityText.startText = true;
@@ -463,6 +489,7 @@ public class PlayerControll : MonoBehaviour
         newAbilityText.ClosePopUP();
         this.enabled = true;
         camAnimator.SetBool("NewAbility", false);
+        camAnimator.SetBool("OpenChest", false);
     }
     private void OnDrawGizmos()
     {

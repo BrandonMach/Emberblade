@@ -390,7 +390,7 @@ MonoBehaviour:
   maxHealth: 2
   health: 0
   canTakeDamage: 1
-  abilityItem: {fileID: 0}
+  currency: 15
   healthBar: {fileID: 441212809940405914}
 --- !u!1 &4266010152323537225
 GameObject:
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 7901433297967473420}
   - component: {fileID: 441212809940405914}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: HealthbarArmadilo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -508,7 +508,7 @@ MonoBehaviour:
   healthBar: {fileID: 8384265866610128811}
   low: {r: 1, g: 0, b: 0, a: 1}
   high: {r: 0, g: 1, b: 0.04445076, a: 1}
-  offset: {x: 0, y: 2, z: 0}
+  offset: {x: 0, y: 1, z: 0}
 --- !u!1 &6274151714221689171
 GameObject:
   m_ObjectHideFlags: 0
