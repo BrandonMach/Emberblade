@@ -32,47 +32,52 @@ public class CombatScript : MonoBehaviour
     {
         if (timeBetweenAttack <= 0)// than you can attack
         {
-
-            if (Input.GetKeyDown(KeyCode.J) && player.isCrouching)
+            if (player.isCrouching)
             {
-                animator.SetTrigger("SitAttack");
-
-                Vector3 attackScale = transform.localScale;
-
-
-                if (player.lookingRight)
+                if (Input.GetKeyDown(KeyCode.J))
                 {
-                    attackScale.x *= 1;
-                    attackpoint.position = new Vector2(this.transform.position.x + 5, this.transform.position.y - 2.86f);
-                }
-                else
-                {
-                    attackScale.x *= -1;
-                    attackpoint.position = new Vector2(this.transform.position.x - 5, this.transform.position.y - 2.86f);
-                }
+                    animator.SetTrigger("SitAttack");
 
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
-                Collider2D[] BossToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
-                if (isInBossBattle)
-                {
-                    for (int i = 0; i < BossToDamage.Length; i++)
+
+                    Vector3 attackScale = transform.localScale;
+
+
+                    if (player.lookingRight)
                     {
-                        BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage(playerDamage);
-                        Debug.Log("We Hit Boss");
+                        attackScale.x *= 1;
+                        attackpoint.position = new Vector2(this.transform.position.x + 5, this.transform.position.y - 2.86f);
                     }
-                }
-                else
-                {
-                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    else
                     {
-                        enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(playerDamage);
-                        Debug.Log("We Hit Enemy");
+                        attackScale.x *= -1;
+                        attackpoint.position = new Vector2(this.transform.position.x - 5, this.transform.position.y - 2.86f);
+                    }
+
+                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
+                    Collider2D[] BossToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
+                    if (isInBossBattle)
+                    {
+                        for (int i = 0; i < BossToDamage.Length; i++)
+                        {
+                            BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage(playerDamage);
+                            Debug.Log("We Hit Boss");
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < enemiesToDamage.Length; i++)
+                        {
+                            enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(playerDamage);
+                            Debug.Log("We Hit Enemy");
+                        }
                     }
                 }
             }
+            
             else if (Input.GetKeyDown(KeyCode.J))
             {
                 animator.SetTrigger("Attack");
+
 
 
                 Vector3 attackScale = transform.localScale;

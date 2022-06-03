@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -542,7 +542,7 @@ MonoBehaviour:
   maxHealth: 3
   health: 0
   canTakeDamage: 0
-  abilityItem: {fileID: 0}
+  currency: 10
   healthBar: {fileID: 1577022159}
 --- !u!95 &-5455274540838978737
 Animator:
@@ -576,12 +576,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
+  playerInRangeX: 9.4
+  playerInRangeY: 5.19
   attackPlayer: 0
   radiusArea: 0
   playerDetectionX: 55.7
   playerDetectionY: 2
-  playerInRangeX: 9.4
-  playerInRangeY: 5.19
   moveSpeed: 10
   animator: {fileID: -5455274540838978737}
   attackDelay: 2

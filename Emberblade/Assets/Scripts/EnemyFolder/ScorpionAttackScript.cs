@@ -125,6 +125,15 @@ public class ScorpionAttackScript : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerController.Knockback(5, 5);
+            playerInfo.TakeDamage(5);
+        }
+    }
+
     void EnemyFacingPlayer()
     {
         Vector3 charecterScale = transform.localScale;
