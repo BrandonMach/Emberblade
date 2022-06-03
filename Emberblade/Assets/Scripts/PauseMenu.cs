@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject optionMenuUI;
     public TextMeshProUGUI HP, Mana, AD;
     public GameObject tabPanel, Dash, Double, GP;
+    public GameObject winter, desert, cave;
     PlayerInfo player;
     PlayerControll playerControll;
     CombatScript combatScript;
@@ -70,6 +71,22 @@ public class PauseMenu : MonoBehaviour
         //{
         //    GP.SetActive(true);
         //}
+
+
+
+        //if (playerControll.beenInDesert)
+        //{
+        //    desert.SetActive(false);
+        //}        
+        //if (playerControll.beenInCave)
+        //{
+        //    cave.SetActive(false);
+        //}
+        //if (playerControll.beenInWinter)
+        //{
+        //    winter.SetActive(false);
+        //}
+
 
     }
 
