@@ -457,6 +457,13 @@ public class PlayerControll : MonoBehaviour
         Invoke("StopCutscene", 1);
         newAbilityText.startText = true;
     }
+    public void OpenChestCutScene()
+    {
+        camAnimator.SetBool("OpenChest", true);
+        this.enabled = false;
+        Invoke("StopCutscene", 1);
+        newAbilityText.startText = true;
+    }
 
 
     //--------------------------------------------------
@@ -468,6 +475,7 @@ public class PlayerControll : MonoBehaviour
         newAbilityText.ClosePopUP();
         this.enabled = true;
         camAnimator.SetBool("NewAbility", false);
+        camAnimator.SetBool("OpenChest", false);
     }
     private void OnDrawGizmos()
     {

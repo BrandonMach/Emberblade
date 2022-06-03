@@ -27,7 +27,7 @@ public class AttackChestOne : MonoBehaviour
                 animator.SetTrigger("Open");
                 animator.SetBool("IsOpened", true);
                 CombatScript.playerDamage += 1;
-                player.PlayNewAbilityCutscene();
+                player.OpenChestCutScene();
                 newAbilityText.index = 2;
                 attackChestOneOpened = true;
             }

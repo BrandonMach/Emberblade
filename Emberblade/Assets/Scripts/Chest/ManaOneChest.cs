@@ -29,7 +29,7 @@ public class ManaOneChest : MonoBehaviour
                 animator.SetTrigger("Open");
                 animator.SetBool("IsOpened", true);
                 playerInfo.maxEnergy += 15;
-                player.PlayNewAbilityCutscene();
+                player.OpenChestCutScene();
                 newAbilityText.index = 4;
                 manaChestOneOpened = true;
             }

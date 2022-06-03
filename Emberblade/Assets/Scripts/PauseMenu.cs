@@ -58,14 +58,14 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        if (playerControll.hasUnlockedDash)
-        {
-            Dash.SetActive(true);
-        }
-        if (PlayerControll.hasUnlockedDJ)
-        {
-            Double.SetActive(true);
-        }
+        //if (playerControll.hasUnlockedDash)
+        //{
+        //    Dash.SetActive(true);
+        //}
+        //if (PlayerControll.hasUnlockedDJ)
+        //{
+        //    Double.SetActive(true);
+        //}
         //if (PlayerControll.hasUnlockedGP)
         //{
         //    GP.SetActive(true);

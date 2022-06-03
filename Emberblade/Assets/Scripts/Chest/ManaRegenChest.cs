@@ -27,7 +27,7 @@ public class ManaRegenChest : MonoBehaviour
                 animator.SetTrigger("Open");
                 animator.SetBool("IsOpened", true);
                 PlayerInfo.unlockedManaRegen = true;
-                player.PlayNewAbilityCutscene();
+                player.OpenChestCutScene();
                 newAbilityText.index = 5;
                 manaRegenChestOpened = true;
             }

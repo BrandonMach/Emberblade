@@ -29,7 +29,7 @@ public class HealthTwoChest : MonoBehaviour
                 animator.SetTrigger("Open");
                 animator.SetBool("IsOpened", true);
                 playerInfo.maxHealth += 15;
-                player.PlayNewAbilityCutscene();
+                player.OpenChestCutScene();
                 newAbilityText.index = 3;
                 healthChestTwoOpened = true;
             }
