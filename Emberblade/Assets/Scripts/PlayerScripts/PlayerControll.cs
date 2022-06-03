@@ -18,7 +18,7 @@ public class PlayerControll : MonoBehaviour
     private CapsuleCollider2D capsuleCollider;
     private BoxCollider2D boxCollider;
 
-   
+    private SFXPlaying soundEffectScript;
 
     Vector2 standingBoxOffset;
     Vector2 stadningBoxSize;
@@ -87,8 +87,11 @@ public class PlayerControll : MonoBehaviour
 
     [Header("Parry")]
     public bool isParrying = false;
+    [SerializeField] bool canParry = true;
     private float parryStart = 0;
     private float parryWindow = 0.5f;
+    private float canParryTimer = 0;
+    private float reperryTime = 3; // can parry time
 
     [Header("Hook")]
     [SerializeField] GrappleHookScript ghScript;
@@ -124,7 +127,7 @@ public class PlayerControll : MonoBehaviour
         playerInfoScript = GetComponent<PlayerInfo>();
         newAbilityText = GameObject.Find("NewAbilityController").GetComponent<NewAbilityTextScript>();
         originalJumpForce = jumpforce;
-
+        soundEffectScript = GameObject.Find("SoundManager").GetComponent<SFXPlaying>();
 
         oGSize = capsuleCollider.size;
         oGOffset = capsuleCollider.offset;
@@ -182,23 +185,39 @@ public class PlayerControll : MonoBehaviour
             jumpRing.SetActive(false);
         }
 
+        if (!canParry)
+        {
+            
+            canParryTimer += Time.deltaTime;
+            if (canParryTimer  >= reperryTime)
+            {
+                canParry = true;
+                Debug.LogError("you can perry now");
+                canParryTimer = 0;
+            }
+            
+        }
+
     }
 
     void Parry()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.H) && canParry)
         {
             parryStart = 0;
             isParrying = true;
         }
         if (isParrying)
         {
+            canParry = false;
             Debug.Log("Parrying");
             animator.SetBool("Parry", true);
             parryStart += Time.deltaTime;
             if (parryStart >= parryWindow)
             {
                 isParrying = false;
+                Debug.LogWarning("test");
+                //parryStart = 0;
             }
         }
         if (!isParrying)
@@ -392,8 +411,9 @@ public class PlayerControll : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround || Input.GetKeyDown(KeyCode.Space)  && canDoubleJump || Input.GetKeyDown(KeyCode.Space) && isOnPlatform)
         {
+            soundEffectScript.PlayJump();
             animator.SetBool("Jumping", true);
-                Jumping();
+            Jumping();
         }       
     }
     void Jumping()

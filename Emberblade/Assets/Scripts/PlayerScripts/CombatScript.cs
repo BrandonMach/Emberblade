@@ -9,7 +9,7 @@ public class CombatScript : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Transform attackpoint;
     [SerializeField] float attackRange = 0.5f;
-
+    private SFXPlaying soundEffectScript;
     [SerializeField] LayerMask hittableLayers;
 
     private float timeBetweenAttack = 0.01f;
@@ -25,6 +25,7 @@ public class CombatScript : MonoBehaviour
         player = GetComponent<PlayerControll>();
         boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.offset = idleBoxColliderOffset;
+        soundEffectScript = GameObject.Find("SoundManager").GetComponent<SFXPlaying>();
     }
 
     // Update is called once per frame
@@ -37,7 +38,7 @@ public class CombatScript : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.J))
                 {
                     animator.SetTrigger("SitAttack");
-
+                    soundEffectScript.PlayAttack();
 
                     Vector3 attackScale = transform.localScale;
 
@@ -77,7 +78,7 @@ public class CombatScript : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.J))
             {
                 animator.SetTrigger("Attack");
-
+                soundEffectScript.PlayAttack();
 
 
                 Vector3 attackScale = transform.localScale;

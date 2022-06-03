@@ -6,13 +6,19 @@ using UnityEngine.SceneManagement;
 public class PlayerInfo : MonoBehaviour
 {
     [Header("IFrame")]
-    public Color flashColor;
+    public Color damageFlashColor;
     public Color regularColor;
-    public float flashDuration;
-    public int numberOfFlashes;
+    public float damageFlashDuration;
+    public int numberOfDamageFlashes;
     public SpriteRenderer sprite;
 
+    [Header ("Parry")]
+    public Color parryFlashColor;
+    public float parryFlashDuration;
+    [SerializeField] int numberOfParryFlashes;
+    private SFXPlaying sfxScript;
 
+    [Header ("UI")]
     public int maxHealth;
     public int currentHealth;
     public int maxEnergy;
@@ -41,6 +47,7 @@ public class PlayerInfo : MonoBehaviour
         playerControllScript = GetComponent<PlayerControll>();
 
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        sfxScript = GameObject.Find("SoundManager").GetComponent<SFXPlaying>();
         if (Checkpoint.checkpointTaken)
         {
             transform.position = gm.lastCheckPointPos;
@@ -87,16 +94,19 @@ public class PlayerInfo : MonoBehaviour
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
-            StartCoroutine(FlashCo());
+            StartCoroutine(DamageFlash());
             //canTakeDamage = false;
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
             }
         }
-        else
+        else if(playerControllScript.isParrying)
         {
-            Debug.Log("Parry Succes");
+            sfxScript.PlayParry();
+            StartCoroutine(ParryFlash());
+            Debug.LogError("Parry Succes");
+           
         }
         //if (canTakeDamage)
         //{
@@ -113,19 +123,31 @@ public class PlayerInfo : MonoBehaviour
     }
 
 
-    private IEnumerator FlashCo()
+    private IEnumerator DamageFlash()
     {
         int temp = 0;
         canTakeDamage = false;
-        while (temp < numberOfFlashes)
+        while (temp < numberOfDamageFlashes)
         {
-            sprite.color = flashColor;
-            yield return new WaitForSeconds(flashDuration);
+            sprite.color = damageFlashColor;
+            yield return new WaitForSeconds(damageFlashDuration);
             sprite.color = regularColor;
-            yield return new WaitForSeconds(flashDuration);
+            yield return new WaitForSeconds(damageFlashDuration);
             temp++;
         }
         canTakeDamage = true;
+    }
+    private IEnumerator ParryFlash()
+    {
+        int temp = 0;
+        while (temp < numberOfParryFlashes)
+        {
+            sprite.color = parryFlashColor;
+            yield return new WaitForSeconds(parryFlashDuration);
+            sprite.color = regularColor;
+            yield return new WaitForSeconds(parryFlashDuration);
+            temp++;
+        }
     }
 
     public void RechargeEnergyOverTime()
