@@ -22,7 +22,7 @@ public class HealthOneChest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (trigger & !healthChestOneOpened)
+        if (trigger && !healthChestOneOpened)
         {
             if (Input.GetKey(KeyCode.E))
             {

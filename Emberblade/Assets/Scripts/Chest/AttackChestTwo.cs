@@ -20,7 +20,7 @@ public class AttackChestTwo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (trigger & !attackChestTwoOpened)
+        if (trigger && !attackChestTwoOpened)
         {
             if (Input.GetKey(KeyCode.E))
             {

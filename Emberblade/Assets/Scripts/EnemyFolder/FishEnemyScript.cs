@@ -91,7 +91,7 @@ public class FishEnemyScript : MonoBehaviour
                 {
                     playerController.knockFromRight = true;
                 }
-                playerController.Knockback();
+                playerController.Knockback(5, 5);
                 playerInfo.TakeDamage(15);
                 boxCollider.isTrigger = true;
                 

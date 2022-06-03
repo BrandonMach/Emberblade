@@ -22,7 +22,7 @@ public class ManaOneChest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (trigger & !manaChestOneOpened)
+        if (trigger && !manaChestOneOpened)
         {
             if (Input.GetKey(KeyCode.E))
             {

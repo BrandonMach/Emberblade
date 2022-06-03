@@ -108,7 +108,8 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] float wallJumpTime;
 
     [Header("Knockback")]
-    public float knockback;
+    public float knockbackX;
+    public float knockbackY;
     public float knockbackLength;
     public float knockbackCount;
     public bool knockFromRight;
@@ -147,14 +148,15 @@ public class PlayerControll : MonoBehaviour
         {
             if (knockFromRight)
             { //knock to left
-                player_Rb.velocity = new Vector2(-knockback, knockback);
+                player_Rb.velocity = new Vector2(-knockbackX, knockbackY);
             }
-            if (!knockFromRight) {
-                player_Rb.velocity = new Vector2(knockback, knockback);
+            if (!knockFromRight)
+            {
+                player_Rb.velocity = new Vector2(knockbackX, knockbackY);
             }
             knockbackCount -= Time.deltaTime;
         }
-        
+
         Falling();
         if (!hasUnlockedDJ)
         {
@@ -172,7 +174,6 @@ public class PlayerControll : MonoBehaviour
         hasToCrouch = Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat, groundLayer)|| Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat,roofLayer);
         Crouch();
 
-        
     }
 
     void Parry()
@@ -411,8 +412,10 @@ public class PlayerControll : MonoBehaviour
         animator.SetBool("IsOnGround", false);
     }
 
-    public void Knockback()
+    public void Knockback(float kbX, float kbY)
     {
+        knockbackX = kbX;
+        knockbackY = kbY;
         Debug.Log("Knockback");
         knockbackCount = knockbackLength;
     }
@@ -444,7 +447,7 @@ public class PlayerControll : MonoBehaviour
             Destroy(collision.gameObject);
             PlayNewAbilityCutscene();
             newAbilityText.index = 1;
-        }         
+        }
     }
 
     public void PlayNewAbilityCutscene()

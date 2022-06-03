@@ -18,7 +18,7 @@ public class CurrencyOneChest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (trigger & !currencyChestOneOpened)
+        if (trigger && !currencyChestOneOpened)
         {
             if (Input.GetKey(KeyCode.E))
             {

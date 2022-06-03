@@ -191,7 +191,7 @@ public class PlatypusBossScript : MonoBehaviour
                 playerControllScript.knockFromRight = true;
             }
             player.TakeDamage(10);
-            playerControllScript.Knockback();
+            playerControllScript.Knockback(5, 5);
             
         }
     }

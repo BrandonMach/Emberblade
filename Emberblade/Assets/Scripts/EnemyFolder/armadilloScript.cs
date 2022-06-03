@@ -19,6 +19,7 @@ public class armadilloScript : MonoBehaviour
     bool attacking;
     bool canAttack;
     bool attackmode;
+    bool stopMoving;
     Rigidbody2D rb;
 
     BoxCollider2D boxCollider;
@@ -126,13 +127,13 @@ public class armadilloScript : MonoBehaviour
             if (facingLeft)
             {
                 animator.SetBool("Roll", true);
-                rb.AddForce(new Vector2(-1f, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-4f, 0), ForceMode2D.Impulse);
                 //transform.Rotate(new Vector3(0, 0, 2f));
             }
             else
             {
                 animator.SetBool("Roll", true);
-                rb.AddForce(new Vector2(1f, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(4f, 0), ForceMode2D.Impulse);
                 //transform.Rotate(new Vector3(0, 0, -2f));
             }    
         }
@@ -140,17 +141,31 @@ public class armadilloScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && attacking)
         {
            
             animator.SetBool("Roll", false);           
             animator.SetBool("Attack", false);           
             Debug.Log("Rolled Player");
-            playerControllScript.Knockback();   
+            if (transform.position.x < collision.transform.position.x)
+            {
+                playerControllScript.knockFromRight = false;
+            }
+            else
+            {
+                playerControllScript.knockFromRight = true;
+            }
+            playerControllScript.Knockback(30, 15);
+            playerInfoController.TakeDamage(10);
             canAttack = false;
             rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
             attacking = false;
             attackmode = false;
+        }
+        else if (collision.gameObject.CompareTag("Player") && !attacking)
+        {
+            playerControllScript.Knockback(10, 5);
+            playerInfoController.TakeDamage(10);
         }
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Breakable"))
         {
@@ -161,6 +176,11 @@ public class armadilloScript : MonoBehaviour
             canAttack = false;
             attackmode = false;
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        stopMoving = true;
     }
 
     private void OnDrawGizmosSelected()

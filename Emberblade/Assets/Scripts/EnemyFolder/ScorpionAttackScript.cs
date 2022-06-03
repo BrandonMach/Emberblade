@@ -115,7 +115,7 @@ public class ScorpionAttackScript : MonoBehaviour
                
                 if (startTimeAttackTimer >= attackDelay && attackPlayer)
                 {
-                    playerController.Knockback();
+                    playerController.Knockback(5, 5);
                     playerInfo.TakeDamage(5);
                     
                     startTimeAttackTimer = 0;

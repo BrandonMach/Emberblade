@@ -20,7 +20,7 @@ public class ManaRegenChest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (trigger & !manaRegenChestOpened)
+        if (trigger && !manaRegenChestOpened)
         {
             if (Input.GetKey(KeyCode.E))
             {

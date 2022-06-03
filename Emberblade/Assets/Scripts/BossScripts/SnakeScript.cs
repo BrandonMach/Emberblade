@@ -134,7 +134,7 @@ public class SnakeScript : MonoBehaviour
         {
             animator.SetTrigger("ATrigger");
             playerInfoController.TakeDamage(30);
-            playerControllScript.Knockback();
+            playerControllScript.Knockback(5, 5);
             canAttack = false;        
         }
         if (other.gameObject.CompareTag("Wall"))

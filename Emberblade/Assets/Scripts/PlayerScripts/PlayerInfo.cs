@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
+    [Header("IFrame")]
+    public Color flashColor;
+    public Color regularColor;
+    public float flashDuration;
+    public int numberOfFlashes;
+    public SpriteRenderer sprite;
+
 
     public int maxHealth;
     public int currentHealth;
@@ -20,6 +27,9 @@ public class PlayerInfo : MonoBehaviour
     LayerMask enemyLayer;
 
     private GameMaster gm;
+
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +71,6 @@ public class PlayerInfo : MonoBehaviour
         {
             Death();
         }
-        DamageWindow();
 
         if (unlockedManaRegen)
         {
@@ -74,11 +83,12 @@ public class PlayerInfo : MonoBehaviour
 
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
     {
-        if (!playerControllScript.isParrying)
+        if (!playerControllScript.isParrying && canTakeDamage)
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
-            canTakeDamage = false;
+            StartCoroutine(FlashCo());
+            //canTakeDamage = false;
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
@@ -88,21 +98,34 @@ public class PlayerInfo : MonoBehaviour
         {
             Debug.Log("Parry Succes");
         }
-        if (canTakeDamage)
-        {
-            //playerControllScript.knockbackCount = 10;
-            currentHealth -= damage;
-           
-            
+        //if (canTakeDamage)
+        //{
+        //    //playerControllScript.knockbackCount = 10;
+        //    currentHealth -= damage;
+        //    healthBar.SetHealth(currentHealth);
+        //    StartCoroutine(FlashCo());
+        //    //canTakeDamage = false;
+        //}
+        //if (currentHealth <= 0)
+        //{
+        //    currentHealth = 0;
+        //}
+    }
 
-            healthBar.SetHealth(currentHealth);
-            canTakeDamage = false;
-        }
-       
-        if (currentHealth <= 0)
+
+    private IEnumerator FlashCo()
+    {
+        int temp = 0;
+        canTakeDamage = false;
+        while (temp < numberOfFlashes)
         {
-            currentHealth = 0;
+            sprite.color = flashColor;
+            yield return new WaitForSeconds(flashDuration);
+            sprite.color = regularColor;
+            yield return new WaitForSeconds(flashDuration);
+            temp++;
         }
+        canTakeDamage = true;
     }
 
     public void RechargeEnergyOverTime()
@@ -169,18 +192,6 @@ public class PlayerInfo : MonoBehaviour
         energyBar.SetEnergy(currentEnergy);
     }
 
-    public void DamageWindow()
-    {
-        if (!canTakeDamage)
-        {
-            startTimeDamageTimer += Time.deltaTime;
-        }
-        if (startTimeDamageTimer >= 1)
-        {
-            canTakeDamage = true;
-            startTimeDamageTimer = 0;
-        }
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
