@@ -22,7 +22,10 @@ public class SwitchScene : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "DesertScene")
         {
+            GameMaster.wasCave = false;
+            GameMaster.beenInDesert = true;
             GameMaster.wasDesert = true; // Bool för att GM ska veta attman varit i desert
+            
             Checkpoint.checkpointTaken = false; // Tar bort checkpoint spawnpos
             Debug.Log("Was Desert");
             SwitchSwamp();
@@ -36,6 +39,15 @@ public class SwitchScene : MonoBehaviour
         {
 
             SwitchToCave();
+        }
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "CaveScene")
+        {
+            GameMaster.wasDesert = false;
+            GameMaster.beenInCave= true;
+            GameMaster.wasCave = true; // Bool för att GM ska veta attman varit i desert
+            
+            Checkpoint.checkpointTaken = false; // Tar bort checkpoint spawnpos
+            SwitchSwamp();
         }
 
     }

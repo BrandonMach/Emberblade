@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerInfo : MonoBehaviour
 {
     [Header("IFrame")]
-    public Color damageFlashColor = new Color(255, 255, 255, 165);
-    public Color regularColor = new Color(255, 255, 255, 255);
+    public Color damageFlashColor;
+    public Color regularColor;
     private float damageFlashDuration = 0.1f;
     private int numberOfDamageFlashes = 8;
     public SpriteRenderer sprite;
@@ -90,7 +90,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
     {
-        if (!playerControllScript.isParrying && canTakeDamage)
+        if (!PlayerControll.isParrying && canTakeDamage)
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
@@ -101,7 +101,7 @@ public class PlayerInfo : MonoBehaviour
                 currentHealth = 0;
             }
         }
-        else if(playerControllScript.isParrying)
+        else if(PlayerControll.isParrying)
         {
             sfxScript.PlayParry();
             StartCoroutine(ParryFlash());

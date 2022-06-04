@@ -153,7 +153,13 @@ public class PatrolAI : MonoBehaviour
             Destroy(gameObject);
             
         }
+        if (other.gameObject.CompareTag("Platform") && attackTime)
+        {
+            Destroy(gameObject);
+        }
     }
+
+    
 
     public void Idle()
     {

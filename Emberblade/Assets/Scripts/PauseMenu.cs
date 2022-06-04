@@ -13,7 +13,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject winter, desert, cave;
     PlayerInfo player;
     PlayerControll playerControll;
-    CombatScript combatScript;
     public bool isPaused = false;
     public bool inOption = false;
     public bool inTabMenu = false;
@@ -23,7 +22,6 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerInfo>();
-        combatScript = GameObject.Find("Player").GetComponent<CombatScript>();
         playerControll = GameObject.Find("Player").GetComponent<PlayerControll>();
     }
     void Update()
@@ -31,7 +29,7 @@ public class PauseMenu : MonoBehaviour
 
         HP.text = "HP: " + player.currentHealth + "/" + player.maxHealth;
         Mana.text = "Mana: " + player.currentEnergy + "/" + player.maxEnergy;
-        //AD.text = "Attack Damage: " + combatScript.playerDamage;
+        AD.text = "Attack Damage: " + CombatScript.playerDamage;
 
         if (inOption == false)
         {
@@ -59,32 +57,28 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        //if (playerControll.hasUnlockedDash)
-        //{
-        //    Dash.SetActive(true);
-        //}
-        //if (PlayerControll.hasUnlockedDJ)
-        //{
-        //    Double.SetActive(true);
-        //}
-        //if (PlayerControll.hasUnlockedGP)
-        //{
-        //    GP.SetActive(true);
-        //}
+        if (PlayerControll.hasUnlockedDash)
+        {
+            Dash.SetActive(true);
+        }
+        if (PlayerControll.hasUnlockedDJ)
+        {
+            Double.SetActive(true);
+        }
 
 
 
-        //if (playerControll.beenInDesert)
+        if (GameMaster.beenInDesert)
+        {
+            desert.SetActive(true);
+        }
+        if (GameMaster.beenInCave)
+        {
+            cave.SetActive(true);
+        }
+        //if (GameMaster.wasWinter)
         //{
-        //    desert.SetActive(false);
-        //}        
-        //if (playerControll.beenInCave)
-        //{
-        //    cave.SetActive(false);
-        //}
-        //if (playerControll.beenInWinter)
-        //{
-        //    winter.SetActive(false);
+        //    winter.SetActive(true);
         //}
 
 

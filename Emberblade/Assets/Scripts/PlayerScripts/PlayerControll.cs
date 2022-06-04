@@ -70,7 +70,7 @@ public class PlayerControll : MonoBehaviour
     private float jumpTimer = 0;
     [SerializeField] GameObject jumpRing;
     [SerializeField] bool canDoubleJump = false;
-    [SerializeField] static bool hasUnlockedDJ; // Static gör att boolen värde sparas när man dör. Ska vara static i the full game
+    public static bool hasUnlockedDJ; // Static gör att boolen värde sparas när man dör. Ska vara static i the full game
     private bool jumpRingActive;
 
     [Header("Dash ability")]
@@ -78,7 +78,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] float startDashTimer;
     private float currentDashTime;
     private float dashDirection;
-    [SerializeField] bool hasUnlockedDash;
+    public static bool hasUnlockedDash;
     public bool isDashing { get; set; }
     private PlayerInfo playerInfoScript; //Decrease mana
 
@@ -86,8 +86,8 @@ public class PlayerControll : MonoBehaviour
 
 
     [Header("Parry")]
-    public bool isParrying = false;
-    [SerializeField] bool canParry = true;
+    public static bool isParrying = false;
+    [SerializeField] static bool canParry = true;
     private float parryStart = 0;
     private float parryWindow = 0.5f;
     private float canParryTimer = 0;

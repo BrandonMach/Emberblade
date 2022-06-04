@@ -157,11 +157,11 @@ public class SnakeScript : MonoBehaviour
         {
             if (facingLeft)
             {
-                rb.AddForce(new Vector2(-2, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-5, 0), ForceMode2D.Impulse);
             }
             else
             {
-                rb.AddForce(new Vector2(2, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(5, 0), ForceMode2D.Impulse);
             }
         }
     }

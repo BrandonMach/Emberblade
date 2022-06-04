@@ -19,6 +19,10 @@ public class GameMaster : MonoBehaviour
     public static bool wasDesert;
     public static bool wasTree;
     public static bool wasWinter;
+
+    public static bool beenInCave;
+    public static bool beenInDesert;
+    public static bool beenInWinter;
    // public PlayerControll player;
 
     enum ActiveScene
@@ -41,11 +45,12 @@ public class GameMaster : MonoBehaviour
         {
             if (wasCave)
             {
-               // lastCheckPointPos = swampFromCavePos;
-               //wasCave = false;
+                player.transform.position = swampFromCavePos;
+                // lastCheckPointPos = swampFromCavePos;
+                //wasCave = false;
 
             }
-            if (wasDesert)
+            else if (wasDesert)
             {
                 player.transform.position = swampFromDesertPos;
                 //lastCheckPointPos = new Vector2(579.8f, -20.5f);

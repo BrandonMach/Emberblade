@@ -28,7 +28,7 @@ public class FadingEffect : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        for (float i = 1; i >= -0f; i -= 0.05f)
+        for (float i = 1; i >= -0.05f; i -= 0.05f)
         {
             Color c = rend.material.color;
             c.a = i;
