@@ -192,7 +192,7 @@ MonoBehaviour:
   maxHealth: 4
   health: 2
   canTakeDamage: 1
-  currency: 0
+  currency: 20
   healthBar: {fileID: 9170163126061043671}
 --- !u!1 &3632547415173771513
 GameObject:

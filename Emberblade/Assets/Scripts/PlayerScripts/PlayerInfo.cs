@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class PlayerInfo : MonoBehaviour
 {
     [Header("IFrame")]
-    public Color damageFlashColor;
-    public Color regularColor;
-    public float damageFlashDuration;
-    public int numberOfDamageFlashes;
+    public Color damageFlashColor = new Color(255, 255, 255, 165);
+    public Color regularColor = new Color(255, 255, 255, 255);
+    private float damageFlashDuration = 0.1f;
+    private int numberOfDamageFlashes = 8;
     public SpriteRenderer sprite;
 
     [Header ("Parry")]
