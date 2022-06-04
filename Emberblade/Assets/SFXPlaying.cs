@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SFXPlaying : MonoBehaviour
+public class SFXPlaying : MonoBehaviour //Detta är skrivet av: Brandon
 {
     [SerializeField] AudioSource parrySFX;
     [SerializeField] AudioSource toungeSFX;

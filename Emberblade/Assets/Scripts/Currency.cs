@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Currency : MonoBehaviour
+public class Currency : MonoBehaviour //Detta är skrivet av: Philip
 {
     public static int currency;
     public TMPro.TMP_Text currencyText;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WebProjectileScript : MonoBehaviour
+public class WebProjectileScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     // Start is called before the first frame update
     float moveSpeed = 20f;

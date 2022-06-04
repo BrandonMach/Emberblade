@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthTwoChest : MonoBehaviour
+public class HealthTwoChest : MonoBehaviour //Detta är skrivet av: Sebastian
 {
     [SerializeField] Animator animator;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class FadingEffect : MonoBehaviour
+public class FadingEffect : MonoBehaviour //Detta är skrivet av: Sebastian
 {
 
     [SerializeField] Tilemap tempFillTileMap;

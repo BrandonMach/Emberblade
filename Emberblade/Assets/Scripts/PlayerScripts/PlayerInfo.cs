@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerInfo : MonoBehaviour
+public class PlayerInfo : MonoBehaviour //Detta är skrivet av: Philip + Brandon(parry) + Sebastian(IFrame)
 {
     [Header("IFrame")]
     public Color damageFlashColor;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SwitchScene : MonoBehaviour
+public class SwitchScene : MonoBehaviour //Detta är skrivet av: Brandon + Sebastian och Philip(Uppdaterat)
 {
     // Start is called before the first frame update
     Scene scene;

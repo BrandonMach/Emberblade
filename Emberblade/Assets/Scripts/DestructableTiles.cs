@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class DestructableTiles : MonoBehaviour
+public class DestructableTiles : MonoBehaviour //Detta är skrivet av: Brandon + Sebastian
 {
     // Start is called before the first frame update
 

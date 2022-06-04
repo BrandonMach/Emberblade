@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NPCStoreScript : MonoBehaviour
+public class NPCStoreScript : MonoBehaviour //Detta är skrivet av: Axel
 {
     private GameObject player, playerMovement;
     private bool triggering, storeIsOpen, isTalking, nextSentence;

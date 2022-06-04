@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-public class PlatypusBossScript : MonoBehaviour
+public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     // Start is called before the first frame update
     [SerializeField] float stopTime = 0.5f;

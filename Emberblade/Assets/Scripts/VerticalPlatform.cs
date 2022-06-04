@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class VerticalPlatform : MonoBehaviour
+public class VerticalPlatform : MonoBehaviour //Detta är skrivet av: Philip + Sebastian
 {
     private PlatformEffector2D effector;
     private float waitTime;

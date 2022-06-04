@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossHealthBar : MonoBehaviour
+public class BossHealthBar : MonoBehaviour //Detta är skrivet av: Sebastian
 {
     // Start is called before the first frame update
     public Slider healthBar;

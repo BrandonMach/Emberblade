@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrappleHookScript : MonoBehaviour
+public class GrappleHookScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     LineRenderer line;
 

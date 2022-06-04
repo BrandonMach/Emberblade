@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NPCInteraction : MonoBehaviour
+public class NPCInteraction : MonoBehaviour //Detta är skrivet av: Axel
 {
     private bool triggering, isTalking, nextSentence;
     public GameObject text;

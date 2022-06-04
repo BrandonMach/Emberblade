@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Parallax : MonoBehaviour
+public class Parallax : MonoBehaviour //Detta är skrivet av: Sebastian
 {
     private float length, startpos;
     [SerializeField] GameObject cam;

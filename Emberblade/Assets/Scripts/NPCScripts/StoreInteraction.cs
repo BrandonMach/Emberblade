@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class StoreInteraction : MonoBehaviour
+public class StoreInteraction : MonoBehaviour //Detta är skrivet av: Axel
 {
     private bool boughtHealth, boughtEnergy;
     public GameObject healthButton, energyButton;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour //Detta är skrivet av: Philip + Axel
 {
     public GameObject pauseMenuUI;
     public GameObject playerInfoUI;

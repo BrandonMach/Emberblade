@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnergyBar : MonoBehaviour
+public class EnergyBar : MonoBehaviour //Detta är skrivet av: Philip
 {
 
     [SerializeField] Slider slider;

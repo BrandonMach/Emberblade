@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class SettingsMenu : MonoBehaviour
+public class SettingsMenu : MonoBehaviour //Detta är skrivet av: Axel
 {
     public AudioMixer audioMixer;
 

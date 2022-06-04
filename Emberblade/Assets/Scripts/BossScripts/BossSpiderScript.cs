@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSpiderScript : MonoBehaviour
+public class BossSpiderScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     // Start is called before the first frame update
     [SerializeField]

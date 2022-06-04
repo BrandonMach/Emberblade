@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpRing : MonoBehaviour
+public class JumpRing : MonoBehaviour //Detta är skrivet av: Brandon
 {
 
     // Update is called once per frame

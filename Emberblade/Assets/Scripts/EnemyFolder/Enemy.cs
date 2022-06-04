@@ -9,7 +9,7 @@ public enum EnemyType
     suicideEnemy,
     controlledWalk,
 }
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour //Detta är skrivet av: Serena
 {
     public Vector2[] Points;
     int currentMove = 0;

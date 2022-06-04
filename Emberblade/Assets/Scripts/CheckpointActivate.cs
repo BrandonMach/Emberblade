@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckpointActivate : MonoBehaviour
+public class CheckpointActivate : MonoBehaviour //Detta är skrivet av: Brandon + Axel
 {
 
     [SerializeField] bool triggering;

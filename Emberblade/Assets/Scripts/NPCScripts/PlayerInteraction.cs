@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteraction : MonoBehaviour
+public class PlayerInteraction : MonoBehaviour //Detta är skrivet av: Axel
 {
     private GameObject triggeringNpc;
     private bool triggering;

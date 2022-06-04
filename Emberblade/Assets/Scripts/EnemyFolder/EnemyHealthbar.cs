@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealthbar : MonoBehaviour
+public class EnemyHealthbar : MonoBehaviour //Detta är skrivet av: Sebastian
 {
 
     public Slider healthBar;

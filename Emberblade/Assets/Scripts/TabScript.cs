@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TabScript : MonoBehaviour
+public class TabScript : MonoBehaviour //Detta är skrivet av: Axel
 {
     
     

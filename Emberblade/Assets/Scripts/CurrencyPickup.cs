@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrencyPickup : MonoBehaviour
+public class CurrencyPickup : MonoBehaviour //Detta är skrivet av: Philip
 {
 
 

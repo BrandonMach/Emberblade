@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindScript : MonoBehaviour
+public class WindScript : MonoBehaviour //Detta är skrivet av: Axel + Philip
 {
     Rigidbody2D rb;
     bool affectedByWind = false;

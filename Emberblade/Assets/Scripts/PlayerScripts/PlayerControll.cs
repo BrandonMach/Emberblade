@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerControll : MonoBehaviour
+public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Sebastian och Axel(platformDetection)
 {
     // Start is called before the first frame update
     [SerializeField] float movementSpeed = 1;

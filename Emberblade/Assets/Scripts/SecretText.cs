@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecretText : MonoBehaviour
+public class SecretText : MonoBehaviour //Detta är skrivet av: Philip
 {
     float timer;
     public GameObject textPanel;

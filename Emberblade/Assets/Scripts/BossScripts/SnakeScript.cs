@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnakeScript : MonoBehaviour
+public class SnakeScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     // Start is called before the first frame update
     [SerializeField] bool playerInRange;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class StoreScript : MonoBehaviour
+public class StoreScript : MonoBehaviour //Detta är skrivet av: Axel
 {
     public bool boughtHealth, boughtEnergy;
     public GameObject healthButton, energyButton;

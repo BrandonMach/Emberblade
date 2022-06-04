@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapScript : MonoBehaviour
+public class TrapScript : MonoBehaviour //Detta är skrivet av: Philip
 {
 
     public int damageAmount = 20;

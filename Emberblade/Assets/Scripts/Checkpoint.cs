@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Checkpoint : MonoBehaviour
+public class Checkpoint : MonoBehaviour //Detta är skrivet av: Brandon
 {
     private GameMaster gm;
     [SerializeField] Animator animator;

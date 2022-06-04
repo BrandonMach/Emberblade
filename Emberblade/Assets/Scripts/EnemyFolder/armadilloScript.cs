@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class armadilloScript : MonoBehaviour
+public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + Brandon
 {
     // Start is called before the first frame update
 

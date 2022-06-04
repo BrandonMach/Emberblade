@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolAI : MonoBehaviour
+public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
 {
     // Denna Script används för enemies som bee som patrollar runt till spelaren är i range för att attackera
     [Header("Detection Range")]

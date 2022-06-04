@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour //Detta är skrivet av: Brandon + Serena
 {
     [SerializeField] Rigidbody2D rbody;
     [SerializeField] private float speed;

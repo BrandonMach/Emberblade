@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameMaster : MonoBehaviour
+public class GameMaster : MonoBehaviour //Detta är skrivet av: Brandon + Sebastian och Philip(uppdaterad)
 {
     // Start is called before the first frame update
 

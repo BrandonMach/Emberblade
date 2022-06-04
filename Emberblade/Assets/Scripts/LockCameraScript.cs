@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LockCameraScript : MonoBehaviour
+public class LockCameraScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     // Start is called before the first frame update
     private static LockCameraScript instance;

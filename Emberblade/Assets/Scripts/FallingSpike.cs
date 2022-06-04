@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingSpike : MonoBehaviour
+public class FallingSpike : MonoBehaviour //Detta är skrivet av: Axel och Philip
 {
     Rigidbody2D rb;
     BoxCollider2D collider;

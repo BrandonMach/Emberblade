@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletScript : MonoBehaviour
+public class EnemyBulletScript : MonoBehaviour //Detta är skrivet av: Brandon + Serena
 {
     // Start is called before the first frame update
 

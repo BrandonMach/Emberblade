@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecretImage : MonoBehaviour
+public class SecretImage : MonoBehaviour //Detta är skrivet av: Philip
 {
     float timer;
     public GameObject toad;

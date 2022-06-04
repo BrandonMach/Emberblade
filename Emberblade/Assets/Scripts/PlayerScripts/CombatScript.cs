@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatScript : MonoBehaviour
+public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebastian och Philip(animations, fixed crouch)
 {
     // Start is called before the first frame update
 
@@ -31,7 +31,7 @@ public class CombatScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeBetweenAttack <= 0)// than you can attack
+        if (timeBetweenAttack <= 0)// then you can attack
         {
             if (player.isCrouching)
             {

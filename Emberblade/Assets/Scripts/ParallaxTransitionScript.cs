@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParallaxTransitionScript : MonoBehaviour
+public class ParallaxTransitionScript : MonoBehaviour //Detta är skrivet av: Sebastian
 {
     [SerializeField] GameObject background;
     [SerializeField] GameObject backgroundCave;
