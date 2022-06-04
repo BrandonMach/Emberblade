@@ -11,24 +11,17 @@ public class PauseMenu : MonoBehaviour
     public TextMeshProUGUI HP, Mana, AD;
     public GameObject tabPanel, Dash, Double, GP;
     public GameObject winter, desert, cave;
-    PlayerInfo player;
-    PlayerControll playerControll;
     public bool isPaused = false;
     public bool inOption = false;
     public bool inTabMenu = false;
 
     // Update is called once per frame
 
-    private void Start()
-    {
-        player = GameObject.Find("Player").GetComponent<PlayerInfo>();
-        playerControll = GameObject.Find("Player").GetComponent<PlayerControll>();
-    }
     void Update()
     {
 
-        HP.text = "HP: " + player.currentHealth + "/" + player.maxHealth;
-        Mana.text = "Mana: " + player.currentEnergy + "/" + player.maxEnergy;
+        HP.text = "HP: " + PlayerInfo.currentHealth + "/" + PlayerInfo.maxHealth;
+        Mana.text = "Mana: " + PlayerInfo.currentEnergy + "/" + PlayerInfo.maxEnergy;
         AD.text = "Attack Damage: " + CombatScript.playerDamage;
 
         if (inOption == false)
@@ -76,10 +69,10 @@ public class PauseMenu : MonoBehaviour
         {
             cave.SetActive(true);
         }
-        //if (GameMaster.wasWinter)
-        //{
-        //    winter.SetActive(true);
-        //}
+        if (GameMaster.beenInWinter)
+        {
+            winter.SetActive(true);
+        }
 
 
     }

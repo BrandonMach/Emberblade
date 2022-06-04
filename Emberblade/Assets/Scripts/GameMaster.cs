@@ -57,6 +57,10 @@ public class GameMaster : MonoBehaviour
                 
                 Debug.LogError("was in desert scene");
             }
+            else if (wasWinter)
+            {
+                player.transform.position = swampFromWinterPos;
+            }
 
             else
             {

@@ -295,7 +295,7 @@ public class PlayerControll : MonoBehaviour
         //Dash
         if (hasUnlockedDash)
         {
-            if (Input.GetKeyDown(KeyCode.L) && moveX != 0 && playerInfoScript.currentEnergy >= 20) //Kan bara dasha om man input en direction
+            if (Input.GetKeyDown(KeyCode.L) && moveX != 0 && PlayerInfo.currentEnergy >= 20) //Kan bara dasha om man input en direction
             {
                 animator.SetTrigger("Dash");
                 isDashing = true;

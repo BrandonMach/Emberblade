@@ -543,6 +543,7 @@ MonoBehaviour:
   health: 0
   canTakeDamage: 0
   currency: 10
+  amoutMana: 10
   healthBar: {fileID: 1577022159}
 --- !u!95 &-5455274540838978737
 Animator:

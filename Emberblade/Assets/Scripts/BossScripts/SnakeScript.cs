@@ -28,7 +28,7 @@ public class SnakeScript : MonoBehaviour
     [SerializeField] bool canAttack = true;
 
     [Header("Second phase")]
-    EnemyHealth enemyHealthScripts;
+    BossHealth enemyHealthScripts;
     int maxHealth; 
     bool secondPhase = false;
     [SerializeField] ParticleSystem poisonRain;
@@ -42,7 +42,7 @@ public class SnakeScript : MonoBehaviour
     {
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
         playerControllScript = GameObject.Find("Player").GetComponent<PlayerControll>();
-        enemyHealthScripts = GetComponent<EnemyHealth>();
+        enemyHealthScripts = GetComponent<BossHealth>();
         maxHealth = enemyHealthScripts.health;
         poisonRain.Stop();
         startPos = startTransform.position;
@@ -157,11 +157,11 @@ public class SnakeScript : MonoBehaviour
         {
             if (facingLeft)
             {
-                rb.AddForce(new Vector2(-5, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-10, 0), ForceMode2D.Impulse);
             }
             else
             {
-                rb.AddForce(new Vector2(5, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(10, 0), ForceMode2D.Impulse);
             }
         }
     }

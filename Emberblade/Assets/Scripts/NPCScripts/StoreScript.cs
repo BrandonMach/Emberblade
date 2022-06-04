@@ -29,44 +29,28 @@ public class StoreScript : MonoBehaviour
             energyButton.SetActive(false);
             healthButton.transform.position = new Vector2(middleOfScreenX,middleOfScreenY); 
         }
-       // playerCurrency = GameObject.FindGameObjectWithTag("Player").GetComponent<Currency>();
-        currencyText.text = GameObject.Find("FrogMainCharacterV1").GetComponent<Currency>().currency.ToString();
+
 
     }
 
     public void buyEnergy()
     {
-        if (GameObject.Find("FrogMainCharacterV1").GetComponent<Currency>().currency >= 100)
+        if (Currency.currency >= 100)
         {
-            GameObject.Find("FrogMainCharacterV1").GetComponent<Currency>().currency -= 100;
-            GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().maxEnergy = (GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().maxEnergy * 125) / 100;
+            Currency.currency -= 100;
+            PlayerInfo.maxEnergy = (PlayerInfo.maxEnergy * 125) / 100;
             boughtEnergy = true;
         }
-        //if (playerCurrency.currency >= 100)
-        //{
-        //    playerCurrency.currency -= 100;
-        //    GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().maxEnergy = (GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().maxEnergy * 125) / 100;
-        //    boughtEnergy = true;
-        //}
+
     }
 
     public void buyHealth() 
     {
-        //if (GameObject.Find("FrogMainCharacterV1").GetComponent<Currency>().currency > 2 && GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().currentHealth < GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().maxHealth)
-        //{
-        //    GameObject.Find("FrogMainCharacterV1").GetComponent<Currency>().currency -= 2;
-        //    GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().currentHealth += 20;
-        //    if (GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().currentHealth > GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().maxHealth)
-        //    {
-        //        GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().currentHealth = GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().maxHealth;
-        //    }
-        //    GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().healthBar.SetHealth(GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().currentHealth);
-        //}
 
-        if (GameObject.Find("FrogMainCharacterV1").GetComponent<Currency>().currency >= 2)// Denan kommer aldrig att gå igenom eftersom det finns inge FrogMainCharacterV1
+        if (Currency.currency >= 2)// Denan kommer aldrig att gå igenom eftersom det finns inge FrogMainCharacterV1
         {
-            GameObject.Find("FrogMainCharacterV1").GetComponent<Currency>().currency -= 2;
-            GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().maxHealth = (GameObject.Find("FrogMainCharacterV1").GetComponent<PlayerInfo>().maxHealth * 125) / 100;
+            Currency.currency -= 2;
+            PlayerInfo.maxHealth = (PlayerInfo.maxHealth * 125) / 100;
             boughtHealth = true;
         }
     }

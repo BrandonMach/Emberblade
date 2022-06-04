@@ -19,10 +19,10 @@ public class PlayerInfo : MonoBehaviour
     private SFXPlaying sfxScript;
 
     [Header ("UI")]
-    public int maxHealth;
-    public int currentHealth;
-    public int maxEnergy;
-    public int currentEnergy;
+    public static int maxHealth = 200;
+    public static int currentHealth;
+    public static int maxEnergy = 150;
+    public static int currentEnergy;
     public static bool unlockedManaRegen;
     private float timeManaRegen;
     [SerializeField] HealthBar healthBar;
@@ -66,7 +66,7 @@ public class PlayerInfo : MonoBehaviour
 
         if (Input.GetKey(KeyCode.O))
         {
-            RechargeEnergy();
+            RechargeEnergy(1);
         }
 
         if (Input.GetKeyDown(KeyCode.U))
@@ -165,11 +165,11 @@ public class PlayerInfo : MonoBehaviour
         else { currentEnergy = maxEnergy; }
     }
 
-    public void RechargeEnergy()
+    public void RechargeEnergy(int amount)
     {
         if (currentEnergy < maxEnergy)
         {
-            currentEnergy++;
+            currentEnergy += amount;
             energyBar.SetEnergy(currentEnergy);
         }
         else { currentEnergy = maxEnergy; }
@@ -205,6 +205,7 @@ public class PlayerInfo : MonoBehaviour
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         currentHealth = maxHealth;
+        currentEnergy = maxEnergy;
         Destroy(this.gameObject);
     }
 

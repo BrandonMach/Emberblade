@@ -8,13 +8,11 @@ public class ManaOneChest : MonoBehaviour
 
     [SerializeField] bool trigger;
     public static bool manaChestOneOpened;
-    PlayerInfo playerInfo;
     NewAbilityTextScript newAbilityText;
     PlayerControll player;
 
     void Start()
     {
-        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         newAbilityText = GameObject.Find("NewAbilityController").GetComponent<NewAbilityTextScript>();
         player = GameObject.Find("Player").GetComponent<PlayerControll>();
     }
@@ -28,7 +26,7 @@ public class ManaOneChest : MonoBehaviour
             {
                 animator.SetTrigger("Open");
                 animator.SetBool("IsOpened", true);
-                playerInfo.maxEnergy += 15;
+                PlayerInfo.maxEnergy += 15;
                 player.OpenChestCutScene();
                 newAbilityText.index = 4;
                 manaChestOneOpened = true;

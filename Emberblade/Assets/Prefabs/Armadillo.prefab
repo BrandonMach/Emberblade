@@ -391,6 +391,7 @@ MonoBehaviour:
   health: 0
   canTakeDamage: 1
   currency: 15
+  amoutMana: 15
   healthBar: {fileID: 441212809940405914}
 --- !u!1 &4266010152323537225
 GameObject:

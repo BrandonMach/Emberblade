@@ -9,7 +9,7 @@ public class StoreInteraction : MonoBehaviour
     public GameObject healthButton, energyButton;
     private float middleOfScreenX, middleOfScreenY;
     public TextMeshProUGUI currencyText;
-    Currency currency;
+    //Currency currency;
     PlayerInfo playerInfo;
 
 
@@ -19,7 +19,7 @@ public class StoreInteraction : MonoBehaviour
         middleOfScreenX = Screen.width / 2;
         middleOfScreenY = Screen.height / 2;
 
-        currency = GameObject.Find("Player").GetComponent<Currency>();
+        //currency = GameObject.Find("Player").GetComponent<Currency>();
         playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
     }
 
@@ -37,25 +37,26 @@ public class StoreInteraction : MonoBehaviour
             energyButton.SetActive(false);
             healthButton.transform.position = new Vector2(middleOfScreenX, middleOfScreenY);
         }
-        //currencyText.text = currency.currency.ToString();
+
+        currencyText.text = Currency.currency.ToString();
     }
 
     public void buyHealth()
     {
-        if (currency.currency >= 50)
+        if (Currency.currency >= 50)
         {
-            currency.currency -= 50;
-            playerInfo.maxHealth = playerInfo.maxHealth += 25;
+            Currency.currency -= 50;
+            PlayerInfo.maxHealth = PlayerInfo.maxHealth += 25;
             boughtHealth = true;
         }
     }
 
     public void buyEnergy()
     {
-        if (currency.currency >= 100)
+        if (Currency.currency >= 100)
         {
-            currency.currency -= 100;
-            playerInfo.maxEnergy = playerInfo.maxEnergy + 25;
+            Currency.currency -= 100;
+            PlayerInfo.maxEnergy = PlayerInfo.maxEnergy + 25;
             boughtEnergy = true;
         }
     }

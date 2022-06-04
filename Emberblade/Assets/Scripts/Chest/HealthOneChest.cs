@@ -8,13 +8,11 @@ public class HealthOneChest : MonoBehaviour
 
     [SerializeField] bool trigger;
     public static bool healthChestOneOpened;
-    PlayerInfo playerInfo;
     NewAbilityTextScript newAbilityText;
     PlayerControll player;
 
     void Start()
     {
-        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         newAbilityText = GameObject.Find("NewAbilityController").GetComponent<NewAbilityTextScript>();
         player = GameObject.Find("Player").GetComponent<PlayerControll>();
     }
@@ -28,7 +26,7 @@ public class HealthOneChest : MonoBehaviour
             {
                 animator.SetTrigger("Open");
                 animator.SetBool("IsOpened", true);
-                playerInfo.maxHealth += 15;
+                PlayerInfo.maxHealth += 15;
                 player.OpenChestCutScene();
                 newAbilityText.index = 3;
                 healthChestOneOpened = true;

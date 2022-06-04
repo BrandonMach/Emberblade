@@ -11,7 +11,9 @@ public class EnemyHealth : MonoBehaviour
     private float startTimeDamageTimer;
     private float damageDelay = 0.5f;
     Currency player;
+    PlayerInfo playerInfo;
     public int currency;
+    [SerializeField] int amoutMana;
     public EnemyHealthbar healthBar;
     
     void Start()
@@ -19,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
         //health = 3;
         canTakeDamage = true;
         player = GameObject.Find("Player").GetComponent<Currency>();
+        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         health = maxHealth;
         healthBar.SetHealth(health, maxHealth);
     }
@@ -61,6 +64,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(this.gameObject);
             player.IncreaseCurrency(currency);
+            playerInfo.RechargeEnergy(amoutMana);
         }
     }
 }

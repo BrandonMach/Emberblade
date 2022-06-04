@@ -30,13 +30,23 @@ public class LockCameraScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "LockCamera")
             {
-                Debug.Log("Lock camera");
+                
                 camAnimator.SetBool("SwampCamera", true);
             }
             if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockCamera")
             {
                 Debug.Log("Unlock camera");
                 camAnimator.SetBool("SwampCamera", false);
+            }
+            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "LockWinterCam")
+            {
+                Debug.Log("Lock camera");
+                camAnimator.SetBool("WinterSwampLock", true);
+            }
+            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockWinterCam")
+            {
+                Debug.Log("Unlock camera");
+                camAnimator.SetBool("WinterSwampLock", false);
             }
         }
         if (scene.name == "DesertScene")

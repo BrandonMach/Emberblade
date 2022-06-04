@@ -136,6 +136,14 @@ public class PatrolAI : MonoBehaviour
 
             Destroy(gameObject);
         }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerInfoController.TakeDamage(40);
+            playerControll.Knockback(20, 20);
+
+
+            Destroy(gameObject);
+        }
         if (other.gameObject.CompareTag("Wall") && attackTime)
         {
             Destroy(gameObject);

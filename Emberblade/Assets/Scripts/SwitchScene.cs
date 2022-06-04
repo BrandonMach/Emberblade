@@ -23,9 +23,10 @@ public class SwitchScene : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "DesertScene")
         {
             GameMaster.wasCave = false;
-            GameMaster.beenInDesert = true;
+            GameMaster.wasWinter = false;
             GameMaster.wasDesert = true; // Bool för att GM ska veta attman varit i desert
             
+
             Checkpoint.checkpointTaken = false; // Tar bort checkpoint spawnpos
             Debug.Log("Was Desert");
             SwitchSwamp();
@@ -34,18 +35,36 @@ public class SwitchScene : MonoBehaviour
         {
             
             SwitchToDesert();
+            GameMaster.beenInDesert = true;
         }
         if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "GoToCave")
         {
 
             SwitchToCave();
+            GameMaster.beenInCave = true;
         }
         if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "CaveScene")
         {
             GameMaster.wasDesert = false;
-            GameMaster.beenInCave= true;
+            GameMaster.wasWinter = false;
             GameMaster.wasCave = true; // Bool för att GM ska veta attman varit i desert
             
+
+            Checkpoint.checkpointTaken = false; // Tar bort checkpoint spawnpos
+            SwitchSwamp();
+        }
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "GoToWinter")
+        {
+            SwitchToWinter();
+            GameMaster.beenInWinter = true;
+        }
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "WinterScene")
+        {
+            GameMaster.wasDesert = false;
+            GameMaster.wasCave = false;
+            GameMaster.wasWinter = true; // Bool för att GM ska veta attman varit i desert
+            
+
             Checkpoint.checkpointTaken = false; // Tar bort checkpoint spawnpos
             SwitchSwamp();
         }
@@ -63,5 +82,9 @@ public class SwitchScene : MonoBehaviour
     public void SwitchToDesert()
     {
         SceneManager.LoadScene(3);
+    }
+    public void SwitchToWinter()
+    {
+        SceneManager.LoadScene(4);
     }
 }
