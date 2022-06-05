@@ -20,7 +20,7 @@ public class HealthOneChest : MonoBehaviour //Detta är skrivet av: Sebastian
     // Update is called once per frame
     void Update()
     {
-        if (trigger && !healthChestOneOpened // Om Spelaren är nära kistan och om han inte har tagit den förr
+        if (trigger && !healthChestOneOpened) // Om Spelaren är nära kistan och om han inte har tagit den förr
         {
             if (Input.GetKey(KeyCode.E))
             {
