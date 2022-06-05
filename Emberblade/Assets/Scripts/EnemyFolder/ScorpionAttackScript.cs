@@ -60,9 +60,6 @@ public class ScorpionAttackScript : MonoBehaviour //Detta är skrivet av: Brandon
             startTimeAttackTimer = 0;
         }
         
-       
-
-
         EnemyFacingPlayer();
       
 
@@ -84,7 +81,7 @@ public class ScorpionAttackScript : MonoBehaviour //Detta är skrivet av: Brandon
 
                 if (playerInRange && !attackPlayer)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, playerInfo.transform.position - playerTransformOffest, moveSpeed * Time.deltaTime);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.            
+                    transform.position = Vector3.MoveTowards(transform.position, playerInfo.transform.position - playerTransformOffest, moveSpeed * Time.deltaTime);    // Offset för att fienden inte ska gå mot spelarens mage men istället mot fötterna. Fienden rör sig mot spelaren            
                 }
             } 
         }
@@ -97,7 +94,7 @@ public class ScorpionAttackScript : MonoBehaviour //Detta är skrivet av: Brandon
 
         foreach (var colliderHit in attackRange)
         {
-            if (colliderHit.gameObject.CompareTag("Player"))
+            if (colliderHit.gameObject.CompareTag("Player"))                                //Om spelaren är inom attackRange collidern attackera spelaren
             {
                 
                 attackPlayer = true;
@@ -138,7 +135,7 @@ public class ScorpionAttackScript : MonoBehaviour //Detta är skrivet av: Brandon
     {
         Vector3 characterScale = transform.localScale;
 
-        if (playerInfo.transform.position.x > this.transform.position.x && facingLeft)
+        if (playerInfo.transform.position.x > this.transform.position.x && facingLeft)    // Om player transform är större/ åt höger om än enemy vänd på enemy
         {
             flipHitbox *= -1;
             characterScale.x *= -1;
@@ -146,7 +143,7 @@ public class ScorpionAttackScript : MonoBehaviour //Detta är skrivet av: Brandon
             facingLeft = false;
             Debug.Log("Flip Sprite");
         }
-        if (playerInfo.transform.position.x < this.transform.position.x && !facingLeft) // Om player transform är större än enemy vänd på enemy
+        if (playerInfo.transform.position.x < this.transform.position.x && !facingLeft)   // Om player transform är mindre/ åt vänster om än enemy vänd på enemy
         {
             flipHitbox *= -1;
             characterScale.x *= -1;

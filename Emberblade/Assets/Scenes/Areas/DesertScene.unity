@@ -18779,7 +18779,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861824133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 771, y: 125, z: 0}
+  m_LocalPosition: {x: -119, y: 6, z: 0}
   m_LocalScale: {x: 1.45, y: 1.45, z: 1}
   m_Children:
   - {fileID: 2081052462}
@@ -19319,7 +19319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907614148}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 560.35004, y: 62.66111, z: 282.92517}
+  m_LocalPosition: {x: -329.64996, y: -56.33889, z: 282.92517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1692602880}
@@ -19491,7 +19491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924733236}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 560.35004, y: 62.66111, z: 282.92517}
+  m_LocalPosition: {x: -329.64996, y: -56.33889, z: 282.92517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 750525561}
@@ -19605,7 +19605,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 30
+    OrthographicSize: 45
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -22098,7 +22098,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192259222}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 560.35004, y: 66.03001, z: 282.92517}
+  m_LocalPosition: {x: -329.64996, y: -52.969997, z: 282.92517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 100908979}
@@ -30259,23 +30259,27 @@ MonoBehaviour:
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -700903975
-    m_VirtualCamera: {fileID: 1865905509}
-    m_ActivateAfter: 0
-    m_MinDuration: 0
-  - m_FullHash: -2086422294
-    m_VirtualCamera: {fileID: 1192259223}
-    m_ActivateAfter: 0
-    m_MinDuration: 0
-  - m_FullHash: -1849685403
     m_VirtualCamera: {fileID: 0}
     m_ActivateAfter: 0
     m_MinDuration: 0
+  - m_FullHash: -2086422294
+    m_VirtualCamera: {fileID: 0}
+    m_ActivateAfter: 0
+    m_MinDuration: 0
+  - m_FullHash: -1849685403
+    m_VirtualCamera: {fileID: 953103914}
+    m_ActivateAfter: 0
+    m_MinDuration: 0
   - m_FullHash: -1890018117
-    m_VirtualCamera: {fileID: 926210170}
+    m_VirtualCamera: {fileID: 0}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -1590825787
-    m_VirtualCamera: {fileID: 907614150}
+    m_VirtualCamera: {fileID: 0}
+    m_ActivateAfter: 0
+    m_MinDuration: 0
+  - m_FullHash: 263893319
+    m_VirtualCamera: {fileID: 0}
     m_ActivateAfter: 0
     m_MinDuration: 0
   m_DefaultBlend:

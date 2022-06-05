@@ -95,8 +95,12 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
             }
         }
 
+        if (!isOnGround)
+        {
+            animator.SetTrigger("GroundPound");
+        }
         
-        
+
 
         if (startGPAttack && canAttack)                                                     
         {
@@ -106,7 +110,7 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
             startGPAttack = false;
             if (transform.position.y >= 75)                                 //När har nått upp till max höjden 
             {
-                animator.SetTrigger("GroundPound");
+                
                 if (!isOnGround)
                 {
                     doGroundPound = true;

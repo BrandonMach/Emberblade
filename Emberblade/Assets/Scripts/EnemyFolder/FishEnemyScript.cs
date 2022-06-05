@@ -36,7 +36,7 @@ public class FishEnemyScript : MonoBehaviour //Detta är skrivet av: Brandon
     {
         DetectPlayer();
         DamagePalyer();
-        if (isUnderWater)
+        if (isUnderWater)                                 //När fisken är under vatten ska rendern bli oslynlig
         {
             jumpWaitTimer += Time.deltaTime;
             rend.enabled = false;
@@ -49,7 +49,7 @@ public class FishEnemyScript : MonoBehaviour //Detta är skrivet av: Brandon
             rend.enabled = true; 
         }
        
-        if(transform.position.y > maxHeight.y)
+        if(transform.position.y > maxHeight.y)              //När fisken har nått maxhöjd
         {
             transform.localScale = new Vector3(-1,1,1);
             Debug.Log("Flip flip");

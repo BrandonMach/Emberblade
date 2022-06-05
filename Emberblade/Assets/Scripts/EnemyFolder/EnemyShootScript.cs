@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShootScript : MonoBehaviour //Detta är skrivet av: Brandon
+public class EnemyShootScript : MonoBehaviour //Detta är skrivet av: Brandon, används inte
 {
     // Start is called before the first frame update
     [SerializeField] GameObject bulletPrefab;
@@ -40,7 +40,7 @@ public class EnemyShootScript : MonoBehaviour //Detta är skrivet av: Brandon
 
                 if (playerInRange)
                 {
-                  if(this.transform.position.x > playerInfoController.transform.position.x)
+                  if(this.transform.position.x > playerInfoController.transform.position.x)         //Om spelaren är inom fiendens skjut områda ska den skjuta beroende på var spelaren är
                   {
                         
                         ShootPrefab(-1);

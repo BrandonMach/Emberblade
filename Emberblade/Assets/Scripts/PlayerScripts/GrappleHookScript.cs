@@ -39,13 +39,13 @@ public class GrappleHookScript : MonoBehaviour //Detta är skrivet av: Brandon
             direction = new Vector2(-100, 0);
 
         }
-        else if (Input.GetAxisRaw("Horizontal") > 0) //Left
+        else if (Input.GetAxisRaw("Horizontal") > 0) //Right
         {
             direction = new Vector2(100, 0);
 
         }
-        RaycastHit2D seek = Physics2D.Raycast(hookTransform.position, direction, maxDistance, grappleLayer);
-        if (seek.collider !=null)
+        RaycastHit2D seek = Physics2D.Raycast(hookTransform.position, direction, maxDistance, grappleLayer);    //Skapar en raycast
+        if (seek.collider !=null)                                                                               //Om raycasten inte blockeras av något gör den synlig
         {
             
             Debug.Log("Can grapple");
@@ -56,7 +56,7 @@ public class GrappleHookScript : MonoBehaviour //Detta är skrivet av: Brandon
             effect.SetActive(false);
         }
        
-        if (Input.GetKeyDown(KeyCode.G) && !isGrappling)
+        if (Input.GetKeyDown(KeyCode.K) && !isGrappling)
         {
             StartGrapple();
            
@@ -64,12 +64,12 @@ public class GrappleHookScript : MonoBehaviour //Detta är skrivet av: Brandon
 
         if (retracting)
         {
-            Vector2 grapplePos = Vector2.Lerp(transform.position, target, grappleShootSpeed * Time.deltaTime);
+            Vector2 grapplePos = Vector2.Lerp(transform.position, target, grappleShootSpeed * Time.deltaTime); //Drar in spelaren mot objektet
 
             transform.position = grapplePos;
             line.SetPosition(0, hookTransform.position);
 
-            if(Vector2.Distance(transform.position,target) < 5f)
+            if(Vector2.Distance(transform.position,target) < 5f)                    //Slutar dra in spelaren när man är tillräcklitg nära
             {
                 retracting = false;
                 isGrappling = false;
@@ -86,12 +86,12 @@ public class GrappleHookScript : MonoBehaviour //Detta är skrivet av: Brandon
         
         RaycastHit2D hit = Physics2D.Raycast(hookTransform.position , direction, maxDistance, grappleLayer);
 
-        if(hit.collider != null)
+        if(hit.collider != null)                    //Om man har prickat ett grapple objekt
         {
             isGrappling = true;
             target = hit.point;
             line.enabled = true;
-            line.positionCount = 2;
+            line.positionCount = 2;                 //Linje med två positioner
 
             StartCoroutine(Grapple());
             soundEffect.PlayTounge();
@@ -109,14 +109,14 @@ public class GrappleHookScript : MonoBehaviour //Detta är skrivet av: Brandon
         for (; t < time; t+= grappleShootSpeed * Time.deltaTime)
         {
             newPos = Vector2.Lerp(hookTransform.position, target, t / time);
-            line.SetPosition(0, hookTransform.position);
-            line.SetPosition(1, newPos);
+            line.SetPosition(0, hookTransform.position);                 //Första positionen är spelaren
+            line.SetPosition(1, newPos);                                 // andra positionen åker mot objektets position
 
             yield return null;
 
         }
 
-        line.SetPosition(1, target);
+        line.SetPosition(1, target);                                     // andra positionen är objektets position
         retracting = true;
     }
 }
