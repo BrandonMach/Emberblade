@@ -9,7 +9,9 @@ public class FallingSpike : MonoBehaviour //Detta är skrivet av: Axel och Philip
     PlayerInfo player;
     [SerializeField] float distance;
     bool isFalling = false;
-    bool isAlive = true;
+    public bool isAlive = true;
+    public LayerMask layer;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,18 +22,19 @@ public class FallingSpike : MonoBehaviour //Detta är skrivet av: Axel och Philip
 
     void Update()
     {
+        
         Physics2D.queriesStartInColliders = false;
-        if (!isFalling)                                                                         //Medans spiken sitter fast i taket, så görs en raycast väntar på att hitta en spelare. 
+        if (!isFalling)                                                                                         //Medans spiken sitter fast i taket, så görs en raycas osom väntar på att spelaren går igenom den
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, distance);
-
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, distance, layer);
+            Physics2D.IgnoreLayerCollision(15,6,true);
             Debug.DrawRay(transform.position, Vector2.down * distance, Color.red);
 
             if (hit.transform != null)
             {
-                if (hit.transform.tag == "Player")                                             //Hittar den en spelare, så slå på gravitation låt spiken ramla.
+                if (hit.transform.tag == "Player")                                                              // Hittar spelaren, slå på gravitation och låt spiken falla
                 {
-                    rb.gravityScale = 5;
+                    rb.gravityScale = 10;
                     isFalling = true;
                 }
             }
@@ -40,13 +43,13 @@ public class FallingSpike : MonoBehaviour //Detta är skrivet av: Axel och Philip
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))                                         //träffar spiken marken, så ska spiken tas bort.
+        if (collision.gameObject.CompareTag("Ground"))                                                          //Om spiken träffar marken tas spiken bort
         {
             GameObject.Destroy(this.gameObject);
             Debug.Log("Spikes");
         }
 
-        if (collision.gameObject.tag =="Player" && isAlive)                                    //träffar spiken en spelare, så ska spelaren ta skada.
+        if (collision.gameObject.tag == "Player" && isAlive)                                                     // träffas spelaren av spiken tar spelaren skada och tas bort
         {    
                 Debug.LogError("Ice");
                 Destroy(this.gameObject);

@@ -21,9 +21,9 @@ public class PauseMenu : MonoBehaviour //Detta är skrivet av: Philip + Axel
     void Update()
     {
 
-        HP.text = "HP: " + PlayerInfo.currentHealth + "/" + PlayerInfo.maxHealth;
-        Mana.text = "Mana: " + PlayerInfo.currentEnergy + "/" + PlayerInfo.maxEnergy;
-        AD.text = "Attack Damage: " + CombatScript.playerDamage;
+        HP.text = "HP: " + PlayerInfo.currentHealth + "/" + PlayerInfo.maxHealth; //Visar liv
+        Mana.text = "Mana: " + PlayerInfo.currentEnergy + "/" + PlayerInfo.maxEnergy; //Visar mana
+        AD.text = "Attack Damage: " + CombatScript.playerDamage; //Visar attack damage
 
         if (inOption == false)
         {
@@ -78,7 +78,7 @@ public class PauseMenu : MonoBehaviour //Detta är skrivet av: Philip + Axel
 
     }
 
-    void Pause()
+    void Pause() //Om man pausar så blir panel true och and false
     {
         pauseMenuUI.SetActive(true);
         playerInfoUI.SetActive(false);
@@ -87,14 +87,14 @@ public class PauseMenu : MonoBehaviour //Detta är skrivet av: Philip + Axel
         inTabMenu = false;
     }
 
-    public void Continue()
+    public void Continue() //Om man pausar så blir panel true och and false
     {
         pauseMenuUI.SetActive(false);
         tabPanel.SetActive(false);
         playerInfoUI.SetActive(true);
         isPaused = !isPaused;
     }
-    public void ContinueTab()
+    public void ContinueTab() //Om man pausar så blir panel true och and false
     {
         pauseMenuUI.SetActive(false);
         tabPanel.SetActive(false);
@@ -103,7 +103,7 @@ public class PauseMenu : MonoBehaviour //Detta är skrivet av: Philip + Axel
 
     }
 
-    public void Option()
+    public void Option() //Om man pausar så blir panel true och and false
     {
         pauseMenuUI.SetActive(false);
         playerInfoUI.SetActive(false);
@@ -111,7 +111,7 @@ public class PauseMenu : MonoBehaviour //Detta är skrivet av: Philip + Axel
         inOption = !inOption;
     }
 
-    public void BackOption()
+    public void BackOption() //Om man pausar så blir panel true och and false
     {
         pauseMenuUI.SetActive(true);
         playerInfoUI.SetActive(false);
@@ -119,7 +119,7 @@ public class PauseMenu : MonoBehaviour //Detta är skrivet av: Philip + Axel
         inOption = !inOption;
     }
 
-    public void Tab()
+    public void Tab() //Om man pausar så blir panel true och and false
     {
         pauseMenuUI.SetActive(false);
         tabPanel.SetActive(true);
@@ -128,7 +128,7 @@ public class PauseMenu : MonoBehaviour //Detta är skrivet av: Philip + Axel
         isPaused = false;
     }
 
-    public void QuitGame()
+    public void QuitGame() //Avslutar spelet
     {
         SceneManager.LoadScene(0);
         Debug.Log("Quitting game..");

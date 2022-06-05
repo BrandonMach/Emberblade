@@ -11,7 +11,8 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
     [SerializeField] float stopTime = 0.5f;
     [SerializeField] float dropForce;
     [SerializeField] float gravityScale;
-   
+    public GameObject iceWall;
+    private bool facingLeft;
 
     [Header("Ground Pound")]
     public float jumpSpeed = 3;
@@ -25,9 +26,13 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
     public PlayerInfo player;
     private PlayerControll playerControllScript;
     [SerializeField] float detectionRange;
+    [SerializeField] bool canAttack = true;
+    [SerializeField] float canAttackTimer = 0;
+    private float canAttackDelay = 1.5f;
+    [SerializeField] bool stopTrackingPlayer;
 
     [Header("Second phase")]
-    EnemyHealth enemyHealthScripts;
+    BossHealth enemyHealthScripts;
     int maxHealth;
     bool secondPhase = false;
     public GameObject iciclePrefab;
@@ -35,69 +40,91 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
     public float spawnIcicleRight;
     public float spawnIcicleTop;
     List<float> positionSpawned = new List<float>();
+    List<GameObject> icicles = new List<GameObject>();
+    FallingSpike fallingSpikeScript;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        enemyHealthScripts = GetComponent<EnemyHealth>();
+        enemyHealthScripts = GetComponent<BossHealth>();
         playerControllScript = GameObject.Find("Player").GetComponent<PlayerControll>();
         maxHealth = enemyHealthScripts.health;
+        iceWall.SetActive(true);
+        animator = GetComponent<Animator>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        findPlayerObject.transform.position = player.transform.position + new Vector3(0, 72, 0);
-        if (findPlayerObject.transform.position.y > 73)
+        Vector3 characterScale = transform.localScale;
+        findPlayerObject.transform.position = player.transform.position + new Vector3(0, 60, 0); // För att hitta spelarens position
+        if (findPlayerObject.transform.position.y > 73 && !stopTrackingPlayer)
         {
             findPlayerObject.transform.position = new Vector3(player.transform.position.x, 75, player.transform.position.z); //Max höjd för ground pound
         }
 
+
         DetectPlayer();
+        
 
-        //if (Input.GetKeyDown(KeyCode.Alpha5))
-        //{
-        //    if (!isOnGround)
-        //    {
-        //        doGroundPound = true;
-        //        animator.SetBool("GroundPound", true);
-        //    }
-        //}
+        if(playerControllScript.transform.position.x > this.transform.position.x && facingLeft)
+        {
+            characterScale.x *= -1;
+            this.transform.localScale = characterScale;
+            facingLeft = false;
+        }
+        if (playerControllScript.transform.position.x < this.transform.position.x && !facingLeft)
+        {
+            characterScale.x *= -1;
+            this.transform.localScale = characterScale;
+            facingLeft = true;
+        }
 
-        //if (Input.GetKeyDown(KeyCode.Alpha4))
-        //{
-        //    startGPAttack = true;          
-        //}
-        if (startGPAttack)
+
+        if (isOnGround)                                                 //Om Näbbdjuret är på marken ska den vänta med att attackera igen
+        {
+            canAttack = false;
+            canAttackTimer += Time.deltaTime;
+
+            if (canAttackTimer >= canAttackDelay)
+            {
+                canAttackTimer = 0;
+                stopTrackingPlayer = true;
+                canAttack = true;
+            }
+        }
+
+        
+        
+
+        if (startGPAttack && canAttack)                                                     
         {
 
-            transform.position = Vector3.MoveTowards(transform.position, findPlayerObject.transform.position, 100 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, findPlayerObject.transform.position, 100 * Time.deltaTime); // Näbbdjuret ska förflytta sig mot objektet som letar efter spelarens position
             isOnGround = false;
-            if (transform.position.y >= 75)
+            startGPAttack = false;
+            if (transform.position.y >= 75)                                 //När har nått upp till max höjden 
             {
-
-                startGPAttack = false;
+                animator.SetTrigger("GroundPound");
                 if (!isOnGround)
                 {
                     doGroundPound = true;
-                    animator.SetBool("GroundPound", true);
                 }
 
             }
         }
-
-
+   
         
 
-        if (enemyHealthScripts.health <= (maxHealth / 2) && !secondPhase)
+        if (enemyHealthScripts.health <= (maxHealth / 2) && !secondPhase) 
         {
             
             secondPhase = true;
         }
-        if (enemyHealthScripts.health == 0)
+        if (enemyHealthScripts.health == 0) // tar bort isväggen som blokckera spalaren från när näbbdjur dör
         {
-            
+            iceWall.SetActive(false);
         }
     }
 
@@ -110,7 +137,7 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
         {
             if (colliderHit.gameObject.CompareTag("Player") )
             {
-                Debug.Log("Atttack player");
+                Debug.Log("Perry Atttack player");
                 startGPAttack = true;
             }
         }
@@ -121,6 +148,7 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
         if (doGroundPound)
         {
             GroundPoundAttack();
+            
         }
         doGroundPound = false;
 
@@ -143,6 +171,7 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
     {
         ClearForces();
         rb.gravityScale = 0; // prevents from falling down
+        
     }
 
     private void ClearForces()
@@ -151,9 +180,9 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
         rb.angularVelocity = 0;
     }
 
-    void SpawnIceberg()
+    void SpawnIceberg()  //Instatierar iceberg variabeln 
     {
-        
+      
         Instantiate(icebergPrefab, new Vector3(transform.position.x + 10, transform.position.y -3, transform.position.z), icebergPrefab.transform.rotation);     
         Instantiate(icebergPrefab, new Vector3(transform.position.x - 10, transform.position.y-3, transform.position.z), Quaternion.Euler(0f,180f,0));
 
@@ -166,15 +195,18 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
 
     }
 
-    void SpawnIcicle()
+    void SpawnIcicle()  
     {
-        float spawnPosX = UnityEngine.Random.Range(spawnIcicleLeft, spawnIcicleRight);
-        positionSpawned.Add(spawnPosX);
+        if (icicles.Count <= 10)
+        {
+             float spawnPosX = UnityEngine.Random.Range(spawnIcicleLeft, spawnIcicleRight); //Instatierar istappor inom ett specifkt område
+             positionSpawned.Add(spawnPosX);
 
-       
-        Vector3 spawnPos = new Vector3(spawnPosX, spawnIcicleTop, 0); // Kan spawna på samma plats
-        Instantiate(iciclePrefab, spawnPos, iciclePrefab.transform.rotation);
-
+             Vector3 spawnPos = new Vector3(spawnPosX, spawnIcicleTop, 0); // Kan spawna på samma plats
+             Instantiate(iciclePrefab, spawnPos, iciclePrefab.transform.rotation);
+             icicles.Add(iciclePrefab);
+           
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -183,13 +215,13 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
         {
             isOnGround = true;
             animator.SetBool("GroundPound", false);
-            if (secondPhase)
-            {
+            if (secondPhase)                            //Om näbbdjur är i sin andra fas ohccolliderar med marken ska istappar skapas
+            { 
                 InvokeRepeating("SpawnIcicle", 1, 7);
             }
            
         }
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground"))  
         {
             SpawnIceberg();
         }
@@ -207,7 +239,7 @@ public class PlatypusBossScript : MonoBehaviour //Detta är skrivet av: Brandon
                 playerControllScript.knockFromRight = true;
             }
             player.TakeDamage(10);
-            playerControllScript.Knockback(5, 5);
+            playerControllScript.Knockback(50, 50);
             
         }
     }

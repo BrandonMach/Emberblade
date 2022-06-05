@@ -20,30 +20,30 @@ public class SwitchScene : MonoBehaviour //Detta är skrivet av: Brandon + Sebast
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "DesertScene")
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "DesertScene") //Om man går in i objektet så åker man till swamp scen
         {
             GameMaster.wasCave = false;
             GameMaster.wasWinter = false;
-            GameMaster.wasDesert = true; // Bool för att GM ska veta attman varit i desert
+            GameMaster.wasDesert = true; // Bool för att GM ska veta att man varit i desert
             
 
             Checkpoint.checkpointTaken = false; // Tar bort checkpoint spawnpos
             Debug.Log("Was Desert");
             SwitchSwamp();
         }
-        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "GoToDesert" )
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "GoToDesert")//Om man går in i objektet så åker man till desert scen
         {
             
             SwitchToDesert();
             GameMaster.beenInDesert = true;
         }
-        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "GoToCave")
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "GoToCave")//Om man går in i objektet så åker man till cave scen
         {
 
             SwitchToCave();
             GameMaster.beenInCave = true;
         }
-        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "CaveScene")
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "CaveScene")//Om man går in i objektet så åker man till swamp scen
         {
             GameMaster.wasDesert = false;
             GameMaster.wasWinter = false;
@@ -53,12 +53,12 @@ public class SwitchScene : MonoBehaviour //Detta är skrivet av: Brandon + Sebast
             Checkpoint.checkpointTaken = false; // Tar bort checkpoint spawnpos
             SwitchSwamp();
         }
-        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "GoToWinter")
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "GoToWinter")//Om man går in i objektet så åker man till vinter scen
         {
             SwitchToWinter();
             GameMaster.beenInWinter = true;
         }
-        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "WinterScene")
+        if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "ReturnToSwamp" && scene.name == "WinterScene")//Om man går in i objektet så åker man till swamp scen
         {
             GameMaster.wasDesert = false;
             GameMaster.wasCave = false;
