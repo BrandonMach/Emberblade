@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2462110853568372914}
   - component: {fileID: 2462110853568372913}
   - component: {fileID: 912082574}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: IceSpikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 91.12
+  isAlive: 1
+  layer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!61 &912082574
 BoxCollider2D:
   m_ObjectHideFlags: 0
