@@ -10,7 +10,7 @@ public class SecretImage : MonoBehaviour //Detta är skrivet av: Philip
 
     private void Update()
     {
-        if (activate == true)
+        if (activate == true) //Om en viss tid har gått så aktiveras panelen.
         {
             timer++;
             if (timer == 4000f)
@@ -18,14 +18,14 @@ public class SecretImage : MonoBehaviour //Detta är skrivet av: Philip
                 toad.SetActive(true);
             }
         }
-        else if (activate == false)
+        else if (activate == false) //När man går ut så avaktiveras den och startar om timer.
         {
             timer = 0;
             toad.SetActive(false);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) //gör en bool till true när man går in i objektet.
     {
         if (other.tag == "Player")
         {
@@ -33,7 +33,7 @@ public class SecretImage : MonoBehaviour //Detta är skrivet av: Philip
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other) //gör en bool till false när man går ut ur objektet.
     {
         if (other.tag == "Player")
         {
