@@ -81,11 +81,11 @@ public class GameMaster : MonoBehaviour //Detta är skrivet av: Brandon + Sebasti
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(instance); //Dont destroy when switching Scenes
+            DontDestroyOnLoad(instance); //Dont destroy när man byter   Scenes
         }
         else
         {
-            Destroy(gameObject); // Om den redan skapats skapa inte en till
+            Destroy(gameObject); // Om en GameMaster redan finns skapa inte en till, ta bort den nya
         }
     }
 }

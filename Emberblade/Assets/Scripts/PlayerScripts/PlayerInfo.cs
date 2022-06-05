@@ -90,7 +90,7 @@ public class PlayerInfo : MonoBehaviour //Detta är skrivet av: Philip + Brandon(
 
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
     {
-        if (!PlayerControll.isParrying && canTakeDamage)
+        if (!PlayerControll.isParrying && canTakeDamage)            //Om spelarn parrerar star man ingen skada
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);

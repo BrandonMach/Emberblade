@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceicleScript : MonoBehaviour //Detta är skrivet av: Brandon
+public class IceicleScript : MonoBehaviour //Detta är skrivet av: Brandon, används inte
 {
     private LineRenderer lineRenderer;
     private Rigidbody2D rb;

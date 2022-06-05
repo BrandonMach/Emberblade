@@ -167,7 +167,7 @@ public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + 
             playerControllScript.Knockback(10, 5);
             playerInfoController.TakeDamage(20);
         }
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Breakable"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Breakable"))        //Om armadillo krockar medobjekt taggad wall, enemy, breakable
         {
             animator.SetBool("Roll", false);
             animator.SetBool("Attack", false);

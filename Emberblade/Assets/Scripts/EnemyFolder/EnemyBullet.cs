@@ -20,7 +20,7 @@ public class EnemyBullet : MonoBehaviour //Detta är skrivet av: Brandon + Serena
     }
     void Update()
     {
-        rbody.AddForce(transform.right * speed, ForceMode2D.Impulse);
+        rbody.AddForce(transform.right * speed, ForceMode2D.Impulse);               //Objekte förstörs efter en viss tid
         if (lifespan <= 0)
             Destroy(gameObject);
         else

@@ -19,7 +19,7 @@ public class Checkpoint : MonoBehaviour //Detta är skrivet av: Brandon
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gm.lastCheckPointPos = transform.position;
+            gm.lastCheckPointPos = transform.position;              //Sparar positionen i GameGaster
             animator.SetBool("FillUp", true);
             checkpointTaken = true;
         }
