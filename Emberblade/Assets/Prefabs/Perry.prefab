@@ -13,15 +13,15 @@ GameObject:
   - component: {fileID: 838664714004182378}
   - component: {fileID: 838664714004182379}
   - component: {fileID: 838664714004182383}
-  - component: {fileID: 838664714004182382}
-  - component: {fileID: 838664714004182369}
+  - component: {fileID: 1282272404}
+  - component: {fileID: 1282272405}
   m_Layer: 6
   m_Name: Perry
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &838664714004182380
 Transform:
   m_ObjectHideFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 838664714004182376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -92.80858, y: 4.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 838664714073194840}
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 05be097ebf67c4449b3368f32c8e8297, type: 3}
+  m_Sprite: {fileID: -7191308478625842705, guid: 935d0ac4943690447bde2ebd860399b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,8 +104,8 @@ BoxCollider2D:
   m_Offset: {x: -0.2238617, y: 0.7508545}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.384615, y: 16.307692}
+    pivot: {x: 0.5720318, y: 0.5819674}
+    oldSize: {x: 42.666668, y: 42.666668}
     newSize: {x: 7.08, y: 5.46}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -150,19 +150,42 @@ MonoBehaviour:
   stopTime: 0.5
   dropForce: 4500
   gravityScale: 5
+  iceWall: {fileID: 0}
   jumpSpeed: 3
   isOnGround: 0
   doGroundPound: 0
   startGPAttack: 0
-  animator: {fileID: 838664714004182382}
+  animator: {fileID: 1282272405}
   icebergPrefab: {fileID: 8808213746707442585, guid: 469c5604bce86de468aa9cea6c4f5396, type: 3}
   findPlayerObject: {fileID: 838664714073194841}
   player: {fileID: 0}
+  detectionRange: 71.94
+  canAttack: 1
+  canAttackTimer: 0
+  stopTrackingPlayer: 0
   iciclePrefab: {fileID: 2462110853568372877, guid: ff6c4aea72ce9e84993579208ccf0136, type: 3}
-  spawnIcicleLeft: -162.8
-  spawnIcicleRight: -36.4
-  spawnIcicleTop: 88.98569
---- !u!95 &838664714004182382
+  spawnIcicleLeft: -874.5
+  spawnIcicleRight: -739.3
+  spawnIcicleTop: -83.64302
+--- !u!114 &1282272404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838664714004182376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf4ecd48e19b5b40a6da58587df99e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  health: 30
+  canTakeDamage: 1
+  abilityItem: {fileID: 0}
+  bossHealthBar: {fileID: 0}
+  StartBoss: {fileID: 0}
+--- !u!95 &1282272405
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -181,23 +204,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &838664714004182369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838664714004182376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 426c9b78633481a45be8af09460a8e4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  health: 10
-  canTakeDamage: 1
-  abilityItem: {fileID: 0}
-  healthBar: {fileID: 0}
 --- !u!1 &838664714073194841
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +228,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838664714073194841}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 73, z: -102.82722}
+  m_LocalPosition: {x: 0, y: 62.3, z: -102.82722}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 838664714004182380}

@@ -48,6 +48,11 @@ public class LockCameraScript : MonoBehaviour //Detta är skrivet av: Brandon
                 Debug.Log("Unlock camera");
                 camAnimator.SetBool("WinterSwampLock", false);
             }
+            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockWinterCam2")
+            {
+                Debug.Log("Unlock camera");
+                camAnimator.SetBool("WinterSwampLock", false);
+            }
         }
         if (scene.name == "DesertScene")
         {

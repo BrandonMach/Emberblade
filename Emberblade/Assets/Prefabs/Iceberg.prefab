@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8808213746707442583}
   - component: {fileID: 8808213746707442582}
   - component: {fileID: 8808213746707442578}
-  m_Layer: 15
+  m_Layer: 6
   m_Name: Iceberg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 8808213746707442583}
-  speed: 1
+  speed: 3
   lifespan: 10
   layer:
     serializedVersion: 2

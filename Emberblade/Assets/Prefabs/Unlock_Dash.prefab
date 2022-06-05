@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3151146532389065279}
   - component: {fileID: 3151146532389065264}
   - component: {fileID: 3151146532389065265}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Unlock_Dash
   m_TagString: UnlockDash
   m_Icon: {fileID: 0}

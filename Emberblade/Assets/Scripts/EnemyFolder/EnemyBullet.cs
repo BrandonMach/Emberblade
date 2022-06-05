@@ -31,7 +31,7 @@ public class EnemyBullet : MonoBehaviour //Detta är skrivet av: Brandon + Serena
         if(other.gameObject.CompareTag("Player") && damagePlayer)
         {
             Destroy(gameObject);
-            player.TakeDamage(10);
+            player.TakeDamage(15);
             damagePlayer = false;
             if (transform.position.x < other.transform.position.x)
             {
