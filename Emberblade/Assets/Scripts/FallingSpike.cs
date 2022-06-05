@@ -21,7 +21,7 @@ public class FallingSpike : MonoBehaviour //Detta är skrivet av: Axel och Philip
     void Update()
     {
         Physics2D.queriesStartInColliders = false;
-        if (!isFalling)
+        if (!isFalling)                                                                         //Medans spiken sitter fast i taket, så görs en raycast väntar på att hitta en spelare. 
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, distance);
 
@@ -29,7 +29,7 @@ public class FallingSpike : MonoBehaviour //Detta är skrivet av: Axel och Philip
 
             if (hit.transform != null)
             {
-                if (hit.transform.tag == "Player")
+                if (hit.transform.tag == "Player")                                             //Hittar den en spelare, så slå på gravitation låt spiken ramla.
                 {
                     rb.gravityScale = 5;
                     isFalling = true;
@@ -40,13 +40,13 @@ public class FallingSpike : MonoBehaviour //Detta är skrivet av: Axel och Philip
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground"))                                         //träffar spiken marken, så ska spiken tas bort.
         {
             GameObject.Destroy(this.gameObject);
             Debug.Log("Spikes");
         }
 
-        if (collision.gameObject.tag =="Player" && isAlive)
+        if (collision.gameObject.tag =="Player" && isAlive)                                    //träffar spiken en spelare, så ska spelaren ta skada.
         {    
                 Debug.LogError("Ice");
                 Destroy(this.gameObject);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindScript : MonoBehaviour //Detta är skrivet av: Axel + Philip
+public class WindScript : MonoBehaviour //Detta är skrivet av: Axel
 {
     Rigidbody2D rb;
     bool affectedByWind = false;
@@ -16,11 +16,10 @@ public class WindScript : MonoBehaviour //Detta är skrivet av: Axel + Philip
     // Update is called once per frame
     void Update()
     {
-        if (affectedByWind)
+        if (affectedByWind)                         //när du är påvärkad av vind, ska du tryckas till höger. Jag har gett det en liten acceleratinseffect. När du kommer ut ur området så återställs vindkraften.
         {
             velocity += Time.deltaTime;
             rb.AddForce(Vector2.right * velocity * 100);
-            Debug.Log("hehehehehehehehe");
             if (velocity >= 80)
             {
                 velocity = 80;
