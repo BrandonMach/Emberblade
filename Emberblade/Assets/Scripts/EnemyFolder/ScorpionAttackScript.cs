@@ -116,7 +116,7 @@ public class ScorpionAttackScript : MonoBehaviour //Detta är skrivet av: Brandon
                 if (startTimeAttackTimer >= attackDelay && attackPlayer)
                 {
                     playerController.Knockback(5, 5);
-                    playerInfo.TakeDamage(5);
+                    playerInfo.TakeDamage(25);
                     
                     startTimeAttackTimer = 0;
                     attackPlayer = false;
@@ -130,7 +130,7 @@ public class ScorpionAttackScript : MonoBehaviour //Detta är skrivet av: Brandon
         if (collision.gameObject.CompareTag("Player"))
         {
             playerController.Knockback(5, 5);
-            playerInfo.TakeDamage(5);
+            playerInfo.TakeDamage(20);
         }
     }
 

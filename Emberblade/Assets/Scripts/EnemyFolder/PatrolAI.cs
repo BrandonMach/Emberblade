@@ -130,7 +130,7 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
     {
         if (other.gameObject.CompareTag("Player") && attackTime)
         {
-            playerInfoController.TakeDamage(40);
+            playerInfoController.TakeDamage(60);
             playerControll.Knockback(20, 20);
 
 
@@ -138,7 +138,7 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            playerInfoController.TakeDamage(40);
+            playerInfoController.TakeDamage(80);
             playerControll.Knockback(20, 20);
 
 

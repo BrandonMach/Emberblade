@@ -128,7 +128,7 @@ public class BossSpiderScript : MonoBehaviour //Detta är skrivet av: Brandon
             fallAttack = false;
             rb.gravityScale *= -1;
             findPlayer = false;
-            playerInfoScript.TakeDamage(30);
+            playerInfoScript.TakeDamage(100);
             
 
         }

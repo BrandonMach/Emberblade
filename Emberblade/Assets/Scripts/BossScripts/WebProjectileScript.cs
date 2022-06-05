@@ -32,7 +32,7 @@ public class WebProjectileScript : MonoBehaviour //Detta är skrivet av: Brandon
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player Webbed");
-            playerInforScript.TakeDamage(5);
+            playerInforScript.TakeDamage(40);
             Destroy(gameObject);
         }
         if (collision.gameObject.CompareTag("Wall"))
