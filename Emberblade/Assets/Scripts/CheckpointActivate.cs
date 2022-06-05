@@ -22,7 +22,7 @@ public class CheckpointActivate : MonoBehaviour //Detta är skrivet av: Brandon +
 
         if (triggering)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))                    //När man trycker E och aktiverar en checkpoint, så ska en animation starta för checkpointen.
             {
                 animator.SetTrigger("Entry");
                 gm.lastCheckPointPos = transform.position;
