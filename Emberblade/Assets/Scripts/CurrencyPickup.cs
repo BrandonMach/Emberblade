@@ -14,7 +14,7 @@ public class CurrencyPickup : MonoBehaviour //Detta är skrivet av: Philip
         currency = GameObject.Find("Player").GetComponent<Currency>();
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision) //Om man tar upp ett objekt som rör player så tas objektet bort och ger pengar.
     {
         if (collision.CompareTag("Player"))
         {

@@ -59,17 +59,17 @@ public class PlayerInfo : MonoBehaviour //Detta är skrivet av: Philip + Brandon(
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I)) //Om man klickar på knapp så förlorar man liv.
         {
             TakeDamage(20);
         }
 
-        if (Input.GetKey(KeyCode.O))
+        if (Input.GetKey(KeyCode.O)) //Om man klickar på knapp så får man tillbaka energi.
         {
             RechargeEnergy(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.U)) //Om man klickar på knapp så får man tillbaka liv.
         {
             Heal(35);
         }
@@ -79,7 +79,7 @@ public class PlayerInfo : MonoBehaviour //Detta är skrivet av: Philip + Brandon(
             Death();
         }
 
-        if (unlockedManaRegen)
+        if (unlockedManaRegen) 
         {
             RechargeEnergyOverTime();
         }
@@ -101,25 +101,13 @@ public class PlayerInfo : MonoBehaviour //Detta är skrivet av: Philip + Brandon(
                 currentHealth = 0;
             }
         }
-        else if(PlayerControll.isParrying)
+        else if(PlayerControll.isParrying) 
         {
             sfxScript.PlayParry();
             StartCoroutine(ParryFlash());
             Debug.LogError("Parry Succes");
            
         }
-        //if (canTakeDamage)
-        //{
-        //    //playerControllScript.knockbackCount = 10;
-        //    currentHealth -= damage;
-        //    healthBar.SetHealth(currentHealth);
-        //    StartCoroutine(FlashCo());
-        //    //canTakeDamage = false;
-        //}
-        //if (currentHealth <= 0)
-        //{
-        //    currentHealth = 0;
-        //}
     }
 
 
@@ -150,7 +138,7 @@ public class PlayerInfo : MonoBehaviour //Detta är skrivet av: Philip + Brandon(
         }
     }
 
-    public void RechargeEnergyOverTime()
+    public void RechargeEnergyOverTime() //Gör så att man får energi tillbaka genom tid.
     {
         if (currentEnergy < maxEnergy)
         {
@@ -165,7 +153,7 @@ public class PlayerInfo : MonoBehaviour //Detta är skrivet av: Philip + Brandon(
         else { currentEnergy = maxEnergy; }
     }
 
-    public void RechargeEnergy(int amount)
+    public void RechargeEnergy(int amount) //Gör så att man får tillbaka energi.
     {
         if (currentEnergy < maxEnergy)
         {
@@ -209,13 +197,6 @@ public class PlayerInfo : MonoBehaviour //Detta är skrivet av: Philip + Brandon(
         Destroy(this.gameObject);
     }
 
-    public void UseEnergy(int energy)
-    {
-        currentEnergy -= energy;
-        energyBar.SetEnergy(currentEnergy);
-    }
-
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         
@@ -228,4 +209,10 @@ public class PlayerInfo : MonoBehaviour //Detta är skrivet av: Philip + Brandon(
             playerControllScript.knockFromRight = true;
         }
     }
+    public void UseEnergy(int energy)
+    {
+        currentEnergy -= energy;
+        energyBar.SetEnergy(currentEnergy);
+    }
+
 }

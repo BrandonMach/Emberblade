@@ -15,14 +15,14 @@ public class VerticalPlatform : MonoBehaviour //Detta är skrivet av: Philip + Se
 
     private void Update()
     {
-        waitTime += Time.deltaTime;
-        if (Input.GetKey(KeyCode.S))
+        waitTime += Time.deltaTime; //Adderar tiden.
+        if (Input.GetKey(KeyCode.S)) //Om man trycker S så ska platformenshitbox rotera och man kan gå ner.
         {
             effector.rotationalOffset = 180f;
             player.player_Rb.gravityScale = 10;
             waitTime = 0f;
         }
-        else if (waitTime >= 0.3f)
+        else if (waitTime >= 0.3f) //Efter en viss tid så går den tillbaka till normala.
         {
             effector.rotationalOffset = 0f;
         }
@@ -30,7 +30,7 @@ public class VerticalPlatform : MonoBehaviour //Detta är skrivet av: Philip + Se
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) //Om man kolliderar så blir bool true.
         {
             Debug.Log("collision");
             player.isOnGround = true;
