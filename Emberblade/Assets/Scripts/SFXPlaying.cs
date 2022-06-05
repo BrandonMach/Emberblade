@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SFXPlaying : MonoBehaviour //Detta är skrivet av: Brandon
 {
@@ -9,12 +10,17 @@ public class SFXPlaying : MonoBehaviour //Detta är skrivet av: Brandon
     [SerializeField] AudioSource jumpSFX;
     [SerializeField] AudioSource attackSFX;
 
+    public AudioMixer audioMixer;
 
 
+    private void Start()
+    {
+        
+    }
 
     public void PlayParry()
     {
-        parrySFX.volume = 0.3f;
+        parrySFX.volume = 0.3f ;
         parrySFX.Play();
     }
     public void PlayTounge()
