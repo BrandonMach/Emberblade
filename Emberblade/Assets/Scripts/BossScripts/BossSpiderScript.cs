@@ -128,7 +128,7 @@ public class BossSpiderScript : MonoBehaviour
             fallAttack = false;
             rb.gravityScale *= -1;
             findPlayer = false;
-            playerInfoScript.TakeDamage(30);
+            playerInfoScript.TakeDamage(100);
             
 
         }

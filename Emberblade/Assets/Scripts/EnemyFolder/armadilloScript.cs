@@ -156,7 +156,7 @@ public class armadilloScript : MonoBehaviour
                 playerControllScript.knockFromRight = true;
             }
             playerControllScript.Knockback(30, 15);
-            playerInfoController.TakeDamage(10);
+            playerInfoController.TakeDamage(20);
             canAttack = false;
             rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
             attacking = false;
@@ -165,7 +165,7 @@ public class armadilloScript : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player") && !attacking)
         {
             playerControllScript.Knockback(10, 5);
-            playerInfoController.TakeDamage(10);
+            playerInfoController.TakeDamage(20);
         }
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Breakable"))
         {
