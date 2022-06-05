@@ -7,7 +7,7 @@ public class HealthTwoChest : MonoBehaviour //Detta är skrivet av: Sebastian
     [SerializeField] Animator animator;
 
     [SerializeField] bool trigger;
-    public static bool healthChestTwoOpened;
+    public static bool healthChestTwoOpened; 
     PlayerInfo playerInfo;
     NewAbilityTextScript newAbilityText;
     PlayerControll player;
@@ -22,13 +22,13 @@ public class HealthTwoChest : MonoBehaviour //Detta är skrivet av: Sebastian
     // Update is called once per frame
     void Update()
     {
-        if (trigger && !healthChestTwoOpened)
+        if (trigger && !healthChestTwoOpened) // Om Spelaren är nära kistan och om han inte har tagit den förr
         {
             if (Input.GetKey(KeyCode.E))
             {
                 animator.SetTrigger("Open");
                 animator.SetBool("IsOpened", true);
-                PlayerInfo.maxHealth += 15;
+                PlayerInfo.maxHealth += 15; // Spelaren får mer max health
                 player.OpenChestCutScene();
                 newAbilityText.index = 3;
                 healthChestTwoOpened = true;
@@ -36,7 +36,7 @@ public class HealthTwoChest : MonoBehaviour //Detta är skrivet av: Sebastian
 
         }
 
-        if (healthChestTwoOpened)
+        if (healthChestTwoOpened) // Om spelaren har öppnat kistan förr
         {
             animator.SetBool("IsOpened", true);
         }
@@ -45,7 +45,7 @@ public class HealthTwoChest : MonoBehaviour //Detta är skrivet av: Sebastian
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")) // Spelaren är nära kistan
         {
             trigger = true;
         }
@@ -53,7 +53,7 @@ public class HealthTwoChest : MonoBehaviour //Detta är skrivet av: Sebastian
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")) // Spelaren är inte nära kistan
         {
             trigger = false;
         }

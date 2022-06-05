@@ -10,7 +10,7 @@ public class FadingEffect : MonoBehaviour //Detta är skrivet av: Sebastian
     [SerializeField] TilemapRenderer rend;
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //Om Spelaren är inne i området
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -18,7 +18,7 @@ public class FadingEffect : MonoBehaviour //Detta är skrivet av: Sebastian
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision) //Om Spelaren är utanför området
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -26,7 +26,7 @@ public class FadingEffect : MonoBehaviour //Detta är skrivet av: Sebastian
         }
     }
 
-    IEnumerator FadeOut()
+    IEnumerator FadeOut() //Det som gömde den hemliga vägen blir osynlig
     {
         for (float i = 1; i >= -0.05f; i -= 0.05f)
         {
@@ -37,7 +37,7 @@ public class FadingEffect : MonoBehaviour //Detta är skrivet av: Sebastian
         }
     }
 
-    IEnumerator FadeIn()
+    IEnumerator FadeIn()//Det som gömde den hemliga vägen blir synlig
     {
         for (float i = 0f; i <= 1.05f; i += 0.05f)
         {

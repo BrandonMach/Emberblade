@@ -26,7 +26,7 @@ public class AttackChestTwo : MonoBehaviour //Detta är skrivet av: Sebastian
             {
                 animator.SetTrigger("Open");
                 animator.SetBool("IsOpened", true);
-                CombatScript.playerDamage += 1;
+                CombatScript.playerDamage += 1;// Ökar spelaren skada mot fiender med 1 
                 newAbilityText.index = 2;
                 player.OpenChestCutScene();
                 attackChestTwoOpened = true;
@@ -34,7 +34,7 @@ public class AttackChestTwo : MonoBehaviour //Detta är skrivet av: Sebastian
 
         }
 
-        if (attackChestTwoOpened)
+        if (attackChestTwoOpened)// Om spelaren har öppnat kistan förr
         {
             animator.SetBool("IsOpened", true);
         }
@@ -43,13 +43,13 @@ public class AttackChestTwo : MonoBehaviour //Detta är skrivet av: Sebastian
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))// Spelaren är nära kistan
         {
             trigger = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)// Spelaren är inte nära kistan
     {
         if (other.gameObject.CompareTag("Player"))
         {

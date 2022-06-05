@@ -29,13 +29,13 @@ public class EnemyHealth : MonoBehaviour //Detta är skrivet av: Brandon + Sebast
     // Update is called once per frame
     void Update()
     {
-        DamageWindow();
-        EnemyDies();
+        DamageWindow(); //Fiendens Iframe så att han inte tar konstant damage
+        EnemyDies(); //Fienden Dör
     }
 
 
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage) // Fienden Tar skada
     {
         if (canTakeDamage)
         {
@@ -45,7 +45,7 @@ public class EnemyHealth : MonoBehaviour //Detta är skrivet av: Brandon + Sebast
         }  
     }
 
-    void DamageWindow()
+    void DamageWindow()//Fiendens Iframe så att han inte tar konstant damage
     {
         if (!canTakeDamage)
         {
@@ -58,13 +58,13 @@ public class EnemyHealth : MonoBehaviour //Detta är skrivet av: Brandon + Sebast
         }
     }
 
-    void EnemyDies()
+    void EnemyDies() // Fienden dör
     {
         if (health <= 0 && startTimeDamageTimer == 0)
         {
             Destroy(this.gameObject);
-            player.IncreaseCurrency(currency);
-            playerInfo.RechargeEnergy(amoutMana);
+            player.IncreaseCurrency(currency); // Fienden ger spelaren currency
+            playerInfo.RechargeEnergy(amoutMana); // Fienden ger spelaren mana
         }
     }
 }

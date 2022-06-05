@@ -18,19 +18,19 @@ public class CurrencyOneChest : MonoBehaviour //Detta är skrivet av: Sebastian
     // Update is called once per frame
     void Update()
     {
-        if (trigger && !currencyChestOneOpened)
+        if (trigger && !currencyChestOneOpened)// Om Spelaren är nära kistan och om han inte har tagit den förr
         {
             if (Input.GetKey(KeyCode.E))
             {
                 animator.SetTrigger("Open");
                 animator.SetBool("IsOpened", true);
-                currency.IncreaseCurrency(300);
+                currency.IncreaseCurrency(300);// Spelaren får 300 in-game Currency
                 currencyChestOneOpened = true;
             }
 
         }
 
-        if (currencyChestOneOpened)
+        if (currencyChestOneOpened)// Om spelaren har öppnat kistan förr
         {
             animator.SetBool("IsOpened", true);
         }
@@ -39,7 +39,7 @@ public class CurrencyOneChest : MonoBehaviour //Detta är skrivet av: Sebastian
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))// Spelaren är nära kistan
         {
             trigger = true;
         }
@@ -47,7 +47,7 @@ public class CurrencyOneChest : MonoBehaviour //Detta är skrivet av: Sebastian
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))// Spelaren är inte nära kistan
         {
             trigger = false;
         }

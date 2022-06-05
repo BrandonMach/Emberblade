@@ -31,11 +31,11 @@ public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebas
     // Update is called once per frame
     void Update()
     {
-        if (timeBetweenAttack <= 0)// then you can attack
+        if (timeBetweenAttack <= 0) // then you can attack
         {
             if (player.isCrouching)
             {
-                if (Input.GetKeyDown(KeyCode.J))
+                if (Input.GetKeyDown(KeyCode.J)) //Om spelaren sitter och trycker på knappen J så attackerar han samtidigt som han sitter
                 {
                     animator.SetTrigger("SitAttack");
                     soundEffectScript.PlayAttack();
@@ -43,7 +43,7 @@ public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebas
                     Vector3 attackScale = transform.localScale;
 
 
-                    if (player.lookingRight)
+                    if (player.lookingRight) // Flyttar på hitboxen samtidigt som spelaren sitter beroende på om han kollar vänster och höger
                     {
                         attackScale.x *= 1;
                         attackpoint.position = new Vector2(this.transform.position.x + 5, this.transform.position.y - 2.86f);
@@ -56,9 +56,11 @@ public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebas
 
                     Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
                     Collider2D[] BossToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
-                    if (isInBossBattle)
+
+
+                    if (isInBossBattle) // Om Spelaren möter en boss
                     {
-                        for (int i = 0; i < BossToDamage.Length; i++)
+                        for (int i = 0; i < BossToDamage.Length; i++) // Slår en boss
                         {
                             BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage(playerDamage);
                             Debug.Log("We Hit Boss");
@@ -66,7 +68,7 @@ public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebas
                     }
                     else
                     {
-                        for (int i = 0; i < enemiesToDamage.Length; i++)
+                        for (int i = 0; i < enemiesToDamage.Length; i++) // Slår en vanlig enemy
                         {
                             enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(playerDamage);
                             Debug.Log("We Hit Enemy");
@@ -75,7 +77,7 @@ public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebas
                 }
             }
             
-            else if (Input.GetKeyDown(KeyCode.J))
+            else if (Input.GetKeyDown(KeyCode.J)) // Om spelaren inte sitter och trycker på J attackerar han när han står upp
             {
                 animator.SetTrigger("Attack");
                 soundEffectScript.PlayAttack();
@@ -84,7 +86,7 @@ public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebas
                 Vector3 attackScale = transform.localScale;
                 //attackpoint.position = new Vector2(this.transform.position.x + 3.81f, this.transform.position.y + 0.86f); /*= new Vector2(3.81f, 0.86f);*/
 
-                if (player.lookingRight)
+                if (player.lookingRight) // Flyttar på hitboxen beroende på om spelaren kollar vänster och höger
                 {
                     attackScale.x *= 1;
                     attackpoint.position = new Vector2(this.transform.position.x + 6, this.transform.position.y);
@@ -98,9 +100,11 @@ public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebas
 
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
                 Collider2D[] BossToDamage = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, hittableLayers);
-                if (isInBossBattle)
+
+
+                if (isInBossBattle) // Om Spelaren möter en boss
                 {
-                    for (int i = 0; i < BossToDamage.Length; i++)
+                    for (int i = 0; i < BossToDamage.Length; i++) // Slår en boss
                     {
                         BossToDamage[i].GetComponent<BossHealth>().BossTakeDamage(playerDamage);
                         Debug.Log("We Hit Boss");
@@ -108,7 +112,7 @@ public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebas
                 }
                 else
                 {
-                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    for (int i = 0; i < enemiesToDamage.Length; i++) // Slår en vanlig enemy
                     {
                         enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(playerDamage);
                         Debug.Log("We Hit Enemy");
@@ -125,7 +129,7 @@ public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebas
 
             }
 
-            timeBetweenAttack = startTimeBetweenAttack; //default start value
+            timeBetweenAttack = startTimeBetweenAttack; //Attack delay så att spelaren inte spammar attack
         }
         else
         {
@@ -144,6 +148,6 @@ public class CombatScript : MonoBehaviour //Detta är skrivet av: Brandon + Sebas
         }
         Gizmos.color = Color.cyan;
         
-        Gizmos.DrawWireSphere(attackpoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackpoint.position, attackRange); // Ritar ut hitboxen i unity
     }
 }
