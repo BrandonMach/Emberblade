@@ -24,17 +24,17 @@ public class SettingsMenu : MonoBehaviour //Detta är skrivet av: Axel
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height + " @" + resolutions[i].refreshRate + "Hz";
-            options.Add(option);
+            string option = resolutions[i].width + " x " + resolutions[i].height + " @" + resolutions[i].refreshRate + "Hz";            //Denna metoden loopar igenom alla tillgängliga skärmupplösningar
+            options.Add(option);                                                                                                        //och lägger till dem i en lista.
 
-            if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)      //Denna if-satsen 
             {
                 currentResolutionIndex = i;
             }
         }
 
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.AddOptions(options);                                                                                         //Här läggs alla alternativ till i en Dropdownbox i spelet.
+        resolutionDropdown.value = currentResolutionIndex;                                                                              //
         resolutionDropdown.RefreshShownValue();
     }
 
