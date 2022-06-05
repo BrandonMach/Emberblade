@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour //Detta är skrivet av: Philip + Axel
 {
@@ -129,7 +130,7 @@ public class PauseMenu : MonoBehaviour //Detta är skrivet av: Philip + Axel
 
     public void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
         Debug.Log("Quitting game..");
     }
 }
