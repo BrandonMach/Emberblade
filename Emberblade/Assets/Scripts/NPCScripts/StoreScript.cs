@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class StoreScript : MonoBehaviour //Detta är skrivet av: Axel
+public class StoreScript : MonoBehaviour //Detta är skrivet av: Axel, en gammal version som inte används, se "StoreInteraction" scriptet för den nya versionen.
 {
     public bool boughtHealth, boughtEnergy;
     public GameObject healthButton, energyButton;

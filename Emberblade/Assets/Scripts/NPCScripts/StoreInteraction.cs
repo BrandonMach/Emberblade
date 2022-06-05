@@ -26,13 +26,13 @@ public class StoreInteraction : MonoBehaviour //Detta är skrivet av: Axel
     // Update is called once per frame
     void Update()
     {
-        if (boughtHealth)
+        if (boughtHealth)       //tar bort knappen från skärmen efter att man har köpt föremålet. Flyttar även andra knappen till mitten av skärmen.
         {
             healthButton.SetActive(false);
             energyButton.transform.position = new Vector2 (middleOfScreenX, middleOfScreenY);
         }
 
-        if (boughtEnergy)
+        if (boughtEnergy)       //tar bort knappen från skärmen efter att man har köpt föremålet. Flyttar även andra knappen till mitten av skärmen.
         {
             energyButton.SetActive(false);
             healthButton.transform.position = new Vector2(middleOfScreenX, middleOfScreenY);
@@ -41,7 +41,7 @@ public class StoreInteraction : MonoBehaviour //Detta är skrivet av: Axel
         currencyText.text = Currency.currency.ToString();
     }
 
-    public void buyHealth()
+    public void buyHealth()     //ökar spelarens hälsa och tar bort pengar från spelaren.
     {
         if (Currency.currency >= 50)
         {
@@ -51,7 +51,7 @@ public class StoreInteraction : MonoBehaviour //Detta är skrivet av: Axel
         }
     }
 
-    public void buyEnergy()
+    public void buyEnergy()     //ökar spelarens mana/energi och tar bort pengar från spelaren.
     {
         if (Currency.currency >= 100)
         {
