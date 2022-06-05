@@ -15,9 +15,9 @@ public class EnemyHealthbar : MonoBehaviour //Detta är skrivet av: Sebastian
     float timer = 0;
     float maxTimer = 6;
 
-    public void SetHealth(float health, float maxHealth)
+    public void SetHealth(float health, float maxHealth) 
     {
-        healthBar.gameObject.SetActive(health < maxHealth);
+        healthBar.gameObject.SetActive(health < maxHealth); // Visar fienden healthbar till spelaren om fienden har tagit damage
         if (health < maxHealth)
         {
             inCombat = true;
@@ -32,14 +32,14 @@ public class EnemyHealthbar : MonoBehaviour //Detta är skrivet av: Sebastian
     // Update is called once per frame
     void Update()
     {
-        healthBar.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offset);
+        healthBar.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offset); // Gör så att health baren är ovanför fienden
 
         if (inCombat)
         { 
             timer += Time.deltaTime;
             if (timer > maxTimer)
             {
-                healthBar.gameObject.SetActive(false);
+                healthBar.gameObject.SetActive(false); // Om Spelaren inte attackerar fienden inom 3 sekunder efter fienden har tagit damage, försvinner healthbar UI från skärmen
                 inCombat = !inCombat;
                 timer = 0f;
             }

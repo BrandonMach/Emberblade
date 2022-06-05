@@ -49,7 +49,7 @@ public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + 
     {
         detectionlocation = new Vector2(transform.position.x, transform.position.y - 4);
 
-        if (facingLeft)
+        if (facingLeft) // Ger Knockback till spelaren beroende på om armidillon är i vänsra sidan eller högra sidan
         {
             knockBackValue = 5;
         }
@@ -57,11 +57,11 @@ public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + 
         {
             knockBackValue = -5;
         }
-        DetectPlayer();
-        if (attacking && canAttack)
+        DetectPlayer(); 
+        if (attacking && canAttack) // Om fienden kan attackera och är redo att attackera
         {          
             animator.SetBool("Attack", true);
-            Invoke("StartAttack", attackStartUpTime);
+            Invoke("StartAttack", attackStartUpTime); //Kör Metoden
             boxCollider.enabled = false;
             circleCollider.enabled = true;
         }
@@ -90,19 +90,19 @@ public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + 
 
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(detectionlocation, playerDetection, 0);
 
-        foreach (var colliderHit in hitColliders)
+        foreach (var colliderHit in hitColliders) //Hitta spelaren
         {
-            if (colliderHit.gameObject.CompareTag("Player") && !attackmode)
+            if (colliderHit.gameObject.CompareTag("Player") && !attackmode) // Om Spelaren är inne detection hitboxen
             {
                 playerInRange = true;
                 
 
                 if (playerInRange && canAttack)
                 {
-                    attacking = true;
+                    attacking = true; // Attackera
                     if (this.transform.position.x > playerInfoController.transform.position.x && !facingLeft) // Armadillo på höger sida av spelare
                     {
-                        attackmode = true;
+                        attackmode = true; // Attackera
                         characterScale.x *= -1;
                         facingLeft = true;
                         this.transform.localScale = characterScale;
@@ -110,7 +110,7 @@ public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + 
                     }
                     if (this.transform.position.x < playerInfoController.transform.position.x && facingLeft) // Armadillo på vänster sida av spelaren
                     {
-                        attackmode = true;
+                        attackmode = true; // Attackera
                         characterScale.x *= -1;
                         facingLeft = false;
                         this.transform.localScale = characterScale;      
@@ -121,16 +121,16 @@ public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + 
     }
     void StartAttack()
     {
-        if (canAttack && attacking)
+        if (canAttack && attacking)  // Fienden kan attackera
         {
            
-            if (facingLeft)
+            if (facingLeft) // Om spelaren är till höger om fienden
             {
                 animator.SetBool("Roll", true);
                 rb.AddForce(new Vector2(-4f, 0), ForceMode2D.Impulse);
                 //transform.Rotate(new Vector3(0, 0, 2f));
             }
-            else
+            else // Om spelaren är till vänster om fienden
             {
                 animator.SetBool("Roll", true);
                 rb.AddForce(new Vector2(4f, 0), ForceMode2D.Impulse);
@@ -141,13 +141,13 @@ public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && attacking)
+        if (collision.gameObject.CompareTag("Player") && attacking) //Träffar Spelaren
         {
            
             animator.SetBool("Roll", false);           
             animator.SetBool("Attack", false);           
             Debug.Log("Rolled Player");
-            if (transform.position.x < collision.transform.position.x)
+            if (transform.position.x < collision.transform.position.x) // Ger Knockback till spelaren beroende på om armidillon är i vänsra sidan eller högra sidan
             {
                 playerControllScript.knockFromRight = false;
             }
@@ -155,17 +155,17 @@ public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + 
             {
                 playerControllScript.knockFromRight = true;
             }
-            playerControllScript.Knockback(30, 15);
-            playerInfoController.TakeDamage(20);
+            playerControllScript.Knockback(30, 15); //Spelaren Knockback
+            playerInfoController.TakeDamage(20); //Spelaren Tar Skada
             canAttack = false;
             rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
             attacking = false;
             attackmode = false;
         }
-        else if (collision.gameObject.CompareTag("Player") && !attacking)
+        else if (collision.gameObject.CompareTag("Player") && !attacking) // Om Spelaren frivilligt träffar fienden
         {
-            playerControllScript.Knockback(10, 5);
-            playerInfoController.TakeDamage(20);
+            playerControllScript.Knockback(10, 5); //Spelaren Knockback
+            playerInfoController.TakeDamage(20); //Spelaren Tar Skada
         }
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Breakable"))        //Om armadillo krockar medobjekt taggad wall, enemy, breakable
         {
@@ -186,7 +186,7 @@ public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(detectionlocation, playerDetection);
+        Gizmos.DrawWireCube(detectionlocation, playerDetection); // ritar ut hitboxen i unity 
     }
 
 }

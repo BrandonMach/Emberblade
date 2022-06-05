@@ -18,7 +18,7 @@ public class Parallax : MonoBehaviour //Detta är skrivet av: Sebastian
     // Update is called once per frame
     void FixedUpdate()
     {
-        float temp = (cam.transform.position.x * (1 - parallaxEffect));
+        float temp = (cam.transform.position.x * (1 - parallaxEffect)); // Bakgrundbilden ändras beroende på parallax effecten
         float dist = (cam.transform.position.x * parallaxEffect);
 
 
@@ -26,7 +26,7 @@ public class Parallax : MonoBehaviour //Detta är skrivet av: Sebastian
 
         
 
-        if (temp > startpos + length)
+        if (temp > startpos + length) // Om bakgrundbilden flyttar sig över dess längd, flyttar den parallax bakgrunden framför spelaren
         {
             startpos += length;
         }

@@ -51,13 +51,13 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
     void FixedUpdate()
     {
 
-        Idle();
-        Charge();
-        Attack();
+        Idle(); // Fienden är i idle state
+        Charge(); // Fienden gör sig redo att accelerera mot spelaren
+        Attack(); // Fienden accelerera och attackerar spelaren
     }
     public void Charge()
     {
-        if (chargeTime)
+        if (chargeTime) // Tiden som fienden tar på sig för att göra sig redo att accelerera mot spelaren
         {
             animator.SetBool("IsCharing", true);
             currentTime -= 1 * Time.deltaTime;
@@ -72,7 +72,7 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
 
     }
 
-    public void Attack()
+    public void Attack() // Fienden accelerera och attackerar spelaren
     {
         if (attackTime)
         {
@@ -80,16 +80,16 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
             animator.SetBool("IsAttacking", true);
 
 
-            float angle = Mathf.Atan2(attackDir.x, attackDir.y) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(attackDir.x, attackDir.y) * Mathf.Rad2Deg; // Ändrar fiendens rotation så att den är riktat mot spelaren  
             attackDir.Normalize();
             movetowardsPlayer = attackDir;
 
 
-            Invoke("getDelayedPos", 0.1f);
-            rb2d.AddForce(attackDir * attackAcc, ForceMode2D.Impulse);
+            Invoke("getDelayedPos", 0.1f); // Får spelarens delayed position så att det blir mer enklarer spelaren att undvika fienden 
+            rb2d.AddForce(attackDir * attackAcc, ForceMode2D.Impulse); // Accelerera mot spelaren
 
 
-            if (transform.position.x < playerInfoController.transform.position.x)
+            if (transform.position.x < playerInfoController.transform.position.x) // Riktar Fienden beroende på om spelaren är till vänster eller till höger om spelaren
             {
                 transform.localScale = new Vector2(-1, 1);
                 fliped = false;
@@ -103,7 +103,7 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
     }
 
 
-    private void getDelayedPos()
+    private void getDelayedPos() // Får spelarens delayed position så att det blir mer enklarer spelaren att undvika fienden 
     {
         if (invokeCounter <= 1)
         {
@@ -128,7 +128,7 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player") && attackTime)
+        if (other.gameObject.CompareTag("Player") && attackTime) // Collidera med spelaren 
         {
             playerInfoController.TakeDamage(60);
             playerControll.Knockback(20, 20);
@@ -144,24 +144,24 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
 
             Destroy(gameObject);
         }
-        if (other.gameObject.CompareTag("Wall") && attackTime)
+        if (other.gameObject.CompareTag("Wall") && attackTime) // Collidera med väggarna
         {
             Destroy(gameObject);
         }
-        if (other.gameObject.CompareTag("Ground") && attackTime)
+        if (other.gameObject.CompareTag("Ground") && attackTime) // Collidera med marken
         {
             Destroy(gameObject);
         }
-        if (other.gameObject.CompareTag("Roof") && attackTime)
+        if (other.gameObject.CompareTag("Roof") && attackTime)// Collidera med tak 
         {
             Destroy(gameObject);
         }
-        if (other.gameObject.CompareTag("Enemy") && attackTime)
+        if (other.gameObject.CompareTag("Enemy") && attackTime)// Collidera med andra fiender
         {
             Destroy(gameObject);
             
         }
-        if (other.gameObject.CompareTag("Platform") && attackTime)
+        if (other.gameObject.CompareTag("Platform") && attackTime)// Collidera med platform
         {
             Destroy(gameObject);
         }
@@ -169,7 +169,7 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
 
     
 
-    public void Idle()
+    public void Idle()// Fienden är i idle state
     {
         if (idle)
         {
@@ -194,7 +194,7 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
         
     }
 
-    public void Flip()
+    public void Flip()  // Riktar Fienden beroende på om spelaren är till vänster eller till höger om spelaren
     {
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
 
@@ -211,6 +211,6 @@ public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, new Vector2(agroRangeX, agroRangeY));
+        Gizmos.DrawWireCube(transform.position, new Vector2(agroRangeX, agroRangeY)); //Ritar ut detection Hitboxen i unity
     }
 }

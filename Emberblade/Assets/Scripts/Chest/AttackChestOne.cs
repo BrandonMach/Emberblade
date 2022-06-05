@@ -20,13 +20,13 @@ public class AttackChestOne : MonoBehaviour //Detta är skrivet av: Sebastian
     // Update is called once per frame
     void Update()
     {
-        if (trigger && !attackChestOneOpened)
+        if (trigger && !attackChestOneOpened)// Om Spelaren är nära kistan och om han inte har tagit den förr
         {
             if (Input.GetKey(KeyCode.E))
             {
                 animator.SetTrigger("Open");
                 animator.SetBool("IsOpened", true);
-                CombatScript.playerDamage += 1;
+                CombatScript.playerDamage += 1; // Ökar spelaren skada mot fiender med 1 
                 player.OpenChestCutScene();
                 newAbilityText.index = 2;
                 attackChestOneOpened = true;
@@ -34,7 +34,7 @@ public class AttackChestOne : MonoBehaviour //Detta är skrivet av: Sebastian
 
         }
 
-        if (attackChestOneOpened)
+        if (attackChestOneOpened)// Om spelaren har öppnat kistan förr
         {
             animator.SetBool("IsOpened", true);
         }
@@ -43,13 +43,13 @@ public class AttackChestOne : MonoBehaviour //Detta är skrivet av: Sebastian
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")) // Spelaren är nära kistan
         {
             trigger = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)// Spelaren är inte nära kistan
     {
         if (other.gameObject.CompareTag("Player"))
         {
