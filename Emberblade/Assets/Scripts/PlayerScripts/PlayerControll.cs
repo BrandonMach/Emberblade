@@ -148,7 +148,7 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
         }
         else
         {
-            if (knockFromRight)
+            if (knockFromRight)                                                 //Om spelaren blir attackerad från höger
             { //knock to left
                 player_Rb.velocity = new Vector2(-knockbackX, knockbackY);
             }
@@ -160,14 +160,14 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
         }
 
         Falling();
-        if (!hasUnlockedDJ)
+        if (!hasUnlockedDJ)                 // Om spelaren inte har låst upp double jump
         {
             canDoubleJump = false;
             jumpTimer = 0;
         }
         JumpInput();
-        isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);
-        isOnPlatform = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, platformLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, platformLayer);
+        isOnGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, groundLayer);        //För att detectera om splaren står på marken
+        isOnPlatform = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLenght, platformLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLenght, platformLayer);   //För att detectera om splaren står på platform
         if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !isOnGround)
         {
             canDoubleJump = false;
@@ -176,7 +176,7 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
         }
         Parry();
 
-        hasToCrouch = Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat, groundLayer)|| Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat,roofLayer);
+        hasToCrouch = Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat, groundLayer)|| Physics2D.Raycast(transform.position + headOffset, Vector2.up, headFloat,roofLayer);         //En raycast för att kolla om spalaren måste fortsätta ducka
         Crouch();
         jumpTimer += Time.deltaTime;
         if (jumpTimer >= jumpDelay)
@@ -185,7 +185,7 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
             jumpRing.SetActive(false);
         }
 
-        if (!canParry)
+        if (!canParry)                      //För att att man inte ska kunna parry flera gånger i rad
         {
             
             canParryTimer += Time.deltaTime;
@@ -225,7 +225,7 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
             animator.SetBool("Parry", false);
         }
     }
-    void Falling()
+    void Falling()                              
     {
         if (isOnGround)
         {
@@ -248,7 +248,7 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
             {
                 player_Rb.gravityScale = gravity * fallMultiplier;
             }
-            else if (player_Rb.velocity.y > 0 && !Input.GetButton("Jump")) //Not holding the jump button
+            else if (player_Rb.velocity.y > 0 && !Input.GetButton("Jump")) // Om spelaren inte håller ner hoppknappen joppar man kortare
             {
                 player_Rb.gravityScale = gravity * (fallMultiplier / 2);
             }
@@ -293,7 +293,7 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
         transform.localScale = characterScale;
 
         //Dash
-        if (hasUnlockedDash)
+        if (hasUnlockedDash)            //Om spelaren har låst upp dash
         {
             if (Input.GetKeyDown(KeyCode.L) && moveX != 0 && PlayerInfo.currentEnergy >= 20) //Kan bara dasha om man input en direction
             {
@@ -305,7 +305,6 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
                 playerInfoScript.UseEnergy(20);
                 
                
-
             }
             if (isDashing)
             {
@@ -327,7 +326,7 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
         //WallClimb
         if (CanWallClimb) 
         {
-            isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 5, wallLayer);
+            isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 5, wallLayer);                  //Kollar om spelaren är vid en vägg 
             if (isTouchingFront && !isOnGround && moveX != 0)
             {
                 wallCling = true;
@@ -371,7 +370,7 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
     void Crouch()
     {
         //Crouch
-        if (Input.GetKey(KeyCode.C) || hasToCrouch && isOnGround || hasToCrouch && isOnPlatform)
+        if (Input.GetKey(KeyCode.C) || hasToCrouch && isOnGround || hasToCrouch && isOnPlatform)            
         {
             animator.SetBool("Sit", true);
             capsuleCollider.size = new Vector2(4.577552f, 4.577552f);
@@ -455,7 +454,7 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Physics2D.IgnoreLayerCollision(11, 7); // Player Layer Ignore Grapple layer 
+        Physics2D.IgnoreLayerCollision(11, 7);                     //Player Layer Ignore Grapple layer 
         if (collision.gameObject.CompareTag("Wall"))
          {
             isOnGround = false;
@@ -484,14 +483,14 @@ public class PlayerControll : MonoBehaviour //Detta är skrivet av: Brandon + Seb
         }
     }
 
-    public void PlayNewAbilityCutscene()
+    public void PlayNewAbilityCutscene()            //spelar en cutscene när spelaren får en ny förmåga
     {     
         camAnimator.SetBool("NewAbility", true);
         this.enabled = false;
         Invoke("StopCutscene", 1);
         newAbilityText.startText = true;
     }
-    public void OpenChestCutScene()
+    public void OpenChestCutScene()                 //spelar en cutscene när spelaren öpnar en ny förmåga
     {
         camAnimator.SetBool("OpenChest", true);
         this.enabled = false;
