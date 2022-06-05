@@ -136,21 +136,21 @@ public class ScorpionAttackScript : MonoBehaviour //Detta är skrivet av: Brandon
 
     void EnemyFacingPlayer()
     {
-        Vector3 charecterScale = transform.localScale;
+        Vector3 characterScale = transform.localScale;
 
         if (playerInfo.transform.position.x > this.transform.position.x && facingLeft)
         {
             flipHitbox *= -1;
-            charecterScale.x *= -1;
-            this.transform.localScale = charecterScale;
+            characterScale.x *= -1;
+            this.transform.localScale = characterScale;
             facingLeft = false;
             Debug.Log("Flip Sprite");
         }
         if (playerInfo.transform.position.x < this.transform.position.x && !facingLeft) // Om player transform är större än enemy vänd på enemy
         {
             flipHitbox *= -1;
-            charecterScale.x *= -1;
-            this.transform.localScale = charecterScale;
+            characterScale.x *= -1;
+            this.transform.localScale = characterScale;
             facingLeft = true;
             Debug.Log("Flip Sprite");
         }

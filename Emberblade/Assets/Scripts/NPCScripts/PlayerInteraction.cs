@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteraction : MonoBehaviour //Detta är skrivet av: Axel
+public class PlayerInteraction : MonoBehaviour //Detta är skrivet av: Axel, detta skriptet används inte kolla NPC interaction istället
 {
     private GameObject triggeringNpc;
     private bool triggering;

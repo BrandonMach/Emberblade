@@ -377,6 +377,7 @@ MonoBehaviour:
   maxDistance: 100
   grappleSpeed: 20
   grappleShootSpeed: 20
+  effect: {fileID: 0}
   retracting: 0
   hookTransform: {fileID: 294459211}
   direction: {x: 0, y: 0}
@@ -399,6 +400,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   startTimeBetweenAttack: 0
+  isInBossBattle: 0
 --- !u!114 &7159301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,7 +413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc7285715a56b24d93214914b2e4cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currency: 0
   currencyText: {fileID: 1556952631}
 --- !u!95 &7159302
 Animator:
@@ -444,10 +445,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d770cf12e78bed4081f8cc994c1c9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
-  currentHealth: 130
-  maxEnergy: 150
-  currentEnergy: 70
+  damageFlashColor: {r: 0, g: 0, b: 0, a: 0}
+  regularColor: {r: 0, g: 0, b: 0, a: 0}
+  sprite: {fileID: 0}
+  parryFlashColor: {r: 0, g: 0, b: 0, a: 0}
+  parryFlashDuration: 0
+  numberOfParryFlashes: 0
   healthBar: {fileID: 1166381645}
   energyBar: {fileID: 1363265316}
   canTakeDamage: 0
@@ -623,8 +626,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 25
+  player_Rb: {fileID: 0}
   jumpforce: 40
-  jumpRingPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   jRingSpawnTime: 0.5
   dashEffectPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   dESpawnTime: 0.1
@@ -636,6 +639,10 @@ MonoBehaviour:
   isOnGround: 0
   groundLenght: 7.78
   colliderOffset: {x: 2.03, y: 0, z: 0}
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isOnPlatform: 0
   isCrouching: 0
   hasToCrouch: 0
   roofLayer:
@@ -646,14 +653,14 @@ MonoBehaviour:
   gravity: 2
   fallMultiplier: 6
   liniearDrag: 7
+  lookingRight: 1
   newAbilityText: {fileID: 1315639190}
   jumpSpeed: 33
   jumpDelay: 0.25
+  jumpRing: {fileID: 0}
   canDoubleJump: 0
   dashForce: 100
   startDashTimer: 0.25
-  hasUnlockedDash: 0
-  isParrying: 0
   ghScript: {fileID: 7159299}
   grapplelayer:
     serializedVersion: 2
@@ -667,7 +674,8 @@ MonoBehaviour:
   xWallForce: 50
   yWallForce: 40
   wallJumpTime: 0.05
-  knockback: 10
+  knockbackX: 0
+  knockbackY: 0
   knockbackLength: 0.3
   knockbackCount: 0
   knockFromRight: 0
@@ -10504,7 +10512,8 @@ MonoBehaviour:
   maxHealth: 0
   health: 3
   canTakeDamage: 1
-  abilityItem: {fileID: 1298922336}
+  currency: 0
+  amoutMana: 0
   healthBar: {fileID: 0}
 --- !u!61 &285901448
 BoxCollider2D:
@@ -44173,7 +44182,8 @@ MonoBehaviour:
   maxHealth: 0
   health: 4
   canTakeDamage: 1
-  abilityItem: {fileID: 6893412476636503123, guid: 6ed0597c1deb8d644acee6614e74f6b9, type: 3}
+  currency: 0
+  amoutMana: 0
   healthBar: {fileID: 0}
 --- !u!61 &1508506089
 BoxCollider2D:
