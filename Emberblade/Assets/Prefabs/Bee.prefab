@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 80357459}
   - component: {fileID: 1253114008}
   - component: {fileID: 1612723561628817711}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   attackAcc: 2
   attackSpeed: 10
   agroRangeX: 75
-  agroRangeY: 75
+  agroRangeY: 50
 --- !u!50 &1253114008
 Rigidbody2D:
   serializedVersion: 4

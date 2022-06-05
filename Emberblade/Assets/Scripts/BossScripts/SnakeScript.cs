@@ -2,44 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnakeScript : MonoBehaviour
+public class SnakeScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
-    // Start is called before the first frame update
-    public bool playerInRange;
-    public Vector2 playerDetection;
+    
+    [SerializeField] bool playerInRange;
+    [SerializeField] Vector2 playerDetection;
     PlayerInfo playerInfoController;
     PlayerControll playerControllScript;
-    public bool isOnGround;
-    public bool facingLeft;
-    public Animator animator;
+    [SerializeField] bool isOnGround;
+    [SerializeField] bool facingLeft;
+    [SerializeField] Animator animator;
 
 
-    bool attacking;
-    bool playAttackAnim;
-    public Rigidbody2D rb;
-    public float startAttackTimer;
-    float attackDelay = 1;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] float startAttackTimer;
+    
 
     private float flipHitbox = 1f;
     float startTimer = 0;
     float hitWallTimer = 0;
     float wallAttackTime = 2;
-    float animationTime = 2f;
 
+    [SerializeField] LayerMask playerLayer;
 
-
-    public LayerMask playerLayer;
-    Collider2D[] hitPlayer;
-
-    public bool canAttack = true;
+    [SerializeField] bool canAttack = true;
 
     [Header("Second phase")]
-    EnemyHealth enemyHealthScripts;
+    BossHealth enemyHealthScripts;
     int maxHealth; 
     bool secondPhase = false;
-    public ParticleSystem poisonRain;
-    public Animator camAnim;
-    public Transform startTransform;
+    [SerializeField] ParticleSystem poisonRain;
+    [SerializeField] Animator camAnim;
+    [SerializeField] Transform startTransform;
     Vector3 startPos;
 
 
@@ -48,7 +42,7 @@ public class SnakeScript : MonoBehaviour
     {
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
         playerControllScript = GameObject.Find("Player").GetComponent<PlayerControll>();
-        enemyHealthScripts = GetComponent<EnemyHealth>();
+        enemyHealthScripts = GetComponent<BossHealth>();
         maxHealth = enemyHealthScripts.health;
         poisonRain.Stop();
         startPos = startTransform.position;
@@ -59,12 +53,12 @@ public class SnakeScript : MonoBehaviour
     {
         DetectPlayer();
 
-        if (!canAttack)
+        if (!canAttack)  //Stoppar Ormen från atta attackera om och om igen 
         {
             startTimer += Time.deltaTime;
             if (startTimer >= startAttackTimer)
             {
-                if (facingLeft)
+                if (facingLeft)                                                 //Om spelaren är till vänster om ormen
                 {
                     rb.AddForce(new Vector2(1.005f, 0), ForceMode2D.Impulse);
                 }
@@ -77,7 +71,7 @@ public class SnakeScript : MonoBehaviour
             }
         }
 
-        if (enemyHealthScripts.health <= (maxHealth / 2) && !secondPhase)
+        if (enemyHealthScripts.health <= (maxHealth / 2) && !secondPhase)         // när Ormens HP är hälften av max hp startas andra fasen, Starta gift regnet
         {
             playerControllScript.enabled = false;
             animator.SetTrigger("SecondPhase");
@@ -109,19 +103,21 @@ public class SnakeScript : MonoBehaviour
                 if (playerInRange)
                 {
                     
-                    if (this.transform.position.x > playerInfoController.transform.position.x +10 && !facingLeft) // Armadillo på höger sida av spelare
+                    if (this.transform.position.x > playerInfoController.transform.position.x + 10 && !facingLeft) // Ormen är på höger sida av spelare
                     {       
                         characterScale.x *= -1;
                         facingLeft = true;
                         this.transform.localScale = characterScale;     
-                        flipHitbox *= -1;       
+                        flipHitbox *= -1;
+                        playerControllScript.knockFromRight = true;
                     }
-                    if (this.transform.position.x < playerInfoController.transform.position.x -10&& facingLeft) // Armadillo på vänster sida av spelaren
+                    if (this.transform.position.x < playerInfoController.transform.position.x - 10 && facingLeft) // Ormen är på vänster sida av spelaren
                     {
                         characterScale.x *= -1;
                         facingLeft = false;
                         this.transform.localScale = characterScale;
-                        flipHitbox *= -1;   
+                        flipHitbox *= -1;
+                        playerControllScript.knockFromRight = false;
                     }
                     
                     StartAttack();
@@ -134,14 +130,14 @@ public class SnakeScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player") && canAttack)
+        if (other.gameObject.CompareTag("Player") && canAttack) //Om Ormen kan attackera spelaren och kolliderar med spalren skadas spelaren
         {
             animator.SetTrigger("ATrigger");
             playerInfoController.TakeDamage(30);
-            playerControllScript.Knockback(flipHitbox*100,20);
+            playerControllScript.Knockback(5, 5);
             canAttack = false;        
         }
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall")) // Om ormen kolliderara med objekt taggat Wall, kan ormen inte attackera en stund
         {
             canAttack = false;
           
@@ -161,11 +157,11 @@ public class SnakeScript : MonoBehaviour
         {
             if (facingLeft)
             {
-                rb.AddForce(new Vector2(-2, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-10, 0), ForceMode2D.Impulse);
             }
             else
             {
-                rb.AddForce(new Vector2(2, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(10, 0), ForceMode2D.Impulse);
             }
         }
     }

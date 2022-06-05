@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class armadilloScript : MonoBehaviour
+public class armadilloScript : MonoBehaviour //Detta är skrivet av: Sebastian + Brandon
 {
     // Start is called before the first frame update
 
-    public bool playerInRange;
-    public Vector2 playerDetection;
+    [SerializeField] bool playerInRange;
+    [SerializeField] Vector2 playerDetection;
+    private Vector2 detectionlocation;
     PlayerInfo playerInfoController;
-    public bool isOnGround;
-    public bool facingLeft;
-    public Animator animator;
+    [SerializeField] bool isOnGround;
+    [SerializeField] bool facingLeft;
+    [SerializeField] Animator animator;
 
     float attackTimer;
     float attackStartUpTime;
     bool attacking;
     bool canAttack;
+    bool attackmode;
+    bool stopMoving;
     Rigidbody2D rb;
 
     BoxCollider2D boxCollider;
     CircleCollider2D circleCollider;
     PlayerControll playerControllScript;
-    public Quaternion originalRotationValue;
+    [SerializeField] Quaternion originalRotationValue;
     int knockBackValue;
 
 
@@ -44,6 +47,8 @@ public class armadilloScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        detectionlocation = new Vector2(transform.position.x, transform.position.y - 4);
+
         if (facingLeft)
         {
             knockBackValue = 5;
@@ -53,7 +58,7 @@ public class armadilloScript : MonoBehaviour
             knockBackValue = -5;
         }
         DetectPlayer();
-        if (attacking)
+        if (attacking && canAttack)
         {          
             animator.SetBool("Attack", true);
             Invoke("StartAttack", attackStartUpTime);
@@ -83,19 +88,21 @@ public class armadilloScript : MonoBehaviour
         Vector3 characterScale = transform.localScale;
         playerInRange = false;
 
-        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, playerDetection, 0);
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(detectionlocation, playerDetection, 0);
 
         foreach (var colliderHit in hitColliders)
         {
-            if (colliderHit.gameObject.CompareTag("Player"))
+            if (colliderHit.gameObject.CompareTag("Player") && !attackmode)
             {
                 playerInRange = true;
+                
 
-                if (playerInRange)
+                if (playerInRange && canAttack)
                 {
                     attacking = true;
                     if (this.transform.position.x > playerInfoController.transform.position.x && !facingLeft) // Armadillo på höger sida av spelare
                     {
+                        attackmode = true;
                         characterScale.x *= -1;
                         facingLeft = true;
                         this.transform.localScale = characterScale;
@@ -103,6 +110,7 @@ public class armadilloScript : MonoBehaviour
                     }
                     if (this.transform.position.x < playerInfoController.transform.position.x && facingLeft) // Armadillo på vänster sida av spelaren
                     {
+                        attackmode = true;
                         characterScale.x *= -1;
                         facingLeft = false;
                         this.transform.localScale = characterScale;      
@@ -119,43 +127,66 @@ public class armadilloScript : MonoBehaviour
             if (facingLeft)
             {
                 animator.SetBool("Roll", true);
-                rb.AddForce(new Vector2(-1, 0), ForceMode2D.Impulse);
-                transform.Rotate(new Vector3(0, 0, 5));
+                rb.AddForce(new Vector2(-4f, 0), ForceMode2D.Impulse);
+                //transform.Rotate(new Vector3(0, 0, 2f));
             }
             else
             {
                 animator.SetBool("Roll", true);
-                rb.AddForce(new Vector2(1, 0), ForceMode2D.Impulse);
-                transform.Rotate(new Vector3(0, 0, -5));
+                rb.AddForce(new Vector2(4f, 0), ForceMode2D.Impulse);
+                //transform.Rotate(new Vector3(0, 0, -2f));
             }    
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && attacking)
         {
            
             animator.SetBool("Roll", false);           
+            animator.SetBool("Attack", false);           
             Debug.Log("Rolled Player");
-            playerControllScript.Knockback(knockBackValue,3);   
+            if (transform.position.x < collision.transform.position.x)
+            {
+                playerControllScript.knockFromRight = false;
+            }
+            else
+            {
+                playerControllScript.knockFromRight = true;
+            }
+            playerControllScript.Knockback(30, 15);
+            playerInfoController.TakeDamage(20);
             canAttack = false;
             rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
             attacking = false;
+            attackmode = false;
         }
-        if (collision.gameObject.CompareTag("Wall"))
+        else if (collision.gameObject.CompareTag("Player") && !attacking)
+        {
+            playerControllScript.Knockback(10, 5);
+            playerInfoController.TakeDamage(20);
+        }
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Breakable"))        //Om armadillo krockar medobjekt taggad wall, enemy, breakable
         {
             animator.SetBool("Roll", false);
+            animator.SetBool("Attack", false);
             rb.AddForce(new Vector2(knockBackValue, 0), ForceMode2D.Impulse);
             attacking = false;
             canAttack = false;
+            attackmode = false;
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        stopMoving = true;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, playerDetection);
+        Gizmos.DrawWireCube(detectionlocation, playerDetection);
     }
 
 }

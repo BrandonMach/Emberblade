@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour //Detta är skrivet av: Serena
 {
     public List<Enemy> enemies = new List<Enemy>();
 

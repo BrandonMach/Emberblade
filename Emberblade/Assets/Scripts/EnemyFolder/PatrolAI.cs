@@ -2,37 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolAI : MonoBehaviour
+public class PatrolAI : MonoBehaviour //Detta är skrivet av: Sebastian
 {
     // Denna Script används för enemies som bee som patrollar runt till spelaren är i range för att attackera
-    public float speed = 10f;
-    public float range = 50f;
-    public Animator animator;
+    [Header("Detection Range")]
+    [SerializeField] float speed = 10f;
+    [SerializeField] float range = 50f;
+    [SerializeField] Animator animator;
     float startingX;
     int dir = 1;
     bool idle;
     bool fliped;
     Rigidbody2D rb2d;
 
-    //Time to attack
+    [Header("Time To Attack")]//Time to attack 
     bool chargeTime;
     float currentTime = 0f;
     float startingTime = 0.7f;
 
-    //Attack
+    [Header("Attack")]//Attack
     bool getAattackPos;
     bool attackTime;
-    public float attackAcc = 2;
-    public float attackSpeed = 1;
+    [SerializeField] float attackAcc = 2;
+    [SerializeField] float attackSpeed = 1;
     Vector2 attackDir;
 
-    // Target
+    [Header("Target")]// Target
     private Vector2 movetowardsPlayer;
     private PlayerInfo playerInfoController;
-    public float agroRangeX = 70;
-    public float agroRangeY = 30;
-    
+    private PlayerControll playerControll;
+    [SerializeField] float agroRangeX = 70;
+    [SerializeField] float agroRangeY = 30;
 
+    int invokeCounter = 0;
+    float timer;
 
     void Start()
     {
@@ -40,6 +43,7 @@ public class PatrolAI : MonoBehaviour
         idle = true;
         startingX = transform.position.x;
         playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        playerControll = GameObject.Find("Player").GetComponent<PlayerControll>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -79,15 +83,11 @@ public class PatrolAI : MonoBehaviour
             float angle = Mathf.Atan2(attackDir.x, attackDir.y) * Mathf.Rad2Deg;
             attackDir.Normalize();
             movetowardsPlayer = attackDir;
-            attackAcc += 2f;
 
-            rb2d.MovePosition((Vector2)transform.position + (attackDir * attackSpeed * attackAcc * Time.deltaTime));
-            if (getAattackPos)
-            {
-                attackDir = playerInfoController.transform.position - transform.position;
-                
-                getAattackPos = false;
-            }
+
+            Invoke("getDelayedPos", 0.1f);
+            rb2d.AddForce(attackDir * attackAcc, ForceMode2D.Impulse);
+
 
             if (transform.position.x < playerInfoController.transform.position.x)
             {
@@ -99,25 +99,49 @@ public class PatrolAI : MonoBehaviour
                 transform.localScale = new Vector2(1, 1);
                 fliped = true;
             }
-
-            if (fliped)
-            {
-                rb2d.rotation = -angle - 90;
-            }
-            else
-            {
-                rb2d.rotation = -angle + 90;
-            }
-
-
         }
     }
+
+
+    private void getDelayedPos()
+    {
+        if (invokeCounter <= 1)
+        {
+            attackDir = playerInfoController.transform.position - transform.position;
+        }
+
+        invokeCounter++;
+
+        if (invokeCounter > 1)
+        {
+            timer += Time.deltaTime;
+            if (timer > 0.05f)
+            {
+                attackDir = playerInfoController.transform.position - transform.position;
+                attackAcc += 1f;
+                timer = 0;
+                Debug.Log(timer);
+            }
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player") && attackTime)
         {
-            playerInfoController.TakeDamage(40);
+            playerInfoController.TakeDamage(60);
+            playerControll.Knockback(20, 20);
+
+
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerInfoController.TakeDamage(80);
+            playerControll.Knockback(20, 20);
+
+
             Destroy(gameObject);
         }
         if (other.gameObject.CompareTag("Wall") && attackTime)
@@ -132,7 +156,18 @@ public class PatrolAI : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (other.gameObject.CompareTag("Enemy") && attackTime)
+        {
+            Destroy(gameObject);
+            
+        }
+        if (other.gameObject.CompareTag("Platform") && attackTime)
+        {
+            Destroy(gameObject);
+        }
     }
+
+    
 
     public void Idle()
     {

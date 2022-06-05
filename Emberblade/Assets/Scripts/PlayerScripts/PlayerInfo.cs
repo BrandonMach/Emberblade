@@ -3,21 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerInfo : MonoBehaviour
+public class PlayerInfo : MonoBehaviour //Detta är skrivet av: Philip + Brandon(parry) + Sebastian(IFrame)
 {
+    [Header("IFrame")]
+    public Color damageFlashColor;
+    public Color regularColor;
+    private float damageFlashDuration = 0.1f;
+    private int numberOfDamageFlashes = 8;
+    public SpriteRenderer sprite;
 
-    public int maxHealth;
-    public int currentHealth;
-    public int maxEnergy;
-    public int currentEnergy; 
-    public HealthBar healthBar;
-    public EnergyBar energyBar;
+    [Header ("Parry")]
+    public Color parryFlashColor;
+    public float parryFlashDuration;
+    [SerializeField] int numberOfParryFlashes;
+    private SFXPlaying sfxScript;
+
+    [Header ("UI")]
+    public static int maxHealth = 200;
+    public static int currentHealth;
+    public static int maxEnergy = 150;
+    public static int currentEnergy;
+    public static bool unlockedManaRegen;
+    private float timeManaRegen;
+    [SerializeField] HealthBar healthBar;
+    [SerializeField] EnergyBar energyBar;
     public bool canTakeDamage;
     private float startTimeDamageTimer;
-    private float damageDelay = 2f;
     private PlayerControll playerControllScript;
+    LayerMask enemyLayer;
 
     private GameMaster gm;
+
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,23 +47,29 @@ public class PlayerInfo : MonoBehaviour
         playerControllScript = GetComponent<PlayerControll>();
 
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        transform.position = gm.lastCheckPointPos;
+        sfxScript = GameObject.Find("SoundManager").GetComponent<SFXPlaying>();
+        if (Checkpoint.checkpointTaken)
+        {
+            transform.position = gm.lastCheckPointPos;
+        }
+        canTakeDamage = true;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             TakeDamage(20);
         }
 
-        if (Input.GetKey(KeyCode.H))
+        if (Input.GetKey(KeyCode.O))
         {
-            RechargeEnergy();
+            RechargeEnergy(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             Heal(35);
         }
@@ -54,37 +78,103 @@ public class PlayerInfo : MonoBehaviour
         {
             Death();
         }
-        DamageWindow();
 
+        if (unlockedManaRegen)
+        {
+            RechargeEnergyOverTime();
+        }
+        
     }
     
+   
+
     public void TakeDamage(int damage) //Metod som gör så att man kan förlora health.
     {
-        if (!playerControllScript.isParrying)
+        if (!PlayerControll.isParrying && canTakeDamage)            //Om spelarn parrerar star man ingen skada
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
-            canTakeDamage = false;
+            StartCoroutine(DamageFlash());
+            //canTakeDamage = false;
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
             }
         }
-        else
+        else if(PlayerControll.isParrying)
         {
-            Debug.Log("Parry Succes");
+            sfxScript.PlayParry();
+            StartCoroutine(ParryFlash());
+            Debug.LogError("Parry Succes");
+           
         }
-       
+        //if (canTakeDamage)
+        //{
+        //    //playerControllScript.knockbackCount = 10;
+        //    currentHealth -= damage;
+        //    healthBar.SetHealth(currentHealth);
+        //    StartCoroutine(FlashCo());
+        //    //canTakeDamage = false;
+        //}
+        //if (currentHealth <= 0)
+        //{
+        //    currentHealth = 0;
+        //}
     }
 
-    public void RechargeEnergy()
+
+    private IEnumerator DamageFlash()
+    {
+        int temp = 0;
+        canTakeDamage = false;
+        while (temp < numberOfDamageFlashes)
+        {
+            sprite.color = damageFlashColor;
+            yield return new WaitForSeconds(damageFlashDuration);
+            sprite.color = regularColor;
+            yield return new WaitForSeconds(damageFlashDuration);
+            temp++;
+        }
+        canTakeDamage = true;
+    }
+    private IEnumerator ParryFlash()
+    {
+        int temp = 0;
+        while (temp < numberOfParryFlashes)
+        {
+            sprite.color = parryFlashColor;
+            yield return new WaitForSeconds(parryFlashDuration);
+            sprite.color = regularColor;
+            yield return new WaitForSeconds(parryFlashDuration);
+            temp++;
+        }
+    }
+
+    public void RechargeEnergyOverTime()
     {
         if (currentEnergy < maxEnergy)
         {
-            currentEnergy++;
+            timeManaRegen += Time.deltaTime;
+            if (timeManaRegen >= 10)
+            {
+                currentEnergy += 10;
+                energyBar.SetEnergy(currentEnergy);
+                timeManaRegen = 0;
+            }
+        }
+        else { currentEnergy = maxEnergy; }
+    }
+
+    public void RechargeEnergy(int amount)
+    {
+        if (currentEnergy < maxEnergy)
+        {
+            currentEnergy += amount;
             energyBar.SetEnergy(currentEnergy);
         }
         else { currentEnergy = maxEnergy; }
+
+
     }
 
     public void Heal(int health) //Metod som gör att man kan få tillbaka health.
@@ -110,9 +200,13 @@ public class PlayerInfo : MonoBehaviour
 
     public void Death() //Gör så man kan dö.
     {
+        
         Debug.Log("works");
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         currentHealth = maxHealth;
+        currentEnergy = maxEnergy;
+        Destroy(this.gameObject);
     }
 
     public void UseEnergy(int energy)
@@ -121,16 +215,17 @@ public class PlayerInfo : MonoBehaviour
         energyBar.SetEnergy(currentEnergy);
     }
 
-    public void DamageWindow()
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!canTakeDamage)
+        
+        if (other.transform.position.x < transform.position.x) 
         {
-            startTimeDamageTimer += Time.deltaTime;
+            playerControllScript.knockFromRight = false;
         }
-        if (startTimeDamageTimer >= 1)
+        else
         {
-            canTakeDamage = true;
-            startTimeDamageTimer = 0;
+            playerControllScript.knockFromRight = true;
         }
     }
 }

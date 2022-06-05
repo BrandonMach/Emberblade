@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : MonoBehaviour //Detta är skrivet av: Philip
 {
 
-    public Slider slider;
+    [SerializeField] Slider slider;
     public void SetMaxHealth(int health)
     {
         slider.maxValue = health;

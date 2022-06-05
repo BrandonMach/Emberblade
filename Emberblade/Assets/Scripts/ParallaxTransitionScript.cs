@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParallaxTransitionScript : MonoBehaviour
+public class ParallaxTransitionScript : MonoBehaviour //Detta är skrivet av: Sebastian
 {
-    public GameObject background;
-    public GameObject backgroundCave;
+    [SerializeField] GameObject background;
+    [SerializeField] GameObject backgroundCave;
 
-    public GameObject player;
+    [SerializeField] GameObject player;
 
     enum backgroundType
     {

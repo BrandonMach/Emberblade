@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSpiderScript : MonoBehaviour
+public class BossSpiderScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     // Start is called before the first frame update
     [SerializeField]
     GameObject bulletWeb;
-    EnemyHealth enemyHealthScripts;
+    BossHealth enemyHealthScripts;
     int maxHealth;
  
 
@@ -39,7 +39,7 @@ public class BossSpiderScript : MonoBehaviour
         nextFire = Time.time;
         rb = GetComponent<Rigidbody2D>();
         webHookScript = GetComponent<WebHookScript>();
-        enemyHealthScripts = GetComponent<EnemyHealth>();
+        enemyHealthScripts = GetComponent<BossHealth>();
         maxHealth = enemyHealthScripts.health;
     }
 
@@ -47,20 +47,20 @@ public class BossSpiderScript : MonoBehaviour
     void Update()
     {
         playerPosX = playerInfoScript.transform.position.x;
-        if (enemyHealthScripts.health <= (maxHealth/2) && !secondPhase)
+        if (enemyHealthScripts.health <= (maxHealth/2) && !secondPhase)  //Spindeln har minder HP hälften hp kvar
         {
             secondPhase = true;
             rb.gravityScale *= -1;     
             webHookScript.ShootHookWeb();
             
         }
-        if (onRoof)
+        if (onRoof)                                                                         //Om spindeln är på taket 
         {
             animator.SetBool("Move", true);
             onRoofTimer += Time.deltaTime;
-            transform.localScale = new Vector3(transform.localScale.x, -1, transform.localScale.z);
-            //Spider jumps down
-            if (onRoofTimer >= jumpDownTime) 
+            transform.localScale = new Vector3(transform.localScale.x, -1, transform.localScale.z);  //Vänder Spindeln upp och ner
+                                                                                                        //Spider dyker ner 
+            if (onRoofTimer >= jumpDownTime)                                          
             {
                 animator.SetBool("Move", false);
                 animator.SetBool("FallAttack", true);
@@ -89,14 +89,14 @@ public class BossSpiderScript : MonoBehaviour
             if (colliderHit.gameObject.CompareTag("Player") && onRoof && findPlayer)
             {
                 Debug.Log("Spider Move to player");
-                transform.position = new Vector3(playerPosX, transform.position.y, transform.position.z);
+                transform.position = new Vector3(playerPosX, transform.position.y, transform.position.z);  //När spindeln är på taket letar den efter spelarens position
             }
         }
     }
 
     void CheckIfTimeToFire()
     {
-        if (Time.time > nextFire)
+        if (Time.time > nextFire)  // en timer för när spindeln för instantiera ett spindelnät igen
         {
             Instantiate(bulletWeb, transform.position + new Vector3(-10,0,0), Quaternion.identity);
             nextFire = Time.time + fireRate;
@@ -104,7 +104,7 @@ public class BossSpiderScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Roof"))
+        if (collision.gameObject.CompareTag("Roof")) // Om sindeln kolliderara med taket ska den sluta sjkuta spindelnätet som "drar upp" spindeln
         {
             onRoof = true;
             findPlayer = true;
@@ -112,7 +112,7 @@ public class BossSpiderScript : MonoBehaviour
             
         }
 
-        if (collision.gameObject.CompareTag("Ground") && fallAttack)
+        if (collision.gameObject.CompareTag("Ground") && fallAttack) //Om spindeln kollidearar med marken och dyker ner mot splaren ska spindelnätet som "håller upp" spindeln synas och spindeln ska åka nedåt
         {
             webHookScript.ShootHookWeb();
             onRoof = true;
@@ -121,14 +121,14 @@ public class BossSpiderScript : MonoBehaviour
             findPlayer = false;
             
         }
-        if ( collision.gameObject.CompareTag("Player") && fallAttack)
+        if ( collision.gameObject.CompareTag("Player") && fallAttack) //Om spindeln kollidearar med marken och dyker ner mot splaren ska spindelnätet som "håller upp" spindeln synas och spindeln ska åka nedåt, spelaren ska ockås ta skada
         {
             webHookScript.ShootHookWeb();
             onRoof = true;
             fallAttack = false;
             rb.gravityScale *= -1;
             findPlayer = false;
-            playerInfoScript.TakeDamage(30);
+            playerInfoScript.TakeDamage(100);
             
 
         }

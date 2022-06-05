@@ -743,6 +743,7 @@ MonoBehaviour:
   currentEnergy: 70
   healthBar: {fileID: 135144022}
   energyBar: {fileID: 329682275}
+  canTakeDamage: 0
 --- !u!70 &300212339
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -953,15 +954,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 25
   jumpforce: 32
-  isOnGround: 0
   jumpRingPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   jRingSpawnTime: 0.5
   dashEffectPrefab: {fileID: 3316763037652867909, guid: 84a7b6377deaed3448a436d8871d6f8a, type: 3}
   dESpawnTime: 0.1
-  collider: {fileID: 300212339}
+  animator: {fileID: 300212336}
+  camAnimator: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isOnGround: 0
+  groundLenght: 0
+  colliderOffset: {x: 0, y: 0, z: 0}
+  hasToCrouch: 0
+  roofLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  headFloat: 0
+  headOffset: {x: 0, y: 0, z: 0}
+  gravity: 1
+  fallMultiplier: 5
+  liniearDrag: 4
+  newAbilityText: {fileID: 0}
+  jumpSpeed: 15
+  jumpDelay: 0.25
+  canDoubleJump: 0
+  isCrouching: 0
   dashForce: 100
   startDashTimer: 0.25
-  animator: {fileID: 300212336}
+  hasUnlockedDash: 0
+  isParrying: 0
+  ghScript: {fileID: 0}
+  grapplelayer:
+    serializedVersion: 2
+    m_Bits: 0
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  frontCheck: {fileID: 0}
+  wallClimbSpeed: 0
+  CanWallClimb: 0
+  xWallForce: 0
+  yWallForce: 0
+  wallJumpTime: 0
 --- !u!212 &300212346
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1010,7 +1045,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &329682273
@@ -1129,11 +1164,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 143.83844
+      value: 139.88
       objectReference: {fileID: 0}
     - target: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.56766
+      value: -18.76
       objectReference: {fileID: 0}
     - target: {fileID: 3626008484506564777, guid: d9e9baf9424689643af24a29c85c8236, type: 3}
       propertyPath: m_LocalPosition.z

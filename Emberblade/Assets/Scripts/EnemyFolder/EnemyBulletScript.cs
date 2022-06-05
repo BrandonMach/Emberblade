@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletScript : MonoBehaviour
+public class EnemyBulletScript : MonoBehaviour //Detta är skrivet av: Brandon + Serena
 {
     // Start is called before the first frame update
 
@@ -20,10 +20,6 @@ public class EnemyBulletScript : MonoBehaviour
     void Update()
     {      
             tongue_Rb.AddForce(new Vector2(direction,0), ForceMode2D.Impulse);
-        //if (lifespan <= 0)
-        //    Destroy(gameObject);
-        //else
-        //    lifespan -= Time.deltaTime;
     }
     
     private void OnCollisionEnter2D(Collision2D collision)

@@ -2,22 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour //Detta är skrivet av: Brandon + Sebastian
 {
 
-
+    public int maxHealth;
     public int health;
     public bool canTakeDamage = true;
     private float startTimeDamageTimer;
     private float damageDelay = 0.5f;
-    public GameObject abilityItem;
     Currency player;
+    PlayerInfo playerInfo;
+    public int currency;
+    [SerializeField] int amoutMana;
+    public EnemyHealthbar healthBar;
     
     void Start()
     {
         //health = 3;
         canTakeDamage = true;
         player = GameObject.Find("Player").GetComponent<Currency>();
+        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        health = maxHealth;
+        healthBar.SetHealth(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -25,16 +31,16 @@ public class EnemyHealth : MonoBehaviour
     {
         DamageWindow();
         EnemyDies();
-        
-       
     }
 
 
-    public void TakeDamage()
+
+    public void TakeDamage(int damage)
     {
         if (canTakeDamage)
         {
-            health--;
+            health -= damage;
+            healthBar.SetHealth(health, maxHealth);
             canTakeDamage = false;         
         }  
     }
@@ -54,17 +60,11 @@ public class EnemyHealth : MonoBehaviour
 
     void EnemyDies()
     {
-        if (health <= 0 && startTimeDamageTimer == 0 && this.gameObject.CompareTag("Boss")) // if a Boss is killed reveal ne ability pickup
+        if (health <= 0 && startTimeDamageTimer == 0)
         {
             Destroy(this.gameObject);
-            abilityItem.SetActive(true);
-            player.IncreaseCurrency(300);
-
-        }
-
-        else if (health <= 0 && startTimeDamageTimer == 0)
-        {
-            Destroy(this.gameObject);
+            player.IncreaseCurrency(currency);
+            playerInfo.RechargeEnergy(amoutMana);
         }
     }
 }

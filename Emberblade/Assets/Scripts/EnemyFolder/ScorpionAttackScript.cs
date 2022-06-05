@@ -2,37 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScorpionAttackScript : MonoBehaviour
+public class ScorpionAttackScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     // Start is called before the first frame update
+    [Header("Attack Range")]
+    [SerializeField] bool playerInRange;
+    [SerializeField] float playerInRangeX;
+    [SerializeField] float playerInRangeY;
+    [SerializeField] bool attackPlayer;
+    [Header("Player in Range")]
+    [SerializeField] float radiusArea;
+    [SerializeField] float playerDetectionX;
+    [SerializeField] float playerDetectionY;
 
-    public bool playerInRange;
-    public bool attackPlayer;
-    public float radiusArea;
-    public float playerDetectionX;
-    public float playerDetectionY;
-    public float playerInRangeX;
-    public float playerInRangeY;
-    private float moveSpeed;
+    [SerializeField] float moveSpeed = 10;
 
-    private PlayerInfo playerInfoController;
+    private PlayerInfo playerInfo;
+    private PlayerControll playerController;
     public Animator animator;
-
+    [Header("Attack Time")]
     private float startTimeAttackTimer;
-    private float attackDelay = 2f;
-
+    [SerializeField] float attackDelay = 2f;
+    [Header("Change Sprite")]
     private float flipHitbox = 1;
     private bool facingLeft;
     private Vector3 playerTransformOffest;
 
-    public bool isOnGround;
+    [SerializeField] bool isOnGround;
+  
 
 
 
     void Start()
     {
-        playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
-        moveSpeed = 0.05f;
+        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerControll>();
         facingLeft = true;
         playerTransformOffest = new Vector3(0, 3.03f, 0);
     }
@@ -56,9 +60,6 @@ public class ScorpionAttackScript : MonoBehaviour
             startTimeAttackTimer = 0;
         }
         
-       
-
-
         EnemyFacingPlayer();
       
 
@@ -78,9 +79,9 @@ public class ScorpionAttackScript : MonoBehaviour
             {
                 playerInRange = true;
 
-                if (playerInRange /*&& isOnGround*/) // kan bara jaga när dem är på Ground
+                if (playerInRange && !attackPlayer)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, playerInfoController.transform.position - playerTransformOffest, moveSpeed);    // Offset för att fiener inte ska gå mot spelarens mage men istället mot fötterna.            
+                    transform.position = Vector3.MoveTowards(transform.position, playerInfo.transform.position - playerTransformOffest, moveSpeed * Time.deltaTime);    // Offset för att fienden inte ska gå mot spelarens mage men istället mot fötterna. Fienden rör sig mot spelaren            
                 }
             } 
         }
@@ -93,17 +94,27 @@ public class ScorpionAttackScript : MonoBehaviour
 
         foreach (var colliderHit in attackRange)
         {
-            if (colliderHit.gameObject.CompareTag("Player"))
+            if (colliderHit.gameObject.CompareTag("Player"))                                //Om spelaren är inom attackRange collidern attackera spelaren
             {
                 
                 attackPlayer = true;
                 
                 animator.SetBool("Attacking", true);
                 startTimeAttackTimer += Time.deltaTime;
-
-                if(startTimeAttackTimer >= attackDelay && attackPlayer)
+                if(transform.position.x < colliderHit.transform.position.x)
                 {
-                    playerInfoController.TakeDamage(5);
+                    playerController.knockFromRight = false;
+                }
+                else
+                {
+                    playerController.knockFromRight = true;
+                }
+               
+                if (startTimeAttackTimer >= attackDelay && attackPlayer)
+                {
+                    playerController.Knockback(5, 5);
+                    playerInfo.TakeDamage(25);
+                    
                     startTimeAttackTimer = 0;
                     attackPlayer = false;
                 }          
@@ -111,39 +122,36 @@ public class ScorpionAttackScript : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerController.Knockback(5, 5);
+            playerInfo.TakeDamage(20);
+        }
+    }
+
     void EnemyFacingPlayer()
     {
-        Vector3 charecterScale = transform.localScale;
-       // Debug.Log("PlayerPos" +playerInfoController.transform.position);
+        Vector3 characterScale = transform.localScale;
 
-        if (playerInfoController.transform.position.x > this.transform.position.x && facingLeft)
+        if (playerInfo.transform.position.x > this.transform.position.x && facingLeft)    // Om player transform är större/ åt höger om än enemy vänd på enemy
         {
             flipHitbox *= -1;
-            charecterScale.x *= -1;
-            this.transform.localScale = charecterScale;
+            characterScale.x *= -1;
+            this.transform.localScale = characterScale;
             facingLeft = false;
             Debug.Log("Flip Sprite");
         }
-        if (playerInfoController.transform.position.x < this.transform.position.x && !facingLeft) // Om player transform är större än enemy vänd på enemy
+        if (playerInfo.transform.position.x < this.transform.position.x && !facingLeft)   // Om player transform är mindre/ åt vänster om än enemy vänd på enemy
         {
             flipHitbox *= -1;
-            charecterScale.x *= -1;
-            this.transform.localScale = charecterScale;
+            characterScale.x *= -1;
+            this.transform.localScale = characterScale;
             facingLeft = true;
             Debug.Log("Flip Sprite");
         }
     }
-    // Enemy flyger typ
-    //private void OnCollisionEnter2D(Collision2D collision) 
-    //{
-    //    if (collision.gameObject.CompareTag("Ground"))
-    //    {
-    //        isOnGround = true;
-
-
-    //    }
-        
-    //}
 
     private void OnDrawGizmosSelected()
     {

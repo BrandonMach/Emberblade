@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WebHookScript : MonoBehaviour
+public class WebHookScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     // Start is called before the first frame update
     private LineRenderer lineRenderer;
@@ -11,24 +11,24 @@ public class WebHookScript : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
-        lineRenderer.useWorldSpace = true;
+        lineRenderer.useWorldSpace = true; 
     }
     private void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
-        Debug.DrawLine(transform.position, hit.point);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up); //Skapar en synlig raycast som ska se ut som at spindeln spindelnät
+        Debug.DrawLine(transform.position, hit.point); //Ritar ut spindelnätet
         webHitpoint.position = hit.point;
 
         lineRenderer.SetPosition(0, webHitpoint.position);
         lineRenderer.SetPosition(1, transform.position + new Vector3(0,70,0));
        
     }
-    public void ShootHookWeb()
+    public void ShootHookWeb() 
     {
-        lineRenderer.enabled = true;
+        lineRenderer.enabled = true; //Gör den synlig
     }
     public void StopShootHookWeb()
     {
-        lineRenderer.enabled = false;
+        lineRenderer.enabled = false; //Gör den osyndlig
     }
 }

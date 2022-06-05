@@ -16,6 +16,12 @@ TagManager:
   - NPC
   - GM
   - UnlockDash
+  - HiddenCave1
+  - Breakable
+  - Enemy
+  - Platform
+  - Bat
+  - CurrencyChest
   layers:
   - Default
   - TransparentFX
@@ -30,9 +36,9 @@ TagManager:
   - Roof
   - Player
   - Breakable
-  - 
-  - 
-  - 
+  - Platfroms
+  - Boss
+  - IceSpike
   - 
   - 
   - 

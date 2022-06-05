@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NewAbilityTextScript : MonoBehaviour
+public class NewAbilityTextScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
-
-
-
 
     // Update is called once per frame
     public TextMeshProUGUI abilityText;
@@ -42,8 +39,6 @@ public class NewAbilityTextScript : MonoBehaviour
     {
         abilityText.text = "";
     }
-
-    
 
     IEnumerator WriteSentence()
     {

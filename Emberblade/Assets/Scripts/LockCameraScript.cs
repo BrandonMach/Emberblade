@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LockCameraScript : MonoBehaviour
+public class LockCameraScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     // Start is called before the first frame update
-    public Animator camAnimator;
-    public GameObject player;
-    
-    public string desertScene;
+    private static LockCameraScript instance;
+    [SerializeField] Animator camAnimator;
+    [SerializeField] GameObject player;
+
     Scene scene;
     
     private void Start()
@@ -18,12 +18,9 @@ public class LockCameraScript : MonoBehaviour
     }
     private void Update()
     {
-        //if(scene.name == "DesertScene")
-        //{
-        //    camAnimator.SetBool("UnlockDesertCam", true);
-        //}
        
     }
+   
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,13 +30,28 @@ public class LockCameraScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "LockCamera")
             {
-                Debug.Log("Lock camera");
+                
                 camAnimator.SetBool("SwampCamera", true);
             }
             if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockCamera")
             {
                 Debug.Log("Unlock camera");
                 camAnimator.SetBool("SwampCamera", false);
+            }
+            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "LockWinterCam")
+            {
+                Debug.Log("Lock camera");
+                camAnimator.SetBool("WinterSwampLock", true);
+            }
+            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockWinterCam")
+            {
+                Debug.Log("Unlock camera");
+                camAnimator.SetBool("WinterSwampLock", false);
+            }
+            if (collision.gameObject.CompareTag("Player") && this.gameObject.name == "UnlockWinterCam2")
+            {
+                Debug.Log("Unlock camera");
+                camAnimator.SetBool("WinterSwampLock", false);
             }
         }
         if (scene.name == "DesertScene")

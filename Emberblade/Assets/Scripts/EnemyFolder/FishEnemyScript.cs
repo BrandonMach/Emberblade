@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishEnemyScript : MonoBehaviour
+public class FishEnemyScript : MonoBehaviour //Detta är skrivet av: Brandon
 {
     // Start is called before the first frame update
 
     private Rigidbody2D fish_Rb;
-    public bool playerInRange;
-    public float detectionRange;
-    public bool isUnderWater;
-    public float jumpWaitTimer = 0;
+    [SerializeField] bool playerInRange;
+    [SerializeField] float detectionRange;
+    [SerializeField] bool isUnderWater;
+    [SerializeField] float jumpWaitTimer = 0;
     private float waitTime = 1f;
-    public Renderer rend;
+    [SerializeField] Renderer rend;
     private Vector2 startPos;
     private Vector2 maxHeight;
-    private PlayerInfo playerInfoController;
-    public BoxCollider2D boxCollider;
+    private PlayerInfo playerInfo;
+    PlayerControll playerController;
+    [SerializeField] BoxCollider2D boxCollider;
 
     public int jumpheight = 0;
 
@@ -24,7 +25,8 @@ public class FishEnemyScript : MonoBehaviour
     {
         fish_Rb = GetComponent<Rigidbody2D>();
         rend = GetComponent<Renderer>();
-        playerInfoController = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerControll>();
         startPos = transform.position;
         maxHeight.y = startPos.y + 50f;
     }
@@ -34,7 +36,7 @@ public class FishEnemyScript : MonoBehaviour
     {
         DetectPlayer();
         DamagePalyer();
-        if (isUnderWater)
+        if (isUnderWater)                                 //När fisken är under vatten ska rendern bli oslynlig
         {
             jumpWaitTimer += Time.deltaTime;
             rend.enabled = false;
@@ -47,7 +49,7 @@ public class FishEnemyScript : MonoBehaviour
             rend.enabled = true; 
         }
        
-        if(transform.position.y > maxHeight.y)
+        if(transform.position.y > maxHeight.y)              //När fisken har nått maxhöjd
         {
             transform.localScale = new Vector3(-1,1,1);
             Debug.Log("Flip flip");
@@ -78,9 +80,19 @@ public class FishEnemyScript : MonoBehaviour
 
         foreach (var colliderHit in hitColliders)
         {
-            if (colliderHit.gameObject.CompareTag("Player") && playerInfoController.canTakeDamage)
+            if (colliderHit.gameObject.CompareTag("Player") && playerInfo.canTakeDamage)
             {
-                playerInfoController.TakeDamage(15);
+
+                if (transform.position.x < colliderHit.transform.position.x)
+                {
+                    playerController.knockFromRight = false;
+                }
+                else
+                {
+                    playerController.knockFromRight = true;
+                }
+                playerController.Knockback(5, 5);
+                playerInfo.TakeDamage(15);
                 boxCollider.isTrigger = true;
                 
             }

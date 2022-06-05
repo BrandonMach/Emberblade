@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Checkpoint : MonoBehaviour
+public class Checkpoint : MonoBehaviour //Detta är skrivet av: Brandon
 {
     private GameMaster gm;
-    public Animator animator;
-    public static  bool checkpointTaken;
+    [SerializeField] Animator animator;
+    public static bool checkpointTaken;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gm.lastCheckPointPos = transform.position;
+            gm.lastCheckPointPos = transform.position;              //Sparar positionen i GameGaster
             animator.SetBool("FillUp", true);
             checkpointTaken = true;
         }

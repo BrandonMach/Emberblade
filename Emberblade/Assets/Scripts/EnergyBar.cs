@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnergyBar : MonoBehaviour
+public class EnergyBar : MonoBehaviour //Detta är skrivet av: Philip
 {
 
-    public Slider slider;
+    [SerializeField] Slider slider;
     public void SetMaxEnergy(int energy)
     {
         slider.maxValue = energy;

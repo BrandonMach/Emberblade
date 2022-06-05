@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Parallax : MonoBehaviour
+public class Parallax : MonoBehaviour //Detta är skrivet av: Sebastian
 {
     private float length, startpos;
-    public GameObject cam;
-    public float parallaxEffect;
+    [SerializeField] GameObject cam;
+    [SerializeField] float parallaxEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +36,5 @@ public class Parallax : MonoBehaviour
         }
 
         
-    }
-
-    public void Yo()
-    {
-        Debug.Log("yo");
     }
 }
